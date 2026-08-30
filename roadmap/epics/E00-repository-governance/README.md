@@ -9,6 +9,7 @@ Repositório privado, com branches e documentação governadas, roadmap operacio
 - Visibilidade e clone local.
 - Branches de integração, homologação e produção.
 - Contrato raiz e sistema de tarefas.
+- Padrão de PR e governança progressiva de CI/CD.
 - Proveniência do repositório legado.
 
 ## Fora de escopo
@@ -24,6 +25,7 @@ Repositório privado, com branches e documentação governadas, roadmap operacio
 | E00-T02 | Ação do proprietário | Repositório privado |
 | E00-T03 | E00-T01 | Contrato raiz criado |
 | E00-T04 | E00-T03 | Roadmap operacional criado |
+| E00-T06 | E00-T04 | Governança de entrega adaptada |
 | E00-T05 | E00-T02, E00-T04 | Origem do legado registrada |
 
 Os status ficam exclusivamente em `roadmap/README.md`.
