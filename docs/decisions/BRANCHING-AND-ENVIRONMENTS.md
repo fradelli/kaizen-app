@@ -10,11 +10,13 @@
 
 | Branch | Papel | Ambiente esperado |
 | --- | --- | --- |
-| `developer` | Integração contínua das tarefas | Desenvolvimento e previews por branch/PR |
+| `developer` | Integração contínua das tarefas | Execução local e validação por PR |
 | `staging` | Candidata estável para homologação | Preview estável na Vercel |
 | `master` | Código aprovado para publicação | Produção na Vercel |
 
 Toda mudança parte de `developer` em uma branch curta e retorna por pull request. As promoções seguintes também ocorrem por pull request: `developer` para `staging` e `staging` para `master`.
+
+Branches de tarefa seguem `<tipo>/E00-T01-descricao-curta`. PRs de tarefa usam squash em `developer`; promoções `developer -> staging` e `staging -> master` usam merge commit para preservar o SHA aprovado.
 
 ## Limite atual
 
@@ -26,4 +28,4 @@ O fluxo separa integração, homologação e produção sem criar repositórios 
 
 ## Rollback
 
-Uma promoção com problema deve ser revertida por novo commit ou pull request. Não reescrever histórico compartilhado nem usar force push como procedimento normal.
+Uma promoção com problema deve usar o último deployment saudável ou um novo commit/PR de correção. Não reescrever histórico compartilhado nem usar force push como procedimento normal. Rollback da aplicação não reverte migrations: mudanças de banco devem ser compatíveis com a versão anterior ou corrigidas por migration adiante.

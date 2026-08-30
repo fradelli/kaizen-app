@@ -23,6 +23,8 @@ Preparar banco, variáveis, branch e configuração de produção sem liberar o 
 - [ ] Associar `master` à produção.
 - [ ] Criar banco e segredos exclusivos de produção.
 - [ ] Aplicar migrations e importação de forma controlada.
+- [ ] Executar CI no SHA promovido e exigir evidência do preview.
+- [ ] Usar Vercel CLI fixada e deploy prebuilt.
 - [ ] Confirmar domínio, logs e limites operacionais.
 
 ## Validações

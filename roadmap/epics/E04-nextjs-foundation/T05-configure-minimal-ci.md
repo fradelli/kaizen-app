@@ -8,7 +8,7 @@ depends_on: [E04-T02, E04-T03, E04-T04]
 
 ## Objetivo
 
-Executar gates proporcionais em pull requests sem pipeline empresarial antecipado.
+Implementar os gates estáveis aprovados na governança de CI para pull requests e promoções.
 
 ## Entradas
 
@@ -16,12 +16,17 @@ Executar gates proporcionais em pull requests sem pipeline empresarial antecipad
 
 ## Entregáveis
 
-- Workflow de PR definido no guia.
+- Workflow reutilizável de PR.
+- Validação mecânica de branches, títulos, descrições e direção.
+- Rulesets das branches protegidas.
 
 ## Subtarefas
 
 - [ ] Executar instalação reproduzível.
-- [ ] Executar lint, tipos, testes e build.
+- [ ] Criar jobs estáveis `Governance`, `Quality`, `Test`, `Data integrity`, `Build` e `Dependency audit`.
+- [ ] Executar lint, tipos, formato, testes, validações documentais, build e audit `moderate`.
+- [ ] Validar ID da tarefa, template e matriz `developer -> staging -> master`.
+- [ ] Configurar rulesets sem permitir push direto.
 - [ ] Configurar cache somente se trouxer benefício medido.
 
 ## Validações
@@ -30,7 +35,7 @@ Executar gates proporcionais em pull requests sem pipeline empresarial antecipad
 
 ## Critérios de aceite
 
-- [ ] `developer` recebe apenas mudanças que passam nos gates.
+- [ ] As três branches protegidas recebem apenas mudanças que passam nos gates aplicáveis.
 
 ## Resultado
 

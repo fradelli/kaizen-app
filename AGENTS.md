@@ -66,10 +66,37 @@ O status não deve ser duplicado no arquivo individual da tarefa. Ao alterar um 
 - `developer`: integração das tarefas concluídas.
 - `staging`: candidata a preview estável e homologação na Vercel.
 - `master`: candidata a produção.
-- Trabalho novo parte de `developer` em branch curta, preferencialmente com prefixo `codex/` quando criado pelo Codex.
+- Trabalho novo parte de `developer` em branch curta no formato `<tipo>/E00-T01-descricao-curta`.
+- Prefixos permitidos: `feature`, `fix`, `hotfix`, `docs`, `refactor`, `test`, `ci`, `chore`, `rc` e `codex`.
+- Use `codex` somente para branches criadas por agente; o ID e o slug continuam obrigatórios.
 - Promoção prevista: feature -> `developer` -> `staging` -> `master`, sempre por pull request.
+- Tarefas entram em `developer` por squash; promoções usam merge commit para preservar o SHA aprovado.
 
 As branches não configuram a Vercel sozinhas. A associação real com preview e produção pertence ao épico E08.
+
+## Pull requests e commits
+
+- Título de PR: `[E00-T01] tipo(escopo): resumo curto`.
+- O ID inicial deve existir em `roadmap/README.md` e ser a tarefa principal da entrega.
+- Commits usam `tipo(escopo): resumo curto`; o ID permanece na branch e na PR.
+- Toda descrição segue `.github/pull_request_template.md`, sem remover ou reordenar seções.
+- PR de tarefa temporária aponta somente para `developer`.
+- `staging` aceita somente promoção de `developer`; `master` aceita somente promoção de `staging`.
+- Use `.github/PULL_REQUEST_TEMPLATE/release-promotion.md` para promoções.
+- Marque uma validação somente quando o comando ou check realmente passou.
+
+A fonte completa é `docs/delivery/PULL-REQUEST-STANDARD.md`.
+
+## CI/CD
+
+- GitHub Actions será a plataforma de automação.
+- Checks estáveis após a criação da aplicação: `Governance`, `Quality`, `Test`, `Data integrity`, `Build` e `Dependency audit`.
+- `staging` dispara preview estável; `master` dispara produção.
+- O CD executa o CI completo no SHA promovido antes do deploy e não usa segredos de preview em produção.
+- Não remover, ignorar ou transformar checks obrigatórios em avisos para liberar uma PR.
+- Workflows executáveis serão introduzidos em E04-T05 e E08, não durante a migração documental.
+
+A política completa é `docs/decisions/CI-CD-GOVERNANCE.md`.
 
 ## Validação documental
 

@@ -23,6 +23,10 @@ Conectar o projeto à Vercel e publicar um preview verificável sem promover pro
 - [ ] Vincular o repositório e definir diretório de build.
 - [ ] Configurar banco e segredos exclusivos de preview.
 - [ ] Associar `staging` ao preview estável.
+- [ ] Executar CI no SHA promovido e confirmar o checkout imutável.
+- [ ] Usar Vercel CLI fixada, build prebuilt e uma única execução de deploy por vez.
+- [ ] Aplicar migrations compatíveis antes do deploy.
+- [ ] Executar smoke test autenticado e anônimo.
 - [ ] Documentar promoção e diagnóstico de falhas.
 
 ## Validações

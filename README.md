@@ -17,6 +17,8 @@ O projeto começa sem código. Primeiro serão migrados e validados dados, regra
 - [Status completo do roadmap](roadmap/README.md)
 - [Tarefa ativa](roadmap/ACTIVE.md)
 - [Branches e ambientes](docs/decisions/BRANCHING-AND-ENVIRONMENTS.md)
+- [Padrão de pull request](docs/delivery/PULL-REQUEST-STANDARD.md)
+- [Governança de CI/CD](docs/decisions/CI-CD-GOVERNANCE.md)
 - [Regras da migração](docs/migration/README.md)
 
 ## Fluxo de branches
