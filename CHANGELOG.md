@@ -2,6 +2,14 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-08-31 — dados canônicos de treino
+
+- Migrados literalmente o ponteiro ativo, a biblioteca de exercícios e o plano vigente v2 a partir do snapshot imutável.
+- Publicado o perfil sem identidade, medidas corporais, contexto de saúde ou `unknowns` médicos.
+- Publicada a agenda sem dias, horários exatos ou modelos semanais, preservando as regras de distribuição.
+- Registrados e verificados no manifesto os hashes de origem e destino dos cinco artefatos.
+- Concluída E01-T02 e liberada E01-T03 para decisão de exposição do histórico.
+
 ## 2026-08-31 — snapshot imutável do treino
 
 - Publicado no legado privado o snapshot `d1acad309e2b81b714d1aa375e9371a310ad6ed0`.

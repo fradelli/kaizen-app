@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2026-08-31",
+  "timezone": "America/Sao_Paulo",
+  "identity": {
+    "name": null,
+    "age": null,
+    "sex": null,
+    "height_cm": null,
+    "body_mass_kg": null
+  },
+  "goals": {
+    "primary": [
+      "performance_in_footvolley",
+      "vertical_jump_on_sand",
+      "heading_performance",
+      "landing_and_stability",
+      "injury_risk_reduction"
+    ],
+    "secondary": [
+      "aesthetic_muscle_gain"
+    ],
+    "priority_rule": "Performance has priority when it conflicts with aesthetics."
+  },
+  "areas_of_interest": [
+    "knees",
+    "ankles",
+    "hips",
+    "core",
+    "cervical_control"
+  ],
+  "training_context": {
+    "footvolley_sessions_per_week": 4,
+    "weekend_game": true,
+    "monthly_calisthenics_plan_from_coach": true,
+    "current_training_style": "calisthenics_with_bodyweight_emphasis",
+    "known_equipment": [
+      "barbell_7_kg",
+      "weight_plates_60_kg_total",
+      "pull_up_bar",
+      "parallel_bars",
+      "box"
+    ]
+  },
+  "health_context": {
+    "current_pain": null,
+    "injury_history": null,
+    "surgery_history": null,
+    "medical_restrictions": null
+  },
+  "unknowns": [
+    "weekend_game_day",
+    "age",
+    "sex",
+    "height_cm",
+    "body_mass_kg",
+    "duration_and_intensity_of_each_footvolley_session",
+    "sleep_and_recovery_baseline"
+  ]
+}

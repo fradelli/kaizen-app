@@ -22,11 +22,11 @@ Migrar perfil aprovado, agenda aprovada, ponteiro ativo, biblioteca e somente o 
 
 ## Subtarefas
 
-- [ ] Copiar ou transformar conforme manifesto.
-- [ ] Preservar `null`, `unknowns`, IDs e versões.
-- [ ] Ajustar somente caminhos relativos aprovados.
-- [ ] Registrar hash de origem e destino.
-- [ ] Não migrar versões anteriores nesta tarefa.
+- [x] Copiar ou transformar conforme manifesto.
+- [x] Preservar `null`, `unknowns` aprovados, IDs e versões.
+- [x] Ajustar somente caminhos relativos aprovados.
+- [x] Registrar hash de origem e destino.
+- [x] Não migrar versões anteriores nesta tarefa.
 
 ## Validações
 
@@ -36,9 +36,9 @@ Migrar perfil aprovado, agenda aprovada, ponteiro ativo, biblioteca e somente o 
 
 ## Critérios de aceite
 
-- [ ] Nenhuma regra ou dado foi inventado.
-- [ ] A leitura canônica de treino é reproduzível.
+- [x] Nenhuma regra ou dado foi inventado.
+- [x] A leitura canônica de treino é reproduzível.
 
 ## Resultado
 
-Ainda não concluída.
+Cinco artefatos canônicos foram migrados exclusivamente do snapshot `d1acad309e2b81b714d1aa375e9371a310ad6ed0`. As três cópias literais mantiveram o SHA-256; perfil e agenda receberam somente a sanitização aprovada, com hashes de destino registrados. O plano ativo e todos os `exercise_id` foram validados, sem incluir versões ou históricos da E01-T03.
