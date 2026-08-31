@@ -56,10 +56,15 @@ O status não deve ser duplicado no arquivo individual da tarefa. Ao alterar um 
 
 - Preserve artefatos históricos originais byte a byte quando a tarefa exigir cópia literal.
 - Registre repositório, caminho, commit, tratamento e integridade no manifesto de migração.
+- O repositório é público por decisão do proprietário; conteúdo não registrado no manifesto não pode ser migrado.
+- Cada artefato deve receber uma classificação de exposição: `PUBLIC`, `REVIEW_REQUIRED` ou `DO_NOT_PUBLISH`.
+- A classificação padrão é `DO_NOT_PUBLISH`; publicação de conteúdo pessoal exige aprovação explícita por artefato.
+- Não versione identidade, contato, credenciais, detalhes médicos ou outros dados pessoais desnecessários.
 - Não migre código, scripts, dependências, workflows, aplicação ou banco durante os épicos E00–E03.
 - Não mantenha duas fontes editáveis para a mesma regra ou plano.
-- O repositório legado permanece preservado como evidência; não o apague.
-- Dados pessoais de treino e alimentação não podem ser migrados enquanto este repositório estiver público.
+- O repositório legado privado permanece preservado como evidência; não o apague nem altere para acomodar o destino.
+
+A política completa é `docs/decisions/PUBLIC-REPOSITORY-AND-DATA-POLICY.md`.
 
 ## Branches e ambientes
 

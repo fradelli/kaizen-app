@@ -1,7 +1,7 @@
 ---
 id: E00-T05
 epic: E00
-depends_on: [E00-T02, E00-T04]
+depends_on: [E00-T04, E00-T06]
 ---
 
 # Registrar proveniência do legado
@@ -12,21 +12,23 @@ Criar o manifesto que liga cada artefato futuro à sua origem verificável.
 
 ## Entradas
 
-- Repositório privado.
-- `C:\Users\devel\Projects\personal-performance`.
-- Commit de origem escolhido em E01-T01.
+- Decisão de manter `fradelli/kaizen-app` público.
+- Repositório privado `developerlucaslima/personal-performance`.
+- Commit-base remoto observado; o snapshot definitivo será escolhido em E01-T01.
 
 ## Entregáveis
 
 - `docs/migration/MIGRATION-MANIFEST.md`
 - `docs/migration/SOURCE-REPOSITORIES.md`
+- `docs/decisions/PUBLIC-REPOSITORY-AND-DATA-POLICY.md`
 
 ## Subtarefas
 
-- [ ] Registrar raízes, remotes, branches e commits.
-- [ ] Definir tratamentos `COPY`, `TRANSFORM`, `SUMMARIZE` e `SKIP`.
-- [ ] Definir uso de SHA-256 para cópias literais.
-- [ ] Registrar que o legado não será apagado.
+- [x] Registrar identificadores, remotes, branches e commits sem caminhos locais absolutos.
+- [x] Definir tratamentos `COPY`, `TRANSFORM`, `SUMMARIZE` e `SKIP`.
+- [x] Definir exposições `PUBLIC`, `REVIEW_REQUIRED` e `DO_NOT_PUBLISH`.
+- [x] Definir uso de SHA-256 para origem e destino.
+- [x] Registrar que o legado privado não será apagado.
 
 ## Validações
 
@@ -35,9 +37,10 @@ Criar o manifesto que liga cada artefato futuro à sua origem verificável.
 
 ## Critérios de aceite
 
-- [ ] O manifesto pode receber uma linha por artefato sem nova decisão estrutural.
-- [ ] A origem pode ser reproduzida por repositório, commit e caminho.
+- [x] O manifesto pode receber uma linha por artefato sem nova decisão estrutural.
+- [x] A origem pode ser reproduzida por repositório, commit e caminho.
+- [x] Nenhum conteúdo do legado foi copiado nesta tarefa.
 
 ## Resultado
 
-Ainda não concluída.
+Concluída em 2026-08-31. A fonte privada, o commit-base remoto, a política pública, os tratamentos, as classificações de exposição e as regras de integridade foram registrados sem copiar conteúdo do legado.

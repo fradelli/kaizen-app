@@ -12,7 +12,7 @@ Escolher um commit limpo e imutável do legado como única base da migração de
 
 ## Entradas
 
-- `C:\Users\devel\Projects\personal-performance`.
+- Fonte lógica `personal-performance` registrada em `docs/migration/SOURCE-REPOSITORIES.md`.
 - Manifesto criado em E00-T05.
 
 ## Entregáveis

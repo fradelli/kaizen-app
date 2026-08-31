@@ -17,7 +17,7 @@ Criar o clone local, o commit-base e as branches necessárias ao fluxo de promo�
 
 ## Entregáveis
 
-- Clone em `C:\Users\devel\Projects\kaizen-app`.
+- Clone local criado e vinculado ao remote canônico.
 - Branches remotas `developer`, `staging` e `master`.
 - `developer` como branch padrão.
 

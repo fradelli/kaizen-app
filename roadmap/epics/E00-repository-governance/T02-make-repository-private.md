@@ -35,4 +35,4 @@ Impedir exposição pública dos dados pessoais que serão migrados nos épicos 
 
 ## Resultado
 
-Bloqueada: o repositório permanecia público durante a criação do roadmap.
+Cancelada em 2026-08-31 por decisão do proprietário. O `kaizen-app` permanecerá público para facilitar a governança gratuita de CI/CD e regras no GitHub; a exposição de conteúdo passou a ser controlada por allowlist e classificação por artefato.
