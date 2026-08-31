@@ -8,16 +8,16 @@ depends_on: [E01-T01]
 
 ## Objetivo
 
-Migrar perfil, agenda, ponteiro ativo, biblioteca e todas as versões de plano sem alterar IDs ou fatos.
+Migrar perfil aprovado, agenda aprovada, ponteiro ativo, biblioteca e somente o plano vigente sem alterar IDs ou fatos.
 
 ## Entradas
 
 - Snapshot aprovado em E01-T01.
-- `data/profile.json`, `data/schedule.json`, `data/active.json`, `data/exercises.json` e `data/plans/`.
+- Linhas `e01-t02-*` do manifesto.
 
 ## Entregáveis
 
-- Arquivos correspondentes em `data/` no Kaizen.
+- Arquivos canônicos correspondentes e somente o plano apontado por `data/active.json`.
 - Linhas de manifesto para cada artefato.
 
 ## Subtarefas
@@ -26,6 +26,7 @@ Migrar perfil, agenda, ponteiro ativo, biblioteca e todas as versões de plano s
 - [ ] Preservar `null`, `unknowns`, IDs e versões.
 - [ ] Ajustar somente caminhos relativos aprovados.
 - [ ] Registrar hash de origem e destino.
+- [ ] Não migrar versões anteriores nesta tarefa.
 
 ## Validações
 

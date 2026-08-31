@@ -1,10 +1,10 @@
 # Tarefa ativa
 
-- **Tarefa:** E01-T01 — Congelar snapshot de origem
+- **Tarefa:** E01-T02 — Migrar dados canônicos de treino
 - **Status:** READY
-- **Entrada principal:** `docs/migration/SOURCE-REPOSITORIES.md`
-- **Condição conhecida:** o worktree do legado contém alterações ainda não consolidadas em um commit.
-- **Próximo passo:** decidir quais alterações documentais pertencem ao snapshot e registrar um único commit imutável.
-- **Depois:** inventariar os artefatos candidatos no manifesto sem copiá-los.
+- **Entrada principal:** snapshot e linhas `e01-t02-*` do manifesto.
+- **Condição conhecida:** perfil, agenda e plano ativo permanecem `REVIEW_REQUIRED`.
+- **Próximo passo:** aprovar a exposição campo a campo e migrar somente os artefatos liberados.
+- **Depois:** executar E01-T03 para histórico e versões anteriores.
 
-Não usar o commit-base observado como snapshot final nem migrar conteúdo antes da classificação por artefato.
+Não copiar valores do worktree nem publicar artefatos `REVIEW_REQUIRED` ou `DO_NOT_PUBLISH`.

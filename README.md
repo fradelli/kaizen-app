@@ -10,7 +10,7 @@ O projeto começa sem código. Primeiro serão migrados e validados dados, regra
 - Branches `developer`, `staging` e `master` publicadas.
 - Roadmap documental criado e centralizado em `roadmap/README.md`.
 - Repositório público por decisão do proprietário, com publicação controlada por allowlist no manifesto.
-- Proveniência do legado privado registrada; o snapshot definitivo será escolhido em E01-T01.
+- Snapshot privado de treino fixado e inventariado; nenhum conteúdo do legado foi copiado.
 - Nenhuma aplicação, dependência ou banco criado.
 
 ## Acesso rápido

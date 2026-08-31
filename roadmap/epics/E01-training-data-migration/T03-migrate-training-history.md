@@ -8,11 +8,11 @@ depends_on: [E01-T02]
 
 ## Objetivo
 
-Preservar treinos originais, revisões e histórico sem transformar artefatos imutáveis.
+Preservar versões anteriores, treinos originais, revisões e histórico sem transformar artefatos imutáveis.
 
 ## Entradas
 
-- `data/coach-workouts/`, `data/reviews/` e `docs/historico/` do snapshot.
+- Linhas `e01-t03-*` do manifesto, incluindo planos não apontados por `data/active.json`.
 
 ## Entregáveis
 
@@ -22,6 +22,7 @@ Preservar treinos originais, revisões e histórico sem transformar artefatos im
 ## Subtarefas
 
 - [ ] Copiar originais byte a byte.
+- [ ] Preservar versões anteriores sem alterar retroativamente seu status embutido.
 - [ ] Migrar revisões mantendo a referência à origem.
 - [ ] Migrar resumos históricos com proveniência.
 - [ ] Confirmar que nenhum mês foi omitido.
@@ -30,6 +31,7 @@ Preservar treinos originais, revisões e histórico sem transformar artefatos im
 
 - Hash de originais é idêntico.
 - Cada revisão aponta para um original existente.
+- O ponteiro do plano ativo não é alterado.
 
 ## Critérios de aceite
 
