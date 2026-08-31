@@ -1,10 +1,10 @@
 # Tarefa ativa
 
-- **Tarefa:** E00-T02 — Tornar o repositório privado
-- **Status:** BLOCKED
-- **Responsável pelo desbloqueio:** proprietário do repositório
-- **Bloqueio:** `fradelli/kaizen-app` permanece público.
-- **Próximo passo:** alterar a visibilidade no GitHub e confirmar o novo estado.
-- **Depois:** iniciar E00-T05 — registrar a proveniência do legado.
+- **Tarefa:** E01-T01 — Congelar snapshot de origem
+- **Status:** READY
+- **Entrada principal:** `docs/migration/SOURCE-REPOSITORIES.md`
+- **Condição conhecida:** o worktree do legado contém alterações ainda não consolidadas em um commit.
+- **Próximo passo:** decidir quais alterações documentais pertencem ao snapshot e registrar um único commit imutável.
+- **Depois:** inventariar os artefatos candidatos no manifesto sem copiá-los.
 
-Não migrar dieta, perfil, saúde ou planos pessoais enquanto este bloqueio permanecer.
+Não usar o commit-base observado como snapshot final nem migrar conteúdo antes da classificação por artefato.

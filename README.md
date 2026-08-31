@@ -9,7 +9,8 @@ O projeto começa sem código. Primeiro serão migrados e validados dados, regra
 - Repositório inicializado.
 - Branches `developer`, `staging` e `master` publicadas.
 - Roadmap documental criado e centralizado em `roadmap/README.md`.
-- Migração de dados pessoais bloqueada enquanto o repositório estiver público.
+- Repositório público por decisão do proprietário, com publicação controlada por allowlist no manifesto.
+- Proveniência do legado privado registrada; o snapshot definitivo será escolhido em E01-T01.
 - Nenhuma aplicação, dependência ou banco criado.
 
 ## Acesso rápido
@@ -19,7 +20,10 @@ O projeto começa sem código. Primeiro serão migrados e validados dados, regra
 - [Branches e ambientes](docs/decisions/BRANCHING-AND-ENVIRONMENTS.md)
 - [Padrão de pull request](docs/delivery/PULL-REQUEST-STANDARD.md)
 - [Governança de CI/CD](docs/decisions/CI-CD-GOVERNANCE.md)
+- [Política do repositório público](docs/decisions/PUBLIC-REPOSITORY-AND-DATA-POLICY.md)
 - [Regras da migração](docs/migration/README.md)
+- [Repositórios de origem](docs/migration/SOURCE-REPOSITORIES.md)
+- [Manifesto de migração](docs/migration/MIGRATION-MANIFEST.md)
 
 ## Fluxo de branches
 
@@ -37,4 +41,4 @@ master
 
 ## Privacidade
 
-Este projeto poderá armazenar dieta e contexto físico pessoal. Antes da migração desses dados, o repositório deve ser privado e não deve conter credenciais ou informações médicas desnecessárias.
+O código e a documentação deste repositório são públicos. Isso não torna públicos bancos, ambientes ou dados de execução futuros. Somente artefatos classificados e aprovados no manifesto podem ser versionados; credenciais, identidade, detalhes médicos e dados pessoais desnecessários permanecem fora do Git.
