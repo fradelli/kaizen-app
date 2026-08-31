@@ -22,10 +22,10 @@ Escolher um commit limpo e imutável do legado como única base da migração de
 
 ## Subtarefas
 
-- [ ] Verificar branch, commit, remote e worktree.
-- [ ] Consolidar ou excluir explicitamente alterações não rastreadas da origem.
-- [ ] Registrar o commit aprovado.
-- [ ] Inventariar arquivos candidatos sem copiá-los.
+- [x] Verificar branch, commit, remote e worktree.
+- [x] Consolidar ou excluir explicitamente alterações não rastreadas da origem.
+- [x] Registrar o commit e a tag aprovados.
+- [x] Inventariar arquivos candidatos sem copiá-los.
 
 ## Validações
 
@@ -34,9 +34,10 @@ Escolher um commit limpo e imutável do legado como única base da migração de
 
 ## Critérios de aceite
 
-- [ ] Existe uma única referência de origem para E01.
-- [ ] Todo candidato tem tratamento planejado.
+- [x] Existe uma única referência de origem para E01.
+- [x] Todo candidato tem hash, tratamento e exposição.
+- [x] Nenhum conteúdo do legado foi criado no destino.
 
 ## Resultado
 
-Ainda não concluída.
+Concluída em 2026-08-31. O commit privado `d1acad309e2b81b714d1aa375e9371a310ad6ed0`, publicado na tag `kaizen-training-source-v1`, é a única origem de E01. O manifesto contém 23 artefatos calculados dos blobs desse commit e nenhuma cópia no Kaizen.

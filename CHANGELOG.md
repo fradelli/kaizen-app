@@ -2,6 +2,15 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-08-31 — snapshot imutável do treino
+
+- Publicado no legado privado o snapshot `d1acad309e2b81b714d1aa375e9371a310ad6ed0`.
+- Criada a tag privada `kaizen-training-source-v1` para preservar a referência imutável.
+- Inventariados 23 artefatos candidatos ou excluídos com SHA-256 calculado diretamente dos blobs do commit.
+- Mantidos fora do snapshot arquitetura, prompts, saídas geradas, temporários e o script local não rastreado.
+- Nenhum arquivo de treino foi copiado para o Kaizen.
+- Concluída E01-T01 e liberada E01-T02 para a migração canônica após revisão de exposição.
+
 ## 2026-08-31 — política pública e proveniência do legado
 
 - Mantido o repositório público por decisão do proprietário para a governança de CI/CD no GitHub.
