@@ -1,0 +1,371 @@
+{
+  "schema_version": "1.0.0",
+  "plan_id": "performance_2026_08_v2",
+  "version": "2.1.0",
+  "status": "active",
+  "created_at": "2026-08-30",
+  "last_updated": "2026-08-30",
+  "objective_order": [
+    "footvolley_performance",
+    "jump_power",
+    "injury_risk_reduction",
+    "stability_and_landing",
+    "upper_body_strength_and_hypertrophy"
+  ],
+  "assumptions": [
+    "O desconforto leve na virilha e o histórico antigo de pubalgia são contexto de carga, não diagnóstico.",
+    "O dia exato do jogo no fim de semana continua desconhecido.",
+    "Há uma barra de 7 kg, 60 kg em anilhas, barra fixa, barras paralelas e caixa estável.",
+    "Não há elástico ou polia confirmados; por isso o plano ativo não depende desses equipamentos."
+  ],
+  "global_rules": {
+    "lower_body_reps_in_reserve": "2-3",
+    "upper_body_reps_in_reserve": "1-2",
+    "lower_body_training_to_failure": false,
+    "handstand_training_to_failure": false,
+    "jump_quality_rule": "Interromper a série se altura, velocidade, aterrissagem ou coordenação piorarem claramente.",
+    "progression_rule": "Ao completar o topo da faixa em todas as séries com o RIR alvo e boa técnica, adicionar o menor incremento prático de carga.",
+    "single_variable_progression_rule": "Não aumentar carga, séries e dificuldade do exercício na mesma semana.",
+    "introductory_rule": "Usar uma exposição semanal para a marcha de flexores do quadril nas duas primeiras semanas; passar a duas somente sem piora durante ou no dia seguinte.",
+    "groin_rule": "Não progredir Copenhagen, marcha de flexores ou amplitude lateral quando houver aumento do desconforto durante ou após a sessão.",
+    "deload_rule": "Reduzir o volume de força em 30-40% após 4-6 semanas ou antes quando marcadores de fadiga se acumularem."
+  },
+  "sessions": {
+    "lower_a": {
+      "name": "Inferiores A - força máxima e potência vertical",
+      "target_duration_minutes": 65,
+      "short_version_target_minutes": 45,
+      "intensity": "high_quality_heavy",
+      "exercises": [
+        {
+          "exercise_id": "snap_down_stick",
+          "sets": 2,
+          "reps": "3",
+          "rest_seconds": 60,
+          "priority": "complementary",
+          "notes": "Preparação de aterrissagem; pode ser omitido na versão curta se o aquecimento já tiver aterrissagens controladas."
+        },
+        {
+          "exercise_id": "jump_squat",
+          "sets": 4,
+          "reps": "3",
+          "rest_seconds": 150,
+          "priority": "fundamental",
+          "notes": "Intenção máxima; peso corporal ou carga externa leve."
+        },
+        {
+          "exercise_id": "loaded_squat",
+          "sets": 4,
+          "reps": "4-6",
+          "rest_seconds": 180,
+          "priority": "fundamental",
+          "notes": "Usar variação compatível com a ausência de rack; não colocar a barra nas costas a partir do chão sem técnica e montagem seguras."
+        },
+        {
+          "exercise_id": "romanian_deadlift",
+          "sets": 3,
+          "reps": "5-8",
+          "rest_seconds": 120,
+          "priority": "fundamental"
+        },
+        {
+          "exercise_id": "nordic_hamstring",
+          "sets": 2,
+          "reps": "4-6",
+          "rest_seconds": 120,
+          "priority": "complementary",
+          "notes": "Assistido e sem volume novo próximo ao jogo."
+        },
+        {
+          "exercise_id": "standing_calf_raise",
+          "sets": 3,
+          "reps": "6-10",
+          "rest_seconds": 105,
+          "priority": "fundamental",
+          "notes": "Preferir unilateral com anilha quando o peso corporal ficar fácil."
+        },
+        {
+          "exercise_id": "hip_flexor_march",
+          "sets": 2,
+          "reps": "15-20_seconds_each_side",
+          "rest_seconds": 60,
+          "priority": "fundamental",
+          "notes": "Usar resistência das mãos. Começar uma vez por semana nas duas primeiras semanas."
+        },
+        {
+          "exercise_id": "plank_shoulder_tap",
+          "sets": 2,
+          "reps": "6-10_each_side",
+          "rest_seconds": 60,
+          "priority": "complementary",
+          "notes": "Substitui o Pallof enquanto elástico ou polia não estiverem confirmados."
+        }
+      ]
+    },
+    "upper_a": {
+      "name": "Superiores A - força de puxada e empurrada",
+      "target_duration_minutes": 50,
+      "short_version_target_minutes": 35,
+      "intensity": "moderate_high_quality",
+      "session_notes": "Para economizar tempo, alternar pull-up com dip e remada com desenvolvimento sem reduzir o descanso necessário entre séries do mesmo exercício.",
+      "exercises": [
+        {
+          "exercise_id": "pull_up",
+          "sets": 3,
+          "reps": "4-6",
+          "rest_seconds": 150,
+          "priority": "fundamental",
+          "notes": "Adicionar carga segura quando 3x6 estiver controlado com 1-2 RIR."
+        },
+        {
+          "exercise_id": "parallel_bar_dip",
+          "sets": 4,
+          "reps": "5-8",
+          "rest_seconds": 150,
+          "priority": "fundamental",
+          "notes": "Adicionar carga apenas com fixação segura e amplitude confortável."
+        },
+        {
+          "exercise_id": "barbell_row",
+          "sets": 3,
+          "reps": "6-10",
+          "rest_seconds": 120,
+          "priority": "fundamental"
+        },
+        {
+          "exercise_id": "barbell_overhead_press",
+          "sets": 3,
+          "reps": "5-8",
+          "rest_seconds": 120,
+          "priority": "fundamental",
+          "notes": "Usar carga que não exija impulso das pernas nem extensão lombar."
+        },
+        {
+          "exercise_id": "side_plank",
+          "sets": 2,
+          "reps": "20-30_seconds_each_side",
+          "rest_seconds": 60,
+          "priority": "complementary"
+        }
+      ]
+    },
+    "lower_b": {
+      "name": "Inferiores B - unilateral, adutores e estabilidade",
+      "target_duration_minutes": 50,
+      "short_version_target_minutes": 35,
+      "intensity": "moderate_low_fatigue",
+      "exercises": [
+        {
+          "exercise_id": "pogo_jump",
+          "sets": 2,
+          "reps": "8_contacts",
+          "rest_seconds": 75,
+          "priority": "complementary"
+        },
+        {
+          "exercise_id": "lateral_hop_and_stick",
+          "sets": 2,
+          "reps": "3_each_side",
+          "rest_seconds": 75,
+          "priority": "fundamental"
+        },
+        {
+          "exercise_id": "bulgarian_split_squat",
+          "sets": 3,
+          "reps": "5-8_each_leg",
+          "rest_seconds": 120,
+          "priority": "fundamental",
+          "notes": "Usar anilhas ou barra somente com montagem segura e manter 2-3 RIR."
+        },
+        {
+          "exercise_id": "hip_thrust",
+          "sets": 2,
+          "reps": "6-10",
+          "rest_seconds": 105,
+          "priority": "complementary"
+        },
+        {
+          "exercise_id": "seated_calf_raise",
+          "sets": 3,
+          "reps": "8-12",
+          "rest_seconds": 90,
+          "priority": "fundamental"
+        },
+        {
+          "exercise_id": "short_lever_copenhagen",
+          "sets": 2,
+          "reps": "15-25_seconds_each_side",
+          "rest_seconds": 75,
+          "priority": "fundamental",
+          "notes": "Permanecer na alavanca curta; não sustentar até perder a posição."
+        },
+        {
+          "exercise_id": "dead_bug",
+          "sets": 2,
+          "reps": "6-8_each_side",
+          "rest_seconds": 60,
+          "priority": "fundamental"
+        },
+        {
+          "exercise_id": "hip_flexor_march",
+          "sets": 2,
+          "reps": "15-20_seconds_each_side",
+          "rest_seconds": 60,
+          "priority": "complementary",
+          "notes": "Adicionar esta segunda exposição somente após duas semanas sem piora e apenas na sessão completa."
+        }
+      ]
+    },
+    "lower_b_microdose": {
+      "name": "Inferiores B - microdose pré-jogo",
+      "target_duration_minutes": 25,
+      "intensity": "low_volume_neural",
+      "exercises": [
+        {
+          "exercise_id": "jump_squat",
+          "sets": 3,
+          "reps": "3",
+          "rest_seconds": 150,
+          "priority": "fundamental"
+        },
+        {
+          "exercise_id": "bulgarian_split_squat",
+          "sets": 2,
+          "reps": "5_each_leg",
+          "rest_seconds": 120,
+          "priority": "fundamental",
+          "notes": "Carga moderada; nunca até a falha."
+        },
+        {
+          "exercise_id": "standing_calf_raise",
+          "sets": 2,
+          "reps": "8",
+          "rest_seconds": 90,
+          "priority": "fundamental"
+        },
+        {
+          "exercise_id": "short_lever_copenhagen",
+          "sets": 2,
+          "reps": "15_seconds_each_side",
+          "rest_seconds": 60,
+          "priority": "fundamental",
+          "notes": "Omitir se a região estiver mais sensível após a carga semanal."
+        }
+      ]
+    },
+    "upper_b": {
+      "name": "Superiores B - hipertrofia, ombros e cervical",
+      "target_duration_minutes": 50,
+      "short_version_target_minutes": 35,
+      "intensity": "moderate",
+      "session_notes": "Para economizar tempo, alternar chin-up com flexão e remada com elevação lateral, preservando o descanso do mesmo exercício.",
+      "exercises": [
+        {
+          "exercise_id": "chin_up",
+          "sets": 3,
+          "reps": "6-10",
+          "rest_seconds": 120,
+          "priority": "fundamental"
+        },
+        {
+          "exercise_id": "push_up",
+          "sets": 3,
+          "reps": "8-12",
+          "rest_seconds": 105,
+          "priority": "fundamental",
+          "notes": "Adicionar carga segura antes de aumentar indefinidamente as repetições."
+        },
+        {
+          "exercise_id": "australian_row",
+          "sets": 2,
+          "reps": "8-12",
+          "rest_seconds": 90,
+          "priority": "fundamental",
+          "notes": "Usar trajetória com cotovelos moderadamente abertos para aumentar participação do deltoide posterior."
+        },
+        {
+          "exercise_id": "wall_handstand_push_up",
+          "sets": 3,
+          "reps": "1-2",
+          "rest_seconds": 150,
+          "priority": "fundamental",
+          "notes": "Como o máximo relatado é 3, manter pelo menos uma repetição em reserva; usar pike com pés elevados se a técnica estiver instável."
+        },
+        {
+          "exercise_id": "plate_lateral_raise",
+          "sets": 2,
+          "reps": "10-20",
+          "rest_seconds": 75,
+          "priority": "complementary"
+        },
+        {
+          "exercise_id": "cervical_isometric_four_way",
+          "sets": 2,
+          "reps": "15-20_seconds_each_direction",
+          "rest_seconds": 45,
+          "priority": "complementary"
+        }
+      ]
+    },
+    "pre_upper_warmup": {
+      "name": "Aquecimento pré-treino de superiores",
+      "target_duration_minutes": 8,
+      "intensity": "progressive_non_fatiguing",
+      "session_notes": "Depois do futevôlei, omitir a locomoção geral e fazer apenas a preparação específica. Nenhum exercício deve gerar fadiga.",
+      "exercises": [
+        {
+          "exercise_id": "general_locomotion_warmup",
+          "sets": 1,
+          "reps": "2_minutes",
+          "notes": "Opcional quando a sessão ocorrer logo após o futevôlei."
+        },
+        {"exercise_id": "wrist_rock", "sets": 1, "reps": "8_each_direction"},
+        {"exercise_id": "quadruped_thoracic_rotation", "sets": 1, "reps": "6_each_side"},
+        {"exercise_id": "scapular_push_up", "sets": 1, "reps": "8-10"},
+        {"exercise_id": "scapular_pull_up", "sets": 1, "reps": "5-6"},
+        {
+          "exercise_id": "push_up",
+          "sets": 1,
+          "reps": "5_easy",
+          "notes": "Repetições leves, sem proximidade da falha."
+        },
+        {
+          "exercise_id": "pull_up",
+          "sets": 1,
+          "reps": "3_easy_or_assisted",
+          "notes": "Usar apoio dos pés se necessário; não contar como série de trabalho."
+        }
+      ]
+    },
+    "pre_lower_warmup": {
+      "name": "Aquecimento pré-treino de inferiores",
+      "target_duration_minutes": 10,
+      "intensity": "progressive_non_fatiguing",
+      "session_notes": "Antes da microdose pré-jogo, usar apenas locomoção, knee-to-wall, agachamento corporal e saltos progressivos.",
+      "exercises": [
+        {"exercise_id": "general_locomotion_warmup", "sets": 1, "reps": "2-3_minutes"},
+        {"exercise_id": "knee_to_wall", "sets": 1, "reps": "8_each_side"},
+        {"exercise_id": "hip_90_90_transition", "sets": 1, "reps": "6_each_side"},
+        {"exercise_id": "dynamic_lunge_with_rotation", "sets": 1, "reps": "5_each_side"},
+        {"exercise_id": "bodyweight_squat", "sets": 1, "reps": "8"},
+        {"exercise_id": "snap_down_stick", "sets": 1, "reps": "3"},
+        {"exercise_id": "progressive_vertical_jump", "sets": 1, "reps": "3_at_60_75_90_percent"}
+      ]
+    },
+    "pre_footvolley_warmup": {
+      "name": "Aquecimento pré-futevôlei",
+      "target_duration_minutes": 12,
+      "intensity": "progressive_non_fatiguing",
+      "exercises": [
+        {"exercise_id": "general_locomotion_warmup", "sets": 1, "reps": "2-3_minutes"},
+        {"exercise_id": "knee_to_wall", "sets": 1, "reps": "8_each_side"},
+        {"exercise_id": "hip_90_90_transition", "sets": 1, "reps": "6_each_side"},
+        {"exercise_id": "dynamic_lunge_with_rotation", "sets": 1, "reps": "5_each_side"},
+        {"exercise_id": "standing_calf_raise", "sets": 1, "reps": "10"},
+        {"exercise_id": "bodyweight_squat", "sets": 1, "reps": "8"},
+        {"exercise_id": "pogo_jump", "sets": 2, "reps": "8_contacts"},
+        {"exercise_id": "progressive_vertical_jump", "sets": 1, "reps": "3_at_60_75_90_percent"}
+      ]
+    }
+  }
+}

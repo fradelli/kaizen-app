@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2026-08-31",
+  "timezone": "America/Sao_Paulo",
+  "footvolley_sessions": [
+    {
+      "day": null,
+      "start_time": null,
+      "intensity": null
+    },
+    {
+      "day": null,
+      "start_time": null,
+      "intensity": null
+    },
+    {
+      "day": null,
+      "start_time": null,
+      "intensity": null
+    },
+    {
+      "day": null,
+      "start_time": null,
+      "intensity": null
+    }
+  ],
+  "weekend_game": {
+    "enabled": true,
+    "day": null,
+    "start_time": null
+  },
+  "placement_rules": {
+    "main_lower_sessions_per_week": 2,
+    "short_upper_sessions_per_week": 2,
+    "preferred_lower_before_footvolley_hours": "5-7",
+    "upper_after_footvolley_allowed": true,
+    "avoid_full_lower_within_minutes_before_footvolley": 120,
+    "minimum_full_rest_days_target": 1,
+    "main_strength_target_hours_before_game": "72-96",
+    "secondary_lower_target_hours_before_game": ">=48 and low volume"
+  },
+  "models": {}
+}

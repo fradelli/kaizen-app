@@ -41,8 +41,8 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E00-T06 | DONE | [Adaptar governança de PR e CI/CD](epics/E00-repository-governance/T06-adapt-delivery-governance.md) | E00-T04 |
 | E00-T05 | DONE | [Registrar proveniência do legado](epics/E00-repository-governance/T05-register-legacy-provenance.md) | E00-T04, E00-T06 |
 | E01-T01 | DONE | [Congelar snapshot de origem](epics/E01-training-data-migration/T01-freeze-source-snapshot.md) | E00-T05 |
-| E01-T02 | READY | [Migrar dados canônicos de treino](epics/E01-training-data-migration/T02-migrate-canonical-training-data.md) | E01-T01 |
-| E01-T03 | PLANNED | [Migrar histórico de treino](epics/E01-training-data-migration/T03-migrate-training-history.md) | E01-T02 |
+| E01-T02 | DONE | [Migrar dados canônicos de treino](epics/E01-training-data-migration/T02-migrate-canonical-training-data.md) | E01-T01 |
+| E01-T03 | READY | [Migrar histórico de treino](epics/E01-training-data-migration/T03-migrate-training-history.md) | E01-T02 |
 | E01-T04 | PLANNED | [Migrar documentação humana](epics/E01-training-data-migration/T04-migrate-human-documentation.md) | E01-T03 |
 | E01-T05 | PLANNED | [Migrar schemas](epics/E01-training-data-migration/T05-migrate-schemas.md) | E01-T04 |
 | E01-T06 | PLANNED | [Validar fundação de treino](epics/E01-training-data-migration/T06-validate-training-foundation.md) | E01-T05 |
