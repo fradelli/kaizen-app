@@ -2,6 +2,14 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-01 — inventário das entradas alimentares
+
+- Verificados o snapshot privado, o worktree conhecido e o anexo disponível sem localizar uma dieta ou registro da alimentação praticada.
+- Classificados perfil, agenda e plano de treino somente como contexto público sanitizado.
+- Registrados fatos, fontes ausentes, decisões profissionais indisponíveis e `unknowns` sem inferir valores nutricionais.
+- Mantido o manifesto inalterado e nenhum arquivo criado em `data/nutrition/`.
+- Concluída E02-T01 e bloqueada E02-T02 até o fornecimento e a classificação da dieta original.
+
 ## 2026-09-01 — fundação de treino validada
 
 - Verificados o snapshot privado, os 23 artefatos do manifesto e os hashes dos 19 destinos publicados.

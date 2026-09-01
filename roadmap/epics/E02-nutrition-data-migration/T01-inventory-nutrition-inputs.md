@@ -21,10 +21,10 @@ Confirmar quais fontes alimentares existem e quais dados ainda faltam antes de q
 
 ## Subtarefas
 
-- [ ] Inventariar dieta prescrita e alimentação praticada.
-- [ ] Separar fatos, estimativas, hipóteses e decisões profissionais.
-- [ ] Listar dados mínimos ainda ausentes.
-- [ ] Identificar fontes que não podem ser versionadas.
+- [x] Inventariar dieta prescrita e alimentação praticada.
+- [x] Separar fatos, estimativas, hipóteses e decisões profissionais.
+- [x] Listar dados mínimos ainda ausentes.
+- [x] Identificar fontes que não podem ser versionadas.
 
 ## Validações
 
@@ -33,8 +33,8 @@ Confirmar quais fontes alimentares existem e quais dados ainda faltam antes de q
 
 ## Critérios de aceite
 
-- [ ] Está claro o que pode ser preservado e o que bloqueia a revisão.
+- [x] Está claro o que pode ser preservado e o que bloqueia a revisão.
 
 ## Resultado
 
-Ainda não concluída.
+O inventário verificou as fontes conhecidas e não encontrou dieta prescrita nem registro da alimentação praticada. Perfil, agenda e plano de treino foram classificados somente como contexto sanitizado. Nenhum valor foi inferido, nenhum artefato foi incluído no manifesto e `E02-T02` permanece bloqueada até uma fonte original ser fornecida e classificada.

@@ -30,3 +30,4 @@ Cada artefato migrado deve registrar:
 - [Política de publicação](../decisions/PUBLIC-REPOSITORY-AND-DATA-POLICY.md)
 - [Repositórios de origem](SOURCE-REPOSITORIES.md)
 - [Manifesto por artefato](MIGRATION-MANIFEST.md)
+- [Inventário de entradas alimentares](NUTRITION-INPUT-INVENTORY.md)

@@ -1,10 +1,10 @@
 # Tarefa ativa
 
-- **Tarefa:** E02-T01 — Inventariar alimentação e unknowns
-- **Status:** READY
-- **Entrada principal:** arquivos alimentares fornecidos pelo proprietário, perfil público sanitizado, agenda pública e carga de treino migrada.
-- **Condição conhecida:** nenhuma informação alimentar pode ser promovida a fato ou publicada antes de identificar sua fonte, autoria, tratamento e exposição.
-- **Próximo passo:** localizar fontes alimentares disponíveis e separar fatos, estimativas, hipóteses, decisões profissionais e dados ausentes.
-- **Depois:** obter aprovação do inventário e liberar E02-T02 somente quando existir uma dieta original fornecida e classificada.
+- **Tarefa:** E02-T02 — Preservar dieta original
+- **Status:** BLOCKED
+- **Entrada necessária:** dieta original fornecida pelo proprietário em arquivo ou texto identificável.
+- **Bloqueio:** nenhuma dieta prescrita ou alimentação praticada foi encontrada nas fontes verificadas.
+- **Próximo passo externo:** fornecer a fonte original e, quando conhecidos, autoria, data, versão e vigência.
+- **Depois:** classificar proveniência e exposição antes de preservar qualquer conteúdo ou criar linha no manifesto.
 
-Não criar plano alimentar, inferir valores nutricionais ou copiar conteúdo para `data/nutrition/` durante o inventário.
+O recebimento da dieta não autoriza publicação. Manter `DO_NOT_PUBLISH` até decisão explícita por artefato.
