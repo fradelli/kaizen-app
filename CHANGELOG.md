@@ -2,6 +2,14 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-01 — correção do inventário alimentar
+
+- Ampliada a descoberta para todas as refs remotas do legado após o inventário inicial ter pesquisado somente o snapshot de treino e o worktree observado.
+- Localizados oito artefatos alimentares em commit privado remoto, com tamanhos e hashes calculados diretamente dos blobs.
+- Registradas dieta original, alimentação praticada, contexto, plano derivado, receita, auditoria e guia sem copiar conteúdo ou expor caminhos pessoais.
+- Mantidos todos os candidatos como `DO_NOT_PUBLISH` até decisão específica por artefato.
+- Ajustada E02-T02 para preservação privada segura e alterado seu estado de `BLOCKED` para `READY`.
+
 ## 2026-09-01 — inventário das entradas alimentares
 
 - Verificados o snapshot privado, o worktree conhecido e o anexo disponível sem localizar uma dieta ou registro da alimentação praticada.

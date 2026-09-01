@@ -37,4 +37,4 @@ Confirmar quais fontes alimentares existem e quais dados ainda faltam antes de q
 
 ## Resultado
 
-O inventário verificou as fontes conhecidas e não encontrou dieta prescrita nem registro da alimentação praticada. Perfil, agenda e plano de treino foram classificados somente como contexto sanitizado. Nenhum valor foi inferido, nenhum artefato foi incluído no manifesto e `E02-T02` permanece bloqueada até uma fonte original ser fornecida e classificada.
+Uma correção ampliou a descoberta para todas as refs remotas do legado e localizou oito artefatos alimentares no commit privado `138531e4fbca6d744de73274fbb96da39c02bad3`. O inventário registra categorias, tamanhos, hashes, tratamento candidato e exposição padrão sem copiar conteúdo ou revelar caminhos pessoais. Dieta original e alimentação praticada estão disponíveis; `E02-T02` foi liberada para congelar e preservar a fonte privada.
