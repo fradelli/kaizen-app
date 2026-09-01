@@ -22,21 +22,22 @@ Executar o gate final da migração de treino e marcar uma base imutável para a
 
 ## Subtarefas
 
-- [ ] Validar JSONs, schemas, IDs, ponteiros, horários e links.
-- [ ] Comparar hashes de cópias literais.
-- [ ] Confirmar ausência de código, dependências e dados inventados.
-- [ ] Revisar o manifesto por completude.
+- [x] Validar JSONs, schemas, IDs, ponteiros, agenda sanitizada e links.
+- [x] Comparar hashes de cópias literais.
+- [x] Confirmar ausência de código, dependências e dados inventados.
+- [x] Revisar o manifesto por completude.
 
 ## Validações
 
-- Segunda 16:00, terça 12:00, quarta 16:00 e quinta 12:00 confirmadas.
-- Dia do jogo continua `null` se não houver novo fato.
+- O snapshot privado mantém quatro sessões confirmadas; seus valores não são reproduzidos no destino público.
+- O destino público mantém quatro sessões com dia, horário e intensidade `null`.
+- Dia e horário do jogo continuam `null` se não houver novo fato.
 
 ## Critérios de aceite
 
-- [ ] Relatório sem falhas abertas.
-- [ ] E02-T01 pode iniciar.
+- [x] Relatório sem falhas abertas.
+- [x] E02-T01 pode iniciar.
 
 ## Resultado
 
-Ainda não concluída.
+O gate final verificou diretamente o snapshot privado, os 23 artefatos do manifesto, os 19 destinos publicados, os contratos estruturais e as invariantes entre arquivos. O ponteiro ativo foi transformado para eliminar caminhos ausentes, a agenda pública permaneceu sanitizada e a exposição histórica anterior foi aceita sem autorizar novas publicações. O relatório não possui falhas abertas; a tag `training-foundation-v1` identifica o commit integrado desta entrega.

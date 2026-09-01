@@ -23,7 +23,7 @@ Regras, planos, biblioteca, agenda, originais, revisões e documentação de tre
 
 ## Critérios de encerramento
 
-- [ ] Todos os IDs, ponteiros e horários são válidos.
-- [ ] Originais literais mantêm hash.
-- [ ] Não há caminhos antigos ou arquitetura desatualizada como decisão vigente.
-- [ ] Tag `training-foundation-v1` criada.
+- [x] Todos os IDs e ponteiros são válidos; a agenda privada é confirmada sem expor valores no destino sanitizado.
+- [x] Originais literais mantêm hash.
+- [x] Não há caminhos antigos ou arquitetura desatualizada como decisão vigente.
+- [x] Tag `training-foundation-v1` criada.

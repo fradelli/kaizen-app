@@ -10,7 +10,7 @@ O projeto começa sem código. Primeiro serão migrados e validados dados, regra
 - Branches `developer`, `staging` e `master` publicadas.
 - Roadmap documental criado e centralizado em `roadmap/README.md`.
 - Repositório público por decisão do proprietário, com publicação controlada por allowlist no manifesto.
-- Dados, histórico, documentação e schemas de treino migrados; artefatos pessoais foram sanitizados e originais privados permanecem fora do Git.
+- Fundação de treino validada; dados, histórico, documentação e schemas possuem proveniência, integridade e exposição revisadas.
 - Nenhuma aplicação, dependência ou banco criado.
 
 ## Acesso rápido
@@ -24,6 +24,7 @@ O projeto começa sem código. Primeiro serão migrados e validados dados, regra
 - [Regras da migração](docs/migration/README.md)
 - [Repositórios de origem](docs/migration/SOURCE-REPOSITORIES.md)
 - [Manifesto de migração](docs/migration/MIGRATION-MANIFEST.md)
+- [Relatório de validação do treino](docs/migration/TRAINING-VALIDATION-REPORT.md)
 - [Guia de consulta do treino](docs/guides/TRAINING-GUIDE.md)
 - [Resumo diário](docs/guides/DAILY-TRAINING-SUMMARY.md)
 - [Como atualizar os dados](docs/guides/UPDATING-TRAINING-DATA.md)

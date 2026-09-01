@@ -20,8 +20,8 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | ID | Status | Épico | Resultado |
 | --- | --- | --- | --- |
 | E00 | DONE | [Governança do repositório](epics/E00-repository-governance/README.md) | Repositório público governado e legado privado rastreável |
-| E01 | IN_PROGRESS | [Migração de treino](epics/E01-training-data-migration/README.md) | Fundação de treino migrada e validada |
-| E02 | PLANNED | [Migração de alimentação](epics/E02-nutrition-data-migration/README.md) | Plano alimentar revisado, versionado e validado |
+| E01 | DONE | [Migração de treino](epics/E01-training-data-migration/README.md) | Fundação de treino migrada e validada |
+| E02 | READY | [Migração de alimentação](epics/E02-nutrition-data-migration/README.md) | Plano alimentar revisado, versionado e validado |
 | E03 | PLANNED | [Produto e arquitetura](epics/E03-product-and-architecture/README.md) | P0 e arquitetura aprovados, ainda sem código |
 | E04 | PLANNED | [Fundação Next.js](epics/E04-nextjs-foundation/README.md) | Aplicação mínima com gates de qualidade |
 | E05 | PLANNED | [Banco e importação](epics/E05-database-and-import/README.md) | Persistência e importação íntegras |
@@ -45,8 +45,8 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E01-T03 | DONE | [Migrar histórico de treino](epics/E01-training-data-migration/T03-migrate-training-history.md) | E01-T02 |
 | E01-T04 | DONE | [Migrar documentação humana](epics/E01-training-data-migration/T04-migrate-human-documentation.md) | E01-T03 |
 | E01-T05 | DONE | [Migrar schemas](epics/E01-training-data-migration/T05-migrate-schemas.md) | E01-T04 |
-| E01-T06 | READY | [Validar fundação de treino](epics/E01-training-data-migration/T06-validate-training-foundation.md) | E01-T05 |
-| E02-T01 | PLANNED | [Inventariar alimentação e unknowns](epics/E02-nutrition-data-migration/T01-inventory-nutrition-inputs.md) | E01-T06 |
+| E01-T06 | DONE | [Validar fundação de treino](epics/E01-training-data-migration/T06-validate-training-foundation.md) | E01-T05 |
+| E02-T01 | READY | [Inventariar alimentação e unknowns](epics/E02-nutrition-data-migration/T01-inventory-nutrition-inputs.md) | E01-T06 |
 | E02-T02 | PLANNED | [Preservar dieta original](epics/E02-nutrition-data-migration/T02-preserve-original-diet.md) | E02-T01, dieta fornecida |
 | E02-T03 | PLANNED | [Revisar plano alimentar](epics/E02-nutrition-data-migration/T03-review-nutrition-plan.md) | E02-T02 |
 | E02-T04 | PLANNED | [Estruturar plano alimentar](epics/E02-nutrition-data-migration/T04-structure-nutrition-plan.md) | E02-T03 |

@@ -2,6 +2,14 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-01 — fundação de treino validada
+
+- Verificados o snapshot privado, os 23 artefatos do manifesto e os hashes dos 19 destinos publicados.
+- Corrigido o ponteiro ativo para usar o `artifact_id` do original privado e o caminho vigente do guia humano.
+- Confirmados 9 JSONs, 3 aplicações de schema, 38 IDs únicos e 87 referências de exercícios resolvidas.
+- Sanitizado o critério público de agenda e registrada a aceitação do histórico anterior sem reescrita.
+- Publicado o relatório sem falhas abertas, encerrada E01 e liberada E02-T01.
+
 ## 2026-09-01 — schemas de treino
 
 - Copiados literalmente os contratos Draft 2020-12 da biblioteca e dos planos, preservando seus hashes de origem.
