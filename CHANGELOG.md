@@ -2,6 +2,14 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-01 — schemas de treino
+
+- Copiados literalmente os contratos Draft 2020-12 da biblioteca e dos planos, preservando seus hashes de origem.
+- Confirmada a validação estrutural da biblioteca e dos planos v1 e v2 com `Test-Json`.
+- Transformado o README para remover o script ausente e explicitar cobertura, permissividade, formatos e lacunas.
+- Mantidas unicidade, referências cruzadas e seleção do plano ativo como validações separadas dos schemas.
+- Verificados os três artefatos da E01-T05; manifesto sem pendências e E01-T06 liberada.
+
 ## 2026-09-01 — documentação humana de treino
 
 - Publicados cinco guias compactos, derivados dos dados canônicos e sem agenda ou contexto pessoal.

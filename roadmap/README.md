@@ -44,8 +44,8 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E01-T02 | DONE | [Migrar dados canônicos de treino](epics/E01-training-data-migration/T02-migrate-canonical-training-data.md) | E01-T01 |
 | E01-T03 | DONE | [Migrar histórico de treino](epics/E01-training-data-migration/T03-migrate-training-history.md) | E01-T02 |
 | E01-T04 | DONE | [Migrar documentação humana](epics/E01-training-data-migration/T04-migrate-human-documentation.md) | E01-T03 |
-| E01-T05 | READY | [Migrar schemas](epics/E01-training-data-migration/T05-migrate-schemas.md) | E01-T04 |
-| E01-T06 | PLANNED | [Validar fundação de treino](epics/E01-training-data-migration/T06-validate-training-foundation.md) | E01-T05 |
+| E01-T05 | DONE | [Migrar schemas](epics/E01-training-data-migration/T05-migrate-schemas.md) | E01-T04 |
+| E01-T06 | READY | [Validar fundação de treino](epics/E01-training-data-migration/T06-validate-training-foundation.md) | E01-T05 |
 | E02-T01 | PLANNED | [Inventariar alimentação e unknowns](epics/E02-nutrition-data-migration/T01-inventory-nutrition-inputs.md) | E01-T06 |
 | E02-T02 | PLANNED | [Preservar dieta original](epics/E02-nutrition-data-migration/T02-preserve-original-diet.md) | E02-T01, dieta fornecida |
 | E02-T03 | PLANNED | [Revisar plano alimentar](epics/E02-nutrition-data-migration/T03-review-nutrition-plan.md) | E02-T02 |

@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/training-plan.schema.json",
+  "title": "Versioned training plan",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "plan_id",
+    "version",
+    "status",
+    "created_at",
+    "global_rules",
+    "sessions"
+  ],
+  "properties": {
+    "plan_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "status": {
+      "enum": ["draft", "active", "archived"]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "sessions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["name", "target_duration_minutes", "exercises"],
+        "properties": {
+          "target_duration_minutes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "exercises": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["exercise_id", "sets", "reps"],
+              "properties": {
+                "exercise_id": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9_]+$"
+                },
+                "sets": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "reps": {
+                  "type": "string"
+                },
+                "rest_seconds": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}
