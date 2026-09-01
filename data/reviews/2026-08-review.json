@@ -1,0 +1,129 @@
+{
+  "schema_version": "1.0.0",
+  "review_id": "coach_calisthenics_2026_08_review",
+  "created_at": "2026-08-10",
+  "source_workout_artifact_id": "e01-t03-coach-workout-2026-08",
+  "summary": {
+    "main_findings": [
+      "Upper-body push and pull patterns are redundant within each original workout.",
+      "Jump squat and jump lunge volumes are too high for power quality given four footvolley sessions and a weekend game.",
+      "Lower-body maximal strength, calf and soleus loading, adductors, eccentric hamstrings, landing control and ankle proprioception are underrepresented.",
+      "Bodyweight high repetitions emphasize muscular endurance more than maximal force."
+    ],
+    "priority_change": "Reduce redundant calisthenics volume and reallocate recovery to lower-body strength, low-volume power and joint-tendon capacity."
+  },
+  "exercise_reviews": [
+    {
+      "exercise": "Pull Up",
+      "classification": "optional",
+      "aesthetic_value": "high",
+      "decision": "keep_as_primary_vertical_pull",
+      "replacement": null
+    },
+    {
+      "exercise": "Jump Squat",
+      "classification": "essential",
+      "aesthetic_value": "moderate",
+      "decision": "keep_with_major_dose_change",
+      "replacement": "4_sets_of_3_max_quality_reps"
+    },
+    {
+      "exercise": "Chin Up",
+      "classification": "unnecessary_when_combined_with_pull_up",
+      "aesthetic_value": "high",
+      "decision": "use_as_alternative_grip_on_another_day",
+      "replacement": null
+    },
+    {
+      "exercise": "Duck Walk",
+      "classification": "unnecessary",
+      "aesthetic_value": "low_to_moderate",
+      "decision": "remove",
+      "replacement": "loaded_squat_or_bulgarian_split_squat"
+    },
+    {
+      "exercise": "Australian Pull Up",
+      "classification": "optional",
+      "aesthetic_value": "high",
+      "decision": "keep_as_horizontal_pull",
+      "replacement": null
+    },
+    {
+      "exercise": "Walking Lunge",
+      "classification": "essential_movement_pattern_but_inefficient_current_dose",
+      "aesthetic_value": "moderate_to_high",
+      "decision": "replace_with_loaded_unilateral_strength",
+      "replacement": "bulgarian_split_squat_or_loaded_reverse_lunge"
+    },
+    {
+      "exercise": "Australian Chin Up Hold",
+      "classification": "unnecessary",
+      "aesthetic_value": "moderate",
+      "decision": "remove_due_to_redundancy",
+      "replacement": "harder_dynamic_australian_row"
+    },
+    {
+      "exercise": "Side to Side Leg Raise",
+      "classification": "optional",
+      "aesthetic_value": "moderate",
+      "decision": "replace_for_performance",
+      "replacement": "pallof_press_or_short_lever_copenhagen"
+    },
+    {
+      "exercise": "Explosive Push Up",
+      "classification": "optional",
+      "aesthetic_value": "low_to_moderate",
+      "decision": "only_keep_at_low_repetitions_if_desired",
+      "replacement": "3_sets_of_3_to_6_or_remove"
+    },
+    {
+      "exercise": "Box Extended Leg Walk",
+      "classification": "optional_pending_execution_confirmation",
+      "aesthetic_value": "low_to_moderate",
+      "decision": "remove_from_core_plan",
+      "replacement": "pallof_press_ab_wheel_or_dead_bug"
+    },
+    {
+      "exercise": "Parallel Bar Dip",
+      "classification": "optional",
+      "aesthetic_value": "high",
+      "decision": "keep_as_primary_upper_push",
+      "replacement": null
+    },
+    {
+      "exercise": "Jump Lunge One Leg",
+      "classification": "optional",
+      "aesthetic_value": "moderate",
+      "decision": "remove_high_repetition_version",
+      "replacement": "lateral_hop_and_stick_or_low_volume_split_jump"
+    },
+    {
+      "exercise": "Diamond Push Up",
+      "classification": "unnecessary_when_combined_with_dips",
+      "aesthetic_value": "high_for_triceps",
+      "decision": "remove_due_to_redundancy",
+      "replacement": "progress_parallel_bar_dip_or_push_up_load"
+    },
+    {
+      "exercise": "Alternate SL Glute Bridge",
+      "classification": "optional",
+      "aesthetic_value": "moderate",
+      "decision": "progress_external_load",
+      "replacement": "loaded_hip_thrust_or_single_leg_romanian_deadlift"
+    },
+    {
+      "exercise": "Pike Push Up",
+      "classification": "optional",
+      "aesthetic_value": "high",
+      "decision": "keep_in_upper_b",
+      "replacement": null
+    },
+    {
+      "exercise": "Negative One Leg Dragon Flag",
+      "classification": "optional",
+      "aesthetic_value": "high",
+      "decision": "remove_from_core_plan_due_to_cost_and_compensation_risk",
+      "replacement": "pallof_press_side_plank_or_ab_wheel"
+    }
+  ]
+}

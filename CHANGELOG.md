@@ -2,6 +2,14 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-08-31 — histórico de treino
+
+- Migrado literalmente o plano v1 como versão histórica, sem alterar seu `status` embutido nem o ponteiro ativo para a v2.
+- Mantido o treino original do coach exclusivamente no snapshot privado como `SKIPPED/DO_NOT_PUBLISH`.
+- Publicada a revisão com referência auditável ao `artifact_id` privado, sem link quebrado para arquivo ausente.
+- Publicada a análise histórica sem dias, horários exatos ou questão de saúde.
+- Registrados hashes e tratamentos dos quatro artefatos; concluída E01-T03 e liberada E01-T04.
+
 ## 2026-08-31 — dados canônicos de treino
 
 - Migrados literalmente o ponteiro ativo, a biblioteca de exercícios e o plano vigente v2 a partir do snapshot imutável.

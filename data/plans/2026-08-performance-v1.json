@@ -1,0 +1,281 @@
+{
+  "schema_version": "1.0.0",
+  "plan_id": "performance_2026_08_v1",
+  "version": "1.0.0",
+  "status": "active",
+  "created_at": "2026-08-10",
+  "last_updated": "2026-08-10",
+  "objective_order": [
+    "footvolley_performance",
+    "jump_power",
+    "injury_risk_reduction",
+    "stability_and_landing",
+    "secondary_aesthetics"
+  ],
+  "assumptions": [
+    "No current injury or medical restriction has been reported.",
+    "The exact weekend game day is unknown.",
+    "External load access is not confirmed; bodyweight and backpack alternatives are allowed."
+  ],
+  "global_rules": {
+    "lower_body_reps_in_reserve": "2-3",
+    "upper_body_reps_in_reserve": "1-3",
+    "lower_body_training_to_failure": false,
+    "jump_quality_rule": "Stop a set if height, speed, landing control or coordination clearly deteriorates.",
+    "progression_rule": "When the top of the repetition range is completed in every set with target RIR and good technique, add the smallest practical load increment.",
+    "introductory_rule": "Use two sets for new accessories during the first two weeks.",
+    "deload_rule": "Reduce strength volume by 30-40% after 4-6 weeks or earlier when fatigue markers accumulate."
+  },
+  "sessions": {
+    "lower_a": {
+      "name": "Inferiores A — força máxima e potência vertical",
+      "target_duration_minutes": 55,
+      "intensity": "high_quality_heavy",
+      "exercises": [
+        {
+          "exercise_id": "snap_down_stick",
+          "sets": 2,
+          "reps": "3",
+          "rest_seconds": 60,
+          "notes": "Use as landing preparation, not conditioning."
+        },
+        {
+          "exercise_id": "jump_squat",
+          "sets": 4,
+          "reps": "3",
+          "rest_seconds": 150,
+          "notes": "Maximum intent; bodyweight or a light external load."
+        },
+        {
+          "exercise_id": "loaded_squat",
+          "sets": 4,
+          "reps": "4-6",
+          "rest_seconds": 180,
+          "notes": "Back, front, goblet or backpack squat according to equipment and technique."
+        },
+        {
+          "exercise_id": "romanian_deadlift",
+          "sets": 3,
+          "reps": "5-8",
+          "rest_seconds": 120,
+          "notes": "Use single-leg variation if external load is limited."
+        },
+        {
+          "exercise_id": "nordic_hamstring",
+          "sets": 2,
+          "reps": "4-6",
+          "rest_seconds": 120,
+          "notes": "Optional during the first two weeks; use assistance and avoid novel high volume."
+        },
+        {
+          "exercise_id": "standing_calf_raise",
+          "sets": 3,
+          "reps": "6-10",
+          "rest_seconds": 105,
+          "notes": "Prefer unilateral loading when bodyweight is easy."
+        },
+        {
+          "exercise_id": "pallof_press",
+          "sets": 2,
+          "reps": "8-12_each_side",
+          "rest_seconds": 60,
+          "notes": "Keep ribs and pelvis aligned."
+        }
+      ]
+    },
+    "upper_a": {
+      "name": "Superiores A — puxada, empurrada e core",
+      "target_duration_minutes": 35,
+      "intensity": "moderate",
+      "exercises": [
+        {
+          "exercise_id": "pull_up",
+          "sets": 3,
+          "reps": "5-8",
+          "rest_seconds": 120
+        },
+        {
+          "exercise_id": "parallel_bar_dip",
+          "sets": 3,
+          "reps": "6-10",
+          "rest_seconds": 120
+        },
+        {
+          "exercise_id": "australian_row",
+          "sets": 2,
+          "reps": "8-12",
+          "rest_seconds": 90
+        },
+        {
+          "exercise_id": "side_plank",
+          "sets": 2,
+          "reps": "20-30_seconds_each_side",
+          "rest_seconds": 60
+        }
+      ]
+    },
+    "lower_b": {
+      "name": "Inferiores B — unilateral, tornozelo e estabilidade",
+      "target_duration_minutes": 45,
+      "intensity": "moderate_low_fatigue",
+      "exercises": [
+        {
+          "exercise_id": "pogo_jump",
+          "sets": 2,
+          "reps": "8_contacts",
+          "rest_seconds": 75,
+          "notes": "Low amplitude and short ground contact."
+        },
+        {
+          "exercise_id": "lateral_hop_and_stick",
+          "sets": 2,
+          "reps": "3_each_side",
+          "rest_seconds": 75
+        },
+        {
+          "exercise_id": "bulgarian_split_squat",
+          "sets": 3,
+          "reps": "5-8_each_leg",
+          "rest_seconds": 120
+        },
+        {
+          "exercise_id": "hip_thrust",
+          "sets": 2,
+          "reps": "6-10",
+          "rest_seconds": 105
+        },
+        {
+          "exercise_id": "seated_calf_raise",
+          "sets": 3,
+          "reps": "8-12",
+          "rest_seconds": 90
+        },
+        {
+          "exercise_id": "short_lever_copenhagen",
+          "sets": 2,
+          "reps": "15-25_seconds_each_side",
+          "rest_seconds": 75
+        }
+      ]
+    },
+    "lower_b_microdose": {
+      "name": "Inferiores B — microdose pré-jogo",
+      "target_duration_minutes": 25,
+      "intensity": "low_volume_neural",
+      "exercises": [
+        {
+          "exercise_id": "jump_squat",
+          "sets": 3,
+          "reps": "3",
+          "rest_seconds": 150
+        },
+        {
+          "exercise_id": "bulgarian_split_squat",
+          "sets": 2,
+          "reps": "5_each_leg",
+          "rest_seconds": 120,
+          "notes": "Moderate load; never to failure."
+        },
+        {
+          "exercise_id": "standing_calf_raise",
+          "sets": 2,
+          "reps": "8",
+          "rest_seconds": 90
+        },
+        {
+          "exercise_id": "short_lever_copenhagen",
+          "sets": 2,
+          "reps": "15_seconds_each_side",
+          "rest_seconds": 60
+        }
+      ]
+    },
+    "upper_b": {
+      "name": "Superiores B — costas, ombros e cervical",
+      "target_duration_minutes": 35,
+      "intensity": "moderate",
+      "exercises": [
+        {
+          "exercise_id": "chin_up",
+          "sets": 3,
+          "reps": "6-10",
+          "rest_seconds": 120,
+          "notes": "Alternative grip to pull-up; do not add both in the same session."
+        },
+        {
+          "exercise_id": "pike_push_up",
+          "sets": 3,
+          "reps": "6-10",
+          "rest_seconds": 105
+        },
+        {
+          "exercise_id": "australian_row",
+          "sets": 2,
+          "reps": "8-12",
+          "rest_seconds": 90,
+          "notes": "Use a harder body angle than in Upper A when ready."
+        },
+        {
+          "exercise_id": "push_up",
+          "sets": 2,
+          "reps": "8-12",
+          "rest_seconds": 90
+        },
+        {
+          "exercise_id": "cervical_isometric_four_way",
+          "sets": 2,
+          "reps": "15-20_seconds_each_direction",
+          "rest_seconds": 45
+        }
+      ]
+    },
+    "pre_footvolley_warmup": {
+      "name": "Aquecimento pré-futevôlei",
+      "target_duration_minutes": 12,
+      "intensity": "progressive_non_fatiguing",
+      "exercises": [
+        {
+          "exercise_id": "general_locomotion_warmup",
+          "sets": 1,
+          "reps": "2-3_minutes"
+        },
+        {
+          "exercise_id": "knee_to_wall",
+          "sets": 1,
+          "reps": "8_each_side"
+        },
+        {
+          "exercise_id": "hip_90_90_transition",
+          "sets": 1,
+          "reps": "6_each_side"
+        },
+        {
+          "exercise_id": "dynamic_lunge_with_rotation",
+          "sets": 1,
+          "reps": "5_each_side"
+        },
+        {
+          "exercise_id": "standing_calf_raise",
+          "sets": 1,
+          "reps": "10"
+        },
+        {
+          "exercise_id": "bodyweight_squat",
+          "sets": 1,
+          "reps": "8"
+        },
+        {
+          "exercise_id": "pogo_jump",
+          "sets": 2,
+          "reps": "8_contacts"
+        },
+        {
+          "exercise_id": "progressive_vertical_jump",
+          "sets": 1,
+          "reps": "3_at_60_75_90_percent"
+        }
+      ]
+    }
+  }
+}
+
