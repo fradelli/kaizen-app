@@ -2,6 +2,14 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-01 — documentação humana de treino
+
+- Publicados cinco guias compactos, derivados dos dados canônicos e sem agenda ou contexto pessoal.
+- Mantidas evidências e limitações com proveniência, sem apresentar a migração como nova revisão científica.
+- Publicados três templates vazios com preenchimento exclusivamente privado e proibição de versionar respostas.
+- Removidas instruções, caminhos e duplicidades do legado; prompts restantes foram rotulados como exemplos não canônicos.
+- Verificados no manifesto os oito artefatos da E01-T04; tarefa concluída e E01-T05 liberada.
+
 ## 2026-08-31 — histórico de treino
 
 - Migrado literalmente o plano v1 como versão histórica, sem alterar seu `status` embutido nem o ponteiro ativo para a v2.
