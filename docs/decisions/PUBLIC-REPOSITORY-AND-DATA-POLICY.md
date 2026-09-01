@@ -46,3 +46,9 @@ Planos, horários, dieta e contexto físico não são automaticamente públicos.
 ## Revisão da decisão
 
 Uma futura mudança de visibilidade ou de política exige nova decisão versionada. Ela não altera retroativamente a exposição de artefatos já publicados.
+
+## Exposição histórica conhecida
+
+Em 2026-09-01, o proprietário aprovou manter o histórico Git público já existente e remover da árvore atual os valores exatos de agenda que haviam sido incluídos no roadmap antes da sanitização de E01. Não foi realizada reescrita de histórico.
+
+Essa aceitação não autoriza novas publicações de agenda pessoal. O estado vigente deve continuar representando sessões públicas com dia e horário nulos; fatos exatos permanecem somente no snapshot privado.
