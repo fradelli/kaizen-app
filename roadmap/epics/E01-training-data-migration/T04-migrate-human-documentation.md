@@ -23,10 +23,10 @@ Levar ao Kaizen somente guias, evidências e templates úteis, removendo caminho
 
 ## Subtarefas
 
-- [ ] Classificar cada documento como copiar, transformar, resumir ou omitir.
-- [ ] Atualizar links e nomes do projeto.
-- [ ] Remover orientação Next + Nest como decisão vigente.
-- [ ] Preservar limites de segurança e proveniência.
+- [x] Classificar cada documento como copiar, transformar, resumir ou omitir.
+- [x] Atualizar links e nomes do projeto.
+- [x] Remover orientação Next + Nest como decisão vigente.
+- [x] Preservar limites de segurança e proveniência.
 
 ## Validações
 
@@ -35,9 +35,9 @@ Levar ao Kaizen somente guias, evidências e templates úteis, removendo caminho
 
 ## Critérios de aceite
 
-- [ ] Documentação corresponde aos dados migrados.
-- [ ] Auditorias e prompts não viraram fonte canônica por acidente.
+- [x] Documentação corresponde aos dados migrados.
+- [x] Auditorias e prompts não viraram fonte canônica por acidente.
 
 ## Resultado
 
-Ainda não concluída.
+Cinco documentos humanos e três templates vazios foram derivados exclusivamente do snapshot aprovado e dos dados já migrados. Os guias subordinam prescrição aos JSONs canônicos; agenda, contexto pessoal, caminhos antigos e duplicações extensas foram removidos. Cada template exige preenchimento privado e proíbe versionar a instância preenchida.
