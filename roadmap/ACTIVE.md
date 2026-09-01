@@ -1,10 +1,10 @@
 # Tarefa ativa
 
-- **Tarefa:** E01-T03 — Migrar histórico de treino
+- **Tarefa:** E01-T04 — Migrar documentação humana
 - **Status:** READY
-- **Entrada principal:** linhas `e01-t03-*` do manifesto e snapshot imutável `d1acad309e2b81b714d1aa375e9371a310ad6ed0`.
-- **Condição conhecida:** plano v1 e revisão permanecem `REVIEW_REQUIRED`; o treino original do coach permanece `DO_NOT_PUBLISH`.
-- **Próximo passo:** decidir a exposição de cada artefato histórico antes de copiar qualquer conteúdo.
-- **Depois:** executar E01-T04 para a documentação humana aprovada.
+- **Entrada principal:** oito artefatos úteis `e01-t04-*` em `REVIEW_REQUIRED`; dois documentos obsoletos já estão `SKIPPED`.
+- **Condição conhecida:** guias e templates podem conter caminhos antigos, agenda, contexto pessoal ou instruções substituídas.
+- **Próximo passo:** aprovar a exposição e a transformação dos cinco guias e três templates antes da migração.
+- **Depois:** executar E01-T05 para os schemas de treino.
 
 Não copiar valores do worktree nem publicar artefatos `REVIEW_REQUIRED` ou `DO_NOT_PUBLISH`.

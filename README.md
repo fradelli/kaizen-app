@@ -10,7 +10,7 @@ O projeto começa sem código. Primeiro serão migrados e validados dados, regra
 - Branches `developer`, `staging` e `master` publicadas.
 - Roadmap documental criado e centralizado em `roadmap/README.md`.
 - Repositório público por decisão do proprietário, com publicação controlada por allowlist no manifesto.
-- Dados canônicos e plano vigente de treino migrados do snapshot privado, com perfil e agenda sanitizados.
+- Dados canônicos, plano vigente e histórico autorizado migrados; perfil, agenda e derivados foram sanitizados e o original do coach permanece privado.
 - Nenhuma aplicação, dependência ou banco criado.
 
 ## Acesso rápido
