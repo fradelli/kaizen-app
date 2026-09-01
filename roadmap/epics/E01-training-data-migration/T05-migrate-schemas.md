@@ -23,10 +23,10 @@ Migrar contratos documentais de treino e registrar explicitamente sua cobertura 
 
 ## Subtarefas
 
-- [ ] Copiar os schemas aprovados.
-- [ ] Verificar os dados cobertos.
-- [ ] Registrar formatos ainda sem schema.
-- [ ] Não ampliar contratos sem evidência.
+- [x] Copiar os schemas aprovados.
+- [x] Verificar os dados cobertos.
+- [x] Registrar formatos ainda sem schema.
+- [x] Não ampliar contratos sem evidência.
 
 ## Validações
 
@@ -35,9 +35,9 @@ Migrar contratos documentais de treino e registrar explicitamente sua cobertura 
 
 ## Critérios de aceite
 
-- [ ] Cobertura e lacunas são explícitas.
-- [ ] Schema não é apresentado como validação clínica ou de produto.
+- [x] Cobertura e lacunas são explícitas.
+- [x] Schema não é apresentado como validação clínica ou de produto.
 
 ## Resultado
 
-Ainda não concluída.
+Os dois schemas Draft 2020-12 foram copiados literalmente e validaram biblioteca, plano v1 e plano v2 com `Test-Json`. O README remove a referência ao script excluído, documenta permissividade, formatos, cobertura e arquivos ainda sem contrato. Unicidade, referências cruzadas e ponteiro ativo foram mantidos como invariantes separadas, sem ampliar os schemas.

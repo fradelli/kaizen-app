@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/exercise-library.schema.json",
+  "title": "Exercise library",
+  "type": "object",
+  "required": ["schema_version", "last_updated", "exercises"],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date"
+    },
+    "exercises": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name_pt",
+          "categories",
+          "primary_goal",
+          "footvolley_application",
+          "how_to",
+          "cues",
+          "common_errors",
+          "risks",
+          "evidence_level"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9_]+$"
+          },
+          "name_pt": {
+            "type": "string"
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "how_to": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "evidence_level": {
+            "enum": ["A", "B", "C", "D"]
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}
+
