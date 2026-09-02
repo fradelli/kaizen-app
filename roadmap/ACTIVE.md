@@ -1,11 +1,11 @@
 # Tarefa ativa
 
-- **Tarefa:** E03-T03 — Definir privacidade e operação
+- **Tarefa:** E03-T04 — Definir arquitetura
 - **Status:** READY
-- **Entrada principal:** `docs/product/P0.md`, política do repositório público e decisão de transição da fonte de verdade.
-- **Resultado anterior:** JSON definido como fonte das versões de plano e banco como fonte exclusiva das atribuições e execuções.
-- **Objetivo:** decidir acesso pessoal sem login, proteção de mutações, ambientes, segredos, backup, restore e evolução para contas.
-- **Entregável:** decisão operacional e de privacidade do MVP.
-- **Depois:** consolidar produto, dados e operação na arquitetura E03-T04.
+- **Entrada principal:** P0, transição da fonte de verdade e decisão de privacidade e operação.
+- **Resultado anterior:** publicação pessoal sem login convencional definida, com leitura pública limitada, mutações protegidas, ambientes isolados e restore testável.
+- **Objetivo:** escolher stack, boundaries, modelo arquitetural, migrations, segurança e estratégia de testes.
+- **Entregável:** arquitetura alvo proporcional ao MVP e preparada para contas futuras.
+- **Depois:** produzir e aprovar o guia copiável E03-T05.
 
-O site terá URL pública `.vercel.app`, mas conhecer a URL não será tratado como autorização para alterar dados. Nenhum código ou configuração de provedor deve ser criado nesta etapa.
+A decisão deve permanecer em Next.js full-stack e PostgreSQL, sem serviço backend separado. Nenhum código, dependência ou configuração de provedor deve ser criado nesta etapa.

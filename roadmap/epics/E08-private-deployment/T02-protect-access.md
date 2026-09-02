@@ -4,11 +4,11 @@ epic: E08
 depends_on: [E08-T01]
 ---
 
-# Proteger acesso
+# Proteger mutações e dados pessoais
 
 ## Objetivo
 
-Impedir acesso não autorizado aos dados pessoais no preview e na produção.
+Manter leitura pública somente para conteúdo aprovado e impedir leitura ou alteração não autorizada dos dados pessoais no preview e na produção.
 
 ## Entradas
 
@@ -20,18 +20,18 @@ Impedir acesso não autorizado aos dados pessoais no preview e na produção.
 
 ## Subtarefas
 
-- [ ] Aplicar a opção de autenticação aprovada no E03.
+- [ ] Implementar pareamento do dispositivo e sessão de proprietário aprovados no E03.
 - [ ] Proteger rotas, dados e recursos derivados.
 - [ ] Evitar indexação e vazamento em logs ou erros.
-- [ ] Testar sessão ausente, inválida e expirada.
+- [ ] Testar sessão ausente, inválida, expirada e rotacionada.
 
 ## Validações
 
-- Tentar acesso anônimo a todas as rotas sensíveis.
+- Tentar leitura e mutação anônimas em todas as rotas sensíveis.
 
 ## Critérios de aceite
 
-- [ ] Dados pessoais não são acessíveis sem autorização.
+- [ ] Dados pessoais não são acessíveis sem autorização e o conteúdo público continua legível.
 
 ## Resultado
 

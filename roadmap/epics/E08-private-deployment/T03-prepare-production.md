@@ -25,7 +25,7 @@ Preparar banco, variáveis, branch e configuração de produção sem liberar o 
 - [ ] Aplicar migrations e importação de forma controlada.
 - [ ] Executar CI no SHA promovido e exigir evidência do preview.
 - [ ] Usar Vercel CLI fixada e deploy prebuilt.
-- [ ] Confirmar domínio, logs e limites operacionais.
+- [ ] Confirmar URL gerada, logs, backup externo e limites operacionais.
 
 ## Validações
 

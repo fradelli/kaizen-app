@@ -6,7 +6,7 @@ Backlog posterior ao MVP mantido separado do caminho crítico atual.
 
 ## Regra de criação
 
-As tarefas deste épico serão criadas sob demanda, depois da validação do MVP privado. Cada nova funcionalidade deve registrar problema, dados necessários, riscos, dependências e critério de sucesso antes de receber código.
+As tarefas deste épico serão criadas sob demanda, depois da validação do MVP pessoal. Cada nova funcionalidade deve registrar problema, dados necessários, riscos, dependências e critério de sucesso antes de receber código.
 
 ## Candidatos, sem compromisso de escopo
 
@@ -22,6 +22,6 @@ As tarefas deste épico serão criadas sob demanda, depois da validação do MVP
 
 ## Critérios de entrada
 
-- [ ] MVP privado validado em uso real.
+- [ ] MVP pessoal validado em uso real.
 - [ ] Próximo problema priorizado com evidência.
 - [ ] Impacto sobre privacidade e modelo de dados revisado.

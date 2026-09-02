@@ -53,7 +53,7 @@ Dispara após merge em `staging`:
 2. faz checkout e confirma o SHA imutável;
 3. aplica migrations compatíveis usando credenciais do ambiente `preview`;
 4. constrói e publica artefato prebuilt com versão fixada da Vercel CLI;
-5. aguarda o deployment e executa smoke test autenticado e anônimo;
+5. aguarda o deployment e executa smoke test pareado e anônimo;
 6. mantém apenas uma execução de preview por vez, sem cancelar deploy iniciado.
 
 ## CD de produção
@@ -74,4 +74,4 @@ Segredos e variáveis de preview nunca são reutilizados implicitamente em produ
 - E04-T05: CI, validação de governança e rulesets.
 - E05: integridade de dados, banco, migrations e restauração.
 - E08-T01: CD de preview e smoke tests.
-- E08-T03–T05: CD de produção, rollback e release privada.
+- E08-T03–T05: CD de produção, rollback e release pessoal.
