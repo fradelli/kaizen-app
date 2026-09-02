@@ -1,82 +1,92 @@
 # Inventário de entradas alimentares
 
-## Resultado
+## Resultado corrigido
 
-- Data da verificação: `2026-09-01`.
-- Dieta prescrita disponível: `false`.
-- Registro da alimentação praticada disponível: `false`.
-- Artefatos alimentares autorizados para migração: `0`.
-- Próxima tarefa: `E02-T02`, bloqueada até o fornecimento e a classificação de uma fonte original.
+- Data da correção: `2026-09-01`.
+- Repositório de origem: `personal-performance` (`PRIVATE`).
+- Referência observada: `refs/heads/codex/mvp-incremental-foundation`.
+- Commit remoto verificado: `138531e4fbca6d744de73274fbb96da39c02bad3`.
+- Dieta original disponível: `true`.
+- Registro da alimentação praticada disponível: `true`.
+- Artefatos candidatos: `8`.
+- Artefatos aprovados para publicação: `0`.
+- Próxima tarefa: `E02-T02`, liberada para congelar e preservar a fonte privada.
 
-Este documento registra disponibilidade, proveniência e lacunas. Ele não é uma dieta, uma prescrição ou uma avaliação nutricional.
+A primeira versão deste inventário inspecionou somente o snapshot de treino, o worktree observado e o anexo conhecido. A correção ampliou a descoberta para todas as refs remotas e localizou a fonte alimentar em uma branch privada. Nenhum conteúdo alimentar foi copiado para o Kaizen.
 
-## Escopo verificado
+## Candidatos privados
 
-| input_id | Entrada | Disponibilidade | Papel | Exposição atual | Evidência e tratamento |
-| --- | --- | --- | --- | --- | --- |
-| `nutrition-input-prescribed-diet` | Dieta prescrita original | `NOT_PROVIDED` | Fonte primária futura | `DO_NOT_PUBLISH` | Nenhum arquivo foi fornecido; não criar linha no manifesto antes de existir uma fonte verificável |
-| `nutrition-input-practiced-food` | Alimentação efetivamente praticada | `NOT_PROVIDED` | Contexto futuro, separado da prescrição | `DO_NOT_PUBLISH` | Nenhum diário, relato ou registro foi fornecido |
-| `nutrition-input-legacy-snapshot` | Snapshot privado usado em E01 | `INSPECTED_NO_ARTIFACT` | Evidência negativa | `DO_NOT_PUBLISH` | A árvore do commit registrado não contém caminho candidato por termos alimentares; não é uma fonte nutricional |
-| `nutrition-input-legacy-worktree` | Worktree privado observado | `INSPECTED_NO_ARTIFACT` | Descoberta apenas, nunca fonte imutável | `DO_NOT_PUBLISH` | Nenhum caminho candidato foi localizado; qualquer entrada futura ainda exigirá snapshot remoto imutável |
-| `nutrition-input-known-attachment` | Anexo textual conhecido | `CONTEXT_ONLY` | Contexto de arquitetura | `DO_NOT_PUBLISH` | Menciona dieta somente como escopo futuro e não contém um plano alimentar |
-| `nutrition-context-profile` | `data/profile.json` | `AVAILABLE` | Contexto público sanitizado | `PUBLIC` | Pode orientar perguntas futuras; não prova necessidade, restrição ou prescrição alimentar |
-| `nutrition-context-schedule` | `data/schedule.json` | `AVAILABLE` | Contexto público sanitizado | `PUBLIC` | Informa regras agregadas de carga; dias e horários pessoais permanecem nulos |
-| `nutrition-context-active-training` | `data/active.json` e plano apontado | `AVAILABLE` | Contexto de carga de treino | `PUBLIC` | Identifica o plano de treino vigente; não contém fatos alimentares |
+Os identificadores abaixo pertencem somente ao inventário. Não são `artifact_id` do manifesto e não expõem caminhos privados.
 
-Os `input_id` acima pertencem somente a este inventário. Eles não autorizam migração e não substituem os `artifact_id` do manifesto.
+| candidate_id | Papel | Bytes | SHA-256 | Tratamento candidato | Exposição padrão |
+| --- | --- | ---: | --- | --- | --- |
+| `nutrition-source-context` | Contexto alimentar e operacional | 19154 | `0ab7cda38f9d592ac173b1b2b2d12dc419c2fab6f4cb759726517f527e111830` | `SUMMARIZE` após revisão | `DO_NOT_PUBLISH` |
+| `nutrition-source-current-intake` | Resumo da alimentação praticada | 5237 | `d25cbb7f2a5b59423e7df51ab1fa6e41c6143d50648df3337792eb8fa2f1b10e` | `SUMMARIZE` após revisão | `DO_NOT_PUBLISH` |
+| `nutrition-source-original-json` | Transcrição estruturada da fonte original | 11598 | `7421e0fa8ef39d42910328e1aa540c9bfb325c634d53bef0fd591add53d42eb1` | `COPY` privado e `SKIP` público | `DO_NOT_PUBLISH` |
+| `nutrition-source-original-pdf` | Documento original | 135629 | `a84e1ebadf28e45a40b5922f509e83761f1bc2c96d5eabfb67ccb84904862ee1` | `COPY` privado e `SKIP` público | `DO_NOT_PUBLISH` |
+| `nutrition-source-periodized-plan-v1` | Plano derivado existente | 29726 | `50bc329418447026fa791e22c9c64f4bbb56f92a4754cc4e9550fa019155017f` | `TRANSFORM` somente após revisão | `DO_NOT_PUBLISH` |
+| `nutrition-source-weekend-recipe` | Receita vinculada ao plano | 4372 | `2e1f1681eaf45036c97ec7fe1365960573a8226d9d63c407cbd3a62e680aa057` | `TRANSFORM` somente após revisão | `DO_NOT_PUBLISH` |
+| `nutrition-source-legacy-audit` | Auditoria anterior da dieta | 35071 | `b14e5959bfab6305e35359eb02bc32542f9a916452648aab7c61a3fe43299abb` | `SUMMARIZE` após revalidação | `DO_NOT_PUBLISH` |
+| `nutrition-source-human-guide` | Guia humano do plano anterior | 23706 | `3c210923480926fc495fec20d2279e3931516d50bbfeeee8b06bf8e5e2840185` | `SUMMARIZE` após aprovação | `DO_NOT_PUBLISH` |
+
+Os oito blobs totalizam `264493` bytes. Seus hashes foram calculados diretamente do commit remoto observado.
+
+## Contexto já público
+
+| input_id | Entrada | Disponibilidade | Uso permitido |
+| --- | --- | --- | --- |
+| `nutrition-context-profile` | `data/profile.json` | `AVAILABLE` | Contexto sanitizado; não cria fatos alimentares |
+| `nutrition-context-schedule` | `data/schedule.json` | `AVAILABLE` | Carga agregada; agenda pessoal permanece nula |
+| `nutrition-context-active-training` | Plano apontado por `data/active.json` | `AVAILABLE` | Contexto de treino; não substitui revisão nutricional |
 
 ## Separação epistemológica
 
 ### Fatos confirmados
 
-- Não há dieta prescrita disponível nas entradas fornecidas.
-- Não há registro da alimentação praticada.
-- O snapshot privado registrado e o worktree observado não apresentam arquivo candidato por nome.
-- Perfil, agenda e treino migrados estão disponíveis apenas como contexto sanitizado.
-- Nenhum valor alimentar ou nutricional foi confirmado.
+- A fonte privada contém documento original, transcrição, contexto, alimentação praticada, plano derivado, receita, auditoria e guia.
+- A branch remota resolve para o commit registrado.
+- Nenhum dos oito artefatos recebeu aprovação de publicação.
+- O plano derivado existente não foi promovido a plano vigente do Kaizen.
 
 ### Estimativas
 
-Nenhuma estimativa foi produzida.
+Nenhuma estimativa foi produzida nesta tarefa.
 
 ### Hipóteses
 
-Nenhuma hipótese foi promovida a dado. A possível existência de uma dieta fora das fontes verificadas permanece desconhecida.
+Nenhuma hipótese foi promovida a dado. Atualidade, adequação e autoria profissional ainda precisam ser confirmadas em etapa privada.
 
 ### Decisões profissionais
 
-Nenhuma decisão de nutricionista ou outro profissional foi fornecida. Objetivos gerais do projeto não substituem uma fonte profissional identificável.
+A existência de um documento original não confirma, por si só, autoria, vigência ou validação profissional do plano derivado. Essas relações permanecem pendentes.
 
 ## Unknowns
 
-- existência e localização da dieta original;
-- formato do documento original;
-- autoria e relação profissional da fonte;
-- data de emissão, versão e vigência;
+- autoria e relação profissional da fonte original;
+- data de emissão, versão e vigência do documento;
 - direito de preservar ou publicar conteúdo de terceiro;
-- refeições, itens, quantidades, unidades, alternativas e observações exatamente como recebidos;
-- alimentação praticada e eventuais diferenças em relação ao original;
-- decisão explícita de exposição por artefato;
-- restrições ou orientações profissionais relevantes, que devem ser tratadas em canal privado e minimizadas antes de qualquer publicação.
+- relação exata entre PDF e transcrição JSON;
+- atualidade do resumo da alimentação praticada;
+- quais partes do plano derivado foram aprovadas pelo usuário ou por profissional;
+- decisão explícita de exposição para qualquer derivado futuro;
+- restrições ou orientações profissionais que devam permanecer exclusivamente privadas.
 
 Nenhum desses campos pode ser preenchido por inferência.
 
 ## Gate para E02-T02
 
-`E02-T02` somente pode iniciar quando:
+`E02-T02` está pronta para:
 
-1. uma fonte alimentar original for fornecida por meio apropriado;
-2. autoria, data e formato forem registrados quando conhecidos, mantendo ausências como `null`;
-3. o direito de preservação e a exposição forem decididos por artefato;
-4. a origem for fixada em commit remoto imutável ou outro mecanismo de proveniência aprovado;
-5. uma linha correspondente puder ser criada no manifesto sem publicar o conteúdo antes da autorização.
-
-O recebimento de um arquivo não autoriza sua inclusão no repositório público. A classificação continua `DO_NOT_PUBLISH` até decisão explícita; E02-T02 deverá decidir se o destino público recebe somente metadados auditáveis, uma transformação aprovada ou nenhuma cópia.
+1. criar um snapshot privado a partir do commit verificado;
+2. preservar blobs byte a byte e criar a tag privada `kaizen-nutrition-source-v1`;
+3. criar cópias privadas com nomes neutros quando o caminho histórico expuser identidade, sem remover ou reescrever o original;
+4. registrar no manifesto apenas referências seguras, hashes e decisões de exposição;
+5. encerrar originais públicos como `SKIP/DO_NOT_PUBLISH`;
+6. manter todos os derivados privados até revisão e aprovação por artefato.
 
 ## Fora de escopo
 
-- criar `data/nutrition/`;
-- sugerir alimentos, quantidades, calorias ou macronutrientes;
-- revisar segurança, adequação ou eficácia de uma dieta inexistente;
-- criar plano vigente, schema, aplicação, banco, script ou workflow;
-- registrar no manifesto um artefato que ainda não existe.
+- criar `data/nutrition/` no repositório público;
+- publicar ou transcrever refeições, quantidades, calorias ou macronutrientes;
+- revisar a dieta ou criar um novo plano;
+- criar schema, aplicação, banco, script ou workflow.
