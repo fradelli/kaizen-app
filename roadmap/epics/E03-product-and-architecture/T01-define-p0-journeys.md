@@ -8,7 +8,7 @@ depends_on: [E01-T06, E02-T06]
 
 ## Objetivo
 
-Fechar o menor produto read-only utilizável para treino e alimentação.
+Fechar o menor produto operacional utilizável para treino e alimentação.
 
 ## Entradas
 
@@ -17,14 +17,15 @@ Fechar o menor produto read-only utilizável para treino e alimentação.
 
 ## Entregáveis
 
-- `docs/product/P0-READ-ONLY.md`
+- `docs/product/P0.md`
 
 ## Subtarefas
 
 - [ ] Definir jornadas, telas e navegação.
 - [ ] Definir estados pronto, vazio, incompleto e erro.
 - [ ] Definir critérios de aceite observáveis.
-- [ ] Excluir registros e automações do P0.
+- [ ] Incluir somente os registros necessários para cumprir dieta e executar treino.
+- [ ] Excluir automações e áreas alheias a dieta e treino.
 
 ## Validações
 
@@ -37,4 +38,4 @@ Fechar o menor produto read-only utilizável para treino e alimentação.
 
 ## Resultado
 
-Ainda não concluída.
+Definidas duas jornadas testáveis em `docs/product/P0.md`: Dieta registra opção seguida, refeição diferente, item pulado e comentário; Treino resolve sessão, mobilidade ou descanso, separa preparação, registra séries, carga somente quando aplicável, repetições e comentários. Estados, falhas, histórico, acessibilidade e limites do P0 foram explicitados.

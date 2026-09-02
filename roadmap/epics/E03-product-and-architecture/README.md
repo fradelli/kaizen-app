@@ -7,7 +7,7 @@ Escopo P0, transição da fonte de verdade, operação e arquitetura aprovados e
 ## Fora de escopo
 
 - Scaffold, dependências, banco ou deploy.
-- Features posteriores ao leitor de treino e alimentação.
+- Features além da execução essencial de treino e alimentação.
 
 ## Ordem
 
