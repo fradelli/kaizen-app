@@ -2,6 +2,14 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-02 — guia de implementação do P0
+
+- Convertidas as decisões aprovadas em uma ordem incremental de E04-T01 a E08-T05, com uma PR por tarefa.
+- Pinadas as versões iniciais de runtime, framework, qualidade, banco, testes e segurança.
+- Documentados conteúdos completos do scaffold inicial, ações por arquivo, dependências, validações e rollback.
+- Associadas as decisões futuras dependentes de evidência às tarefas responsáveis, sem criar código prematuro.
+- Concluídos E03-T05 e o épico E03; liberados E04 e E04-T01 para iniciar a aplicação Next.js.
+
 ## 2026-09-02 — arquitetura alvo do MVP
 
 - Escolhidos Node.js 24 LTS, Next.js 16 App Router, React 19, TypeScript estrito e pnpm pinado.

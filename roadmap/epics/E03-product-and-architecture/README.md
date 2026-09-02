@@ -21,6 +21,6 @@ Escopo P0, transição da fonte de verdade, operação e arquitetura aprovados e
 
 ## Critérios de encerramento
 
-- [ ] Nenhuma decisão técnica bloqueante permanece implícita.
-- [ ] O guia de implementação possui ordem, arquivos e validações.
-- [ ] E04-T01 está `READY`.
+- [x] Nenhuma decisão técnica bloqueante permanece implícita.
+- [x] O guia de implementação possui ordem, arquivos e validações.
+- [x] E04-T01 está `READY`.

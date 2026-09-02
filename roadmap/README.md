@@ -22,8 +22,8 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E00 | DONE | [Governança do repositório](epics/E00-repository-governance/README.md) | Repositório público governado e legado privado rastreável |
 | E01 | DONE | [Migração de treino](epics/E01-training-data-migration/README.md) | Fundação de treino migrada e validada |
 | E02 | DONE | [Migração de alimentação](epics/E02-nutrition-data-migration/README.md) | Plano alimentar revisado, versionado e validado |
-| E03 | IN_PROGRESS | [Produto e arquitetura](epics/E03-product-and-architecture/README.md) | P0 e arquitetura aprovados, ainda sem código |
-| E04 | PLANNED | [Fundação Next.js](epics/E04-nextjs-foundation/README.md) | Aplicação mínima com gates de qualidade |
+| E03 | DONE | [Produto e arquitetura](epics/E03-product-and-architecture/README.md) | P0, arquitetura e guia de implementação aprovados |
+| E04 | READY | [Fundação Next.js](epics/E04-nextjs-foundation/README.md) | Aplicação mínima com gates de qualidade |
 | E05 | PLANNED | [Banco e importação](epics/E05-database-and-import/README.md) | Persistência e importação íntegras |
 | E06 | PLANNED | [Execução de treino](epics/E06-training-read-only/README.md) | Consulta e registro utilizáveis de treino |
 | E07 | PLANNED | [Execução de alimentação](epics/E07-nutrition-read-only/README.md) | Consulta e registro utilizáveis de alimentação |
@@ -56,8 +56,8 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E03-T02 | DONE | [Definir transição da fonte de verdade](epics/E03-product-and-architecture/T02-define-source-of-truth-transition.md) | E03-T01 |
 | E03-T03 | DONE | [Definir privacidade e operação](epics/E03-product-and-architecture/T03-define-privacy-and-operations.md) | E03-T01 |
 | E03-T04 | DONE | [Definir arquitetura](epics/E03-product-and-architecture/T04-define-target-architecture.md) | E03-T02, E03-T03 |
-| E03-T05 | READY | [Aprovar guia de implementação](epics/E03-product-and-architecture/T05-approve-implementation-guide.md) | E03-T04 |
-| E04-T01 | PLANNED | [Criar aplicação Next.js](epics/E04-nextjs-foundation/T01-scaffold-nextjs.md) | E03-T05 |
+| E03-T05 | DONE | [Aprovar guia de implementação](epics/E03-product-and-architecture/T05-approve-implementation-guide.md) | E03-T04 |
+| E04-T01 | READY | [Criar aplicação Next.js](epics/E04-nextjs-foundation/T01-scaffold-nextjs.md) | E03-T05 |
 | E04-T02 | PLANNED | [Configurar qualidade estática](epics/E04-nextjs-foundation/T02-configure-static-quality.md) | E04-T01 |
 | E04-T03 | PLANNED | [Criar fronteira server-only](epics/E04-nextjs-foundation/T03-create-server-only-boundary.md) | E04-T02 |
 | E04-T04 | PLANNED | [Criar shell acessível](epics/E04-nextjs-foundation/T04-create-accessible-shell.md) | E04-T02 |
