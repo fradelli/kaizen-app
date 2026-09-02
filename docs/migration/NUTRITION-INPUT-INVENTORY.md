@@ -18,7 +18,8 @@
 - Resultado da revisão: 23 decisões, inicialmente sem itens aprovados como plano vigente.
 - Decisão posterior: o proprietário aprovou em `2026-09-02` o plano sanitizado para uso pessoal e exposição pública.
 - Plano estruturado: `data/nutrition/plans/2026-09-personal-v1.json`.
-- Próxima tarefa: `E02-T05`, para criar ponteiro, schema e guia.
+- Fundação validada em: `E02-T06`.
+- Próxima tarefa: `E03-T01`, para definir as jornadas do P0.
 
 A primeira versão deste inventário inspecionou somente o snapshot de treino, o worktree observado e o anexo conhecido. A correção ampliou a descoberta para todas as refs remotas e localizou a fonte alimentar em uma branch privada. Nenhum conteúdo alimentar foi copiado para o Kaizen.
 
