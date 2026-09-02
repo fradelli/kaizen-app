@@ -28,7 +28,7 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E06 | PLANNED | [Execução de treino](epics/E06-training-read-only/README.md) | Consulta e registro utilizáveis de treino |
 | E07 | PLANNED | [Execução de alimentação](epics/E07-nutrition-read-only/README.md) | Consulta e registro utilizáveis de alimentação |
 | E08 | PLANNED | [Publicação pessoal](epics/E08-private-deployment/README.md) | Local, preview e produção verificados |
-| E09 | PLANNED | [Evolução futura](epics/E09-future-evolution/README.md) | Backlog posterior ao MVP read-only |
+| E09 | PLANNED | [Evolução futura](epics/E09-future-evolution/README.md) | Backlog posterior ao MVP pessoal |
 
 ## Todas as tarefas
 
@@ -54,8 +54,8 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E02-T06 | DONE | [Validar fundação alimentar](epics/E02-nutrition-data-migration/T06-validate-nutrition-foundation.md) | E02-T05 |
 | E03-T01 | DONE | [Definir jornadas do P0](epics/E03-product-and-architecture/T01-define-p0-journeys.md) | E01-T06, E02-T06 |
 | E03-T02 | DONE | [Definir transição da fonte de verdade](epics/E03-product-and-architecture/T02-define-source-of-truth-transition.md) | E03-T01 |
-| E03-T03 | READY | [Definir privacidade e operação](epics/E03-product-and-architecture/T03-define-privacy-and-operations.md) | E03-T01 |
-| E03-T04 | PLANNED | [Definir arquitetura](epics/E03-product-and-architecture/T04-define-target-architecture.md) | E03-T02, E03-T03 |
+| E03-T03 | DONE | [Definir privacidade e operação](epics/E03-product-and-architecture/T03-define-privacy-and-operations.md) | E03-T01 |
+| E03-T04 | READY | [Definir arquitetura](epics/E03-product-and-architecture/T04-define-target-architecture.md) | E03-T02, E03-T03 |
 | E03-T05 | PLANNED | [Aprovar guia de implementação](epics/E03-product-and-architecture/T05-approve-implementation-guide.md) | E03-T04 |
 | E04-T01 | PLANNED | [Criar aplicação Next.js](epics/E04-nextjs-foundation/T01-scaffold-nextjs.md) | E03-T05 |
 | E04-T02 | PLANNED | [Configurar qualidade estática](epics/E04-nextjs-foundation/T02-configure-static-quality.md) | E04-T01 |
@@ -78,10 +78,10 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E07-T04 | PLANNED | [Exibir segurança e proveniência](epics/E07-nutrition-read-only/T04-show-nutrition-safety.md) | E07-T03 |
 | E07-T05 | PLANNED | [Validar fluxo alimentar](epics/E07-nutrition-read-only/T05-validate-nutrition-flow.md) | E07-T04 |
 | E08-T01 | PLANNED | [Publicar preview](epics/E08-private-deployment/T01-deploy-preview.md) | E06-T05, E07-T05 |
-| E08-T02 | PLANNED | [Proteger acesso](epics/E08-private-deployment/T02-protect-access.md) | E08-T01 |
+| E08-T02 | PLANNED | [Proteger mutações e dados pessoais](epics/E08-private-deployment/T02-protect-access.md) | E08-T01 |
 | E08-T03 | PLANNED | [Preparar produção](epics/E08-private-deployment/T03-prepare-production.md) | E08-T02, E05-T05 |
 | E08-T04 | PLANNED | [Validar operação e rollback](epics/E08-private-deployment/T04-validate-operations-and-rollback.md) | E08-T03 |
-| E08-T05 | PLANNED | [Publicar MVP privado](epics/E08-private-deployment/T05-release-private-mvp.md) | E08-T04 |
+| E08-T05 | PLANNED | [Publicar MVP pessoal](epics/E08-private-deployment/T05-release-private-mvp.md) | E08-T04 |
 
 ## Regra de atualização
 

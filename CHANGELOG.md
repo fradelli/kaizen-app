@@ -2,6 +2,15 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-02 — privacidade e operação do MVP
+
+- Escolhidas Vercel e Neon PostgreSQL, com URL gerada e sem domínio próprio ou cadastro no MVP.
+- Separada leitura pública dos planos de atribuições, execuções e comentários privados.
+- Definidos pareamento do dispositivo, cookie seguro e autorização server-side para toda operação pessoal.
+- Isolados local, previews, staging e produção com bancos, dados e segredos próprios.
+- Definidos RPO de 24 horas, RTO de 4 horas, backup cifrado, restore mensal e evolução futura para contas.
+- Concluída E03-T03, corrigido o escopo de publicação pessoal em E08 e liberada E03-T04.
+
 ## 2026-09-02 — transição da fonte de verdade
 
 - Mantidos Git e JSON como fonte editável das definições de planos durante o MVP.

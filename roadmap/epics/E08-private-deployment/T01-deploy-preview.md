@@ -12,7 +12,7 @@ Conectar o projeto à Vercel e publicar um preview verificável sem promover pro
 
 ## Entradas
 
-- Fluxos read-only validados.
+- Fluxos operacionais de Dieta e Treino validados.
 
 ## Entregáveis
 
@@ -26,7 +26,7 @@ Conectar o projeto à Vercel e publicar um preview verificável sem promover pro
 - [ ] Executar CI no SHA promovido e confirmar o checkout imutável.
 - [ ] Usar Vercel CLI fixada, build prebuilt e uma única execução de deploy por vez.
 - [ ] Aplicar migrations compatíveis antes do deploy.
-- [ ] Executar smoke test autenticado e anônimo.
+- [ ] Executar smoke test pareado e anônimo.
 - [ ] Documentar promoção e diagnóstico de falhas.
 
 ## Validações

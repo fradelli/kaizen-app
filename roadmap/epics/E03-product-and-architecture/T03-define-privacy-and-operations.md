@@ -36,4 +36,4 @@ Decidir acesso, hospedagem, ambientes, segredos, backup, restore e perda aceitá
 
 ## Resultado
 
-Ainda não concluída.
+Definida publicação em URL pública da Vercel sem cadastro, com conteúdo canônico público separado dos dados operacionais privados. Pareamento por chave de edição, cookie seguro, autorização server-side, ambientes isolados, Neon PostgreSQL, segredos, RPO de 24 horas, RTO de 4 horas, backup externo cifrado, restore e evolução para contas foram documentados em `docs/decisions/PRIVACY-AND-OPERATIONS.md`.

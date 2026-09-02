@@ -4,11 +4,11 @@ epic: E08
 depends_on: [E08-T04]
 ---
 
-# Publicar MVP privado
+# Publicar MVP pessoal
 
 ## Objetivo
 
-Promover a versão validada para produção e encerrar o MVP read-only.
+Promover a versão validada para produção e encerrar o MVP pessoal de Dieta e Treino.
 
 ## Entradas
 
@@ -16,22 +16,22 @@ Promover a versão validada para produção e encerrar o MVP read-only.
 
 ## Entregáveis
 
-- Produção privada disponível e release documentada.
+- Produção disponível na URL gerada, com dados pessoais protegidos e release documentada.
 
 ## Subtarefas
 
 - [ ] Promover mudanças de `staging` para `master` por PR.
 - [ ] Executar migrations e importação aprovadas.
-- [ ] Rodar smoke test autenticado e anônimo.
+- [ ] Rodar smoke test pareado e anônimo.
 - [ ] Registrar versão, data, limitações e próximo marco.
 
 ## Validações
 
-- Confirmar treino e alimentação em produção sem exposição pública.
+- Confirmar conteúdo público e operações pessoais protegidas em treino e alimentação.
 
 ## Critérios de aceite
 
-- [ ] MVP privado funciona e possui caminho de rollback.
+- [ ] MVP pessoal funciona, protege dados operacionais e possui caminho de rollback.
 
 ## Resultado
 
