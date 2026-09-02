@@ -1,11 +1,11 @@
 # Tarefa ativa
 
-- **Tarefa:** E02-T04 — Estruturar plano alimentar
-- **Status:** BLOCKED
-- **Entrada principal:** revisão privada `35decd378d29e880ffcc1a0361af31e1b2083173` e metadados públicos de E02-T03.
-- **Resultado da revisão:** 23 decisões registradas; nenhum item aprovado como plano vigente.
-- **Bloqueio:** a tarefa exige decisões aprovadas pelo usuário ou profissional responsável.
-- **Decisões necessárias:** confirmar atualidade do relato praticado, aprovar o modelo por tipo de dia, aprovar o uso de alimentos familiares como candidatos e permitir que metas pessoais ausentes permaneçam `null`.
-- **Depois:** estruturar uma versão proposta, versionada e inequivocamente não clínica.
+- **Tarefa:** E02-T05 — Criar ponteiro, schema e guia alimentar
+- **Status:** READY
+- **Entrada principal:** `data/nutrition/plans/2026-09-personal-v1.json`.
+- **Resultado anterior:** plano aprovado para uso pessoal com seis tipos de dia, cinco refeições, vinte opções, proveniência e status profissional não validado.
+- **Objetivo:** tornar a versão vigente localizável, validável e compreensível por consumidor read-only.
+- **Entregáveis:** `data/nutrition/active.json`, `schemas/nutrition-plan.schema.json` e `docs/guides/NUTRITION.md`.
+- **Depois:** validar ponteiro, contrato e guia antes do gate final E02-T06.
 
-Não publicar conteúdo alimentar privado nem preencher metas pessoais por inferência. E02-T04 só muda para `READY` após decisão explícita registrada.
+O schema deve validar a estrutura existente sem inventar metas. O guia deriva do JSON e não se torna uma segunda fonte editável.

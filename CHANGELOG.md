@@ -2,6 +2,14 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-02 — plano alimentar pessoal estruturado
+
+- Registrada a aprovação do proprietário para uso e publicação do derivado sanitizado da alimentação vigente.
+- Criado o plano `nutrition_2026_09_personal_v1` com seis tipos de dia, cinco refeições, vinte opções e faixas energéticas rastreáveis ao legado.
+- Separados uso pessoal e validação profissional; metas ausentes permanecem `null` e nenhuma inferência clínica foi adicionada.
+- Excluídos identidade, contexto médico, suplementos, protocolo cognitivo e caminhos privados.
+- Concluída E02-T04 e liberada E02-T05 para criar ponteiro, schema e guia.
+
 ## 2026-09-02 — revisão alimentar segura
 
 - Comparados privadamente os estados prescrito, praticado e proposto em 23 decisões rastreáveis.

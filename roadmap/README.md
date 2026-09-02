@@ -49,8 +49,8 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E02-T01 | DONE | [Inventariar alimentação e unknowns](epics/E02-nutrition-data-migration/T01-inventory-nutrition-inputs.md) | E01-T06 |
 | E02-T02 | DONE | [Preservar dieta original](epics/E02-nutrition-data-migration/T02-preserve-original-diet.md) | E02-T01, dieta fornecida |
 | E02-T03 | DONE | [Revisar plano alimentar](epics/E02-nutrition-data-migration/T03-review-nutrition-plan.md) | E02-T02 |
-| E02-T04 | BLOCKED | [Estruturar plano alimentar](epics/E02-nutrition-data-migration/T04-structure-nutrition-plan.md) | E02-T03, decisões aprovadas |
-| E02-T05 | PLANNED | [Criar ponteiro, schema e guia](epics/E02-nutrition-data-migration/T05-create-nutrition-contracts.md) | E02-T04 |
+| E02-T04 | DONE | [Estruturar plano alimentar](epics/E02-nutrition-data-migration/T04-structure-nutrition-plan.md) | E02-T03, decisões aprovadas |
+| E02-T05 | READY | [Criar ponteiro, schema e guia](epics/E02-nutrition-data-migration/T05-create-nutrition-contracts.md) | E02-T04 |
 | E02-T06 | PLANNED | [Validar fundação alimentar](epics/E02-nutrition-data-migration/T06-validate-nutrition-foundation.md) | E02-T05 |
 | E03-T01 | PLANNED | [Definir jornadas do P0](epics/E03-product-and-architecture/T01-define-p0-journeys.md) | E01-T06, E02-T06 |
 | E03-T02 | PLANNED | [Definir transição da fonte de verdade](epics/E03-product-and-architecture/T02-define-source-of-truth-transition.md) | E03-T01 |

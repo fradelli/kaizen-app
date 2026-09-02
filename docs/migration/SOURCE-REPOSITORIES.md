@@ -45,9 +45,22 @@
 | `observed_at` | `2026-09-02` |
 | `content_exposure` | `DO_NOT_PUBLISH` |
 
+## Derivado alimentar público aprovado
+
+| Campo | Valor |
+| --- | --- |
+| `owner_task` | `E02-T04` |
+| `approval_date` | `2026-09-02` |
+| `approval_actor` | proprietário |
+| `source_snapshot_commit` | `0d6456a68329f51fb9f83e1230cb285fe82f5996` |
+| `source_review_commit` | `35decd378d29e880ffcc1a0361af31e1b2083173` |
+| `destination_path` | `data/nutrition/plans/2026-09-personal-v1.json` |
+| `content_exposure` | `PUBLIC` |
+| `professional_status` | `not_validated` |
+
 ## Interpretação
 
-O `baseline_commit` é o commit remoto observado durante E00-T05. O `snapshot_commit` de treino é a única origem aprovada para E01. O `nutrition_snapshot_commit` preserva as entradas da E02, e o `nutrition_review_commit` registra a revisão derivada sem alterar o snapshot. Todas as referências estão publicadas nas branches ou tags privadas registradas acima.
+O `baseline_commit` é o commit remoto observado durante E00-T05. O `snapshot_commit` de treino é a única origem aprovada para E01. O `nutrition_snapshot_commit` preserva as entradas da E02, e o `nutrition_review_commit` registra a revisão derivada sem alterar o snapshot. A aprovação de E02-T04 autoriza somente o novo derivado sanitizado; não muda a exposição dos oito artefatos privados. Todas as referências Git estão publicadas nas branches ou tags privadas registradas acima.
 
 Os hashes do manifesto foram calculados diretamente dos blobs da referência imutável correspondente. Nenhum arquivo pode usar o estado atual do worktree como origem, mesmo quando o caminho local tiver o mesmo nome.
 

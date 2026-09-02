@@ -9,13 +9,16 @@
 - Dieta original disponível: `true`.
 - Registro da alimentação praticada disponível: `true`.
 - Artefatos candidatos: `8`.
-- Artefatos aprovados para publicação: `0`.
+- Artefatos detalhados originais aprovados para publicação: `0`.
+- Derivados sanitizados aprovados para publicação: `1`.
 - Snapshot alimentar preservado: `0d6456a68329f51fb9f83e1230cb285fe82f5996`.
 - Branch privada: `codex/E02-T02-freeze-nutrition-source`.
 - Tag privada: `kaizen-nutrition-source-v1`.
 - Revisão privada concluída: `35decd378d29e880ffcc1a0361af31e1b2083173`.
-- Resultado: 23 decisões, zero itens aprovados como plano vigente.
-- Próxima tarefa: `E02-T04`, bloqueada até decisão explícita sobre o que pode integrar a proposta.
+- Resultado da revisão: 23 decisões, inicialmente sem itens aprovados como plano vigente.
+- Decisão posterior: o proprietário aprovou em `2026-09-02` o plano sanitizado para uso pessoal e exposição pública.
+- Plano estruturado: `data/nutrition/plans/2026-09-personal-v1.json`.
+- Próxima tarefa: `E02-T05`, para criar ponteiro, schema e guia.
 
 A primeira versão deste inventário inspecionou somente o snapshot de treino, o worktree observado e o anexo conhecido. A correção ampliou a descoberta para todas as refs remotas e localizou a fonte alimentar em uma branch privada. Nenhum conteúdo alimentar foi copiado para o Kaizen.
 
@@ -50,8 +53,8 @@ Os oito blobs totalizam `264493` bytes. Seus hashes foram calculados diretamente
 
 - A fonte privada contém documento original, transcrição, contexto, alimentação praticada, plano derivado, receita, auditoria e guia.
 - A branch remota resolve para o commit registrado.
-- Nenhum dos oito artefatos recebeu aprovação de publicação.
-- O plano derivado existente não foi promovido a plano vigente do Kaizen.
+- Nenhum dos oito artefatos privados recebeu aprovação de cópia literal.
+- Um novo derivado sanitizado recebeu aprovação explícita de publicação e uso pessoal; as fontes privadas continuam sem exposição.
 
 ### Estimativas
 
@@ -65,15 +68,20 @@ Nenhuma hipótese foi promovida a dado. Atualidade, adequação e autoria profis
 
 A existência de um documento original não confirma, por si só, autoria, vigência ou validação profissional do plano derivado. Essas relações permanecem pendentes.
 
-## Unknowns
+## Decisões resolvidas em E02-T04
+
+- o relato alimentar foi confirmado como representativo da rotina atual;
+- o modelo por tipo de dia foi aprovado;
+- alimentos familiares, faixas energéticas e opções por refeição foram aprovados para o derivado;
+- valores realmente ausentes permanecem `null`;
+- o status profissional permanece `not_validated`.
+
+## Unknowns remanescentes
 
 - autoria e relação profissional da fonte original;
 - data de emissão, versão e vigência do documento;
 - direito de preservar ou publicar conteúdo de terceiro;
 - relação exata entre PDF e transcrição JSON;
-- atualidade do resumo da alimentação praticada;
-- quais partes do plano derivado foram aprovadas pelo usuário ou por profissional;
-- decisão explícita de exposição para qualquer derivado futuro;
 - restrições ou orientações profissionais que devam permanecer exclusivamente privadas.
 
 Nenhum desses campos pode ser preenchido por inferência.
@@ -96,9 +104,17 @@ Nenhum desses campos pode ser preenchido por inferência.
 - Metas pessoais exatas permanecem `null` e nenhum suplemento ou diagnóstico foi autorizado.
 - A próxima estrutura deve usar o plano de treino ativo v2.
 
+## Resultado da estruturação E02-T04
+
+- Criado o plano `nutrition_2026_09_personal_v1` com seis tipos de dia, cinco refeições e vinte opções.
+- Preservadas as faixas energéticas aprovadas como valores legados não calibrados profissionalmente.
+- Mantidos `null` para metas pessoais ausentes, hidratação individual e agenda de jogo.
+- Excluídos suplementos, protocolo cognitivo, identidade, contexto médico e caminhos privados.
+- Registradas aprovação, proveniência, exposição e relação com o treino ativo v2.
+
 ## Fora de escopo do inventário e da preservação
 
-- criar conteúdo alimentar detalhado em `data/nutrition/` no repositório público;
-- publicar ou transcrever refeições, quantidades, calorias ou macronutrientes;
+- copiar literalmente conteúdo alimentar privado para o repositório público;
+- publicar identidade, contexto médico ou metas inferidas;
 - revisar a dieta ou criar um novo plano;
 - criar schema, aplicação, banco, script ou workflow.
