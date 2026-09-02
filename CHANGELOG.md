@@ -2,6 +2,14 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-02 — contratos do plano alimentar
+
+- Criado o ponteiro canônico para `nutrition_2026_09_personal_v1` com caminhos do plano, schema e guia.
+- Adicionado JSON Schema Draft 2020-12 permissivo para a estrutura vigente, sem inventar metas ou regras clínicas.
+- Publicado guia humano derivado com tipos de dia, horários, limites de uso e procedimento de versionamento.
+- Documentada a precedência do JSON e mantidas referências cruzadas como validação complementar.
+- Concluída E02-T05 e liberada E02-T06 para o gate final da fundação alimentar.
+
 ## 2026-09-02 — plano alimentar pessoal estruturado
 
 - Registrada a aprovação do proprietário para uso e publicação do derivado sanitizado da alimentação vigente.

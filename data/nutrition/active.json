@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2026-09-02",
+  "active_plan_id": "nutrition_2026_09_personal_v1",
+  "active_plan_path": "data/nutrition/plans/2026-09-personal-v1.json",
+  "plan_schema_path": "schemas/nutrition-plan.schema.json",
+  "human_guide_path": "docs/guides/NUTRITION.md"
+}

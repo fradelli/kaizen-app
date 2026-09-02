@@ -1,6 +1,6 @@
-# Schemas de treino
+# Schemas de dados
 
-Os schemas documentam contratos estruturais mínimos para os dados de treino. Eles são intencionalmente permissivos nesta fase e não substituem validações entre arquivos, de produto ou clínicas.
+Os schemas documentam contratos estruturais mínimos para os dados de treino e alimentação. Eles são intencionalmente permissivos nesta fase e não substituem validações entre arquivos, de produto ou clínicas.
 
 ## Cobertura
 
@@ -8,6 +8,7 @@ Os schemas documentam contratos estruturais mínimos para os dados de treino. El
 | --- | --- | --- |
 | [`exercise-library.schema.json`](exercise-library.schema.json) | [`data/exercises.json`](../data/exercises.json) | Campos obrigatórios da biblioteca e dos exercícios, ID em `snake_case`, categorias e nível de evidência |
 | [`training-plan.schema.json`](training-plan.schema.json) | Arquivos em [`data/plans/`](../data/plans/) | Metadados do plano, status permitido, sessões, duração e estrutura básica da prescrição |
+| [`nutrition-plan.schema.json`](nutrition-plan.schema.json) | Arquivos em [`data/nutrition/plans/`](../data/nutrition/plans/) | Metadados, aprovação, proveniência, tipos de dia, refeições, opções, horários e limites de uso |
 
 Ambos declaram JSON Schema Draft 2020-12. O `$id` sob `https://example.local/` é apenas um identificador do contrato e não representa endpoint publicado.
 
@@ -50,6 +51,7 @@ Exemplos para conferência manual com PowerShell 7:
 Get-Content -Raw data/exercises.json | Test-Json -SchemaFile schemas/exercise-library.schema.json
 Get-Content -Raw data/plans/2026-08-performance-v1.json | Test-Json -SchemaFile schemas/training-plan.schema.json
 Get-Content -Raw data/plans/2026-08-performance-v2.json | Test-Json -SchemaFile schemas/training-plan.schema.json
+Get-Content -Raw data/nutrition/plans/2026-09-personal-v1.json | Test-Json -SchemaFile schemas/nutrition-plan.schema.json
 ```
 
 A automação estável desses contratos pertence ao futuro check `Data integrity`, não a esta etapa documental.
