@@ -2,6 +2,14 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-02 — revisão alimentar segura
+
+- Comparados privadamente os estados prescrito, praticado e proposto em 23 decisões rastreáveis.
+- Preservados no Kaizen somente metadados e resumo sanitizados, sem alimentos, refeições, quantidades, medidas ou contexto médico.
+- Mantido o modelo por tipo de dia como candidato e exigida reconciliação com o plano de treino ativo v2.
+- Rejeitadas metas pessoais exatas e protocolos de suplementos sem dados ou validação suficientes; nenhum diagnóstico foi produzido.
+- Concluída E02-T03 e bloqueada E02-T04 até aprovação explícita das decisões que podem entrar na proposta.
+
 ## 2026-09-01 — preservação privada da fonte alimentar
 
 - Publicado no legado privado o snapshot alimentar `0d6456a68329f51fb9f83e1230cb285fe82f5996` e a tag `kaizen-nutrition-source-v1`.

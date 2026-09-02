@@ -23,10 +23,10 @@ Classificar o conteúdo original diante da rotina atual sem falsa precisão ou c
 
 ## Subtarefas
 
-- [ ] Classificar manter, ajustar, remover ou esclarecer.
-- [ ] Registrar riscos e dependências profissionais.
-- [ ] Diferenciar prescrito, praticado e proposto.
-- [ ] Não diagnosticar baixa disponibilidade energética.
+- [x] Classificar manter, ajustar, remover ou esclarecer.
+- [x] Registrar riscos e dependências profissionais.
+- [x] Diferenciar prescrito, praticado e proposto.
+- [x] Não diagnosticar baixa disponibilidade energética.
 
 ## Validações
 
@@ -34,8 +34,8 @@ Classificar o conteúdo original diante da rotina atual sem falsa precisão ou c
 
 ## Critérios de aceite
 
-- [ ] A revisão não se apresenta como plano aprovado.
+- [x] A revisão não se apresenta como plano aprovado.
 
 ## Resultado
 
-Ainda não concluída.
+Revisão completa publicada privadamente no commit `35decd378d29e880ffcc1a0361af31e1b2083173`, com 23 decisões: 7 `keep`, 6 `adjust`, 2 `remove` e 8 `clarify`. Nenhum item foi aprovado como plano vigente. O Kaizen registra somente metadados e resumo sanitizados; E02-T04 depende agora de aprovação explícita das decisões que podem entrar na proposta.

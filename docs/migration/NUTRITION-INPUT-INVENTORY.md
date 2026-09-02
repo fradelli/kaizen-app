@@ -13,7 +13,9 @@
 - Snapshot alimentar preservado: `0d6456a68329f51fb9f83e1230cb285fe82f5996`.
 - Branch privada: `codex/E02-T02-freeze-nutrition-source`.
 - Tag privada: `kaizen-nutrition-source-v1`.
-- Próxima tarefa: `E02-T03`, liberada para revisar a fonte preservada sem promover recomendações automaticamente.
+- Revisão privada concluída: `35decd378d29e880ffcc1a0361af31e1b2083173`.
+- Resultado: 23 decisões, zero itens aprovados como plano vigente.
+- Próxima tarefa: `E02-T04`, bloqueada até decisão explícita sobre o que pode integrar a proposta.
 
 A primeira versão deste inventário inspecionou somente o snapshot de treino, o worktree observado e o anexo conhecido. A correção ampliou a descoberta para todas as refs remotas e localizou a fonte alimentar em uma branch privada. Nenhum conteúdo alimentar foi copiado para o Kaizen.
 
@@ -86,9 +88,17 @@ Nenhum desses campos pode ser preenchido por inferência.
 4. referências seguras registradas no manifesto como `SKIP/DO_NOT_PUBLISH`;
 5. originais e derivados mantidos privados até revisão e aprovação por artefato.
 
-## Fora de escopo
+## Resultado da revisão E02-T03
 
-- criar `data/nutrition/` no repositório público;
+- Prescrito, praticado e proposto foram avaliados separadamente.
+- A revisão completa permanece `DO_NOT_PUBLISH` no commit privado registrado.
+- O Kaizen contém somente metadados e resumo sanitizados.
+- Metas pessoais exatas permanecem `null` e nenhum suplemento ou diagnóstico foi autorizado.
+- A próxima estrutura deve usar o plano de treino ativo v2.
+
+## Fora de escopo do inventário e da preservação
+
+- criar conteúdo alimentar detalhado em `data/nutrition/` no repositório público;
 - publicar ou transcrever refeições, quantidades, calorias ou macronutrientes;
 - revisar a dieta ou criar um novo plano;
 - criar schema, aplicação, banco, script ou workflow.

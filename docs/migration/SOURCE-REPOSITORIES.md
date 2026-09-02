@@ -33,11 +33,23 @@
 | `observed_at` | `2026-09-01` |
 | `content_exposure` | `DO_NOT_PUBLISH` |
 
+## Revisão alimentar privada
+
+| Campo | Valor |
+| --- | --- |
+| `repository_id` | `personal-performance` |
+| `nutrition_review_commit` | `35decd378d29e880ffcc1a0361af31e1b2083173` |
+| `nutrition_review_branch` | `codex/E02-T03-review-nutrition-plan` |
+| `nutrition_review_owner_task` | `E02-T03` |
+| `nutrition_review_validation` | `PASSED` |
+| `observed_at` | `2026-09-02` |
+| `content_exposure` | `DO_NOT_PUBLISH` |
+
 ## Interpretação
 
-O `baseline_commit` é o commit remoto observado durante E00-T05. O `snapshot_commit` de treino é a única origem aprovada para E01. O `nutrition_snapshot_commit` é a origem aprovada para a revisão da E02. Ambos estão publicados nas branches e tags privadas registradas acima.
+O `baseline_commit` é o commit remoto observado durante E00-T05. O `snapshot_commit` de treino é a única origem aprovada para E01. O `nutrition_snapshot_commit` preserva as entradas da E02, e o `nutrition_review_commit` registra a revisão derivada sem alterar o snapshot. Todas as referências estão publicadas nas branches ou tags privadas registradas acima.
 
-Os hashes do manifesto foram calculados diretamente dos blobs do snapshot correspondente. Nenhum arquivo pode usar o estado atual do worktree como origem, mesmo quando o caminho local tiver o mesmo nome.
+Os hashes do manifesto foram calculados diretamente dos blobs da referência imutável correspondente. Nenhum arquivo pode usar o estado atual do worktree como origem, mesmo quando o caminho local tiver o mesmo nome.
 
 O caminho local do clone não faz parte da proveniência versionada. Ferramentas devem localizar a fonte por configuração local e confirmar o remote antes de ler qualquer artefato.
 
