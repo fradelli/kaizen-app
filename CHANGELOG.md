@@ -2,6 +2,15 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-02 — arquitetura alvo do MVP
+
+- Escolhidos Node.js 24 LTS, Next.js 16 App Router, React 19, TypeScript estrito e pnpm pinado.
+- Escolhidos PostgreSQL local/Neon e Prisma ORM 7 estável com conexões pooled e direta separadas.
+- Definidos boundaries de UI, aplicação, domínio e dados, sem backend ou API interna separados.
+- Especificados modelo conceitual, metadados explícitos de execução, transações, concorrência, migrations, segurança e testes.
+- Alinhadas E05, E06 e E07 ao registro operacional aprovado de dieta e treino.
+- Concluída E03-T04 e liberada E03-T05 para produzir o guia copiável.
+
 ## 2026-09-02 — privacidade e operação do MVP
 
 - Escolhidas Vercel e Neon PostgreSQL, com URL gerada e sem domínio próprio ou cadastro no MVP.

@@ -4,11 +4,11 @@ epic: E07
 depends_on: [E07-T02]
 ---
 
-# Exibir refeições e alternativas
+# Registrar escolhas, cumprimento e comentários
 
 ## Objetivo
 
-Apresentar itens, quantidades, unidades e alternativas conforme a fonte aprovada.
+Apresentar as opções aprovadas e registrar o resultado real de cada refeição.
 
 ## Entradas
 
@@ -16,22 +16,24 @@ Apresentar itens, quantidades, unidades e alternativas conforme a fonte aprovada
 
 ## Entregáveis
 
-- Componentes de refeição e alternativa.
+- Componentes e Server Actions de refeição com estado e revisão.
 
 ## Subtarefas
 
 - [ ] Diferenciar item principal, complemento e alternativa.
 - [ ] Preservar quantidades e unidades originais.
 - [ ] Evitar converter alternativa em equivalência clínica.
-- [ ] Tratar observações e campos opcionais.
+- [ ] Registrar `followed_plan`, `followed_different`, `skipped` e comentário.
+- [ ] Exigir descrição para refeição diferente e limpar campos incompatíveis.
+- [ ] Preservar rascunho em erro e detectar concorrência.
 
 ## Validações
 
-- Conferir amostras contra o plano original preservado.
+- Conferir opções contra o plano público e transições contra as regras do P0.
 
 ## Critérios de aceite
 
-- [ ] Nenhuma opção altera silenciosamente o sentido da prescrição.
+- [ ] Recarregar restaura o registro sem alterar o plano ou expor outro workspace.
 
 ## Resultado
 

@@ -4,11 +4,11 @@ epic: E07
 depends_on: [E07-T01]
 ---
 
-# Criar página de alimentação
+# Criar página de dieta do dia
 
 ## Objetivo
 
-Exibir a estrutura diária do plano alimentar com boa leitura em celular.
+Exibir a estrutura da data, permitir escolher o tipo do dia e navegar com boa leitura em celular.
 
 ## Entradas
 
@@ -16,12 +16,14 @@ Exibir a estrutura diária do plano alimentar com boa leitura em celular.
 
 ## Entregáveis
 
-- Página server-rendered de alimentação.
+- Página server-rendered da dieta do dia com navegação por data.
 
 ## Subtarefas
 
 - [ ] Organizar refeições na ordem prescrita.
+- [ ] Implementar data anterior, Hoje e data seguinte em `America/Sao_Paulo`.
 - [ ] Exibir horários somente quando confirmados.
+- [ ] Solicitar tipo de dia quando ausente sem inventar faixa ou módulos.
 - [ ] Indicar dados ausentes sem estimá-los.
 - [ ] Implementar estados vazio e de erro.
 
@@ -31,7 +33,7 @@ Exibir a estrutura diária do plano alimentar com boa leitura em celular.
 
 ## Critérios de aceite
 
-- [ ] O usuário entende a estrutura do dia em uma única página.
+- [ ] O usuário entende e atribui a estrutura do dia em uma única página.
 
 ## Resultado
 

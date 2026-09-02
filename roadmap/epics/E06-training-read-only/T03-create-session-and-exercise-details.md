@@ -4,34 +4,36 @@ epic: E06
 depends_on: [E06-T02]
 ---
 
-# Criar detalhes de sessão e exercício
+# Registrar preparação, séries e comentários
 
 ## Objetivo
 
-Permitir consulta da prescrição e das explicações de cada exercício.
+Permitir consultar a prescrição e salvar preparação, execução por série e comentários.
 
 ## Entradas
 
-- Página semanal e biblioteca de exercícios.
+- Página de treino do dia e biblioteca de exercícios.
 
 ## Entregáveis
 
-- Páginas de sessão e exercício.
+- Formulários acessíveis de preparação, séries e conclusão parcial.
 
 ## Subtarefas
 
 - [ ] Exibir séries, repetições, descanso e observações disponíveis.
-- [ ] Relacionar capacidade física e futevôlei.
-- [ ] Não inventar dosagens ausentes.
-- [ ] Tratar IDs ou conteúdo indisponível.
+- [ ] Separar preparação do treino principal.
+- [ ] Usar o tipo explícito de medição por série.
+- [ ] Exibir e persistir carga somente com `load_applicable=true`.
+- [ ] Salvar parcialmente, detectar conflito e preservar rascunho em erro.
+- [ ] Confirmar conclusão com pendências sem fabricar resultados.
 
 ## Validações
 
-- Conferir todos os links entre sessão e exercício.
+- Testar transições, constraints, links entre sessão/exercício e autorização.
 
 ## Critérios de aceite
 
-- [ ] A prescrição completa pode ser consultada sem ambiguidade.
+- [ ] A execução real pode ser registrada sem alterar a prescrição.
 
 ## Resultado
 

@@ -4,11 +4,11 @@ epic: E07
 depends_on: [E05-T04]
 ---
 
-# Projetar plano alimentar ativo
+# Projetar dieta e execução do dia
 
 ## Objetivo
 
-Criar uma projeção server-side estável do plano alimentar vigente.
+Criar projeções server-side separadas do plano público e da dieta pessoal da data.
 
 ## Entradas
 
@@ -16,13 +16,15 @@ Criar uma projeção server-side estável do plano alimentar vigente.
 
 ## Entregáveis
 
-- Consulta tipada com refeições, itens, alternativas e metadados.
+- DTO público do plano e DTO pessoal com tipo de dia, refeições, execuções e revisão.
 
 ## Subtarefas
 
 - [ ] Resolver o ponteiro do plano ativo.
+- [ ] Resolver workspace, data e tipo do dia sem inferir carga ausente.
 - [ ] Preservar ordem, unidades e texto de origem.
 - [ ] Representar alternativas sem equivalências inventadas.
+- [ ] Combinar registros existentes sem expô-los no DTO anônimo.
 - [ ] Cobrir plano ausente e referências inválidas.
 
 ## Validações
@@ -31,7 +33,7 @@ Criar uma projeção server-side estável do plano alimentar vigente.
 
 ## Critérios de aceite
 
-- [ ] A interface contém apenas dados necessários à consulta.
+- [ ] DTOs contêm somente os dados necessários ao modo anônimo ou pessoal correspondente.
 
 ## Resultado
 

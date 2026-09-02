@@ -38,4 +38,4 @@ Definir uma aplicação Next.js full-stack proporcional, com regras portáveis e
 
 ## Resultado
 
-Ainda não concluída.
+Arquitetura Next.js full-stack no runtime Node definida em `docs/architecture/TARGET-ARCHITECTURE.md`, com boundaries por feature, PostgreSQL/Neon, Prisma ORM 7 estável, importação idempotente, modelo conceitual, segurança, migrations e testes. A escolha de banco e ORM foi registrada separadamente em `docs/decisions/DATABASE-AND-ORM.md`.

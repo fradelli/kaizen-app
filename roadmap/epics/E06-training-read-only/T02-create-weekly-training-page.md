@@ -4,11 +4,11 @@ epic: E06
 depends_on: [E06-T01]
 ---
 
-# Criar página semanal
+# Criar página de treino do dia
 
 ## Objetivo
 
-Exibir a agenda semanal de treino e futevôlei com leitura rápida em celular.
+Exibir treino, mobilidade, descanso ou estado não atribuído da data com leitura rápida em celular.
 
 ## Entradas
 
@@ -16,14 +16,14 @@ Exibir a agenda semanal de treino e futevôlei com leitura rápida em celular.
 
 ## Entregáveis
 
-- Página server-rendered da semana.
+- Página server-rendered do dia com navegação por data.
 
 ## Subtarefas
 
-- [ ] Destacar o dia atual sem ocultar os demais.
-- [ ] Exibir horários no fuso `America/Sao_Paulo`.
-- [ ] Diferenciar treino físico, areia, jogo e recuperação.
-- [ ] Tratar dias sem prescrição.
+- [ ] Implementar data anterior, Hoje e data seguinte em `America/Sao_Paulo`.
+- [ ] Permitir ao proprietário atribuir sessão, mobilidade ou descanso quando ausente.
+- [ ] Separar conteúdo público dos dados pessoais.
+- [ ] Tratar loading, vazio, referência inválida e erro.
 
 ## Validações
 
@@ -31,7 +31,7 @@ Exibir a agenda semanal de treino e futevôlei com leitura rápida em celular.
 
 ## Critérios de aceite
 
-- [ ] O usuário identifica o treino do dia sem abrir detalhes.
+- [ ] O usuário identifica o estado do dia sem inferência de agenda privada.
 
 ## Resultado
 

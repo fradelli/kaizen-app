@@ -8,11 +8,11 @@ depends_on: [E06-T04]
 
 ## Objetivo
 
-Validar o fluxo completo de consulta de treino antes da publicação.
+Validar o fluxo completo de consulta e execução de treino antes da publicação.
 
 ## Entradas
 
-- Funcionalidades read-only de treino concluídas.
+- Funcionalidades operacionais de treino concluídas.
 
 ## Entregáveis
 
@@ -20,9 +20,10 @@ Validar o fluxo completo de consulta de treino antes da publicação.
 
 ## Subtarefas
 
-- [ ] Testar semana, sessão, exercício, histórico e estados vazios.
+- [ ] Testar atribuição, preparação, séries, carga, descanso, histórico e estados vazios.
 - [ ] Validar acessibilidade básica e navegação móvel.
 - [ ] Confirmar datas, horários, IDs e proveniência.
+- [ ] Confirmar acesso anônimo e pareado, erro de gravação e concorrência.
 - [ ] Registrar limitações conhecidas.
 
 ## Validações
