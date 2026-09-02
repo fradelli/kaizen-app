@@ -2,6 +2,14 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-02 — jornadas operacionais do P0
+
+- Limitado o P0 às áreas Dieta e Treino, com navegação por data em `America/Sao_Paulo`.
+- Definido o registro de opção alimentar seguida, refeição diferente, item pulado e comentário.
+- Definidos treino, mobilidade e descanso, com preparação separada, execução por série, carga somente quando aplicável e comentários.
+- Especificados estados de leitura e gravação, conflitos, histórico, acessibilidade e critérios comportamentais.
+- Concluída E03-T01 e liberadas E03-T02 e E03-T03, mantendo execução sequencial por E03-T02.
+
 ## 2026-09-02 — fundação alimentar validada
 
 - Validados 13 artefatos E02 na origem privada e os três derivados públicos pelos hashes versionados.
