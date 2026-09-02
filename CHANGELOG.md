@@ -2,6 +2,14 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-02 — transição da fonte de verdade
+
+- Mantidos Git e JSON como fonte editável das definições de planos durante o MVP.
+- Definido o banco como fonte exclusiva de atribuições, execuções, séries, escolhas e comentários.
+- Especificadas importação transacional e idempotente, versões imutáveis, ativações e conflitos bloqueantes.
+- Definidos backup, exportação, rollback e cutover futuro sem dual-write.
+- Concluída E03-T02 e mantida E03-T03 como próxima tarefa pronta.
+
 ## 2026-09-02 — jornadas operacionais do P0
 
 - Limitado o P0 às áreas Dieta e Treino, com navegação por data em `America/Sao_Paulo`.
