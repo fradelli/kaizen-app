@@ -1,11 +1,11 @@
 # Tarefa ativa
 
-- **Tarefa:** E02-T03 — Revisar plano alimentar
-- **Status:** READY
-- **Entrada principal:** oito artefatos privados preservados no snapshot `0d6456a68329f51fb9f83e1230cb285fe82f5996`, referenciados pelos IDs seguros do manifesto.
-- **Contexto público:** perfil, carga de treino e agenda sanitizada já migrados; horários pessoais permanecem desconhecidos no Kaizen.
-- **Condição conhecida:** autoria, vigência, adequação atual e validação profissional ainda precisam ser confirmadas; o plano derivado não é vigente por presunção.
-- **Próximo passo:** classificar separadamente fonte original, alimentação praticada e plano derivado como manter, ajustar, remover ou esclarecer.
-- **Depois:** liberar E02-T04 somente quando a revisão distinguir fatos, estimativas, propostas e decisões profissionais.
+- **Tarefa:** E02-T04 — Estruturar plano alimentar
+- **Status:** BLOCKED
+- **Entrada principal:** revisão privada `35decd378d29e880ffcc1a0361af31e1b2083173` e metadados públicos de E02-T03.
+- **Resultado da revisão:** 23 decisões registradas; nenhum item aprovado como plano vigente.
+- **Bloqueio:** a tarefa exige decisões aprovadas pelo usuário ou profissional responsável.
+- **Decisões necessárias:** confirmar atualidade do relato praticado, aprovar o modelo por tipo de dia, aprovar o uso de alimentos familiares como candidatos e permitir que metas pessoais ausentes permaneçam `null`.
+- **Depois:** estruturar uma versão proposta, versionada e inequivocamente não clínica.
 
-Não publicar o conteúdo privado durante a revisão. Qualquer saída pública futura exige sanitização, decisão de exposição por artefato e aprovação explícita.
+Não publicar conteúdo alimentar privado nem preencher metas pessoais por inferência. E02-T04 só muda para `READY` após decisão explícita registrada.

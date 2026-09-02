@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0.0",
+  "review_id": "nutrition_e02_t03_v1",
+  "last_updated": "2026-09-02",
+  "status": "reviewed_not_approved",
+  "owner_task": "E02-T03",
+  "private_source": {
+    "repository": "personal-performance",
+    "commit": "35decd378d29e880ffcc1a0361af31e1b2083173",
+    "branch": "codex/E02-T03-review-nutrition-plan",
+    "exposure": "DO_NOT_PUBLISH"
+  },
+  "source_artifact_ids": [
+    "e02-t02-source-context",
+    "e02-t02-current-intake",
+    "e02-t02-original-json",
+    "e02-t02-original-pdf",
+    "e02-t02-periodized-plan-v1",
+    "e02-t02-recipe-01",
+    "e02-t02-legacy-audit",
+    "e02-t02-human-guide"
+  ],
+  "separation": {
+    "prescribed": true,
+    "practiced": true,
+    "proposed": true
+  },
+  "decision_summary": {
+    "total": 23,
+    "keep": 7,
+    "adjust": 6,
+    "remove": 2,
+    "clarify": 8,
+    "approved_plan_items": 0
+  },
+  "safe_findings": [
+    "the day-type structure is retained as a candidate organizing model",
+    "the next structure must use active training plan performance_2026_08_v2",
+    "exact personal energy and macronutrient targets remain null",
+    "supplement protocols are excluded from the foundation pending professional assessment",
+    "no diagnosis was produced"
+  ],
+  "unknown_categories": [
+    "currentness_of_practiced_intake",
+    "current_measurements_and_trend",
+    "training_and_game_load",
+    "representative_session_hydration",
+    "historical_source_authorship_and_validity",
+    "professional_restrictions"
+  ],
+  "publication": {
+    "contains_foods": false,
+    "contains_meals": false,
+    "contains_quantities": false,
+    "contains_personal_measurements": false,
+    "contains_medical_details": false,
+    "contains_private_historical_paths": false
+  },
+  "next_task": {
+    "id": "E02-T04",
+    "status": "BLOCKED",
+    "blocker": "the task requires user or professional approval of the decisions that may enter the proposed plan",
+    "required_decisions": [
+      "confirm whether the practiced intake is still current",
+      "approve the day-type model as the basis for a proposed plan",
+      "approve familiar-food candidates without activating exact targets",
+      "choose whether E02-T04 may proceed with personal targets left null"
+    ]
+  }
+}
