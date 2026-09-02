@@ -2,7 +2,7 @@
 
 Fonte de verdade versionada para regras, planos e evolução incremental de um aplicativo pessoal de treino, alimentação e rotina.
 
-O projeto começa sem código. Primeiro serão migrados e validados dados, regras, histórico e decisões. A aplicação Next.js e o banco serão introduzidos apenas depois da aprovação do produto e da arquitetura.
+A fundação documental está concluída. Dados, regras, histórico, produto e arquitetura foram aprovados; a aplicação Next.js e o banco serão introduzidos incrementalmente pelo guia de implementação.
 
 ## Estado atual
 
@@ -11,6 +11,9 @@ O projeto começa sem código. Primeiro serão migrados e validados dados, regra
 - Roadmap documental criado e centralizado em `roadmap/README.md`.
 - Repositório público por decisão do proprietário, com publicação controlada por allowlist no manifesto.
 - Fundação de treino validada; dados, histórico, documentação e schemas possuem proveniência, integridade e exposição revisadas.
+- Fundação alimentar validada; plano, ponteiro, schema, guia e relatório possuem proveniência e limites explícitos.
+- Produto, arquitetura, privacidade, operação e sequência de implementação do P0 aprovados.
+- E04-T01 está pronta para criar a aplicação Next.js.
 - Nenhuma aplicação, dependência ou banco criado.
 
 ## Acesso rápido
@@ -20,6 +23,7 @@ O projeto começa sem código. Primeiro serão migrados e validados dados, regra
 - [Branches e ambientes](docs/decisions/BRANCHING-AND-ENVIRONMENTS.md)
 - [Padrão de pull request](docs/delivery/PULL-REQUEST-STANDARD.md)
 - [Governança de CI/CD](docs/decisions/CI-CD-GOVERNANCE.md)
+- [Guia de implementação do P0](docs/implementation/P0-IMPLEMENTATION-GUIDE.md)
 - [Política do repositório público](docs/decisions/PUBLIC-REPOSITORY-AND-DATA-POLICY.md)
 - [Regras da migração](docs/migration/README.md)
 - [Repositórios de origem](docs/migration/SOURCE-REPOSITORIES.md)
