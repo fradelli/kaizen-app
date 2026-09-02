@@ -1,11 +1,11 @@
 # Tarefa ativa
 
-- **Tarefa:** E02-T06 — Validar fundação alimentar
+- **Tarefa:** E03-T01 — Definir jornadas do P0
 - **Status:** READY
-- **Entrada principal:** todos os entregáveis de E02 e o manifesto de migração.
-- **Resultado anterior:** plano vigente localizável por ponteiro, validável por JSON Schema e interpretável pelo guia derivado.
-- **Objetivo:** executar o gate final de integridade, proveniência, privacidade e leitura da fundação alimentar.
-- **Entregável:** `docs/migration/NUTRITION-VALIDATION-REPORT.md` e tag `nutrition-foundation-v1` após o merge.
-- **Depois:** liberar E03-T01 para definir as jornadas do P0.
+- **Entrada principal:** fundações validadas de treino e alimentação, incluindo suas regras, planos ativos e guias.
+- **Resultado anterior:** E01 e E02 encerrados sem falhas bloqueantes; dados canônicos localizáveis, validados e versionados.
+- **Objetivo:** definir as duas jornadas operacionais do MVP: alimentação diária e treino ou descanso do dia.
+- **Entregável:** especificação comportamental do P0, estados, navegação e critérios de aceite.
+- **Depois:** definir a transição da fonte de verdade e os limites de privacidade e operação.
 
-Não há bloqueio externo conhecido. A tag deve apontar para o commit mesclado em `developer`, nunca para o worktree ou para a branch temporária.
+O P0 precisa registrar execução, não apenas leitura: escolha e cumprimento alimentar, comentários, carga e repetições quando aplicáveis. Login, domínio próprio e funcionalidades além de dieta e treino continuam fora do MVP.

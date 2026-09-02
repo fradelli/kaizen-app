@@ -2,6 +2,14 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-02 — fundação alimentar validada
+
+- Validados 13 artefatos E02 na origem privada e os três derivados públicos pelos hashes versionados.
+- Confirmados schema, ponteiros, referências cruzadas, relação com o treino ativo, links e separação entre fonte, revisão e plano.
+- Revisados unknowns, limites não clínicos e privacidade sem encontrar falha bloqueante.
+- Publicado relatório reproduzível e definido o procedimento para marcar o merge com `nutrition-foundation-v1`.
+- Concluída E02-T06, encerrado o épico E02 e liberada E03-T01.
+
 ## 2026-09-02 — contratos do plano alimentar
 
 - Criado o ponteiro canônico para `nutrition_2026_09_personal_v1` com caminhos do plano, schema e guia.

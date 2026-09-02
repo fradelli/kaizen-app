@@ -21,8 +21,8 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | --- | --- | --- | --- |
 | E00 | DONE | [Governança do repositório](epics/E00-repository-governance/README.md) | Repositório público governado e legado privado rastreável |
 | E01 | DONE | [Migração de treino](epics/E01-training-data-migration/README.md) | Fundação de treino migrada e validada |
-| E02 | IN_PROGRESS | [Migração de alimentação](epics/E02-nutrition-data-migration/README.md) | Plano alimentar revisado, versionado e validado |
-| E03 | PLANNED | [Produto e arquitetura](epics/E03-product-and-architecture/README.md) | P0 e arquitetura aprovados, ainda sem código |
+| E02 | DONE | [Migração de alimentação](epics/E02-nutrition-data-migration/README.md) | Plano alimentar revisado, versionado e validado |
+| E03 | READY | [Produto e arquitetura](epics/E03-product-and-architecture/README.md) | P0 e arquitetura aprovados, ainda sem código |
 | E04 | PLANNED | [Fundação Next.js](epics/E04-nextjs-foundation/README.md) | Aplicação mínima com gates de qualidade |
 | E05 | PLANNED | [Banco e importação](epics/E05-database-and-import/README.md) | Persistência e importação íntegras |
 | E06 | PLANNED | [Treino read-only](epics/E06-training-read-only/README.md) | Consulta utilizável de treino |
@@ -51,8 +51,8 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E02-T03 | DONE | [Revisar plano alimentar](epics/E02-nutrition-data-migration/T03-review-nutrition-plan.md) | E02-T02 |
 | E02-T04 | DONE | [Estruturar plano alimentar](epics/E02-nutrition-data-migration/T04-structure-nutrition-plan.md) | E02-T03, decisões aprovadas |
 | E02-T05 | DONE | [Criar ponteiro, schema e guia](epics/E02-nutrition-data-migration/T05-create-nutrition-contracts.md) | E02-T04 |
-| E02-T06 | READY | [Validar fundação alimentar](epics/E02-nutrition-data-migration/T06-validate-nutrition-foundation.md) | E02-T05 |
-| E03-T01 | PLANNED | [Definir jornadas do P0](epics/E03-product-and-architecture/T01-define-p0-journeys.md) | E01-T06, E02-T06 |
+| E02-T06 | DONE | [Validar fundação alimentar](epics/E02-nutrition-data-migration/T06-validate-nutrition-foundation.md) | E02-T05 |
+| E03-T01 | READY | [Definir jornadas do P0](epics/E03-product-and-architecture/T01-define-p0-journeys.md) | E01-T06, E02-T06 |
 | E03-T02 | PLANNED | [Definir transição da fonte de verdade](epics/E03-product-and-architecture/T02-define-source-of-truth-transition.md) | E03-T01 |
 | E03-T03 | PLANNED | [Definir privacidade e operação](epics/E03-product-and-architecture/T03-define-privacy-and-operations.md) | E03-T01 |
 | E03-T04 | PLANNED | [Definir arquitetura](epics/E03-product-and-architecture/T04-define-target-architecture.md) | E03-T02, E03-T03 |

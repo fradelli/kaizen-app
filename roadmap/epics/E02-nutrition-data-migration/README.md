@@ -23,6 +23,6 @@ Dieta original preservada, revisão documentada e plano alimentar vigente estrut
 
 ## Critérios de encerramento
 
-- [ ] Plano vigente possui proveniência, versão e status.
-- [ ] Fatos, estimativas e decisões profissionais estão separados.
-- [ ] Tag `nutrition-foundation-v1` criada.
+- [x] Plano vigente possui proveniência, versão e status.
+- [x] Fatos, estimativas e decisões profissionais estão separados.
+- [x] Tag `nutrition-foundation-v1` criada após o merge de E02-T06.
