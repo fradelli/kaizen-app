@@ -1,11 +1,11 @@
 # Tarefa ativa
 
-- **Tarefa:** E02-T05 — Criar ponteiro, schema e guia alimentar
+- **Tarefa:** E02-T06 — Validar fundação alimentar
 - **Status:** READY
-- **Entrada principal:** `data/nutrition/plans/2026-09-personal-v1.json`.
-- **Resultado anterior:** plano aprovado para uso pessoal com seis tipos de dia, cinco refeições, vinte opções, proveniência e status profissional não validado.
-- **Objetivo:** tornar a versão vigente localizável, validável e compreensível por consumidor read-only.
-- **Entregáveis:** `data/nutrition/active.json`, `schemas/nutrition-plan.schema.json` e `docs/guides/NUTRITION.md`.
-- **Depois:** validar ponteiro, contrato e guia antes do gate final E02-T06.
+- **Entrada principal:** todos os entregáveis de E02 e o manifesto de migração.
+- **Resultado anterior:** plano vigente localizável por ponteiro, validável por JSON Schema e interpretável pelo guia derivado.
+- **Objetivo:** executar o gate final de integridade, proveniência, privacidade e leitura da fundação alimentar.
+- **Entregável:** `docs/migration/NUTRITION-VALIDATION-REPORT.md` e tag `nutrition-foundation-v1` após o merge.
+- **Depois:** liberar E03-T01 para definir as jornadas do P0.
 
-O schema deve validar a estrutura existente sem inventar metas. O guia deriva do JSON e não se torna uma segunda fonte editável.
+Não há bloqueio externo conhecido. A tag deve apontar para o commit mesclado em `developer`, nunca para o worktree ou para a branch temporária.
