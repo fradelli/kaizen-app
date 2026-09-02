@@ -35,4 +35,4 @@ Evitar duas fontes editáveis ao introduzir banco de dados.
 
 ## Resultado
 
-Ainda não concluída.
+Decidido que Git/JSON permanece a única fonte editável das definições no MVP, enquanto o banco é a fonte exclusiva de atribuições e execuções. Importação unidirecional, imutável e idempotente, conflitos, proveniência, exportação, backup, cutover futuro e rollback foram especificados em `docs/decisions/DATA-SOURCE-TRANSITION.md`.

@@ -53,7 +53,7 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E02-T05 | DONE | [Criar ponteiro, schema e guia](epics/E02-nutrition-data-migration/T05-create-nutrition-contracts.md) | E02-T04 |
 | E02-T06 | DONE | [Validar fundação alimentar](epics/E02-nutrition-data-migration/T06-validate-nutrition-foundation.md) | E02-T05 |
 | E03-T01 | DONE | [Definir jornadas do P0](epics/E03-product-and-architecture/T01-define-p0-journeys.md) | E01-T06, E02-T06 |
-| E03-T02 | READY | [Definir transição da fonte de verdade](epics/E03-product-and-architecture/T02-define-source-of-truth-transition.md) | E03-T01 |
+| E03-T02 | DONE | [Definir transição da fonte de verdade](epics/E03-product-and-architecture/T02-define-source-of-truth-transition.md) | E03-T01 |
 | E03-T03 | READY | [Definir privacidade e operação](epics/E03-product-and-architecture/T03-define-privacy-and-operations.md) | E03-T01 |
 | E03-T04 | PLANNED | [Definir arquitetura](epics/E03-product-and-architecture/T04-define-target-architecture.md) | E03-T02, E03-T03 |
 | E03-T05 | PLANNED | [Aprovar guia de implementação](epics/E03-product-and-architecture/T05-approve-implementation-guide.md) | E03-T04 |
