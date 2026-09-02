@@ -1,6 +1,6 @@
 # Repositórios de origem
 
-## Registro
+## Snapshot de treino
 
 | Campo | Valor |
 | --- | --- |
@@ -19,11 +19,25 @@
 | `observed_at` | `2026-08-31` |
 | `preserve_legacy` | `true` |
 
+## Snapshot de alimentação
+
+| Campo | Valor |
+| --- | --- |
+| `repository_id` | `personal-performance` |
+| `visibility` | `PRIVATE` |
+| `nutrition_snapshot_commit` | `0d6456a68329f51fb9f83e1230cb285fe82f5996` |
+| `nutrition_snapshot_branch` | `codex/E02-T02-freeze-nutrition-source` |
+| `nutrition_snapshot_tag` | `kaizen-nutrition-source-v1` |
+| `nutrition_snapshot_owner_task` | `E02-T02` |
+| `nutrition_snapshot_validation` | `PASSED` |
+| `observed_at` | `2026-09-01` |
+| `content_exposure` | `DO_NOT_PUBLISH` |
+
 ## Interpretação
 
-O `baseline_commit` é o commit remoto observado durante E00-T05. O `snapshot_commit` é a única origem aprovada para E01 e está publicado na branch e na tag registradas acima.
+O `baseline_commit` é o commit remoto observado durante E00-T05. O `snapshot_commit` de treino é a única origem aprovada para E01. O `nutrition_snapshot_commit` é a origem aprovada para a revisão da E02. Ambos estão publicados nas branches e tags privadas registradas acima.
 
-Os hashes do manifesto foram calculados diretamente dos blobs de `snapshot_commit`. Nenhum arquivo pode usar o estado atual do worktree como origem, mesmo quando o caminho local tiver o mesmo nome.
+Os hashes do manifesto foram calculados diretamente dos blobs do snapshot correspondente. Nenhum arquivo pode usar o estado atual do worktree como origem, mesmo quando o caminho local tiver o mesmo nome.
 
 O caminho local do clone não faz parte da proveniência versionada. Ferramentas devem localizar a fonte por configuração local e confirmar o remote antes de ler qualquer artefato.
 

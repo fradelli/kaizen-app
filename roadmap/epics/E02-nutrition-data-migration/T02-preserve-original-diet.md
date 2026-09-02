@@ -23,12 +23,12 @@ Registrar a fonte alimentar original sem corrigir, completar ou promovê-la a pl
 
 ## Subtarefas
 
-- [ ] Criar snapshot privado sem reescrever os caminhos históricos.
-- [ ] Usar nomes neutros em cópias privadas byte a byte quando necessário para a proveniência pública.
-- [ ] Calcular integridade diretamente dos blobs do snapshot.
-- [ ] Criar a tag privada `kaizen-nutrition-source-v1`.
-- [ ] Registrar originais como `SKIP/DO_NOT_PUBLISH` no destino público.
-- [ ] Marcar planos derivados como não vigentes até revisão.
+- [x] Criar snapshot privado sem reescrever os caminhos históricos.
+- [x] Usar nomes neutros em cópias privadas byte a byte quando necessário para a proveniência pública.
+- [x] Calcular integridade diretamente dos blobs do snapshot.
+- [x] Criar a tag privada `kaizen-nutrition-source-v1`.
+- [x] Registrar originais como `SKIP/DO_NOT_PUBLISH` no destino público.
+- [x] Marcar planos derivados como não vigentes até revisão.
 
 ## Validações
 
@@ -39,9 +39,9 @@ Registrar a fonte alimentar original sem corrigir, completar ou promovê-la a pl
 
 ## Critérios de aceite
 
-- [ ] A revisão pode voltar à fonte exata por referência privada imutável.
-- [ ] O destino público contém somente proveniência segura.
+- [x] A revisão pode voltar à fonte exata por referência privada imutável.
+- [x] O destino público contém somente proveniência segura.
 
 ## Resultado
 
-Ainda não concluída.
+Snapshot privado publicado no commit `0d6456a68329f51fb9f83e1230cb285fe82f5996` e fixado pela tag `kaizen-nutrition-source-v1`. Os oito blobs foram preservados sob aliases neutros com identidade confirmada pelos objetos Git e hashes SHA-256. O Kaizen registra somente metadados `SKIP/DO_NOT_PUBLISH`; nenhum conteúdo alimentar foi publicado.
