@@ -1,0 +1,459 @@
+{
+  "schema_version": "1.0.0",
+  "plan_id": "nutrition_2026_09_personal_v1",
+  "version": "1.0.0",
+  "lifecycle_status": "approved_for_personal_use",
+  "professional_status": "not_validated",
+  "created_at": "2026-09-02",
+  "last_updated": "2026-09-02",
+  "effective_from": "2026-09-02",
+  "effective_until": null,
+  "timezone": "America/Sao_Paulo",
+  "approval": {
+    "actor": "owner",
+    "approved_at": "2026-09-02",
+    "scope": [
+      "current_food_preferences",
+      "day_type_model",
+      "energy_bands_from_legacy_plan",
+      "meal_options_and_confirmed_quantities",
+      "public_sanitized_derivative",
+      "unknown_values_remain_null"
+    ]
+  },
+  "provenance": {
+    "source_repository": "personal-performance",
+    "source_snapshot_commit": "0d6456a68329f51fb9f83e1230cb285fe82f5996",
+    "source_review_commit": "35decd378d29e880ffcc1a0361af31e1b2083173",
+    "source_artifact_ids": [
+      "e02-t02-source-context",
+      "e02-t02-current-intake",
+      "e02-t02-original-json",
+      "e02-t02-periodized-plan-v1",
+      "e02-t02-recipe-01",
+      "e02-t03-private-structured-review"
+    ],
+    "transformation": "Fonte privada revisada e transformada após aprovação explícita; identidade, contexto médico, caminhos históricos, suplementos e protocolos cognitivos foram excluídos.",
+    "active_training_plan_id": "performance_2026_08_v2"
+  },
+  "use_policy": {
+    "purpose": "Organizar a alimentação pessoal por carga do dia e oferecer opções familiares por refeição.",
+    "not_a_clinical_prescription": true,
+    "no_automatic_recommendation": true,
+    "no_continuous_calorie_counting": true,
+    "change_rule": "Alterações materiais criam uma nova versão; registros históricos não devem ser reescritos.",
+    "safety_rule": "Sintomas persistentes, perda de peso não intencional ou necessidade de metas clínicas exigem avaliação profissional presencial."
+  },
+  "energy_bands": {
+    "recovery_or_light": {
+      "minimum_kcal": 2500,
+      "maximum_kcal": 2800,
+      "status": "owner_approved_legacy_band_not_professionally_calibrated"
+    },
+    "single_standard_training": {
+      "minimum_kcal": 2700,
+      "maximum_kcal": 3000,
+      "status": "owner_approved_legacy_band_not_professionally_calibrated"
+    },
+    "combined_heavy_or_game": {
+      "minimum_kcal": 2900,
+      "maximum_kcal": 3300,
+      "status": "owner_approved_legacy_band_not_professionally_calibrated"
+    }
+  },
+  "day_types": [
+    {
+      "id": "recovery_or_no_training",
+      "label": "Recuperação ou sem treino",
+      "energy_band_id": "recovery_or_light",
+      "carbohydrate_modules": { "minimum": 0, "maximum": 0 },
+      "meal_rule": "Café da manhã completo, almoço padrão, lanche reforçado e jantar leve; ceia somente quando houver fome.",
+      "meal_ids": ["breakfast", "lunch", "afternoon_snack", "dinner", "supper"]
+    },
+    {
+      "id": "strength_only",
+      "label": "Treino de força",
+      "energy_band_id": "single_standard_training",
+      "carbohydrate_modules": { "minimum": 1, "maximum": 1 },
+      "meal_rule": "Menu base com uma porção adicional de carboidrato próxima do treino.",
+      "meal_ids": ["breakfast", "lunch", "afternoon_snack", "dinner", "supper"]
+    },
+    {
+      "id": "plyometrics_or_microdose",
+      "label": "Pliometria ou microdose",
+      "energy_band_id": "single_standard_training",
+      "carbohydrate_modules": { "minimum": 0, "maximum": 1 },
+      "meal_rule": "Menu base; usar a porção adicional somente quando a refeição anterior estiver distante ou a qualidade do treino cair.",
+      "meal_ids": ["breakfast", "lunch", "afternoon_snack", "dinner", "supper"]
+    },
+    {
+      "id": "footvolley_only",
+      "label": "Somente futevôlei",
+      "energy_band_id": "single_standard_training",
+      "carbohydrate_modules": { "minimum": 1, "maximum": 1 },
+      "meal_rule": "Menu base com uma porção adicional antes ou depois da areia, conforme tolerância.",
+      "meal_ids": ["breakfast", "lunch", "afternoon_snack", "dinner", "supper"]
+    },
+    {
+      "id": "strength_or_plyometrics_plus_footvolley",
+      "label": "Força ou pliometria mais futevôlei",
+      "energy_band_id": "combined_heavy_or_game",
+      "carbohydrate_modules": { "minimum": 2, "maximum": 2 },
+      "meal_rule": "Usar refeição maior após a areia, lanche reforçado e jantar de treino; não pular o lanche.",
+      "meal_ids": ["breakfast", "lunch", "afternoon_snack", "dinner", "supper"]
+    },
+    {
+      "id": "weekend_game",
+      "label": "Jogo no fim de semana",
+      "energy_band_id": "combined_heavy_or_game",
+      "carbohydrate_modules": { "minimum": 2, "maximum": 2 },
+      "meal_rule": "Priorizar opções familiares e não experimentar itens ou protocolos novos no dia do jogo.",
+      "meal_ids": ["breakfast", "lunch", "afternoon_snack", "dinner", "supper"]
+    }
+  ],
+  "timing_rules": [
+    {
+      "id": "noon_training_full_breakfast",
+      "condition": "Treino ao meio-dia com café da manhã completo tolerado",
+      "meal_id": "breakfast",
+      "start_time": "08:30",
+      "end_time": "09:30",
+      "option_ids": ["breakfast_full"]
+    },
+    {
+      "id": "noon_training_reduced_breakfast",
+      "condition": "Treino ao meio-dia e desconforto com café da manhã completo",
+      "meal_id": "breakfast",
+      "start_time": "10:30",
+      "end_time": "10:30",
+      "option_ids": ["breakfast_reduced_pre_noon_training"]
+    },
+    {
+      "id": "post_noon_training_lunch",
+      "condition": "Retorno do treino ao meio-dia",
+      "meal_id": "lunch",
+      "start_time": "13:00",
+      "end_time": "13:30",
+      "option_ids": ["lunch_larger_post_training", "lunch_standard_marmita"]
+    },
+    {
+      "id": "afternoon_snack_window",
+      "condition": "Janela habitual do lanche da tarde",
+      "meal_id": "afternoon_snack",
+      "start_time": "17:00",
+      "end_time": "18:00",
+      "option_ids": [
+        "snack_bread_banana_dairy",
+        "snack_chicken_bread_fruit",
+        "snack_couscous_eggs_fruit",
+        "snack_tapioca_chicken_fruit",
+        "snack_baked_chicken_pastry",
+        "snack_chia_oat_yogurt_fruit"
+      ]
+    },
+    {
+      "id": "usual_dinner_time",
+      "condition": "Horário habitual quando houver fome",
+      "meal_id": "dinner",
+      "start_time": "19:00",
+      "end_time": "19:00",
+      "option_ids": ["dinner_light", "dinner_training", "dinner_heavy", "dinner_weekend_chicken_poke"]
+    }
+  ],
+  "meals": [
+    {
+      "id": "breakfast",
+      "label": "Café da manhã",
+      "default_time": null,
+      "required": true,
+      "options": [
+        {
+          "id": "breakfast_full",
+          "label": "Ovos, pão e fruta",
+          "use_when": "Sem treino próximo ou cerca de 2 a 3 horas antes do treino.",
+          "items": [
+            { "food": "ovos", "quantity": "3-4", "unit": "unidade" },
+            { "food": "pão integral", "quantity": "4", "unit": "fatia", "alternatives": [{ "food": "pão francês", "quantity": "2", "unit": "unidade" }] },
+            { "food": "mamão", "quantity": "100", "unit": "g", "alternatives": [{ "food": "banana", "quantity": null, "unit": null }, { "food": "maçã", "quantity": null, "unit": null }, { "food": "abacaxi", "quantity": null, "unit": null }] },
+            { "food": "café preto sem açúcar", "quantity": "200", "unit": "ml" }
+          ]
+        },
+        {
+          "id": "breakfast_reduced_pre_noon_training",
+          "label": "Pão, doce de leite e banana antes do treino",
+          "use_when": "Cerca de 60 a 90 minutos antes do treino ao meio-dia, quando a refeição completa causar desconforto.",
+          "items": [
+            { "food": "pão francês", "quantity": "1", "unit": "unidade" },
+            { "food": "doce de leite", "quantity": "1", "unit": "colher de sopa" },
+            { "food": "banana", "quantity": "100", "unit": "g" }
+          ],
+          "follow_up_rule": "Usar uma opção de almoço maior após o treino."
+        },
+        {
+          "id": "breakfast_chia_oat_yogurt_fruit",
+          "label": "Creme de chia, aveia, iogurte e fruta",
+          "use_when": "Alternativa familiar quando não houver necessidade de refeição sólida maior.",
+          "items": [
+            { "food": "aveia seca", "quantity": "30", "unit": "g" },
+            { "food": "chia seca", "quantity": "10-15", "unit": "g" },
+            { "food": "iogurte natural", "quantity": "200-250", "unit": "g" },
+            { "food": "fruta", "quantity": "100", "unit": "g" },
+            { "food": "leite em pó", "quantity": "15-20", "unit": "g" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lunch",
+      "label": "Almoço",
+      "default_time": null,
+      "required": true,
+      "options": [
+        {
+          "id": "lunch_standard_marmita",
+          "label": "Marmita padrão",
+          "use_when": "Café da manhã completo ou dia de menor carga.",
+          "items": [
+            { "food": "arroz cozido", "quantity": "200", "unit": "g" },
+            { "food": "frango cozido", "quantity": "120", "unit": "g" },
+            { "food": "feijão cozido", "quantity": "100", "unit": "g", "optional": true },
+            { "food": "salada ou vegetais disponíveis", "quantity": null, "unit": null, "optional": true }
+          ]
+        },
+        {
+          "id": "lunch_larger_post_training",
+          "label": "Almoço maior após treino",
+          "use_when": "Após café da manhã reduzido, areia intensa ou maior fome no retorno.",
+          "items": [
+            { "food": "arroz cozido", "quantity": "300-350", "unit": "g" },
+            { "food": "frango cozido", "quantity": "120-150", "unit": "g" },
+            { "food": "feijão cozido", "quantity": "100", "unit": "g", "optional": true },
+            { "food": "batata ou mandioca", "quantity": "60-100", "unit": "g", "optional": true },
+            { "food": "salada ou vegetais disponíveis", "quantity": null, "unit": null, "optional": true }
+          ]
+        },
+        {
+          "id": "weekend_chicken_poke",
+          "label": "Poke de frango",
+          "use_when": "Alternativa ocasional de almoço ou jantar, especialmente em dia de maior carboidrato.",
+          "items": [
+            { "food": "arroz japonês preparado", "quantity": "250", "unit": "g", "quantity_basis": "assumed_cooked_pending_confirmation" },
+            { "food": "frango grelhado", "quantity": "120", "unit": "g" },
+            { "food": "pepino japonês", "quantity": "60", "unit": "g" },
+            { "food": "manga", "quantity": "100", "unit": "g" },
+            { "food": "milho peruano temperado", "quantity": "2", "unit": "colher de sopa" },
+            { "food": "morango", "quantity": null, "unit": null, "optional": true },
+            { "food": "couve assada", "quantity": null, "unit": null, "optional": true }
+          ],
+          "unknowns": ["peso do arroz pronto", "peso do milho", "quantidade de óleo e molhos"]
+        }
+      ]
+    },
+    {
+      "id": "afternoon_snack",
+      "label": "Lanche da tarde",
+      "default_time": null,
+      "required": true,
+      "options": [
+        {
+          "id": "snack_bread_banana_dairy",
+          "label": "Pão com banana e leite em pó, mais iogurte",
+          "items": [
+            { "food": "pão francês", "quantity": "1", "unit": "unidade" },
+            { "food": "banana amassada", "quantity": "100", "unit": "g" },
+            { "food": "leite em pó", "quantity": "20", "unit": "g" },
+            { "food": "iogurte natural", "quantity": "200-250", "unit": "g" }
+          ]
+        },
+        {
+          "id": "snack_chicken_bread_fruit",
+          "label": "Pão com frango e fruta",
+          "items": [
+            { "food": "pão francês", "quantity": "1", "unit": "unidade" },
+            { "food": "frango desfiado", "quantity": "80-100", "unit": "g" },
+            { "food": "requeijão", "quantity": null, "unit": null, "optional": true },
+            { "food": "banana ou outra fruta", "quantity": "1", "unit": "porção" }
+          ]
+        },
+        {
+          "id": "snack_couscous_eggs_fruit",
+          "label": "Cuscuz, ovos e fruta",
+          "items": [
+            { "food": "cuscuz cozido", "quantity": "200", "unit": "g" },
+            { "food": "ovos", "quantity": "3", "unit": "unidade" },
+            { "food": "fruta", "quantity": "1", "unit": "porção" }
+          ]
+        },
+        {
+          "id": "snack_tapioca_chicken_fruit",
+          "label": "Tapioca, frango e fruta",
+          "items": [
+            { "food": "goma de tapioca hidratada", "quantity": "80-100", "unit": "g" },
+            { "food": "frango desfiado", "quantity": "80-100", "unit": "g" },
+            { "food": "fruta", "quantity": "1", "unit": "porção" }
+          ]
+        },
+        {
+          "id": "snack_baked_chicken_pastry",
+          "label": "Pastel assado de frango",
+          "items": [
+            { "food": "massa habitual de pastel", "quantity": null, "unit": null },
+            { "food": "frango desfiado", "quantity": "80-100", "unit": "g" },
+            { "food": "iogurte natural ou fruta", "quantity": "1", "unit": "porção" }
+          ],
+          "unknowns": ["tamanho e composição da massa", "quantidade de requeijão ou creme"]
+        },
+        {
+          "id": "snack_chia_oat_yogurt_fruit",
+          "label": "Creme de chia, aveia, iogurte e fruta",
+          "items": [
+            { "food": "aveia seca", "quantity": "30", "unit": "g" },
+            { "food": "chia seca", "quantity": "10-15", "unit": "g" },
+            { "food": "iogurte natural", "quantity": "200-250", "unit": "g" },
+            { "food": "fruta", "quantity": "100", "unit": "g" },
+            { "food": "leite em pó", "quantity": "15-20", "unit": "g" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dinner",
+      "label": "Jantar",
+      "default_time": "19:00",
+      "required": true,
+      "options": [
+        {
+          "id": "dinner_light",
+          "label": "Jantar leve",
+          "use_when": "Dia de recuperação ou refeições anteriores maiores.",
+          "items": [
+            { "food": "arroz cozido", "quantity": "200", "unit": "g" },
+            { "food": "frango cozido", "quantity": "120", "unit": "g" },
+            { "food": "feijão cozido", "quantity": "100", "unit": "g", "optional": true },
+            { "food": "vegetais", "quantity": null, "unit": null, "optional": true }
+          ]
+        },
+        {
+          "id": "dinner_training",
+          "label": "Jantar de treino",
+          "use_when": "Dia com uma sessão de treino.",
+          "items": [
+            { "food": "arroz cozido", "quantity": "250-300", "unit": "g" },
+            { "food": "frango cozido", "quantity": "120-150", "unit": "g" },
+            { "food": "feijão cozido", "quantity": "100", "unit": "g", "optional": true },
+            { "food": "vegetais", "quantity": null, "unit": null, "optional": true }
+          ]
+        },
+        {
+          "id": "dinner_heavy",
+          "label": "Jantar de dia pesado ou jogo",
+          "use_when": "Dia combinado, jogo ou demanda de recuperação ainda alta.",
+          "items": [
+            { "food": "arroz cozido", "quantity": "300-350", "unit": "g", "alternatives": [{ "food": "massa ou cuscuz em porção equivalente", "quantity": null, "unit": null }] },
+            { "food": "frango cozido", "quantity": "150", "unit": "g" },
+            { "food": "feijão cozido", "quantity": "100", "unit": "g", "optional": true },
+            { "food": "vegetais", "quantity": null, "unit": null, "optional": true },
+            { "food": "fruta, batata ou mandioca", "quantity": "60-100", "unit": "g", "optional": true }
+          ]
+        },
+        {
+          "id": "dinner_weekend_chicken_poke",
+          "label": "Poke de frango",
+          "reference_option": "lunch.weekend_chicken_poke"
+        }
+      ]
+    },
+    {
+      "id": "supper",
+      "label": "Ceia",
+      "default_time": null,
+      "required": false,
+      "use_when": "Quando houver fome antes de dormir.",
+      "options": [
+        {
+          "id": "supper_milk_banana_oats",
+          "label": "Leite, banana e aveia",
+          "items": [
+            { "food": "leite", "quantity": "200-250", "unit": "ml" },
+            { "food": "banana", "quantity": "1", "unit": "unidade" },
+            { "food": "aveia", "quantity": "30", "unit": "g" }
+          ]
+        },
+        {
+          "id": "supper_yogurt_fruit_milk_powder",
+          "label": "Iogurte, fruta e leite em pó",
+          "items": [
+            { "food": "iogurte natural", "quantity": "200-250", "unit": "g" },
+            { "food": "fruta", "quantity": "1", "unit": "porção" },
+            { "food": "leite em pó", "quantity": "15-20", "unit": "g" }
+          ]
+        },
+        {
+          "id": "supper_chia_oat_yogurt_fruit",
+          "label": "Creme de chia, aveia, iogurte e fruta",
+          "reference_option": "afternoon_snack.snack_chia_oat_yogurt_fruit"
+        },
+        {
+          "id": "supper_fruit_dark_chocolate",
+          "label": "Fruta e chocolate amargo",
+          "items": [
+            { "food": "fruta", "quantity": "1", "unit": "porção" },
+            { "food": "chocolate amargo", "quantity": "20-30", "unit": "g" }
+          ],
+          "use_when": "Somente quando a alimentação do dia já tiver coberto as refeições principais."
+        }
+      ]
+    }
+  ],
+  "carbohydrate_modules": [
+    { "id": "extra_rice", "label": "Arroz adicional", "items": [{ "food": "arroz cozido", "quantity": "150-200", "unit": "g" }] },
+    { "id": "bread_and_banana", "label": "Pão e banana", "items": [{ "food": "pão francês", "quantity": "1", "unit": "unidade" }, { "food": "banana", "quantity": "1", "unit": "unidade" }] },
+    { "id": "couscous_and_fruit", "label": "Cuscuz e fruta", "items": [{ "food": "cuscuz cozido", "quantity": "200", "unit": "g" }, { "food": "fruta", "quantity": "1", "unit": "porção", "optional": true }] },
+    { "id": "cooked_pasta", "label": "Massa cozida", "items": [{ "food": "massa cozida", "quantity": "200-250", "unit": "g" }] },
+    { "id": "tapioca_and_fruit", "label": "Tapioca e fruta", "items": [{ "food": "tapioca", "quantity": null, "unit": null }, { "food": "fruta", "quantity": "1", "unit": "porção" }] }
+  ],
+  "food_preferences": [
+    "arroz",
+    "feijão",
+    "frango",
+    "mandioca",
+    "batata",
+    "pão francês",
+    "banana",
+    "leite em pó",
+    "leite",
+    "aveia",
+    "chia",
+    "iogurte natural",
+    "mel",
+    "abacaxi",
+    "maçã",
+    "mamão",
+    "manga",
+    "tomate",
+    "alface",
+    "pepino japonês",
+    "cenoura",
+    "beterraba",
+    "ervilha",
+    "milho"
+  ],
+  "excluded_from_foundation": [
+    "protocolos de suplementos",
+    "doses individuais de cafeína",
+    "protocolo cognitivo matinal",
+    "diagnósticos",
+    "metas pessoais de macronutrientes não confirmadas",
+    "equivalências nutricionais não verificadas"
+  ],
+  "unknowns": {
+    "current_body_mass_kg": null,
+    "personal_protein_target_g_per_day": null,
+    "personal_carbohydrate_target_g_per_day": null,
+    "personal_fat_target_g_per_day": null,
+    "session_hydration_target_ml": null,
+    "weekend_game_day": null,
+    "weekend_game_time": null,
+    "professional_validation": null
+  }
+}

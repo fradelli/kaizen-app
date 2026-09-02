@@ -38,4 +38,4 @@ Representar a versão aprovada do plano por contexto de dia, refeições, itens,
 
 ## Resultado
 
-Ainda não concluída.
+Concluída em 2026-09-02. Criado `data/nutrition/plans/2026-09-personal-v1.json` com seis tipos de dia, cinco refeições, vinte opções, horários condicionais, módulos de carboidrato, preferências, `unknowns`, proveniência e aprovação pública explícita. As faixas energéticas foram preservadas como valores legados aprovados para uso pessoal, sem validação profissional; identidade, contexto médico, suplementos, protocolo cognitivo, caminhos privados e metas inferidas foram excluídos. JSON, referências, manifesto e exposição foram validados, liberando E02-T05.
