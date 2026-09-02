@@ -10,7 +10,10 @@
 - Registro da alimentação praticada disponível: `true`.
 - Artefatos candidatos: `8`.
 - Artefatos aprovados para publicação: `0`.
-- Próxima tarefa: `E02-T02`, liberada para congelar e preservar a fonte privada.
+- Snapshot alimentar preservado: `0d6456a68329f51fb9f83e1230cb285fe82f5996`.
+- Branch privada: `codex/E02-T02-freeze-nutrition-source`.
+- Tag privada: `kaizen-nutrition-source-v1`.
+- Próxima tarefa: `E02-T03`, liberada para revisar a fonte preservada sem promover recomendações automaticamente.
 
 A primeira versão deste inventário inspecionou somente o snapshot de treino, o worktree observado e o anexo conhecido. A correção ampliou a descoberta para todas as refs remotas e localizou a fonte alimentar em uma branch privada. Nenhum conteúdo alimentar foi copiado para o Kaizen.
 
@@ -73,16 +76,15 @@ A existência de um documento original não confirma, por si só, autoria, vigê
 
 Nenhum desses campos pode ser preenchido por inferência.
 
-## Gate para E02-T02
+## Resultado da preservação E02-T02
 
-`E02-T02` está pronta para:
+`E02-T02` foi concluída com:
 
-1. criar um snapshot privado a partir do commit verificado;
-2. preservar blobs byte a byte e criar a tag privada `kaizen-nutrition-source-v1`;
-3. criar cópias privadas com nomes neutros quando o caminho histórico expuser identidade, sem remover ou reescrever o original;
-4. registrar no manifesto apenas referências seguras, hashes e decisões de exposição;
-5. encerrar originais públicos como `SKIP/DO_NOT_PUBLISH`;
-6. manter todos os derivados privados até revisão e aprovação por artefato.
+1. snapshot privado criado a partir do commit verificado;
+2. oito blobs preservados sob aliases neutros com os mesmos hashes dos blobs históricos;
+3. tag privada `kaizen-nutrition-source-v1` publicada e validada no remote;
+4. referências seguras registradas no manifesto como `SKIP/DO_NOT_PUBLISH`;
+5. originais e derivados mantidos privados até revisão e aprovação por artefato.
 
 ## Fora de escopo
 
