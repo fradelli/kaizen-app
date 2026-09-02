@@ -2,7 +2,7 @@
 
 ## Resultado esperado
 
-Banco escolhido, migrations versionadas e importação idempotente dos dados documentais com integridade e rollback.
+Banco escolhido, migrations versionadas e importação idempotente de definições, com persistência íntegra dos registros operacionais.
 
 ## Ordem
 
@@ -17,9 +17,10 @@ Banco escolhido, migrations versionadas e importação idempotente dos dados doc
 ## Fora de escopo
 
 - Domínios posteriores ao P0.
-- Escrita pelo usuário no aplicativo.
+- Cadastro, login, edição de planos pela interface ou features fora do P0.
 
 ## Critérios de encerramento
 
 - [ ] Importação repetida não duplica dados.
 - [ ] Origem, versão e plano ativo permanecem rastreáveis.
+- [ ] Atribuições e execuções pertencem ao workspace e preservam a versão apresentada.

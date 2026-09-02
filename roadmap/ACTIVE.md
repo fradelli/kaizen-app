@@ -1,11 +1,11 @@
 # Tarefa ativa
 
-- **Tarefa:** E03-T04 — Definir arquitetura
+- **Tarefa:** E03-T05 — Aprovar guia de implementação
 - **Status:** READY
-- **Entrada principal:** P0, transição da fonte de verdade e decisão de privacidade e operação.
-- **Resultado anterior:** publicação pessoal sem login convencional definida, com leitura pública limitada, mutações protegidas, ambientes isolados e restore testável.
-- **Objetivo:** escolher stack, boundaries, modelo arquitetural, migrations, segurança e estratégia de testes.
-- **Entregável:** arquitetura alvo proporcional ao MVP e preparada para contas futuras.
-- **Depois:** produzir e aprovar o guia copiável E03-T05.
+- **Entrada principal:** todas as decisões de E03 e tarefas E04–E08 alinhadas ao P0 operacional.
+- **Resultado anterior:** stack Next.js/Node/PostgreSQL/Prisma definida, com boundaries, modelo conceitual, migrations, segurança e testes.
+- **Objetivo:** converter as decisões em um guia copiável, ordenado por arquivo e por tarefa, sem executar o scaffold.
+- **Entregável:** guia de implementação completo e gate final de E03.
+- **Depois:** liberar E04-T01 para criar a nova aplicação.
 
-A decisão deve permanecer em Next.js full-stack e PostgreSQL, sem serviço backend separado. Nenhum código, dependência ou configuração de provedor deve ser criado nesta etapa.
+O guia deve pinar versões estáveis, fornecer conteúdos completos dos arquivos iniciais, explicar validações e rollback e respeitar a ordem incremental do roadmap.

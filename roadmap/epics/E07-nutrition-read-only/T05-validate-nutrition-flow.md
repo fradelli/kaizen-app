@@ -8,11 +8,11 @@ depends_on: [E07-T04]
 
 ## Objetivo
 
-Validar o fluxo completo de consulta alimentar antes da publicação.
+Validar o fluxo completo de consulta e registro alimentar antes da publicação.
 
 ## Entradas
 
-- Funcionalidades read-only de alimentação concluídas.
+- Funcionalidades operacionais de alimentação concluídas.
 
 ## Entregáveis
 
@@ -20,9 +20,10 @@ Validar o fluxo completo de consulta alimentar antes da publicação.
 
 ## Subtarefas
 
-- [ ] Testar plano, refeições, alternativas e estados vazios.
+- [ ] Testar tipo de dia, refeições, escolhas, alternativa, comentário e estados vazios.
 - [ ] Validar acessibilidade básica e navegação móvel.
 - [ ] Confirmar unidades, unknowns e proveniência.
+- [ ] Confirmar acesso anônimo e pareado, erro de gravação e concorrência.
 - [ ] Registrar limitações conhecidas.
 
 ## Validações

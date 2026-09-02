@@ -16,13 +16,16 @@ Modelar somente entidades, relações e constraints exigidas pelo P0.
 
 ## Entregáveis
 
-- Modelo e decisões detalhados no guia de implementação.
+- `docs/architecture/DATA-MODEL.md`
+- `data/training-execution-metadata.json`
+- `schemas/training-execution-metadata.schema.json`
 
 ## Subtarefas
 
 - [ ] Mapear IDs, versões, status e proveniência.
-- [ ] Modelar plano, sessão, exercício, agenda, refeição e alternativa.
+- [ ] Modelar definições, ativações, atribuições e execuções de treino e alimentação.
 - [ ] Definir unicidade e integridade referencial.
+- [ ] Classificar medição e aplicabilidade de carga de todo exercício usado, sem default por inferência.
 - [ ] Excluir domínios futuros.
 
 ## Validações

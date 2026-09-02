@@ -4,11 +4,11 @@ epic: E06
 depends_on: [E05-T04]
 ---
 
-# Projetar consulta do plano ativo
+# Projetar treino e execução do dia
 
 ## Objetivo
 
-Criar uma projeção server-side estável para leitura do plano de treino vigente.
+Criar projeções server-side separadas para leitura pública do plano e leitura pessoal do treino e da execução da data.
 
 ## Entradas
 
@@ -16,12 +16,14 @@ Criar uma projeção server-side estável para leitura do plano de treino vigent
 
 ## Entregáveis
 
-- Consulta tipada com plano, agenda, sessões e exercícios.
+- DTO público do plano e DTO pessoal com atribuição, preparação, séries e revisão.
 
 ## Subtarefas
 
 - [ ] Resolver o ponteiro do plano ativo.
-- [ ] Ordenar agenda e itens de forma determinística.
+- [ ] Resolver workspace e data sem aceitar ownership do cliente.
+- [ ] Combinar atribuição, versão e execução sem perder histórico.
+- [ ] Ordenar preparação, exercícios e séries de forma determinística.
 - [ ] Preservar `null` e unknowns.
 - [ ] Cobrir plano ausente e referências inválidas.
 
@@ -31,7 +33,7 @@ Criar uma projeção server-side estável para leitura do plano de treino vigent
 
 ## Critérios de aceite
 
-- [ ] Uma única interface atende às páginas de treino.
+- [ ] DTO anônimo não contém dados operacionais e DTO pessoal atende à página do dia.
 
 ## Resultado
 
