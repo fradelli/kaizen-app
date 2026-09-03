@@ -12,7 +12,12 @@ Permitir consultar a prescrição e salvar preparação, execução por série e
 
 ## Entradas
 
-- Página de treino do dia e biblioteca de exercícios.
+- `docs/implementation/E06.md`
+- `docs/product/P0.md`
+- `data/exercises.json`
+- `data/training-execution-metadata.json`
+- `src/lib/security/authorization.ts`
+- `src/features/training/`
 
 ## Entregáveis
 

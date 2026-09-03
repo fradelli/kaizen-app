@@ -12,7 +12,11 @@ Implementar os gates estáveis aprovados na governança de CI para pull requests
 
 ## Entradas
 
-- Comandos validados em E04-T02–T04.
+- `docs/implementation/tasks/E04-T05.md`
+- `docs/decisions/CI-CD-GOVERNANCE.md`
+- `.github/pull_request_template.md`
+- `.github/PULL_REQUEST_TEMPLATE/release-promotion.md`
+- `package.json`
 
 ## Entregáveis
 

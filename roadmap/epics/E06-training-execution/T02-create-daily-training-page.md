@@ -12,7 +12,10 @@ Exibir treino, mobilidade, descanso ou estado não atribuído da data com leitur
 
 ## Entradas
 
-- Projeção do plano ativo.
+- `docs/implementation/E06.md`
+- `docs/product/P0.md`
+- `src/features/training/application/training-dto.ts`
+- `src/app/treino/page.tsx`
 
 ## Entregáveis
 

@@ -12,7 +12,10 @@ Comprovar monitoramento mínimo, backup, restauração e retorno à versão ante
 
 ## Entradas
 
-- Ambiente de produção preparado.
+- `docs/implementation/E08.md`
+- `docs/decisions/PRIVACY-AND-OPERATIONS.md`
+- `docs/operations/BACKUP-AND-RESTORE.md`
+- Ambiente de produção preparado em E08-T03.
 
 ## Entregáveis
 
@@ -21,7 +24,7 @@ Comprovar monitoramento mínimo, backup, restauração e retorno à versão ante
 ## Subtarefas
 
 - [ ] Definir sinais mínimos de saúde e falha.
-- [ ] Testar backup e restauração no ambiente apropriado.
+- [ ] Testar backup externo e restauração em branch Neon isolada.
 - [ ] Simular rollback da aplicação.
 - [ ] Registrar responsáveis e sequência de recuperação.
 

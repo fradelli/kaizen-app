@@ -8,11 +8,15 @@ depends_on: [E05-T04]
 
 ## Objetivo
 
-Demonstrar recuperação dos dados antes da publicação de produção.
+Demonstrar recuperação dos dados em PostgreSQL local antes de depender de um provedor gerenciado.
 
 ## Entradas
 
-- Banco importado e política de E03-T03.
+- `docs/implementation/E05.md`
+- `docs/decisions/PRIVACY-AND-OPERATIONS.md`
+- `compose.yaml`
+- `prisma/schema.prisma`
+- `scripts/import-canonical-data.ts`
 
 ## Entregáveis
 
@@ -21,18 +25,19 @@ Demonstrar recuperação dos dados antes da publicação de produção.
 
 ## Subtarefas
 
-- [ ] Executar backup seguro.
-- [ ] Restaurar em ambiente isolado.
+- [ ] Executar `pg_dump` no PostgreSQL local de origem.
+- [ ] Restaurar com `pg_restore` em outro PostgreSQL local descartável.
 - [ ] Validar contagens, IDs e versão ativa.
-- [ ] Registrar RPO/RTO observados sem falsa garantia.
+- [ ] Registrar duração, limitações e evidência; RPO/RTO gerenciado pertence a E08.
 
 ## Validações
 
-- Restore produz banco utilizável e íntegro.
+- Restore local produz banco utilizável e íntegro.
+- Nenhuma conta, branch ou credencial Neon é necessária nesta tarefa.
 
 ## Critérios de aceite
 
-- [ ] Procedimento é repetível e não expõe credenciais.
+- [ ] Procedimento local é repetível e não expõe credenciais.
 
 ## Resultado
 

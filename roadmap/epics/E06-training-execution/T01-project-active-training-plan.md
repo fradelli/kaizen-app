@@ -1,7 +1,7 @@
 ---
 id: E06-T01
 epic: E06
-depends_on: [E05-T04]
+depends_on: [E05-T06]
 ---
 
 # Projetar treino e execução do dia
@@ -12,7 +12,13 @@ Criar projeções server-side separadas para leitura pública do plano e leitura
 
 ## Entradas
 
-- Modelo persistido e dados importados.
+- `docs/implementation/E06.md`
+- `docs/product/P0.md`
+- `docs/architecture/DATA-MODEL.md`
+- `data/active.json`
+- `data/exercises.json`
+- `src/lib/security/authorization.ts`
+- `prisma/schema.prisma`
 
 ## Entregáveis
 

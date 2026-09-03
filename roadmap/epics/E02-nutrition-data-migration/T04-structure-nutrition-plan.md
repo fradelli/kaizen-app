@@ -21,10 +21,10 @@ Representar a versão aprovada do plano por contexto de dia, refeições, itens,
 
 ## Subtarefas
 
-- [ ] Definir versão, status e vigência.
-- [ ] Estruturar tipos de dia e refeições.
-- [ ] Registrar quantidades e equivalências apenas quando confirmadas.
-- [ ] Preservar alertas e unknowns.
+- [x] Definir versão, status e vigência.
+- [x] Estruturar tipos de dia e refeições.
+- [x] Registrar quantidades e equivalências apenas quando confirmadas.
+- [x] Preservar alertas e unknowns.
 
 ## Validações
 
@@ -33,8 +33,8 @@ Representar a versão aprovada do plano por contexto de dia, refeições, itens,
 
 ## Critérios de aceite
 
-- [ ] O plano é legível sem consultar a conversa original.
-- [ ] Status profissional é inequívoco.
+- [x] O plano é legível sem consultar a conversa original.
+- [x] Status profissional é inequívoco.
 
 ## Resultado
 

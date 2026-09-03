@@ -12,7 +12,12 @@ Provar joins, constraints, versão ativa e proveniência contra banco real de te
 
 ## Entradas
 
-- Migration e importador.
+- `docs/implementation/E05.md`
+- `docs/architecture/DATA-MODEL.md`
+- `prisma/schema.prisma`
+- `prisma/migrations/`
+- `src/features/import/`
+- `tests/integration/import-canonical-data.test.ts`
 
 ## Entregáveis
 

@@ -20,10 +20,10 @@ Evitar duas fontes editáveis ao introduzir banco de dados.
 
 ## Subtarefas
 
-- [ ] Definir arquivos como origem da importação inicial.
-- [ ] Definir quando o banco vira fonte operacional.
-- [ ] Definir exportação, backup e proveniência.
-- [ ] Definir política de reimportação e conflito.
+- [x] Definir arquivos como origem da importação inicial.
+- [x] Definir quando o banco vira fonte operacional.
+- [x] Definir exportação, backup e proveniência.
+- [x] Definir política de reimportação e conflito.
 
 ## Validações
 
@@ -31,7 +31,7 @@ Evitar duas fontes editáveis ao introduzir banco de dados.
 
 ## Critérios de aceite
 
-- [ ] Leitura, escrita futura e rollback têm ownership inequívoco.
+- [x] Leitura, escrita futura e rollback têm ownership inequívoco.
 
 ## Resultado
 

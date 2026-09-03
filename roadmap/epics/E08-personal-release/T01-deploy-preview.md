@@ -12,7 +12,13 @@ Conectar o projeto à Vercel e publicar um preview verificável sem promover pro
 
 ## Entradas
 
-- Fluxos operacionais de Dieta e Treino validados.
+- `docs/implementation/E08.md`
+- `docs/decisions/PRIVACY-AND-OPERATIONS.md`
+- `docs/decisions/CI-CD-GOVERNANCE.md`
+- `.github/workflows/`
+- `prisma/migrations/`
+- `src/app/`
+- `tests/e2e/`
 
 ## Entregáveis
 

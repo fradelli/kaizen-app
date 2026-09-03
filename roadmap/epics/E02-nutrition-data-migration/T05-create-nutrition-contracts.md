@@ -22,10 +22,10 @@ Tornar o plano alimentar vigente localizável, validável e compreensível sem t
 
 ## Subtarefas
 
-- [ ] Criar ponteiro inequívoco para versão vigente.
-- [ ] Criar contrato mínimo e permissivo.
-- [ ] Criar guia derivado com proveniência.
-- [ ] Documentar limites e atualização.
+- [x] Criar ponteiro inequívoco para versão vigente.
+- [x] Criar contrato mínimo e permissivo.
+- [x] Criar guia derivado com proveniência.
+- [x] Documentar limites e atualização.
 
 ## Validações
 
@@ -35,7 +35,7 @@ Tornar o plano alimentar vigente localizável, validável e compreensível sem t
 
 ## Critérios de aceite
 
-- [ ] Consumidor read-only consegue localizar e interpretar o plano.
+- [x] Consumidor read-only consegue localizar e interpretar o plano.
 
 ## Resultado
 

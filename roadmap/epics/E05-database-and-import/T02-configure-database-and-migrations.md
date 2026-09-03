@@ -12,7 +12,11 @@ Configurar o banco e o ORM aprovados com migrations reproduzíveis.
 
 ## Entradas
 
-- Modelo relacional e decisões operacionais.
+- `docs/implementation/E05.md`
+- `docs/architecture/DATA-MODEL.md`
+- `docs/decisions/DATABASE-AND-ORM.md`
+- `data/training-execution-metadata.json`
+- `.env.example`
 
 ## Entregáveis
 

@@ -247,6 +247,7 @@ Esse contrato pertence aos dados versionados e complementa, sem sobrescrever, a 
 - `Workspace`: boundary de ownership; existe um workspace fixo no MVP.
 - `ImportBatch`: proveniência e resultado de uma importação.
 - `PlanActivation`: versão ativa por domínio e ambiente lógico.
+- `PairingRateLimit`: janela e bloqueio de tentativas sem armazenar chave ou IP bruto.
 
 ### Treino
 
@@ -402,10 +403,10 @@ SQLite, mocks do Prisma e snapshots visuais não substituem testes relacionais. 
 ## Incrementos
 
 1. E04 cria scaffold, qualidade, boundary server-only, shell e CI sem regra de negócio.
-2. E05 modela PostgreSQL, cria metadados de execução, migrations, importador e restore.
-3. E06 implementa projeção e registros de Treino.
-4. E07 implementa projeção e registros de Dieta.
-5. E08 configura Vercel/Neon, pareamento, proteção, backup e produção.
+2. E05 modela PostgreSQL, cria metadados, migrations, importador, restore local e a fronteira de acesso pessoal.
+3. E06 implementa projeção e registros de Treino consumindo a autorização já testada.
+4. E07 implementa projeção e registros de Dieta consumindo a mesma autorização.
+5. E08 configura Vercel/Neon, valida e reforça a proteção em HTTPS e comprova backup, rollback e produção.
 
 Cada incremento deve manter lint, tipos, testes, integridade e build verdes. Não se cria abstração para fase futura sem consumidor no incremento atual.
 

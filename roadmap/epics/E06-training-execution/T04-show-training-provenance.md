@@ -12,7 +12,12 @@ Tornar visíveis a versão ativa, a origem e o histórico documental do treino.
 
 ## Entradas
 
-- Plano ativo, versões, revisões e treinos originais.
+- `docs/implementation/E06.md`
+- `data/active.json`
+- `data/plans/`
+- `data/reviews/`
+- `docs/migration/MIGRATION-MANIFEST.md`
+- `src/features/training/`
 
 ## Entregáveis
 

@@ -12,7 +12,12 @@ Preparar banco, variáveis, branch e configuração de produção sem liberar o 
 
 ## Entradas
 
-- Acesso protegido e restauração validada.
+- `docs/implementation/E08.md`
+- `docs/decisions/PRIVACY-AND-OPERATIONS.md`
+- `docs/operations/BACKUP-AND-RESTORE.md`
+- `.github/workflows/`
+- `prisma/migrations/`
+- Evidência aprovada do preview e de E08-T02.
 
 ## Entregáveis
 

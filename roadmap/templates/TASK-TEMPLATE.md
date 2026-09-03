@@ -12,7 +12,9 @@ Resultado único desta tarefa.
 
 ## Entradas
 
-- Caminho ou decisão necessária.
+- `caminho/exato.ext` — motivo pelo qual é necessário.
+
+Não use referências vagas a épicos, conversas ou “todos os documentos”.
 
 ## Entregáveis
 
@@ -32,4 +34,4 @@ Resultado único desta tarefa.
 
 ## Resultado
 
-Preencher somente ao concluir, com evidências concisas e sem logs extensos.
+Ao concluir, marcar somente checklists comprovadas e registrar evidências concisas, sem logs extensos.
