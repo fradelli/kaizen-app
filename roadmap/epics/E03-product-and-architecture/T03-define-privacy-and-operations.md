@@ -21,10 +21,10 @@ Decidir acesso, hospedagem, ambientes, segredos, backup, restore e perda aceitá
 
 ## Subtarefas
 
-- [ ] Definir proteção da produção.
-- [ ] Definir Vercel e provedor de banco candidatos.
-- [ ] Definir ambientes e variáveis sensíveis.
-- [ ] Definir backup, retenção e teste de restore.
+- [x] Definir proteção da produção.
+- [x] Definir Vercel e provedor de banco candidatos.
+- [x] Definir ambientes e variáveis sensíveis.
+- [x] Definir backup, retenção e teste de restore.
 
 ## Validações
 
@@ -32,7 +32,7 @@ Decidir acesso, hospedagem, ambientes, segredos, backup, restore e perda aceitá
 
 ## Critérios de aceite
 
-- [ ] E08 possui requisitos operacionais verificáveis.
+- [x] E08 possui requisitos operacionais verificáveis.
 
 ## Resultado
 

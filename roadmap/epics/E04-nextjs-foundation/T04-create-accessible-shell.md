@@ -12,7 +12,10 @@ Criar estrutura visual responsiva e sem regra de negócio para as features futur
 
 ## Entradas
 
-- Jornadas do P0 e scaffold.
+- `docs/implementation/tasks/E04-T04.md`
+- `docs/product/P0.md`
+- `src/app/layout.tsx`
+- `src/app/page.tsx`
 
 ## Entregáveis
 

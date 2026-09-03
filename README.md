@@ -13,6 +13,7 @@ A fundação documental está concluída. Dados, regras, histórico, produto e a
 - Fundação de treino validada; dados, histórico, documentação e schemas possuem proveniência, integridade e exposição revisadas.
 - Fundação alimentar validada; plano, ponteiro, schema, guia e relatório possuem proveniência e limites explícitos.
 - Produto, arquitetura, privacidade, operação e sequência de implementação do P0 aprovados.
+- Contexto do Codex segmentado e guia de implementação modularizado por tarefa/épico.
 - E04-T01 está pronta para criar a aplicação Next.js.
 - Nenhuma aplicação, dependência ou banco criado.
 
@@ -24,6 +25,11 @@ A fundação documental está concluída. Dados, regras, histórico, produto e a
 - [Padrão de pull request](docs/delivery/PULL-REQUEST-STANDARD.md)
 - [Governança de CI/CD](docs/decisions/CI-CD-GOVERNANCE.md)
 - [Guia de implementação do P0](docs/implementation/P0-IMPLEMENTATION-GUIDE.md)
+- [Definição do produto P0](docs/product/P0.md)
+- [Arquitetura alvo](docs/architecture/TARGET-ARCHITECTURE.md)
+- [Privacidade e operação](docs/decisions/PRIVACY-AND-OPERATIONS.md)
+- [Plano ativo de treino](data/active.json)
+- [Plano ativo de alimentação](data/nutrition/active.json)
 - [Política do repositório público](docs/decisions/PUBLIC-REPOSITORY-AND-DATA-POLICY.md)
 - [Regras da migração](docs/migration/README.md)
 - [Repositórios de origem](docs/migration/SOURCE-REPOSITORIES.md)

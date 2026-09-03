@@ -11,6 +11,7 @@ Repositório público com branches, documentação, publicação de conteúdo e 
 - Contrato raiz e sistema de tarefas.
 - Padrão de PR e governança progressiva de CI/CD.
 - Proveniência do repositório legado.
+- Contexto mínimo e roadmap executável antes do MVP.
 
 ## Fora de escopo
 
@@ -27,6 +28,7 @@ Repositório público com branches, documentação, publicação de conteúdo e 
 | E00-T04 | E00-T03 | Roadmap operacional criado |
 | E00-T06 | E00-T04 | Governança de entrega adaptada |
 | E00-T05 | E00-T04, E00-T06 | Origem do legado registrada |
+| E00-T07 | E03-T05 | Contexto otimizado e dependências saneadas |
 
 Os status ficam exclusivamente em `roadmap/README.md`.
 

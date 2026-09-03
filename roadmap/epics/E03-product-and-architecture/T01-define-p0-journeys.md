@@ -21,11 +21,11 @@ Fechar o menor produto operacional utilizável para treino e alimentação.
 
 ## Subtarefas
 
-- [ ] Definir jornadas, telas e navegação.
-- [ ] Definir estados pronto, vazio, incompleto e erro.
-- [ ] Definir critérios de aceite observáveis.
-- [ ] Incluir somente os registros necessários para cumprir dieta e executar treino.
-- [ ] Excluir automações e áreas alheias a dieta e treino.
+- [x] Definir jornadas, telas e navegação.
+- [x] Definir estados pronto, vazio, incompleto e erro.
+- [x] Definir critérios de aceite observáveis.
+- [x] Incluir somente os registros necessários para cumprir dieta e executar treino.
+- [x] Excluir automações e áreas alheias a dieta e treino.
 
 ## Validações
 
@@ -34,7 +34,7 @@ Fechar o menor produto operacional utilizável para treino e alimentação.
 
 ## Critérios de aceite
 
-- [ ] P0 pode ser testado por comportamento, não por opinião visual.
+- [x] P0 pode ser testado por comportamento, não por opinião visual.
 
 ## Resultado
 

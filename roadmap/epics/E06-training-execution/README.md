@@ -8,7 +8,7 @@ Treino, preparação, mobilidade ou descanso do dia consultáveis e registrávei
 
 | Tarefa | Depende de | Resultado |
 | --- | --- | --- |
-| E06-T01 | E05-T04 | Projeção de treino e execução do dia |
+| E06-T01 | E05-T06 | Projeção autorizada de treino e execução do dia |
 | E06-T02 | E06-T01 | Página de treino do dia |
 | E06-T03 | E06-T02 | Preparação, séries e comentários |
 | E06-T04 | E06-T03 | Proveniência e histórico |

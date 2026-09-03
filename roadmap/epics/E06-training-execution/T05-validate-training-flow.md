@@ -1,18 +1,22 @@
 ---
-id: E07-T05
-epic: E07
-depends_on: [E07-T04]
+id: E06-T05
+epic: E06
+depends_on: [E06-T04]
 ---
 
-# Validar fluxo alimentar
+# Validar fluxo de treino
 
 ## Objetivo
 
-Validar o fluxo completo de consulta e registro alimentar antes da publicação.
+Validar o fluxo completo de consulta e execução de treino antes da publicação.
 
 ## Entradas
 
-- Funcionalidades operacionais de alimentação concluídas.
+- `docs/implementation/E06.md`
+- `docs/product/P0.md`
+- `src/features/training/`
+- `src/lib/security/`
+- `tests/`
 
 ## Entregáveis
 
@@ -20,9 +24,9 @@ Validar o fluxo completo de consulta e registro alimentar antes da publicação.
 
 ## Subtarefas
 
-- [ ] Testar tipo de dia, refeições, escolhas, alternativa, comentário e estados vazios.
+- [ ] Testar atribuição, preparação, séries, carga, descanso, histórico e estados vazios.
 - [ ] Validar acessibilidade básica e navegação móvel.
-- [ ] Confirmar unidades, unknowns e proveniência.
+- [ ] Confirmar datas, horários, IDs e proveniência.
 - [ ] Confirmar acesso anônimo e pareado, erro de gravação e concorrência.
 - [ ] Registrar limitações conhecidas.
 
