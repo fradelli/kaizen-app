@@ -12,7 +12,10 @@ Definir formatação, lint, tipos e testes mínimos antes das features.
 
 ## Entradas
 
-- Scaffold de E04-T01.
+- `docs/implementation/tasks/E04-T02.md`
+- `package.json`
+- `tsconfig.json`
+- `src/app/page.tsx`
 
 ## Entregáveis
 

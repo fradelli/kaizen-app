@@ -12,7 +12,10 @@ Impedir que acesso a dados, segredos e regras privilegiadas vaze para o cliente.
 
 ## Entradas
 
-- Arquitetura aprovada e scaffold validado.
+- `docs/implementation/tasks/E04-T03.md`
+- `docs/decisions/PRIVACY-AND-OPERATIONS.md`
+- `package.json`
+- `tsconfig.json`
 
 ## Entregáveis
 

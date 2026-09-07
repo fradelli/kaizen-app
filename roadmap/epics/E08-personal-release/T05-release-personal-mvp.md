@@ -12,7 +12,9 @@ Promover a versão validada para produção e encerrar o MVP pessoal de Dieta e 
 
 ## Entradas
 
-- Preview aprovado e operação validada.
+- `docs/implementation/E08.md`
+- `.github/PULL_REQUEST_TEMPLATE/release-promotion.md`
+- Runbook e evidências aprovados em E08-T04.
 
 ## Entregáveis
 

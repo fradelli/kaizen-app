@@ -1,7 +1,7 @@
 ---
 id: E04-T01
 epic: E04
-depends_on: [E03-T05]
+depends_on: [E03-T05, E00-T07]
 ---
 
 # Criar aplicação Next.js
@@ -12,7 +12,7 @@ Criar o scaffold aprovado sem remover a fundação documental.
 
 ## Entradas
 
-- Guia aprovado em E03-T05.
+- `docs/implementation/tasks/E04-T01.md`
 
 ## Entregáveis
 

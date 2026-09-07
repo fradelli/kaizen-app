@@ -22,10 +22,10 @@ Definir uma aplicação Next.js full-stack proporcional, com regras portáveis e
 
 ## Subtarefas
 
-- [ ] Definir boundaries de UI, aplicação, domínio e dados.
-- [ ] Definir Server/Client Components e mutações futuras.
-- [ ] Escolher banco e ORM por requisitos confirmados.
-- [ ] Definir testes, migrations e segurança.
+- [x] Definir boundaries de UI, aplicação, domínio e dados.
+- [x] Definir Server/Client Components e mutações futuras.
+- [x] Escolher banco e ORM por requisitos confirmados.
+- [x] Definir testes, migrations e segurança.
 
 ## Validações
 
@@ -34,7 +34,7 @@ Definir uma aplicação Next.js full-stack proporcional, com regras portáveis e
 
 ## Critérios de aceite
 
-- [ ] A arquitetura permite implementar o P0 em incrementos pequenos.
+- [x] A arquitetura permite implementar o P0 em incrementos pequenos.
 
 ## Resultado
 

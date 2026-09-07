@@ -1,7 +1,7 @@
 ---
 id: E07-T01
 epic: E07
-depends_on: [E05-T04]
+depends_on: [E05-T06]
 ---
 
 # Projetar dieta e execução do dia
@@ -12,7 +12,12 @@ Criar projeções server-side separadas do plano público e da dieta pessoal da 
 
 ## Entradas
 
-- Modelo persistido e fundação alimentar validada.
+- `docs/implementation/E07.md`
+- `docs/product/P0.md`
+- `docs/architecture/DATA-MODEL.md`
+- `data/nutrition/active.json`
+- `src/lib/security/authorization.ts`
+- `prisma/schema.prisma`
 
 ## Entregáveis
 

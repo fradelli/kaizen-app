@@ -22,10 +22,10 @@ Executar o gate final da migração alimentar antes de produto e arquitetura.
 
 ## Subtarefas
 
-- [ ] Validar JSON, schema, ponteiros, links e proveniência.
-- [ ] Confirmar separação entre original, revisão e plano vigente.
-- [ ] Confirmar ausência de diagnóstico e dados inventados.
-- [ ] Revisar privacidade do conteúdo versionado.
+- [x] Validar JSON, schema, ponteiros, links e proveniência.
+- [x] Confirmar separação entre original, revisão e plano vigente.
+- [x] Confirmar ausência de diagnóstico e dados inventados.
+- [x] Revisar privacidade do conteúdo versionado.
 
 ## Validações
 
@@ -33,8 +33,8 @@ Executar o gate final da migração alimentar antes de produto e arquitetura.
 
 ## Critérios de aceite
 
-- [ ] Não há falha aberta que impeça leitura do plano.
-- [ ] E03-T01 pode iniciar.
+- [x] Não há falha aberta que impeça leitura do plano.
+- [x] E03-T01 pode iniciar.
 
 ## Resultado
 

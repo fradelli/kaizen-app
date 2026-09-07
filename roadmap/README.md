@@ -19,15 +19,15 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 
 | ID | Status | Épico | Resultado |
 | --- | --- | --- | --- |
-| E00 | DONE | [Governança do repositório](epics/E00-repository-governance/README.md) | Repositório público governado e legado privado rastreável |
+| E00 | DONE | [Governança do repositório](epics/E00-repository-governance/README.md) | Repositório público governado, contexto otimizado e legado rastreável |
 | E01 | DONE | [Migração de treino](epics/E01-training-data-migration/README.md) | Fundação de treino migrada e validada |
 | E02 | DONE | [Migração de alimentação](epics/E02-nutrition-data-migration/README.md) | Plano alimentar revisado, versionado e validado |
 | E03 | DONE | [Produto e arquitetura](epics/E03-product-and-architecture/README.md) | P0, arquitetura e guia de implementação aprovados |
 | E04 | READY | [Fundação Next.js](epics/E04-nextjs-foundation/README.md) | Aplicação mínima com gates de qualidade |
-| E05 | PLANNED | [Banco e importação](epics/E05-database-and-import/README.md) | Persistência e importação íntegras |
-| E06 | PLANNED | [Execução de treino](epics/E06-training-read-only/README.md) | Consulta e registro utilizáveis de treino |
-| E07 | PLANNED | [Execução de alimentação](epics/E07-nutrition-read-only/README.md) | Consulta e registro utilizáveis de alimentação |
-| E08 | PLANNED | [Publicação pessoal](epics/E08-private-deployment/README.md) | Local, preview e produção verificados |
+| E05 | PLANNED | [Banco, importação e acesso](epics/E05-database-and-import/README.md) | Persistência, importação e acesso pessoal íntegros |
+| E06 | PLANNED | [Execução de treino](epics/E06-training-execution/README.md) | Consulta e registro utilizáveis de treino |
+| E07 | PLANNED | [Execução de alimentação](epics/E07-nutrition-execution/README.md) | Consulta e registro utilizáveis de alimentação |
+| E08 | PLANNED | [Publicação pessoal](epics/E08-personal-release/README.md) | Local, preview e produção verificados |
 | E09 | PLANNED | [Evolução futura](epics/E09-future-evolution/README.md) | Backlog posterior ao MVP pessoal |
 
 ## Todas as tarefas
@@ -40,6 +40,7 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E00-T04 | DONE | [Criar sistema de roadmap](epics/E00-repository-governance/T04-create-roadmap-system.md) | E00-T03 |
 | E00-T06 | DONE | [Adaptar governança de PR e CI/CD](epics/E00-repository-governance/T06-adapt-delivery-governance.md) | E00-T04 |
 | E00-T05 | DONE | [Registrar proveniência do legado](epics/E00-repository-governance/T05-register-legacy-provenance.md) | E00-T04, E00-T06 |
+| E00-T07 | DONE | [Otimizar contexto e sanear dependências pré-MVP](epics/E00-repository-governance/T07-optimize-agent-context.md) | E03-T05 |
 | E01-T01 | DONE | [Congelar snapshot de origem](epics/E01-training-data-migration/T01-freeze-source-snapshot.md) | E00-T05 |
 | E01-T02 | DONE | [Migrar dados canônicos de treino](epics/E01-training-data-migration/T02-migrate-canonical-training-data.md) | E01-T01 |
 | E01-T03 | DONE | [Migrar histórico de treino](epics/E01-training-data-migration/T03-migrate-training-history.md) | E01-T02 |
@@ -57,7 +58,7 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E03-T03 | DONE | [Definir privacidade e operação](epics/E03-product-and-architecture/T03-define-privacy-and-operations.md) | E03-T01 |
 | E03-T04 | DONE | [Definir arquitetura](epics/E03-product-and-architecture/T04-define-target-architecture.md) | E03-T02, E03-T03 |
 | E03-T05 | DONE | [Aprovar guia de implementação](epics/E03-product-and-architecture/T05-approve-implementation-guide.md) | E03-T04 |
-| E04-T01 | READY | [Criar aplicação Next.js](epics/E04-nextjs-foundation/T01-scaffold-nextjs.md) | E03-T05 |
+| E04-T01 | READY | [Criar aplicação Next.js](epics/E04-nextjs-foundation/T01-scaffold-nextjs.md) | E03-T05, E00-T07 |
 | E04-T02 | PLANNED | [Configurar qualidade estática](epics/E04-nextjs-foundation/T02-configure-static-quality.md) | E04-T01 |
 | E04-T03 | PLANNED | [Criar fronteira server-only](epics/E04-nextjs-foundation/T03-create-server-only-boundary.md) | E04-T02 |
 | E04-T04 | PLANNED | [Criar shell acessível](epics/E04-nextjs-foundation/T04-create-accessible-shell.md) | E04-T02 |
@@ -67,21 +68,22 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E05-T03 | PLANNED | [Criar importação idempotente](epics/E05-database-and-import/T03-create-idempotent-import.md) | E05-T02 |
 | E05-T04 | PLANNED | [Testar integridade persistida](epics/E05-database-and-import/T04-test-persisted-integrity.md) | E05-T03 |
 | E05-T05 | PLANNED | [Validar backup e restauração](epics/E05-database-and-import/T05-validate-backup-and-restore.md) | E05-T04 |
-| E06-T01 | PLANNED | [Projetar treino e execução do dia](epics/E06-training-read-only/T01-project-active-training-plan.md) | E05-T04 |
-| E06-T02 | PLANNED | [Criar página de treino do dia](epics/E06-training-read-only/T02-create-weekly-training-page.md) | E06-T01 |
-| E06-T03 | PLANNED | [Registrar preparação, séries e comentários](epics/E06-training-read-only/T03-create-session-and-exercise-details.md) | E06-T02 |
-| E06-T04 | PLANNED | [Exibir proveniência e histórico](epics/E06-training-read-only/T04-show-training-provenance.md) | E06-T03 |
-| E06-T05 | PLANNED | [Validar fluxo de treino](epics/E06-training-read-only/T05-validate-training-flow.md) | E06-T04 |
-| E07-T01 | PLANNED | [Projetar dieta e execução do dia](epics/E07-nutrition-read-only/T01-project-active-nutrition-plan.md) | E05-T04 |
-| E07-T02 | PLANNED | [Criar página de dieta do dia](epics/E07-nutrition-read-only/T02-create-nutrition-page.md) | E07-T01 |
-| E07-T03 | PLANNED | [Registrar escolhas, cumprimento e comentários](epics/E07-nutrition-read-only/T03-show-meals-and-alternatives.md) | E07-T02 |
-| E07-T04 | PLANNED | [Exibir segurança e proveniência](epics/E07-nutrition-read-only/T04-show-nutrition-safety.md) | E07-T03 |
-| E07-T05 | PLANNED | [Validar fluxo alimentar](epics/E07-nutrition-read-only/T05-validate-nutrition-flow.md) | E07-T04 |
-| E08-T01 | PLANNED | [Publicar preview](epics/E08-private-deployment/T01-deploy-preview.md) | E06-T05, E07-T05 |
-| E08-T02 | PLANNED | [Proteger mutações e dados pessoais](epics/E08-private-deployment/T02-protect-access.md) | E08-T01 |
-| E08-T03 | PLANNED | [Preparar produção](epics/E08-private-deployment/T03-prepare-production.md) | E08-T02, E05-T05 |
-| E08-T04 | PLANNED | [Validar operação e rollback](epics/E08-private-deployment/T04-validate-operations-and-rollback.md) | E08-T03 |
-| E08-T05 | PLANNED | [Publicar MVP pessoal](epics/E08-private-deployment/T05-release-private-mvp.md) | E08-T04 |
+| E05-T06 | PLANNED | [Implementar acesso pessoal](epics/E05-database-and-import/T06-implement-personal-access.md) | E05-T05 |
+| E06-T01 | PLANNED | [Projetar treino e execução do dia](epics/E06-training-execution/T01-project-active-training-plan.md) | E05-T06 |
+| E06-T02 | PLANNED | [Criar página de treino do dia](epics/E06-training-execution/T02-create-daily-training-page.md) | E06-T01 |
+| E06-T03 | PLANNED | [Registrar preparação, séries e comentários](epics/E06-training-execution/T03-record-training-execution.md) | E06-T02 |
+| E06-T04 | PLANNED | [Exibir proveniência e histórico](epics/E06-training-execution/T04-show-training-provenance.md) | E06-T03 |
+| E06-T05 | PLANNED | [Validar fluxo de treino](epics/E06-training-execution/T05-validate-training-flow.md) | E06-T04 |
+| E07-T01 | PLANNED | [Projetar dieta e execução do dia](epics/E07-nutrition-execution/T01-project-active-nutrition-plan.md) | E05-T06 |
+| E07-T02 | PLANNED | [Criar página de dieta do dia](epics/E07-nutrition-execution/T02-create-nutrition-page.md) | E07-T01 |
+| E07-T03 | PLANNED | [Registrar escolhas, cumprimento e comentários](epics/E07-nutrition-execution/T03-record-meal-execution.md) | E07-T02 |
+| E07-T04 | PLANNED | [Exibir segurança e proveniência](epics/E07-nutrition-execution/T04-show-nutrition-safety.md) | E07-T03 |
+| E07-T05 | PLANNED | [Validar fluxo alimentar](epics/E07-nutrition-execution/T05-validate-nutrition-flow.md) | E07-T04 |
+| E08-T01 | PLANNED | [Publicar preview](epics/E08-personal-release/T01-deploy-preview.md) | E06-T05, E07-T05 |
+| E08-T02 | PLANNED | [Validar e reforçar proteção](epics/E08-personal-release/T02-protect-access.md) | E08-T01, E05-T06 |
+| E08-T03 | PLANNED | [Preparar produção](epics/E08-personal-release/T03-prepare-production.md) | E08-T02, E05-T05 |
+| E08-T04 | PLANNED | [Validar operação e rollback](epics/E08-personal-release/T04-validate-operations-and-rollback.md) | E08-T03 |
+| E08-T05 | PLANNED | [Publicar MVP pessoal](epics/E08-personal-release/T05-release-personal-mvp.md) | E08-T04 |
 
 ## Regra de atualização
 

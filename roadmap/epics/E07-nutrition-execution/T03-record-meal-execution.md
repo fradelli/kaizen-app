@@ -12,7 +12,11 @@ Apresentar as opções aprovadas e registrar o resultado real de cada refeição
 
 ## Entradas
 
-- Página de alimentação e plano estruturado.
+- `docs/implementation/E07.md`
+- `docs/product/P0.md`
+- `data/nutrition/active.json`
+- `src/lib/security/authorization.ts`
+- `src/features/nutrition/`
 
 ## Entregáveis
 

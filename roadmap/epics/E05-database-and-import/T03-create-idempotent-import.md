@@ -12,7 +12,12 @@ Importar a fundação documental sem duplicar ou alterar silenciosamente os dado
 
 ## Entradas
 
-- JSONs validados, manifesto e banco migrado.
+- `docs/implementation/E05.md`
+- `docs/decisions/DATA-SOURCE-TRANSITION.md`
+- `docs/migration/MIGRATION-MANIFEST.md`
+- `data/active.json`
+- `data/nutrition/active.json`
+- `prisma/schema.prisma`
 
 ## Entregáveis
 

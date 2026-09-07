@@ -12,7 +12,12 @@ Exibir versão, origem, unknowns e ressalvas do conteúdo alimentar.
 
 ## Entradas
 
-- Plano ativo, revisão e documento original.
+- `docs/implementation/E07.md`
+- `data/nutrition/active.json`
+- `data/nutrition/reviews/e02-t03-review-metadata.json`
+- `docs/guides/NUTRITION.md`
+- `docs/migration/MIGRATION-MANIFEST.md`
+- `src/features/nutrition/`
 
 ## Entregáveis
 

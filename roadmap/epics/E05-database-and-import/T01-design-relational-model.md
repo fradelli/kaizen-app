@@ -12,7 +12,12 @@ Modelar somente entidades, relações e constraints exigidas pelo P0.
 
 ## Entradas
 
-- Dados validados e arquitetura aprovada.
+- `docs/implementation/E05.md`
+- `docs/architecture/TARGET-ARCHITECTURE.md`
+- `docs/decisions/DATABASE-AND-ORM.md`
+- `data/active.json`
+- `data/exercises.json`
+- `data/nutrition/active.json`
 
 ## Entregáveis
 
@@ -24,6 +29,7 @@ Modelar somente entidades, relações e constraints exigidas pelo P0.
 
 - [ ] Mapear IDs, versões, status e proveniência.
 - [ ] Modelar definições, ativações, atribuições e execuções de treino e alimentação.
+- [ ] Modelar rate limit sem armazenar chave de pareamento ou IP bruto.
 - [ ] Definir unicidade e integridade referencial.
 - [ ] Classificar medição e aplicabilidade de carga de todo exercício usado, sem default por inferência.
 - [ ] Excluir domínios futuros.

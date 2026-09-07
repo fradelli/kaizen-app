@@ -2,6 +2,17 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-02 — contexto e sequência pré-MVP saneados
+
+- Reduzido o contrato raiz e distribuídas instruções específicas para `roadmap/`, `data/`, `docs/` e migração.
+- Modularizado o guia de implementação em cinco pacotes de E04 e pacotes concisos para E05–E08.
+- Substituídas entradas vagas das tarefas futuras por caminhos exatos e contexto limitado.
+- Criada E05-T06 para implementar sessão, autorização e pareamento antes dos fluxos operacionais.
+- Limitado E05-T05 ao backup/restore local; Neon e restore gerenciado permanecem em E08.
+- Renomeados os diretórios E06–E08 para refletir execução e publicação pessoal, com links atualizados.
+- Normalizadas as checklists concluídas de E02/E03 e mantida E04-T01 como próxima tarefa pronta.
+- Concluída E00-T07 sem criar aplicação, dependência, workflow, banco ou ambiente.
+
 ## 2026-09-02 — guia de implementação do P0
 
 - Convertidas as decisões aprovadas em uma ordem incremental de E04-T01 a E08-T05, com uma PR por tarefa.

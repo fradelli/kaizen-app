@@ -221,6 +221,15 @@ O domínio nasce preparado, mas a complexidade fica adiada:
 
 Não serão criadas tabelas vazias de usuário ou telas de login no MVP. Preparação significa boundaries e ownership corretos, não funcionalidade prematura.
 
+## Ordem de implementação da proteção
+
+- E05-T05 comprova `pg_dump` e `pg_restore` entre bancos PostgreSQL locais descartáveis; não depende de Neon.
+- E05-T06 implementa sessão, pareamento, autorização, origem e limite de tentativas antes das telas operacionais.
+- E06 e E07 consomem essa fronteira e não criam segurança ad hoc.
+- E08-T01 configura Vercel e Neon somente com dados de homologação separados.
+- E08-T02 valida e reforça a proteção já existente sob HTTPS real.
+- E08-T03/T04 configuram backup externo e comprovam restore em branch Neon isolada antes da produção.
+
 ## Critérios operacionais para E08
 
 - Anônimo lê somente shell e conteúdo público; testes provam ausência de dados operacionais.
