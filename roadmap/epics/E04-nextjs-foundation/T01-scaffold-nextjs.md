@@ -20,10 +20,10 @@ Criar o scaffold aprovado sem remover a fundação documental.
 
 ## Subtarefas
 
-- [ ] Fixar versões e package manager.
-- [ ] Criar App Router e TypeScript.
-- [ ] Preservar `data/`, `docs/`, `roadmap/` e `schemas/`.
-- [ ] Registrar comandos locais.
+- [x] Fixar versões e package manager.
+- [x] Criar App Router e TypeScript.
+- [x] Preservar `data/`, `docs/`, `roadmap/` e `schemas/`.
+- [x] Registrar comandos locais.
 
 ## Validações
 
@@ -31,9 +31,9 @@ Criar o scaffold aprovado sem remover a fundação documental.
 
 ## Critérios de aceite
 
-- [ ] Página mínima abre localmente.
-- [ ] Nenhuma feature antecipada foi criada.
+- [x] Página mínima abre localmente.
+- [x] Nenhuma feature antecipada foi criada.
 
 ## Resultado
 
-Ainda não concluída.
+Scaffold Next.js 16.3.4 criado com Node.js 24.20.0, pnpm 11.25.0, React 19.2.8 e TypeScript estrito. Instalação e build passaram, e a página mínima respondeu HTTP 200 localmente sem antecipar features, banco ou autenticação.

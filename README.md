@@ -1,60 +1,51 @@
 # Kaizen
 
-Fonte de verdade versionada para regras, planos e evolução incremental de um aplicativo pessoal de treino, alimentação e rotina.
+Fonte de verdade versionada e aplicação incremental para treino e alimentação pessoal.
 
-A fundação documental está concluída. Dados, regras, histórico, produto e arquitetura foram aprovados; a aplicação Next.js e o banco serão introduzidos incrementalmente pelo guia de implementação.
+A fundação documental está concluída. A aplicação Next.js começa mínima e evolui por tarefas pequenas, preservando dados, decisões e histórico aprovados.
 
 ## Estado atual
 
-- Repositório inicializado.
 - Branches `developer`, `staging` e `master` publicadas.
-- Roadmap documental criado e centralizado em `roadmap/README.md`.
-- Repositório público por decisão do proprietário, com publicação controlada por allowlist no manifesto.
-- Fundação de treino validada; dados, histórico, documentação e schemas possuem proveniência, integridade e exposição revisadas.
-- Fundação alimentar validada; plano, ponteiro, schema, guia e relatório possuem proveniência e limites explícitos.
-- Produto, arquitetura, privacidade, operação e sequência de implementação do P0 aprovados.
-- Contexto do Codex segmentado e guia de implementação modularizado por tarefa/épico.
-- E04-T01 está pronta para criar a aplicação Next.js.
-- Nenhuma aplicação, dependência ou banco criado.
+- Fundações de treino e alimentação validadas.
+- Produto, arquitetura, privacidade e operação do P0 aprovados.
+- Node.js 24.20.0, pnpm 11.25.0 e Next.js 16.3.4 fixados.
+- Aplicação mínima disponível localmente com `pnpm dev`.
+- Nenhuma feature de negócio ou banco implementado ainda.
+- E04-T02 é o próximo incremento após o merge de E04-T01.
 
 ## Acesso rápido
 
-- [Status completo do roadmap](roadmap/README.md)
 - [Tarefa ativa](roadmap/ACTIVE.md)
-- [Branches e ambientes](docs/decisions/BRANCHING-AND-ENVIRONMENTS.md)
-- [Padrão de pull request](docs/delivery/PULL-REQUEST-STANDARD.md)
-- [Governança de CI/CD](docs/decisions/CI-CD-GOVERNANCE.md)
-- [Guia de implementação do P0](docs/implementation/P0-IMPLEMENTATION-GUIDE.md)
-- [Definição do produto P0](docs/product/P0.md)
+- [Status completo do roadmap](roadmap/README.md)
+- [Produto P0](docs/product/P0.md)
 - [Arquitetura alvo](docs/architecture/TARGET-ARCHITECTURE.md)
 - [Privacidade e operação](docs/decisions/PRIVACY-AND-OPERATIONS.md)
+- [Guia modular de implementação](docs/implementation/P0-IMPLEMENTATION-GUIDE.md)
 - [Plano ativo de treino](data/active.json)
 - [Plano ativo de alimentação](data/nutrition/active.json)
 - [Política do repositório público](docs/decisions/PUBLIC-REPOSITORY-AND-DATA-POLICY.md)
-- [Regras da migração](docs/migration/README.md)
-- [Repositórios de origem](docs/migration/SOURCE-REPOSITORIES.md)
 - [Manifesto de migração](docs/migration/MIGRATION-MANIFEST.md)
-- [Relatório de validação do treino](docs/migration/TRAINING-VALIDATION-REPORT.md)
-- [Guia de consulta do treino](docs/guides/TRAINING-GUIDE.md)
-- [Resumo diário](docs/guides/DAILY-TRAINING-SUMMARY.md)
-- [Como atualizar os dados](docs/guides/UPDATING-TRAINING-DATA.md)
-- [Evidências e limites](docs/evidence/TRAINING-EVIDENCE-AND-LIMITS.md)
-- [Schemas de treino](schemas/README.md)
+- [Schemas](schemas/README.md)
+
+## Desenvolvimento local
+
+```powershell
+corepack enable
+pnpm install --frozen-lockfile
+pnpm dev
+```
+
+A aplicação fica disponível em `http://localhost:3000`. Os comandos de qualidade entram em E04-T02.
 
 ## Fluxo de branches
 
 ```text
-feature branch
-      ↓ PR
-developer
-      ↓ promoção
-staging
-      ↓ promoção
-master
+branch de tarefa -> developer -> staging -> master
 ```
 
-`developer` é a branch de integração, `staging` será associada ao preview estável e `master` à produção quando a Vercel for configurada no épico E08.
+Tarefas entram em `developer` por squash. Promoções para `staging` e `master` usam merge commit.
 
 ## Privacidade
 
-O código e a documentação deste repositório são públicos. Isso não torna públicos bancos, ambientes ou dados de execução futuros. Somente artefatos classificados e aprovados no manifesto podem ser versionados; credenciais, identidade, detalhes médicos e dados pessoais desnecessários permanecem fora do Git.
+O repositório e as definições aprovadas são públicos. Bancos, segredos e registros operacionais permanecem privados e são protegidos no servidor.

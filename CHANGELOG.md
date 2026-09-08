@@ -2,6 +2,15 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-07 — aplicação Next.js inicial criada
+
+- Fixados Node.js 24.20.0, pnpm 11.25.0, Next.js 16.3.4, React 19.2.8 e TypeScript 7.0.2.
+- Criado o App Router mínimo com metadados de privacidade, página inicial responsiva e TypeScript estrito.
+- Gerado e versionado o lockfile de instalação reproduzível sem adicionar banco, autenticação ou features de negócio.
+- Desabilitada a geração automática de instruções do Next.js para preservar o contexto enxuto e controlado do `AGENTS.md`.
+- Validados instalação, build de produção e carregamento local com HTTP 200.
+- Concluída E04-T01 e liberada E04-T02 para configurar qualidade estática e testes.
+
 ## 2026-09-02 — contexto e sequência pré-MVP saneados
 
 - Reduzido o contrato raiz e distribuídas instruções específicas para `roadmap/`, `data/`, `docs/` e migração.
