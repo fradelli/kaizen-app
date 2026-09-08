@@ -1,12 +1,12 @@
 # Tarefa ativa
 
-- **Tarefa:** E04-T01 — Criar aplicação Next.js
+- **Tarefa:** E04-T02 — Configurar qualidade estática
 - **Status:** READY
-- **Branch prevista:** `codex/E04-T01-scaffold-nextjs`
-- **Entrada principal:** `docs/implementation/tasks/E04-T01.md`.
-- **Resultado anterior:** E00-T07 reduziu o contexto, modularizou o guia e corrigiu as dependências de segurança e infraestrutura.
-- **Objetivo:** criar o scaffold Next.js mínimo na raiz sem remover a fundação documental e de dados.
-- **Entregável:** aplicação instalável, executável localmente e com build reproduzível.
-- **Depois:** liberar E04-T02 para configurar qualidade estática e testes.
+- **Branch prevista:** `codex/E04-T02-configure-static-quality`
+- **Entrada principal:** `docs/implementation/tasks/E04-T02.md`.
+- **Resultado anterior:** E04-T01 criou e validou a aplicação Next.js mínima sem antecipar features de negócio.
+- **Objetivo:** configurar formatação, lint, tipos e testes mínimos antes das features.
+- **Entregável:** configurações e scripts rápidos e reproduzíveis definidos no pacote da tarefa.
+- **Depois:** liberar E04-T03 e E04-T04, selecionando E04-T03 como próximo incremento.
 
-Esta é a primeira tarefa autorizada a introduzir código e dependências. O pacote de E04-T01 é autocontido; não leia o guia global nem documentos de E05–E08. Comprove instalação, execução local e build antes do merge.
+O pacote de E04-T02 é autocontido. Preserve o scaffold e a fundação documental, não antecipe boundaries, shell, CI, banco ou features, e comprove todos os gates localmente antes do merge.
