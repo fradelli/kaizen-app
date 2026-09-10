@@ -1,7 +1,7 @@
 ---
 id: E04-T05
 epic: E04
-depends_on: [E04-T02, E04-T03, E04-T04]
+depends_on: [E04-T02, E04-T03, E04-T06]
 ---
 
 # Configurar CI mínimo
@@ -9,6 +9,10 @@ depends_on: [E04-T02, E04-T03, E04-T04]
 ## Objetivo
 
 Implementar os gates estáveis aprovados na governança de CI para pull requests e promoções.
+
+## Contexto
+
+O CI deve proteger a validação de prontidão e a integração do Design System antes do shell. E04-T08 complementará o workflow com acesso mínimo ao package privado já publicado.
 
 ## Entradas
 
@@ -23,6 +27,11 @@ Implementar os gates estáveis aprovados na governança de CI para pull requests
 - Workflow reutilizável de PR.
 - Validação mecânica de branches, títulos, descrições e direção.
 - Rulesets das branches protegidas.
+
+## Fora do escopo
+
+- Configurar credencial ou acesso ao GitHub Packages antes de E04-T08.
+- Instalar `@fradelli/ui`, Tailwind ou fontes.
 
 ## Subtarefas
 
@@ -40,6 +49,15 @@ Implementar os gates estáveis aprovados na governança de CI para pull requests
 ## Critérios de aceite
 
 - [ ] As três branches protegidas recebem apenas mudanças que passam nos gates aplicáveis.
+
+## Riscos
+
+- Workflow local e remoto executarem matrizes diferentes.
+- Antecipar autenticação de package sem consumidor real.
+
+## Rollback
+
+Reverter o workflow defeituoso sem remover ou relaxar os gates locais.
 
 ## Resultado
 

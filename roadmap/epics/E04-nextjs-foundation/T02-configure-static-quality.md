@@ -23,9 +23,9 @@ Definir formatação, lint, tipos e testes mínimos antes das features.
 
 ## Subtarefas
 
-- [ ] Configurar formatação e lint sem correção destrutiva em CI.
-- [ ] Configurar typecheck e testes.
-- [ ] Criar convenções de imports e módulos.
+- [x] Configurar formatação e lint sem correção destrutiva em CI.
+- [x] Configurar typecheck e testes.
+- [x] Criar convenções de imports e módulos.
 
 ## Validações
 
@@ -33,8 +33,8 @@ Definir formatação, lint, tipos e testes mínimos antes das features.
 
 ## Critérios de aceite
 
-- [ ] Gates são rápidos e reproduzíveis.
+- [x] Gates são rápidos e reproduzíveis.
 
 ## Resultado
 
-Ainda não concluída.
+Concluída pela [PR #24](https://github.com/fradelli/kaizen-app/pull/24), merge commit `a2962a8f3c52018fdbf235359310622126c75be9`. Foram adicionados Prettier, ESLint, Vitest, Testing Library, cobertura mínima de 80% e scripts reproduzíveis de formato, lint, tipos, testes e build. Qualidade, testes, build e auditoria de dependências foram comprovados; CI, integridade de dados e validação manual permaneceram fora do escopo.

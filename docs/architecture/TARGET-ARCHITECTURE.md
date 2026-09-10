@@ -6,6 +6,7 @@
 - Decisão: aprovada
 - Tarefa: `E03-T04`
 - Escopo: MVP pessoal de Dieta e Treino
+- Revisão visual: `E04-T06` substitui somente a fundação visual exclusiva local por [`@fradelli/ui`](../decisions/SHARED-DESIGN-SYSTEM-ADOPTION.md); as demais decisões de E03 permanecem válidas.
 
 ## Drivers
 
@@ -25,7 +26,8 @@
 | UI | React 19 | versão compatível exigida pelo Next.js pinado |
 | Linguagem | TypeScript em modo estrito | sem `any` implícito e sem emissão no typecheck |
 | Pacotes | pnpm via Corepack | campo `packageManager` e lockfile obrigatórios |
-| Estilos | CSS Modules + tokens globais | sem framework de componentes no P0 |
+| Design System | `@fradelli/ui` por versão exata | contrato externo versionado; primeira integração planejada em `0.1.0` |
+| Estilos | Tailwind CSS 4 + CSS público do Design System | pins comprovados na integração; CSS Modules somente para composição local |
 | Validação | Zod | schemas na fronteira de entrada; domínio mantém invariantes próprias |
 | Banco | PostgreSQL | local em container; Neon em preview e produção |
 | ORM | Prisma ORM 7 estável | Client gerado, driver adapter PostgreSQL e Prisma Migrate |
@@ -145,6 +147,8 @@ Tipos do Prisma não atravessam a fronteira para UI ou domínio.
 ### UI
 
 Server Components carregam DTOs pelos casos de uso. Client Components existem somente para interação local: formulários, estados de envio, confirmação e foco. Eles recebem DTOs serializáveis e não importam repositórios, Prisma ou segredos.
+
+Tokens, tipografia, foco, motion, estados visuais genéricos e primitives acessíveis vêm de `@fradelli/ui`. O Kaizen mantém shell, layouts, páginas, rotas, textos, i18n, calendário composto e o mapeamento entre cores e conceitos do domínio. CSS local serve apenas à composição e não duplica o contrato visual compartilhado.
 
 ### Dependências permitidas
 
@@ -402,7 +406,7 @@ SQLite, mocks do Prisma e snapshots visuais não substituem testes relacionais. 
 
 ## Incrementos
 
-1. E04 cria scaffold, qualidade, boundary server-only, shell e CI sem regra de negócio.
+1. E04 cria scaffold, qualidade, boundary server-only e CI; registra a decisão compartilhada, valida prontidão, integra `@fradelli/ui` por versão exata e só então cria o shell, sem regra de negócio.
 2. E05 modela PostgreSQL, cria metadados, migrations, importador, restore local e a fronteira de acesso pessoal.
 3. E06 implementa projeção e registros de Treino consumindo a autorização já testada.
 4. E07 implementa projeção e registros de Dieta consumindo a mesma autorização.
@@ -414,14 +418,14 @@ Cada incremento deve manter lint, tipos, testes, integridade e build verdes. Nã
 
 - NestJS, backend separado ou microserviços: duplicam deploy e contratos sem consumidor externo.
 - REST/OpenAPI interna: adiciona serialização e manutenção entre partes do mesmo Next.js.
-- Monorepo: existe uma aplicação e nenhum pacote reutilizado.
+- Monorepo para compartilhar UI: acopla ciclos de entrega independentes; o Design System permanece em repositório próprio e chega ao Kaizen por package versionado.
 - Edge Runtime: Prisma/PostgreSQL, criptografia e ferramentas operacionais usam Node com menos restrições.
 - SQLite em produção ou testes de integração: não representa constraints e concorrência do PostgreSQL alvo.
 - Supabase como plataforma completa: autenticação, storage e realtime não são necessários.
 - Drizzle como ORM principal: Prisma oferece migrations e modelo tipado suficientes para o time/projeto atual.
 - Prisma Accelerate: Neon já oferece pooling; outra camada não resolve requisito confirmado.
 - Redux ou TanStack Query: Server Components e estado local de formulário cobrem o P0.
-- Tailwind ou biblioteca de componentes: CSS Modules e tokens atendem duas telas sem nova taxonomia.
+- Tailwind ou biblioteca de componentes: rejeição original de E03, substituída em E04-T06 após surgir um package compartilhado com ownership e consumidor reais; CSS Modules continuam válidos somente para composição local.
 - autenticação completa: pareamento pessoal atende o MVP; boundaries já aceitam evolução futura.
 
 ## Fontes oficiais
@@ -434,6 +438,8 @@ Cada incremento deve manter lint, tipos, testes, integridade e build verdes. Nã
 - [Prisma — Neon](https://docs.prisma.io/docs/orm/v6/overview/databases/neon)
 - [Prisma — Migrate deploy](https://docs.prisma.io/docs/orm/prisma-client/deployment/deploy-database-changes-with-prisma-migrate)
 - [Neon — Connection pooling](https://neon.com/docs/connect/connection-pooling)
+- [Decisão local — Adoção do Design System compartilhado](../decisions/SHARED-DESIGN-SYSTEM-ADOPTION.md)
+- [ADR 0001 — Fundação do Design System compartilhado](https://github.com/fradelli/design-system/blob/main/docs/decisions/0001-shared-design-system-foundation.md)
 
 ## Critério de conclusão
 
