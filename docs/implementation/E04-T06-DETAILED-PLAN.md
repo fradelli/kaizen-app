@@ -59,8 +59,8 @@ Essas pendências devem permanecer verificáveis em E04-T07/E04-T08. Não usar p
 
 ## Pré-condições e proteção do trabalho existente
 
-1. E04-T02 foi concluída na branch `codex/E04-T02-configure-static-quality`, commit `4294a273236ba1ab3da3455b65077e62927cf946`.
-2. `developer` deve conter esse resultado antes da abertura/merge da PR de E04-T06, sem trazer a implementação de E04-T02 para esta branch documental.
+1. E04-T02 foi concluída pela PR #24 e integrada em `developer` no commit `a2962a8f3c52018fdbf235359310622126c75be9`.
+2. A branch E04-T06 incorporou a base atualizada por merge normal, sem reescrever histórico; o diff da PR permanece limitado à tarefa documental.
 3. O worktree observado já contém alterações não commitadas nos documentos da adoção. Preservá-las e revisar arquivo por arquivo; não substituir arquivos inteiros sem comparar o diff.
 4. Antes de editar, reconciliar `Entradas`, `Entregáveis` e `Ações de arquivo`. O pacote atual menciona mutações que não aparecem em `Entradas`, enquanto o worktree contém mudanças adicionais.
 5. Classificar qualquer mudança em `roadmap/epics/E09-future-evolution/README.md` como fora do escopo, salvo se uma necessidade explícita e rastreável for adicionada ao pacote.
@@ -390,7 +390,7 @@ Resultado esperado: nenhum erro de whitespace e nenhuma credencial. Menções li
 
 ## Critérios de aceite do plano
 
-- [x] E04-T02 está concluída na branch própria; sua integração em `developer` permanece como gate da PR.
+- [x] E04-T02 está concluída e integrada em `developer` pela PR #24.
 - [ ] O inventário de `Entradas` cobre exatamente o diff pretendido.
 - [ ] A decisão local referencia o ADR externo sem copiar a paleta ou criar fonte normativa concorrente.
 - [ ] “CSS Modules + tokens globais” deixa de ser a fundação visual exclusiva e permanece rastreável como decisão substituída.
@@ -432,6 +432,5 @@ Resultado esperado: nenhum erro de whitespace e nenhuma credencial. Menções li
 
 ## Pendências após a implementação
 
-1. Integrar E04-T02 em `developer` antes de abrir/mesclar a PR de E04-T06.
-2. Executar a validação local adicional do proprietário e registrar qualquer divergência encontrada.
-3. Atualizar o estado canônico de E04-T06 somente quando a base contiver E04-T02 e a validação final estiver concluída.
+1. Aguardar os checks remotos da PR da E04-T06 antes do merge.
+2. Se uma validação local posterior encontrar divergência, corrigi-la em nova tarefa sem reescrever a decisão já mergeada silenciosamente.

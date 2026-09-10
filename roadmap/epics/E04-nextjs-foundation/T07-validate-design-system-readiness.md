@@ -12,7 +12,7 @@ Determinar, sem instalar o package, se a base técnica do Kaizen está pronta pa
 
 ## Contexto
 
-`@fradelli/ui@0.1.0` já foi publicado de forma privada no GitHub Packages. Node 24.20.0 e React 19.2.8 atendem aos engines e peers do package. E04-T02 foi concluída na branch própria, mas seu resultado precisa estar integrado com o CI de E04-T05 antes deste gate; a estratégia segura de autenticação também precisa ser comprovada antes da instalação.
+`@fradelli/ui@0.1.0` já foi publicado de forma privada no GitHub Packages. Node 24.20.0 e React 19.2.8 atendem aos engines e peers do package. E04-T02 está integrada em `developer`, mas seus gates precisam ser reexecutados com o CI de E04-T05 antes deste gate; a estratégia segura de autenticação também precisa ser comprovada antes da instalação.
 
 ## Entradas
 

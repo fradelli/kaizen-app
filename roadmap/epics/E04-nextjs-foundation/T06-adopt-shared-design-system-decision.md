@@ -27,6 +27,7 @@ A arquitetura aprovada em E03 escolheu CSS Modules e tokens globais locais. O AD
 - `docs/implementation/tasks/E04-T07.md`
 - `docs/implementation/tasks/E04-T08.md`
 - `roadmap/epics/E04-nextjs-foundation/README.md`
+- `roadmap/epics/E04-nextjs-foundation/T02-configure-static-quality.md`
 - `roadmap/epics/E04-nextjs-foundation/T04-create-accessible-shell.md`
 - `roadmap/epics/E04-nextjs-foundation/T05-configure-minimal-ci.md`
 - `roadmap/epics/E04-nextjs-foundation/T07-validate-design-system-readiness.md`
@@ -61,10 +62,10 @@ A arquitetura aprovada em E03 escolheu CSS Modules e tokens globais locais. O AD
 
 ## Subtarefas
 
-- [ ] Registrar a decisão, consequências e fronteiras de ownership.
-- [ ] Marcar as escolhas anteriores substituídas sem alterar resultados concluídos.
-- [ ] Definir prontidão sem instalação como gate e GitHub Packages como estado integrado.
-- [ ] Registrar contratos ausentes como bloqueios, sem inventar exports ou versões.
+- [x] Registrar a decisão, consequências e fronteiras de ownership.
+- [x] Marcar as escolhas anteriores substituídas sem alterar resultados concluídos.
+- [x] Definir prontidão sem instalação como gate e GitHub Packages como estado integrado.
+- [x] Registrar contratos ausentes como bloqueios, sem inventar exports ou versões.
 
 ## Validações
 
@@ -74,10 +75,10 @@ A arquitetura aprovada em E03 escolheu CSS Modules e tokens globais locais. O AD
 
 ## Critérios de aceite
 
-- [ ] A fonte normativa e os trechos substituídos estão explícitos.
-- [ ] Kaizen e Design System possuem responsabilidades não sobrepostas.
-- [ ] Shell e telas de domínio permanecem bloqueados pela adoção técnica.
-- [ ] Decisões e tarefas concluídas continuam preservadas como histórico.
+- [x] A fonte normativa e os trechos substituídos estão explícitos.
+- [x] Kaizen e Design System possuem responsabilidades não sobrepostas.
+- [x] Shell e telas de domínio permanecem bloqueados pela adoção técnica.
+- [x] Decisões e tarefas concluídas continuam preservadas como histórico.
 
 ## Riscos
 
@@ -91,4 +92,4 @@ Antes da adoção técnica, reverter somente esta decisão documental. Depois qu
 
 ## Resultado
 
-Ainda não concluída.
+Concluída em 2026-09-10. A decisão local adotou `@fradelli/ui@0.1.0` por referência, substituiu somente a fundação visual exclusiva local e preservou as demais decisões de E03. Arquitetura, guia, pacotes e roadmap foram sincronizados; E04-T07 ficou responsável pelo GO/NO-GO sem instalação e E04-T08 pela integração técnica. Links, 53 IDs, dependências, ciclos, escopo, whitespace e ausência de segredos foram validados sem falhas.

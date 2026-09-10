@@ -11,6 +11,13 @@ Mudanças materiais do projeto serão registradas neste arquivo.
 - Reordenada E04 para concluir CI, prontidão e integração antes do shell; telas de Treino e Dieta passam a depender do shell.
 - Nenhum package, Tailwind, fonte, componente, credencial ou código de aplicação foi adicionado nesta atualização.
 
+## 2026-09-10 — qualidade estática configurada
+
+- Integrada a E04-T02 pela PR #24 com Prettier, ESLint, Vitest, Testing Library e cobertura mínima de 80%.
+- Adicionados scripts reproduzíveis de formato, lint, tipos, testes, cobertura e build.
+- Alinhados ESLint 9.39.5 e TypeScript 6.0.3 aos peers suportados pelo Next.js 16.3.4.
+- Preservados documentação, dados, CI, Design System, banco, boundaries e features fora do escopo da tarefa.
+
 ## 2026-09-07 — aplicação Next.js inicial criada
 
 - Fixados Node.js 24.20.0, pnpm 11.25.0, Next.js 16.3.4, React 19.2.8 e TypeScript 7.0.2.
