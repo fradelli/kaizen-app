@@ -27,6 +27,9 @@ Orientar a sequência da primeira linha de código até produção sem obrigar o
 - JSON versionado define planos; PostgreSQL guarda importações, atribuições e execuções.
 - Sessão e autorização server-side são implementadas em E05-T06, antes de qualquer feature operacional.
 - E05-T05 comprova backup/restore local; Neon e restore gerenciado pertencem a E08.
+- `@fradelli/ui@0.1.0` será adotado antes do shell, após um gate de prontidão sem instalação e por versão exata no GitHub Packages.
+- O Design System mantém foundations e primitives sem domínio; shell, páginas, calendário e semântica de produto permanecem no Kaizen.
+- A [`decisão local de adoção`](../decisions/SHARED-DESIGN-SYSTEM-ADOPTION.md) registra a substituição visual, o ownership e o rollback sem duplicar o ADR normativo.
 - Cada tarefa usa branch e PR próprias para `developer`, com squash antes da próxima.
 
 ## Versões aprovadas
@@ -56,6 +59,10 @@ Verificadas em 2026-09-02. Atualização exige evidência de compatibilidade e s
 
 Não usar `prisma@latest`: o dist-tag observado na aprovação apontava para Prisma 8 release candidate. O pacote de E05 contém os pins estáveis aprovados.
 
+## Dependências visuais planejadas
+
+`@fradelli/ui` possui versão aprovada `0.1.0` e deve ser instalado exatamente assim em E04-T08. Tailwind CSS 4, `@tailwindcss/postcss` e PostCSS recebem pins exatos na execução de E04-T08 após reconfirmação de compatibilidade com o peer `>=4.3.0 <5`. Até lá, não adicionar `latest`, range, caminho local ou valor estimado.
+
 ## Pacotes de implementação
 
 | Escopo | Pacote | Fonte operacional |
@@ -65,6 +72,9 @@ Não usar `prisma@latest`: o dist-tag observado na aprovação apontava para Pri
 | E04-T03 | [`tasks/E04-T03.md`](tasks/E04-T03.md) | [`T03-create-server-only-boundary.md`](../../roadmap/epics/E04-nextjs-foundation/T03-create-server-only-boundary.md) |
 | E04-T04 | [`tasks/E04-T04.md`](tasks/E04-T04.md) | [`T04-create-accessible-shell.md`](../../roadmap/epics/E04-nextjs-foundation/T04-create-accessible-shell.md) |
 | E04-T05 | [`tasks/E04-T05.md`](tasks/E04-T05.md) | [`T05-configure-minimal-ci.md`](../../roadmap/epics/E04-nextjs-foundation/T05-configure-minimal-ci.md) |
+| E04-T06 | [`tasks/E04-T06.md`](tasks/E04-T06.md) | [`T06-adopt-shared-design-system-decision.md`](../../roadmap/epics/E04-nextjs-foundation/T06-adopt-shared-design-system-decision.md) |
+| E04-T07 | [`tasks/E04-T07.md`](tasks/E04-T07.md) | [`T07-validate-design-system-readiness.md`](../../roadmap/epics/E04-nextjs-foundation/T07-validate-design-system-readiness.md) |
+| E04-T08 | [`tasks/E04-T08.md`](tasks/E04-T08.md) | [`T08-integrate-versioned-design-system.md`](../../roadmap/epics/E04-nextjs-foundation/T08-integrate-versioned-design-system.md) |
 | E05 | [`E05.md`](E05.md) | [`E05`](../../roadmap/epics/E05-database-and-import/README.md) |
 | E06 | [`E06.md`](E06.md) | [`E06`](../../roadmap/epics/E06-training-execution/README.md) |
 | E07 | [`E07.md`](E07.md) | [`E07`](../../roadmap/epics/E07-nutrition-execution/README.md) |
@@ -76,24 +86,27 @@ Não usar `prisma@latest`: o dist-tag observado na aprovação apontava para Pri
 | ---: | --- | --- |
 | 1 | E04-T01 | instalação, execução local e build |
 | 2 | E04-T02 | formato, lint, tipos e testes |
-| 3 | E04-T03 | boundary server-only e ambiente testados |
-| 4 | E04-T04 | shell acessível com Dieta/Treino |
-| 5 | E04-T05 | CI e rulesets ativos |
-| 6 | E05-T01 | modelo e metadados aprovados |
-| 7 | E05-T02 | migrations reproduzíveis |
-| 8 | E05-T03 | importação idempotente |
-| 9 | E05-T04 | integridade persistida testada |
-| 10 | E05-T05 | backup e restore locais comprovados |
-| 11 | E05-T06 | sessão, autorização e pareamento testados |
-| 12–16 | E06-T01…T05 | fluxo de Treino íntegro |
-| 17–21 | E07-T01…T05 | fluxo de Dieta íntegro |
-| 22–26 | E08-T01…T05 | preview, hardening, produção e rollback |
+| 3 | E04-T06 | decisão de adoção, arquitetura e guia atualizados |
+| 4 | E04-T03 | boundary server-only e ambiente testados |
+| 5 | E04-T05 | CI e rulesets ativos antes da adoção visual |
+| 6 | E04-T07 | GO/NO-GO técnico registrado sem instalar o package |
+| 7 | E04-T08 | `@fradelli/ui@0.1.0`, foundations e instalação reproduzível |
+| 8 | E04-T04 | shell acessível com Dieta/Treino sobre o Design System |
+| 9 | E05-T01 | modelo e metadados aprovados |
+| 10 | E05-T02 | migrations reproduzíveis |
+| 11 | E05-T03 | importação idempotente |
+| 12 | E05-T04 | integridade persistida testada |
+| 13 | E05-T05 | backup e restore locais comprovados |
+| 14 | E05-T06 | sessão, autorização e pareamento testados |
+| 15–19 | E06-T01…T05 | fluxo de Treino íntegro; tela depende do shell |
+| 20–24 | E07-T01…T05 | fluxo de Dieta íntegro; tela depende do shell |
+| 25–29 | E08-T01…T05 | preview, hardening, produção e rollback |
 
-E04-T03 e E04-T04 dependem de E04-T02, mas o ponteiro ativo mantém execução sequencial. E06 e E07 só começam após E05-T06.
+E04-T03 pode começar após E04-T02, mas o ponteiro ativo seleciona primeiro E04-T06 para registrar a decisão. O CI precede a validação de prontidão; o shell depende da integração versionada. E06 e E07 só começam após E05-T06, e suas telas dependem também de E04-T04.
 
 ## Validação acumulada
 
-Após E04, os scripts existentes devem cobrir instalação congelada, formato, lint, tipos, testes, cobertura, dados e build. Após E05, acrescentar migration em banco limpo, importação repetida, constraints, backup/restore local e testes de autorização.
+Após E04, os scripts existentes devem cobrir instalação congelada inclusive do package privado, formato, lint, tipos, testes, cobertura, dados e build. A página foundations comprova CSS público, `@source`, Inter, dark, acessibilidade e responsividade antes do shell. Após E05, acrescentar migration em banco limpo, importação repetida, constraints, backup/restore local e testes de autorização.
 
 Verificações manuais permanentes:
 
@@ -110,6 +123,9 @@ Verificações manuais permanentes:
 | --- | --- |
 | scaffold não instala/builda | reverter somente E04-T01; dados e documentos permanecem |
 | check incompatível | corrigir a configuração; não desabilitar o gate |
+| prontidão reprovada | manter E04-T08 bloqueada e corrigir o gate ou acesso ausente |
+| package privado incompatível | reverter a PR inicial ou fixar a última versão exata conhecida como boa |
+| registry indisponível ou sem acesso | falhar a instalação; não copiar código nem usar versão flutuante |
 | migration falha | abortar, corrigir adiante e testar banco limpo |
 | importação falha | rollback transacional; preservar ativação anterior |
 | acesso falha | bloquear operação pessoal até corrigir sessão/autorização |
@@ -123,10 +139,13 @@ Nunca usar force push, reescrita de histórico, `prisma migrate reset` fora de b
 
 - E05-T01 classifica `measurement_type` e `load_applicable` exercício por exercício.
 - E04-T05 audita os SHAs das GitHub Actions antes de criar o workflow.
+- E04-T06 registra a substituição explícita da direção visual anterior.
+- E04-T07 confirma runtimes, gates, CI, acesso e o contrato publicado de `@fradelli/ui@0.1.0` sem instalar.
+- E04-T08 instala a versão exata e fixa a toolchain/configuração comprovada no consumidor.
 - E08-T03 reconfirma custos/limites e escolhe armazenamento privado para backup cifrado.
 - Segredos e IDs reais são gerados fora do Git no ambiente correspondente.
 
-Essas decisões não bloqueiam E04-T01.
+As pendências de E04-T07/E04-T08 não bloqueiam E04-T02, E04-T06, E04-T03 ou E04-T05. E04-T08 permanece bloqueada até o relatório de prontidão emitir GO.
 
 ## Critérios de manutenção
 

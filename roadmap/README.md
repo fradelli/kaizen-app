@@ -23,7 +23,7 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E01 | DONE | [Migração de treino](epics/E01-training-data-migration/README.md) | Fundação de treino migrada e validada |
 | E02 | DONE | [Migração de alimentação](epics/E02-nutrition-data-migration/README.md) | Plano alimentar revisado, versionado e validado |
 | E03 | DONE | [Produto e arquitetura](epics/E03-product-and-architecture/README.md) | P0, arquitetura e guia de implementação aprovados |
-| E04 | READY | [Fundação Next.js](epics/E04-nextjs-foundation/README.md) | Aplicação mínima com gates de qualidade |
+| E04 | READY | [Fundação Next.js](epics/E04-nextjs-foundation/README.md) | Aplicação mínima com gates e Design System compartilhado |
 | E05 | PLANNED | [Banco, importação e acesso](epics/E05-database-and-import/README.md) | Persistência, importação e acesso pessoal íntegros |
 | E06 | PLANNED | [Execução de treino](epics/E06-training-execution/README.md) | Consulta e registro utilizáveis de treino |
 | E07 | PLANNED | [Execução de alimentação](epics/E07-nutrition-execution/README.md) | Consulta e registro utilizáveis de alimentação |
@@ -61,8 +61,11 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E04-T01 | DONE | [Criar aplicação Next.js](epics/E04-nextjs-foundation/T01-scaffold-nextjs.md) | E03-T05, E00-T07 |
 | E04-T02 | READY | [Configurar qualidade estática](epics/E04-nextjs-foundation/T02-configure-static-quality.md) | E04-T01 |
 | E04-T03 | PLANNED | [Criar fronteira server-only](epics/E04-nextjs-foundation/T03-create-server-only-boundary.md) | E04-T02 |
-| E04-T04 | PLANNED | [Criar shell acessível](epics/E04-nextjs-foundation/T04-create-accessible-shell.md) | E04-T02 |
-| E04-T05 | PLANNED | [Configurar CI mínimo](epics/E04-nextjs-foundation/T05-configure-minimal-ci.md) | E04-T02, E04-T03, E04-T04 |
+| E04-T04 | PLANNED | [Criar shell acessível](epics/E04-nextjs-foundation/T04-create-accessible-shell.md) | E04-T08 |
+| E04-T05 | PLANNED | [Configurar CI mínimo](epics/E04-nextjs-foundation/T05-configure-minimal-ci.md) | E04-T02, E04-T03, E04-T06 |
+| E04-T06 | PLANNED | [Registrar adoção do Design System compartilhado](epics/E04-nextjs-foundation/T06-adopt-shared-design-system-decision.md) | E04-T02 |
+| E04-T07 | PLANNED | [Validar prontidão técnica para o Design System](epics/E04-nextjs-foundation/T07-validate-design-system-readiness.md) | E04-T05, E04-T06 |
+| E04-T08 | PLANNED | [Integrar Design System versionado](epics/E04-nextjs-foundation/T08-integrate-versioned-design-system.md) | E04-T07 |
 | E05-T01 | PLANNED | [Modelar treino e alimentação](epics/E05-database-and-import/T01-design-relational-model.md) | E03-T05 |
 | E05-T02 | PLANNED | [Configurar banco e migrations](epics/E05-database-and-import/T02-configure-database-and-migrations.md) | E04-T03, E05-T01 |
 | E05-T03 | PLANNED | [Criar importação idempotente](epics/E05-database-and-import/T03-create-idempotent-import.md) | E05-T02 |
@@ -70,12 +73,12 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E05-T05 | PLANNED | [Validar backup e restauração](epics/E05-database-and-import/T05-validate-backup-and-restore.md) | E05-T04 |
 | E05-T06 | PLANNED | [Implementar acesso pessoal](epics/E05-database-and-import/T06-implement-personal-access.md) | E05-T05 |
 | E06-T01 | PLANNED | [Projetar treino e execução do dia](epics/E06-training-execution/T01-project-active-training-plan.md) | E05-T06 |
-| E06-T02 | PLANNED | [Criar página de treino do dia](epics/E06-training-execution/T02-create-daily-training-page.md) | E06-T01 |
+| E06-T02 | PLANNED | [Criar página de treino do dia](epics/E06-training-execution/T02-create-daily-training-page.md) | E04-T04, E06-T01 |
 | E06-T03 | PLANNED | [Registrar preparação, séries e comentários](epics/E06-training-execution/T03-record-training-execution.md) | E06-T02 |
 | E06-T04 | PLANNED | [Exibir proveniência e histórico](epics/E06-training-execution/T04-show-training-provenance.md) | E06-T03 |
 | E06-T05 | PLANNED | [Validar fluxo de treino](epics/E06-training-execution/T05-validate-training-flow.md) | E06-T04 |
 | E07-T01 | PLANNED | [Projetar dieta e execução do dia](epics/E07-nutrition-execution/T01-project-active-nutrition-plan.md) | E05-T06 |
-| E07-T02 | PLANNED | [Criar página de dieta do dia](epics/E07-nutrition-execution/T02-create-nutrition-page.md) | E07-T01 |
+| E07-T02 | PLANNED | [Criar página de dieta do dia](epics/E07-nutrition-execution/T02-create-nutrition-page.md) | E04-T04, E07-T01 |
 | E07-T03 | PLANNED | [Registrar escolhas, cumprimento e comentários](epics/E07-nutrition-execution/T03-record-meal-execution.md) | E07-T02 |
 | E07-T04 | PLANNED | [Exibir segurança e proveniência](epics/E07-nutrition-execution/T04-show-nutrition-safety.md) | E07-T03 |
 | E07-T05 | PLANNED | [Validar fluxo alimentar](epics/E07-nutrition-execution/T05-validate-nutrition-flow.md) | E07-T04 |

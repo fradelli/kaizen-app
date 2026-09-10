@@ -1,7 +1,7 @@
 ---
 id: E06-T02
 epic: E06
-depends_on: [E06-T01]
+depends_on: [E04-T04, E06-T01]
 ---
 
 # Criar página de treino do dia

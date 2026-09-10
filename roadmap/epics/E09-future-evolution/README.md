@@ -12,7 +12,7 @@ As tarefas deste épico serão criadas sob demanda, depois da validação do MVP
 
 - Registro de execução de treino e aderência alimentar.
 - Métricas, tendências e histórico interativo.
-- Rotina, hábitos, notificações e integrações.
+- Rotina, hábitos, tarefas, agenda composta, notificações e integrações; domínio e calendário permanecem no Kaizen.
 - Edição assistida, administração e múltiplos usuários.
 
 ## Fora de escopo agora

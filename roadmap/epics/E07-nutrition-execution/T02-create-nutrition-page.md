@@ -1,7 +1,7 @@
 ---
 id: E07-T02
 epic: E07
-depends_on: [E07-T01]
+depends_on: [E04-T04, E07-T01]
 ---
 
 # Criar página de dieta do dia
