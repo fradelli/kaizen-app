@@ -2,6 +2,20 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-10 — prontidão do Design System avaliada
+
+- Confirmados runtime, peers, exports, CSS público e arquivos publicados de `@fradelli/ui@0.1.0` sem instalar o package.
+- Reexecutados os gates locais e remotos com sucesso e registrada a estratégia segura de autenticação local e do CI.
+- Emitida decisão NO-GO porque a leitura autenticada do GitHub Packages não foi comprovada; E04-T08 permanece bloqueada.
+- Nenhuma dependência, credencial, configuração autenticada ou mudança de aplicação foi adicionada.
+
+## 2026-09-10 — CI mínimo e proteção de branches concluídos
+
+- Integrada a E04-T05 pela PR #27 com gates separados de governança, qualidade, testes, integridade dos dados, build e auditoria de dependências.
+- Ativados rulesets sem bypass para exigir pull request e os seis checks em `developer`, `staging` e `master`.
+- Restringido `developer` a squash e promoções a merge commit; rebase merge foi desabilitado.
+- Configurado o Dependabot semanal para dependências npm e GitHub Actions.
+
 ## 2026-09-10 — fronteira server-only criada
 
 - Adicionados contrato mínimo de ambiente e resolvedor fixo de workspace protegidos por `server-only`.

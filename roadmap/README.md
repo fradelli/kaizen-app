@@ -62,10 +62,10 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E04-T02 | DONE | [Configurar qualidade estática](epics/E04-nextjs-foundation/T02-configure-static-quality.md) | E04-T01 |
 | E04-T03 | DONE | [Criar fronteira server-only](epics/E04-nextjs-foundation/T03-create-server-only-boundary.md) | E04-T02 |
 | E04-T04 | PLANNED | [Criar shell acessível](epics/E04-nextjs-foundation/T04-create-accessible-shell.md) | E04-T08 |
-| E04-T05 | IN_PROGRESS | [Configurar CI mínimo](epics/E04-nextjs-foundation/T05-configure-minimal-ci.md) | E04-T02, E04-T03, E04-T06 |
+| E04-T05 | DONE | [Configurar CI mínimo](epics/E04-nextjs-foundation/T05-configure-minimal-ci.md) | E04-T02, E04-T03, E04-T06 |
 | E04-T06 | DONE | [Registrar adoção do Design System compartilhado](epics/E04-nextjs-foundation/T06-adopt-shared-design-system-decision.md) | E04-T02 |
-| E04-T07 | PLANNED | [Validar prontidão técnica para o Design System](epics/E04-nextjs-foundation/T07-validate-design-system-readiness.md) | E04-T05, E04-T06 |
-| E04-T08 | PLANNED | [Integrar Design System versionado](epics/E04-nextjs-foundation/T08-integrate-versioned-design-system.md) | E04-T07 |
+| E04-T07 | DONE | [Validar prontidão técnica para o Design System](epics/E04-nextjs-foundation/T07-validate-design-system-readiness.md) | E04-T05, E04-T06 |
+| E04-T08 | BLOCKED | [Integrar Design System versionado](epics/E04-nextjs-foundation/T08-integrate-versioned-design-system.md) | E04-T07 |
 | E05-T01 | PLANNED | [Modelar treino e alimentação](epics/E05-database-and-import/T01-design-relational-model.md) | E03-T05 |
 | E05-T02 | PLANNED | [Configurar banco e migrations](epics/E05-database-and-import/T02-configure-database-and-migrations.md) | E04-T03, E05-T01 |
 | E05-T03 | PLANNED | [Criar importação idempotente](epics/E05-database-and-import/T03-create-idempotent-import.md) | E05-T02 |

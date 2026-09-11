@@ -68,7 +68,7 @@ O CI deve proteger a validação de prontidão e a integração do Design System
 - [x] Criar jobs estáveis `Governance`, `Quality`, `Test`, `Data integrity`, `Build` e `Dependency audit`.
 - [x] Executar lint, tipos, formato, testes, validações documentais, build e audit `moderate`.
 - [x] Validar ID da tarefa, template e matriz `developer -> staging -> master`.
-- [ ] Configurar rulesets sem permitir push direto.
+- [x] Configurar rulesets sem permitir push direto.
 - [x] Configurar cache somente se trouxer benefício medido.
 
 ## Validações
@@ -78,7 +78,7 @@ O CI deve proteger a validação de prontidão e a integração do Design System
 
 ## Critérios de aceite
 
-- [ ] As três branches protegidas recebem apenas mudanças que passam nos gates aplicáveis.
+- [x] As três branches protegidas recebem apenas mudanças que passam nos gates aplicáveis.
 
 ## Riscos
 
@@ -91,4 +91,4 @@ Reverter o workflow defeituoso sem remover ou relaxar os gates locais.
 
 ## Resultado
 
-Ainda não concluída. Workflow, validadores, testes e Dependabot estão implementados e validados localmente; execução dos checks no GitHub e ativação dos rulesets permanecem pendentes para a etapa de publicação da PR.
+Concluída em 2026-09-10. A PR #27 executou com sucesso os seis gates remotos. Os rulesets `developer-pr-gates` e `promotion-pr-gates` exigem PR e os checks estáveis em `developer`, `staging` e `master`, sem bypass, exclusão ou force push. Tarefas usam squash, promoções usam merge commit e rebase merge está desabilitado.

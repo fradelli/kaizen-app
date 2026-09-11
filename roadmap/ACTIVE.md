@@ -1,12 +1,12 @@
 # Tarefa ativa
 
-- **Tarefa:** E04-T05 — Configurar CI mínimo
-- **Status:** IN_PROGRESS
-- **Branch prevista:** `codex/E04-T05-configure-minimal-ci`
-- **Entrada principal:** `docs/implementation/tasks/E04-T05.md`.
-- **Resultado anterior:** E04-T03 criou a fronteira server-only, validou o ambiente mínimo e comprovou o bloqueio de imports client-side.
-- **Objetivo:** implementar os gates estáveis aprovados para pull requests e promoções.
-- **Entregável:** workflow reutilizável de PR, validação de governança e proteção das branches definidas no pacote da tarefa.
-- **Depois:** liberar E04-T07 para validar a prontidão técnica do Design System compartilhado.
+- **Tarefa:** E04-T08 — Integrar Design System versionado
+- **Status:** BLOCKED
+- **Branch prevista:** `codex/E04-T08-integrate-versioned-design-system`
+- **Entrada principal:** `docs/implementation/tasks/E04-T08.md`.
+- **Resultado anterior:** E04-T07 comprovou runtime, peers, contrato, gates, CI e rulesets, mas emitiu NO-GO por ausência de autenticação de leitura do package.
+- **Objetivo:** integrar `@fradelli/ui@0.1.0` somente depois de uma nova evidência emitir GO.
+- **Bloqueio atual:** a consulta local ao GitHub Packages retornou `401` e a credencial usada pela API não possui `read:packages`.
+- **Próxima ação:** configurar credencial de leitura no perfil do usuário, fora do repositório, e repetir somente a consulta de metadados de `@fradelli/ui@0.1.0`.
 
-O pacote de E04-T05 é autocontido. Preserve os gates locais e a fronteira server-only, não configure credenciais do GitHub Packages antes de E04-T08 e mantenha Tailwind, fontes, componentes e features fora do escopo.
+Não iniciar E04-T08 nem instalar packages enquanto o acesso de leitura não for comprovado. Nunca registrar PAT, token, `_authToken`, valor de `NODE_AUTH_TOKEN` ou URL autenticada no Git, em comandos compartilhados ou na evidência.
