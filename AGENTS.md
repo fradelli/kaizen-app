@@ -47,3 +47,10 @@ As decisões completas só devem ser lidas quando listadas pela tarefa em `docs/
 ## Validação proporcional
 
 Sempre execute `git diff --check` e verifique ausência de segredos. Documentação exige links, IDs, dependências e estados coerentes. Dados exigem parse, schema, ponteiros e referências. Código acrescenta formato, lint, tipos, testes e build conforme os scripts existentes.
+
+Comandos operacionais:
+
+- `pnpm run ci`: executa os gates locais reproduzíveis, exceto a governança dependente do evento da PR; `pnpm ci` isolado é reservado pelo pnpm para instalação congelada.
+- `pnpm governance [arquivo-do-evento]`: valida direção, título, descrição, ID e estado do roadmap; no GitHub usa `GITHUB_EVENT_PATH`.
+- `pnpm data:check`: valida JSON, schemas, IDs, ponteiros e referências dos dados versionados.
+- `pnpm test:ci-scripts`: executa as regressões controladas dos validadores de CI.

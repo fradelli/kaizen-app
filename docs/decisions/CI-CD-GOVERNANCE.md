@@ -45,6 +45,24 @@ Dispara em PR para `developer`, `staging` ou `master` nos eventos de abertura, a
 4. cancelar execuções antigas da mesma PR;
 5. usar permissões mínimas e não depender de segredos em PRs comuns.
 
+### Exceção restrita para Dependabot
+
+Decisão adicional de E04-T05 em 2026-09-10: PRs criadas por `dependabot[bot]` não precisam declarar um ID de tarefa nem reproduzir o template humano, pois esses campos não podem ser mantidos com segurança pela automação. A exceção só é válida quando todas as condições abaixo são verdadeiras:
+
+- autor `dependabot[bot]`;
+- branch de origem iniciada por `dependabot/`;
+- destino `developer`;
+- título convencional `build(deps): ...` ou `build(deps-dev): ...`;
+- alterações produzidas pela configuração versionada do Dependabot.
+
+Essas PRs continuam sujeitas a `Quality`, `Test`, `Data integrity`, `Build` e `Dependency audit`. A exceção não permite promoção, bypass de checks, push direto nem acesso adicional a segredos.
+
+### Métodos de merge
+
+- PR de tarefa para `developer`: squash.
+- Promoção `developer -> staging` ou `staging -> master`: merge commit.
+- Rebase merge não pertence ao fluxo aprovado.
+
 ## CD de preview
 
 Dispara após merge em `staging`:

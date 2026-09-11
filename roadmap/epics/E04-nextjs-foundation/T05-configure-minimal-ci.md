@@ -16,11 +16,40 @@ O CI deve proteger a validação de prontidão e a integração do Design System
 
 ## Entradas
 
+- `.github/dependabot.yml`
+- `.github/workflows/ci.yml`
 - `docs/implementation/tasks/E04-T05.md`
 - `docs/decisions/CI-CD-GOVERNANCE.md`
+- `docs/guides/NUTRITION.md`
+- `docs/guides/TRAINING-GUIDE.md`
 - `.github/pull_request_template.md`
 - `.github/PULL_REQUEST_TEMPLATE/release-promotion.md`
+- `AGENTS.md`
+- `CHANGELOG.md`
+- `data/AGENTS.md`
+- `data/active.json`
+- `data/exercises.json`
+- `data/nutrition/active.json`
+- `data/nutrition/plans/2026-09-personal-v1.json`
+- `data/nutrition/reviews/e02-t03-review-metadata.json`
+- `data/plans/2026-08-performance-v1.json`
+- `data/plans/2026-08-performance-v2.json`
+- `data/profile.json`
+- `data/reviews/2026-08-review.json`
+- `data/schedule.json`
 - `package.json`
+- `pnpm-lock.yaml`
+- `roadmap/ACTIVE.md`
+- `roadmap/README.md`
+- `roadmap/epics/E04-nextjs-foundation/T07-validate-design-system-readiness.md`
+- `schemas/exercise-library.schema.json`
+- `schemas/nutrition-plan.schema.json`
+- `schemas/training-plan.schema.json`
+- `scripts/validate-data.mjs`
+- `scripts/validate-data.test.mjs`
+- `scripts/validate-governance.mjs`
+- `scripts/validate-governance.test.mjs`
+- `vitest.config.ts`
 
 ## Entregáveis
 
@@ -35,16 +64,17 @@ O CI deve proteger a validação de prontidão e a integração do Design System
 
 ## Subtarefas
 
-- [ ] Executar instalação reproduzível.
-- [ ] Criar jobs estáveis `Governance`, `Quality`, `Test`, `Data integrity`, `Build` e `Dependency audit`.
-- [ ] Executar lint, tipos, formato, testes, validações documentais, build e audit `moderate`.
-- [ ] Validar ID da tarefa, template e matriz `developer -> staging -> master`.
+- [x] Executar instalação reproduzível.
+- [x] Criar jobs estáveis `Governance`, `Quality`, `Test`, `Data integrity`, `Build` e `Dependency audit`.
+- [x] Executar lint, tipos, formato, testes, validações documentais, build e audit `moderate`.
+- [x] Validar ID da tarefa, template e matriz `developer -> staging -> master`.
 - [ ] Configurar rulesets sem permitir push direto.
-- [ ] Configurar cache somente se trouxer benefício medido.
+- [x] Configurar cache somente se trouxer benefício medido.
 
 ## Validações
 
 - Workflow passa e falha deliberadamente em regressão controlada.
+- Implementação local aprovada por `pnpm run ci`; execução remota e rulesets dependem da publicação da PR.
 
 ## Critérios de aceite
 
@@ -61,4 +91,4 @@ Reverter o workflow defeituoso sem remover ou relaxar os gates locais.
 
 ## Resultado
 
-Ainda não concluída.
+Ainda não concluída. Workflow, validadores, testes e Dependabot estão implementados e validados localmente; execução dos checks no GitHub e ativação dos rulesets permanecem pendentes para a etapa de publicação da PR.
