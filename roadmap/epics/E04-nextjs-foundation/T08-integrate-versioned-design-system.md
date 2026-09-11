@@ -59,11 +59,11 @@ A integração só começa após o GO de prontidão de E04-T07. O package public
 
 ## Subtarefas
 
-- [ ] Fixar `@fradelli/ui@0.1.0` sem range ou caminho local.
-- [ ] Aplicar o contrato público reconfirmado em E04-T07.
-- [ ] Criar foundations sem conceito de dieta, treino, hábito ou tarefa.
-- [ ] Validar instalação limpa, acessibilidade, responsividade e build.
-- [ ] Registrar a versão anterior ou o commit pré-adoção para rollback.
+- [x] Fixar `@fradelli/ui@0.1.0` sem range ou caminho local.
+- [x] Aplicar o contrato público reconfirmado em E04-T07.
+- [x] Criar foundations sem conceito de dieta, treino, hábito ou tarefa.
+- [x] Validar instalação limpa, acessibilidade, responsividade e build.
+- [x] Registrar a versão anterior ou o commit pré-adoção para rollback.
 
 ## Validações
 
@@ -74,11 +74,11 @@ A integração só começa após o GO de prontidão de E04-T07. O package public
 
 ## Critérios de aceite
 
-- [ ] `@fradelli/ui` usa versão exata do GitHub Packages.
-- [ ] Inter, `--font-inter`, dark, CSS público e `@source` estão ativos no root.
-- [ ] Foundations prova tokens e primitives disponíveis sem domínio.
+- [x] `@fradelli/ui` usa versão exata do GitHub Packages.
+- [x] Inter, `--font-inter`, dark, CSS público e `@source` estão ativos no root.
+- [x] Foundations prova tokens e primitives disponíveis sem domínio.
 - [ ] Instalação congelada e build passam em ambiente limpo e no CI.
-- [ ] O rollback por versão ou commit está documentado e testável.
+- [x] O rollback por versão ou commit está documentado e testável.
 
 ## Riscos
 
@@ -88,8 +88,17 @@ A integração só começa após o GO de prontidão de E04-T07. O package public
 
 ## Rollback
 
-Reverter a PR na primeira adoção. Em upgrades posteriores, restaurar a versão exata e o lockfile do último release conhecido como bom; nunca copiar código nem republicar o mesmo número de versão.
+Reverter a PR na primeira adoção para restaurar a base pré-adoção `26f1416`. Em upgrades posteriores, restaurar a versão exata e o lockfile do último release conhecido como bom; nunca copiar código nem republicar o mesmo número de versão.
 
 ## Resultado
 
-Ainda não concluída.
+Implementação e validação local concluídas em 2026-09-11 sobre a base pré-adoção `26f1416`:
+
+- `@fradelli/ui@0.1.0`, Tailwind CSS `4.3.3`, `@tailwindcss/postcss@4.3.3` e PostCSS `8.5.28` foram fixados no manifesto e lockfile;
+- instalação congelada passou em worktree temporário sem `node_modules` prévio;
+- `/foundations` exercita exports públicos, estados, cores rotuladas, campos, foco, movimento reduzido e sheet por teclado;
+- viewport de 320 px e zoom de 200% foram inspecionados sem overflow horizontal na condição final;
+- `pnpm run ci`, árvore única de React `19.2.8`, CSS compilado e varredura sanitizada de segredos passaram localmente;
+- CI recebeu `packages: read` somente nos quatro jobs que instalam dependências e usa `GITHUB_TOKEN` apenas no passo de instalação.
+
+A tarefa permanece `IN_PROGRESS` até os gates da PR comprovarem a instalação autenticada no GitHub Actions.

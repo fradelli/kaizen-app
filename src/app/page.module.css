@@ -7,30 +7,4 @@
 
 .card {
   width: min(100%, 36rem);
-  padding: clamp(1.5rem, 5vw, 3rem);
-  border: 1px solid var(--border);
-  border-radius: 1.25rem;
-  background: var(--surface);
-  box-shadow: 0 1rem 3rem rgb(15 23 42 / 8%);
-}
-
-.card h1 {
-  margin: 0;
-  font-size: clamp(2rem, 8vw, 4rem);
-  letter-spacing: -0.04em;
-}
-
-.card p:last-child {
-  margin: 1rem 0 0;
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-.eyebrow {
-  margin: 0 0 0.5rem;
-  color: var(--accent);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
 }

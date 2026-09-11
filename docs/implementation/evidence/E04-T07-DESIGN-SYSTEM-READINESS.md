@@ -11,6 +11,17 @@
 
 Esta avaliação não instalou o package e não alterou dependências, lockfile, CSS, layout, componentes ou workflow.
 
+## Reavaliação operacional
+
+- **Data:** 2026-09-11
+- **Escopo:** resolver exclusivamente o gap bloqueante da avaliação inicial.
+- **Evidência sanitizada:** a consulta de metadados de `@fradelli/ui@0.1.0` no GitHub Packages terminou com sucesso usando credencial mantida no perfil do usuário.
+- **Contrato reconfirmado:** Node `>=24.20.0 <25`, React e React DOM `>=19.2.7 <20` e Tailwind CSS `>=4.3.0 <5`.
+- **Segurança:** nenhum token, valor de `_authToken`, URL autenticada ou credencial foi registrado no repositório ou nesta evidência.
+- **Decisão operacional:** **GO** para iniciar E04-T08 na versão exata `0.1.0`.
+
+O NO-GO abaixo permanece como registro da avaliação original. Esta reavaliação não altera o contrato analisado; apenas comprova a autenticação de leitura que faltava.
+
 ## Escopo e fontes
 
 Foram avaliados o manifesto e o lockfile do Kaizen, o workflow de CI, a fundação visual transitória, o contrato publicado em commit imutável e o acesso de leitura ao registry.
