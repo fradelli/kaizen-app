@@ -46,10 +46,10 @@ Determinar, sem instalar o package, se a base técnica do Kaizen está pronta pa
 
 ## Subtarefas
 
-- [ ] Confirmar runtime, package manager e peer React sem instalar o package.
-- [ ] Confirmar gates locais e CI existentes e verdes.
-- [ ] Documentar autenticação segura local e no workflow.
-- [ ] Registrar contrato público de `@fradelli/ui@0.1.0` e decisão de prontidão.
+- [x] Confirmar runtime, package manager e peer React sem instalar o package.
+- [x] Confirmar gates locais e CI existentes e verdes.
+- [x] Documentar autenticação segura local e no workflow.
+- [x] Registrar contrato público de `@fradelli/ui@0.1.0` e decisão de prontidão.
 
 ## Validações
 
@@ -60,10 +60,10 @@ Determinar, sem instalar o package, se a base técnica do Kaizen está pronta pa
 
 ## Critérios de aceite
 
-- [ ] A matriz confirma compatibilidade de runtime e React com `@fradelli/ui@0.1.0`.
+- [x] A matriz confirma compatibilidade de runtime e React com `@fradelli/ui@0.1.0`.
 - [ ] Formato, lint, typecheck, testes, cobertura e build passam localmente e no CI.
-- [ ] O relatório identifica autenticação local ainda ausente ou comprovada sem expor segredo.
-- [ ] A decisão GO/NO-GO lista todos os gaps sem instalar ou alterar a aplicação.
+- [x] O relatório identifica autenticação local ainda ausente ou comprovada sem expor segredo.
+- [x] A decisão GO/NO-GO lista todos os gaps sem instalar ou alterar a aplicação.
 
 ## Riscos
 
@@ -77,4 +77,4 @@ Reverter somente o relatório e a atualização de status. Como a tarefa não in
 
 ## Resultado
 
-Ainda não concluída.
+Em andamento. Runtime, peers, contrato publicado, gates locais, CI-base e rulesets foram comprovados. A decisão atual é NO-GO temporário porque a consulta ao GitHub Packages retornou `401` sem autenticação e a credencial usada pela API não possui `read:packages`; a PR desta evidência também precisa executar os seis gates remotos antes da conclusão.

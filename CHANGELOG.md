@@ -2,6 +2,13 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-10 — CI mínimo e proteção de branches concluídos
+
+- Integrada a E04-T05 pela PR #27 com gates separados de governança, qualidade, testes, integridade dos dados, build e auditoria de dependências.
+- Ativados rulesets sem bypass para exigir pull request e os seis checks em `developer`, `staging` e `master`.
+- Restringido `developer` a squash e promoções a merge commit; rebase merge foi desabilitado.
+- Configurado o Dependabot semanal para dependências npm e GitHub Actions.
+
 ## 2026-09-10 — fronteira server-only criada
 
 - Adicionados contrato mínimo de ambiente e resolvedor fixo de workspace protegidos por `server-only`.
