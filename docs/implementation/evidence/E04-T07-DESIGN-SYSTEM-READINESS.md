@@ -6,7 +6,7 @@
 - **Base do Kaizen:** `b0d5f6c0f99f9b77547127a12563d950947fb6fa`
 - **Contrato avaliado:** `@fradelli/ui@0.1.0`
 - **Commit do contrato:** `3e0c23f591ff458ab9e3e74dc44bb0cdba068a03`
-- **Decisão atual:** **NO-GO temporário**
+- **Decisão final:** **NO-GO**
 - **Motivo bloqueante:** a autenticação local para leitura do GitHub Packages não está configurada ou disponível para as credenciais usadas na avaliação.
 
 Esta avaliação não instalou o package e não alterou dependências, lockfile, CSS, layout, componentes ou workflow.
@@ -90,6 +90,8 @@ Essa limitação não altera o contrato do Design System, mas uma política vers
 
 A PR [#27](https://github.com/fradelli/kaizen-app/pull/27), aplicada no mesmo commit-base desta avaliação, concluiu com sucesso os jobs `Governance`, `Quality`, `Test`, `Data integrity`, `Build` e `Dependency audit`.
 
+A primeira revisão da PR [#29](https://github.com/fradelli/kaizen-app/pull/29), que publica esta evidência, também concluiu os seis jobs com sucesso.
+
 Os seguintes rulesets estão ativos e sem bypass:
 
 | Ruleset | Branches | Pull request | Checks | Merge |
@@ -142,7 +144,6 @@ Nenhum token foi solicitado, exibido ou persistido.
 ### Bloqueantes para GO
 
 1. Configurar autenticação local fora do repositório e repetir a consulta de metadados com sucesso.
-2. Publicar a PR da E04-T07 e confirmar os seis gates remotos na revisão documental final.
 
 ### Não bloqueantes e fora do escopo desta tarefa
 
@@ -152,9 +153,9 @@ Nenhum token foi solicitado, exibido ou persistido.
 
 ## Decisão
 
-**NO-GO temporário.** Runtime, peers, contrato publicado, gates locais, CI-base e proteções de branch estão compatíveis. A integração permanece bloqueada porque nenhuma credencial disponível comprovou leitura de `@fradelli/ui@0.1.0` no GitHub Packages e a PR desta evidência ainda não executou o CI remoto.
+**NO-GO.** Runtime, peers, contrato publicado, gates locais, CI remoto e proteções de branch estão compatíveis. A integração permanece bloqueada porque nenhuma credencial disponível comprovou leitura de `@fradelli/ui@0.1.0` no GitHub Packages.
 
-O GO pode ser emitido sem mudar a aplicação quando os dois gaps bloqueantes forem comprovados. Até lá, E04-T08 não deve instalar o package.
+Uma nova avaliação pode emitir GO sem mudar a aplicação quando o gap bloqueante for comprovado. Até lá, E04-T08 não deve instalar o package.
 
 ## Rollback
 

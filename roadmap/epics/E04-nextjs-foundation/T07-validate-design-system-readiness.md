@@ -61,7 +61,7 @@ Determinar, sem instalar o package, se a base técnica do Kaizen está pronta pa
 ## Critérios de aceite
 
 - [x] A matriz confirma compatibilidade de runtime e React com `@fradelli/ui@0.1.0`.
-- [ ] Formato, lint, typecheck, testes, cobertura e build passam localmente e no CI.
+- [x] Formato, lint, typecheck, testes, cobertura e build passam localmente e no CI.
 - [x] O relatório identifica autenticação local ainda ausente ou comprovada sem expor segredo.
 - [x] A decisão GO/NO-GO lista todos os gaps sem instalar ou alterar a aplicação.
 
@@ -77,4 +77,4 @@ Reverter somente o relatório e a atualização de status. Como a tarefa não in
 
 ## Resultado
 
-Em andamento. Runtime, peers, contrato publicado, gates locais, CI-base e rulesets foram comprovados. A decisão atual é NO-GO temporário porque a consulta ao GitHub Packages retornou `401` sem autenticação e a credencial usada pela API não possui `read:packages`; a PR desta evidência também precisa executar os seis gates remotos antes da conclusão.
+Concluída em 2026-09-10 com decisão NO-GO. Runtime, peers, contrato publicado, gates locais, CI remoto e rulesets foram comprovados. A integração permanece bloqueada porque a consulta ao GitHub Packages retornou `401` sem autenticação e a credencial usada pela API não possui `read:packages`. Nenhum package, token ou arquivo da aplicação foi adicionado.
