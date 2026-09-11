@@ -1,7 +1,7 @@
 # Tarefa ativa
 
 - **Tarefa:** E04-T05 — Configurar CI mínimo
-- **Status:** READY
+- **Status:** IN_PROGRESS
 - **Branch prevista:** `codex/E04-T05-configure-minimal-ci`
 - **Entrada principal:** `docs/implementation/tasks/E04-T05.md`.
 - **Resultado anterior:** E04-T03 criou a fronteira server-only, validou o ambiente mínimo e comprovou o bloqueio de imports client-side.
