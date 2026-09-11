@@ -44,7 +44,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           package-manager-cache: false
       - name: Validate pull request governance
-        run: pnpm governance
+        run: node scripts/validate-governance.mjs
 
   quality:
     name: Quality
