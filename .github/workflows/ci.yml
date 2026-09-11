@@ -44,12 +44,15 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           package-manager-cache: false
       - name: Validate pull request governance
-        run: pnpm governance
+        run: node scripts/validate-governance.mjs
 
   quality:
     name: Quality
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: read
+      packages: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -65,8 +68,12 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           package-manager-cache: false
+          registry-url: https://npm.pkg.github.com
+          scope: "@fradelli"
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Check formatting
         run: pnpm format:check
       - name: Lint
@@ -78,6 +85,9 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: read
+      packages: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -93,8 +103,12 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           package-manager-cache: false
+          registry-url: https://npm.pkg.github.com
+          scope: "@fradelli"
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Run application tests with coverage
         run: pnpm test:coverage
       - name: Run CI validator tests
@@ -104,6 +118,9 @@ jobs:
     name: Data integrity
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: read
+      packages: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -119,8 +136,12 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           package-manager-cache: false
+          registry-url: https://npm.pkg.github.com
+          scope: "@fradelli"
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Validate versioned data
         run: pnpm data:check
 
@@ -128,6 +149,9 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: read
+      packages: read
     env:
       APP_ENV: preview
       PERSONAL_WORKSPACE_ID: 00000000-0000-4000-8000-000000000001
@@ -146,8 +170,12 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           package-manager-cache: false
+          registry-url: https://npm.pkg.github.com
+          scope: "@fradelli"
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build application
         run: pnpm build
 

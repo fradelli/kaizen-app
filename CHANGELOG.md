@@ -2,6 +2,14 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-11 — integração versionada do Design System concluída
+
+- Fixados `@fradelli/ui@0.1.0`, Tailwind CSS `4.3.3`, `@tailwindcss/postcss@4.3.3` e PostCSS `8.5.28` com instalação congelada comprovada em worktree limpo.
+- Integrados Inter variável, tema dark explícito, CSS público único e detecção do `dist` publicado via `@source`.
+- Criada `/foundations` com primitives públicas, estados rotulados, foco, teclado, responsividade e movimento reduzido, sem antecipar domínio ou shell.
+- Configurado acesso efêmero `packages: read` somente nos jobs de CI que instalam dependências; nenhuma credencial foi versionada.
+- Gates locais e os seis jobs obrigatórios da PR #30 passaram, incluindo instalação autenticada, build estático, auditoria e árvore única de React.
+
 ## 2026-09-10 — prontidão do Design System avaliada
 
 - Confirmados runtime, peers, exports, CSS público e arquivos publicados de `@fradelli/ui@0.1.0` sem instalar o package.
