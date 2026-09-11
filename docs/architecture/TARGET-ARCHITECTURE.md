@@ -154,9 +154,13 @@ Tokens, tipografia, foco, motion, estados visuais genéricos e primitives acess�
 
 `src/app` permanece fino e concentra rotas, metadata, layouts e composição no
 nível da rota. Blocos visuais compartilhados vivem em `src/components/shared`;
-blocos específicos de negócio vivem em `src/features/<feature>`. Um componente
-com mais de uma responsabilidade ganha uma pasta própria e separa somente os
-arquivos que tenham responsabilidade concreta:
+blocos específicos de negócio vivem em `src/features/<feature>`. Cada
+componente React fica em uma pasta própria com o mesmo nome. Diretórios
+`components/` contêm somente pastas de componentes, nunca arquivos de
+componentes soltos. Entradas especiais do App Router, como `page.tsx` e
+`layout.tsx`, permanecem na estrutura exigida pelo Next.js.
+
+Os arquivos auxiliares ficam junto do componente que os consome:
 
 ```text
 component-name/
@@ -168,7 +172,10 @@ component-name/
 ├── component-name.utils.ts
 ├── component-name.test.tsx
 ├── components/
-│   └── private-child.tsx
+│   └── private-child/
+│       ├── private-child.tsx
+│       ├── private-child.types.ts
+│       └── private-child.styles.ts
 └── hooks/
     └── use-component-name.ts
 ```
@@ -182,13 +189,15 @@ component-name/
   Prisma, adapters ou componentes;
 - `hooks/use-*.ts` mantém estado, efeitos, integração com contexto e estado de
   rota que realmente dependam de hooks;
-- `components/` mantém filhos privados que não fazem parte da API compartilhada.
+- `components/` mantém pastas de filhos privados que não fazem parte da API compartilhada.
 
 Não se cria arquivo vazio apenas para cumprir o formato. A separação acontece
 quando existe responsabilidade real e melhora leitura, teste ou isolamento.
 Imports explícitos são o padrão; `index.ts` só existe quando a pasta expõe uma
 API pública pequena e intencional. `*.styles.ts` e `*.module.css` são
 alternativas conforme a composição; não se usam ambos sem necessidade real.
+Tipos, estilos, constantes, testes, hooks e utilitários de um filho privado não
+ficam centralizados na pasta do pai quando pertencem somente ao filho.
 
 Server Components são o padrão. O limite `"use client"` deve ficar na menor
 folha que precise de interação, estado, efeito ou API do navegador. O Server

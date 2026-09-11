@@ -1,12 +1,13 @@
 # Tarefa ativa
 
-- **Tarefa:** E04-T09 — Padronizar estrutura das páginas React
+- **Tarefa:** E05-T01 — Modelar treino e alimentação
 - **Status:** READY
-- **Branch prevista:** `codex/E04-T09-standardize-react-pages`
-- **Entrada principal:** `docs/implementation/tasks/E04-T09.md`.
-- **Resultado anterior:** E04-T04 entregou shell acessível server-side, navegação Dieta/Treino em ilha Client mínima e placeholders sem dados de domínio.
-- **Objetivo:** deixar as entradas de rota finas, separar responsabilidades dos componentes existentes e restringir `"use client"` à menor ilha necessária.
+- **Branch prevista:** `codex/E05-T01-design-relational-model`
+- **Entrada principal:** `roadmap/epics/E05-database-and-import/T01-design-relational-model.md`.
+- **Resultado anterior:** E04-T09 concluiu a fundação Next.js com rotas finas, componentes encapsulados e fronteiras Server/Client verificáveis.
+- **Objetivo:** modelar somente entidades, relações e constraints exigidas pelo P0.
 - **Bloqueio atual:** nenhum.
-- **Próxima ação:** implementar a extração do placeholder compartilhado e tornar Foundations server-side com apenas o exemplo de `Sheet` no cliente.
+- **Próxima ação:** revisar as entradas da E05-T01 e detalhar o modelo relacional antes da implementação.
 
-Preservar o resultado visual, o shell, a versão exata do Design System e todos os gates existentes. Não implementar E06/E07, banco, Server Actions, providers, tokens ou primitives locais.
+Não criar banco, migration ou Prisma Client nesta tarefa; preservar IDs estáveis,
+proveniência, privacidade e os limites do P0.

@@ -35,7 +35,8 @@ Instruções específicas existem em `roadmap/AGENTS.md`, `data/AGENTS.md` e `do
 - Server Actions são endpoints públicos: valide sessão, origem, entrada e ownership no servidor.
 - Tarefas que criam ou ampliam componentes React devem listar
   `docs/architecture/TARGET-ARCHITECTURE.md` nas entradas e seguir sua seção de
-  organização de componentes e fronteiras Server/Client.
+  organização de componentes e fronteiras Server/Client. Cada componente fica
+  em pasta própria; diretórios `components/` contêm pastas, não componentes soltos.
 
 As decisões completas só devem ser lidas quando listadas pela tarefa em `docs/architecture/` ou `docs/decisions/`.
 

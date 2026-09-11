@@ -23,8 +23,8 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E01 | DONE | [Migração de treino](epics/E01-training-data-migration/README.md) | Fundação de treino migrada e validada |
 | E02 | DONE | [Migração de alimentação](epics/E02-nutrition-data-migration/README.md) | Plano alimentar revisado, versionado e validado |
 | E03 | DONE | [Produto e arquitetura](epics/E03-product-and-architecture/README.md) | P0, arquitetura e guia de implementação aprovados |
-| E04 | READY | [Fundação Next.js](epics/E04-nextjs-foundation/README.md) | Aplicação mínima com gates e Design System compartilhado |
-| E05 | PLANNED | [Banco, importação e acesso](epics/E05-database-and-import/README.md) | Persistência, importação e acesso pessoal íntegros |
+| E04 | DONE | [Fundação Next.js](epics/E04-nextjs-foundation/README.md) | Aplicação mínima com gates e Design System compartilhado |
+| E05 | READY | [Banco, importação e acesso](epics/E05-database-and-import/README.md) | Persistência, importação e acesso pessoal íntegros |
 | E06 | PLANNED | [Execução de treino](epics/E06-training-execution/README.md) | Consulta e registro utilizáveis de treino |
 | E07 | PLANNED | [Execução de alimentação](epics/E07-nutrition-execution/README.md) | Consulta e registro utilizáveis de alimentação |
 | E08 | PLANNED | [Publicação pessoal](epics/E08-personal-release/README.md) | Local, preview e produção verificados |
@@ -66,8 +66,8 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E04-T06 | DONE | [Registrar adoção do Design System compartilhado](epics/E04-nextjs-foundation/T06-adopt-shared-design-system-decision.md) | E04-T02 |
 | E04-T07 | DONE | [Validar prontidão técnica para o Design System](epics/E04-nextjs-foundation/T07-validate-design-system-readiness.md) | E04-T05, E04-T06 |
 | E04-T08 | DONE | [Integrar Design System versionado](epics/E04-nextjs-foundation/T08-integrate-versioned-design-system.md) | E04-T07 |
-| E04-T09 | READY | [Padronizar estrutura das páginas React](epics/E04-nextjs-foundation/T09-standardize-react-page-structure.md) | E04-T04 |
-| E05-T01 | PLANNED | [Modelar treino e alimentação](epics/E05-database-and-import/T01-design-relational-model.md) | E03-T05 |
+| E04-T09 | DONE | [Padronizar estrutura das páginas React](epics/E04-nextjs-foundation/T09-standardize-react-page-structure.md) | E04-T04 |
+| E05-T01 | READY | [Modelar treino e alimentação](epics/E05-database-and-import/T01-design-relational-model.md) | E03-T05 |
 | E05-T02 | PLANNED | [Configurar banco e migrations](epics/E05-database-and-import/T02-configure-database-and-migrations.md) | E04-T03, E05-T01 |
 | E05-T03 | PLANNED | [Criar importação idempotente](epics/E05-database-and-import/T03-create-idempotent-import.md) | E05-T02 |
 | E05-T04 | PLANNED | [Testar integridade persistida](epics/E05-database-and-import/T04-test-persisted-integrity.md) | E05-T03 |

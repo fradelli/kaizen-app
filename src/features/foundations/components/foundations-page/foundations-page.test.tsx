@@ -1,7 +1,8 @@
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 
-import FoundationsPage from "./page";
+import { FOUNDATION_COLOR_SAMPLES } from "./components/foundations-colors-section/foundations-colors-section.constants";
+import { FoundationsPage } from "./foundations-page";
 
 afterEach(cleanup);
 
@@ -15,8 +16,14 @@ describe("FoundationsPage", () => {
     );
     expect(screen.getByRole("button", { name: "Ação indisponível" })).toBeDisabled();
     expect(screen.getByText("Sucesso")).toBeInTheDocument();
-    expect(screen.getByText("Amarelo")).toBeInTheDocument();
-    expect(screen.getByText("Verde")).toBeInTheDocument();
+
+    const colorList = screen.getByRole("list", { name: "Amostras de cor" });
+    expect(within(colorList).getAllByRole("listitem")).toHaveLength(
+      FOUNDATION_COLOR_SAMPLES.length,
+    );
+    for (const sample of FOUNDATION_COLOR_SAMPLES) {
+      expect(within(colorList).getByText(sample.label)).toBeInTheDocument();
+    }
   });
 
   it("abre o painel acessível pelo trigger publicado", () => {
