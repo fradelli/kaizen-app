@@ -77,7 +77,7 @@ A integração só começa após o GO de prontidão de E04-T07. O package public
 - [x] `@fradelli/ui` usa versão exata do GitHub Packages.
 - [x] Inter, `--font-inter`, dark, CSS público e `@source` estão ativos no root.
 - [x] Foundations prova tokens e primitives disponíveis sem domínio.
-- [ ] Instalação congelada e build passam em ambiente limpo e no CI.
+- [x] Instalação congelada e build passam em ambiente limpo e no CI.
 - [x] O rollback por versão ou commit está documentado e testável.
 
 ## Riscos
@@ -101,4 +101,4 @@ Implementação e validação local concluídas em 2026-09-11 sobre a base pré-
 - `pnpm run ci`, árvore única de React `19.2.8`, CSS compilado e varredura sanitizada de segredos passaram localmente;
 - CI recebeu `packages: read` somente nos quatro jobs que instalam dependências e usa `GITHUB_TOKEN` apenas no passo de instalação.
 
-A tarefa permanece `IN_PROGRESS` até os gates da PR comprovarem a instalação autenticada no GitHub Actions.
+A PR #30 comprovou a instalação autenticada no GitHub Actions e concluiu os seis gates obrigatórios em 2026-09-11.

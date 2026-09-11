@@ -1,12 +1,12 @@
 # Tarefa ativa
 
-- **Tarefa:** E04-T08 — Integrar Design System versionado
-- **Status:** IN_PROGRESS
-- **Branch prevista:** `codex/E04-T08-integrate-versioned-design-system`
-- **Entrada principal:** `docs/implementation/tasks/E04-T08.md`.
-- **Resultado anterior:** a reavaliação de E04-T07 comprovou leitura autenticada do package e emitiu GO operacional para `@fradelli/ui@0.1.0`.
-- **Objetivo:** integrar `@fradelli/ui@0.1.0` por versão exata, com foundations, fonte, tema, CSS e CI reproduzíveis.
+- **Tarefa:** E04-T04 — Criar shell acessível
+- **Status:** READY
+- **Branch prevista:** `codex/E04-T04-create-accessible-shell`
+- **Entrada principal:** `docs/implementation/tasks/E04-T04.md`.
+- **Resultado anterior:** E04-T08 integrou `@fradelli/ui@0.1.0`, Tailwind CSS 4, Inter, dark, foundations e leitura autenticada no CI; os seis gates da PR #30 passaram.
+- **Objetivo:** criar o shell responsivo do Kaizen com navegação primária entre Dieta e Treino, sem regra de negócio ou duplicação do Design System.
 - **Bloqueio atual:** nenhum.
-- **Próxima ação:** instalar o contrato publicado, inspecionar os exports reais e executar os gates locais completos.
+- **Próxima ação:** criar a branch prevista a partir de `developer` após o merge da PR #30 e implementar landmarks, navegação por teclado, placeholders e redirecionamento de `/` para `/dieta`.
 
-Nunca registrar PAT, token, `_authToken`, valor de `NODE_AUTH_TOKEN` ou URL autenticada no Git, em comandos compartilhados ou na evidência.
+Preservar `/foundations`, a versão exata do Design System e todos os gates de E04-T08. Não criar providers, dados simulados, estado de domínio, tokens ou primitives locais.
