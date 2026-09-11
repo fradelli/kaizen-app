@@ -21,7 +21,7 @@ import { Skeleton } from "@fradelli/ui/skeleton";
 
 export default function FoundationsPage() {
   return (
-    <main className="min-h-screen bg-background px-4 py-8 text-foreground sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-background px-4 py-8 text-foreground sm:px-6 lg:px-8">
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-8">
         <header className="flex flex-col items-start gap-3">
           <Badge variant="secondary">@fradelli/ui 0.1.0</Badge>
@@ -219,6 +219,6 @@ export default function FoundationsPage() {
           </Card>
         </section>
       </div>
-    </main>
+    </div>
   );
 }

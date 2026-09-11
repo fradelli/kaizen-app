@@ -17,6 +17,7 @@ Shell, páginas, rotas, marca e composição pertencem ao Kaizen. Tokens, tipogr
 ## Entradas
 
 - `docs/implementation/tasks/E04-T04.md`
+- `docs/architecture/TARGET-ARCHITECTURE.md`
 - `docs/decisions/SHARED-DESIGN-SYSTEM-ADOPTION.md`
 - `docs/product/P0.md`
 - `src/app/foundations/page.tsx`
@@ -35,11 +36,13 @@ Shell, páginas, rotas, marca e composição pertencem ao Kaizen. Tokens, tipogr
 
 ## Subtarefas
 
-- [ ] Definir landmarks e navegação por teclado.
-- [ ] Criar layout mobile-first.
-- [ ] Consumir primitives e tokens públicos sem duplicação local.
-- [ ] Criar loading, vazio e erro somente quando houver repetição real.
-- [ ] Evitar providers globais sem consumidor.
+- [x] Definir landmarks e navegação por teclado.
+- [x] Criar layout mobile-first.
+- [x] Manter o shell server-side e isolar somente a navegação dependente da rota como ilha Client.
+- [x] Separar contratos, constantes, estilos, utilitários e hooks por responsabilidade real.
+- [x] Consumir primitives e tokens públicos sem duplicação local.
+- [x] Criar loading, vazio e erro somente quando houver repetição real.
+- [x] Evitar providers globais sem consumidor.
 
 ## Validações
 
@@ -49,8 +52,8 @@ Shell, páginas, rotas, marca e composição pertencem ao Kaizen. Tokens, tipogr
 
 ## Critérios de aceite
 
-- [ ] Treino e alimentação podem ser encaixados sem duplicar layout.
-- [ ] O shell permanece local e não amplia a API pública do Design System.
+- [x] Treino e alimentação podem ser encaixados sem duplicar layout.
+- [x] O shell permanece local e não amplia a API pública do Design System.
 
 ## Riscos
 
@@ -63,4 +66,8 @@ Reverter somente o shell e manter a integração e a página foundations como ba
 
 ## Resultado
 
-Ainda não concluída.
+Shell compartilhado entregue como Server Component sobre `@fradelli/ui@0.1.0`,
+com navegação Dieta/Treino isolada em uma ilha Client, landmarks acessíveis,
+skip link, rota ativa, layout mobile-first e placeholders sem dados de domínio.
+Os gates locais e a validação manual passaram; a padronização estrutural das
+páginas existentes segue separada em E04-T09.

@@ -1,12 +1,12 @@
 # Tarefa ativa
 
-- **Tarefa:** E04-T04 — Criar shell acessível
+- **Tarefa:** E04-T09 — Padronizar estrutura das páginas React
 - **Status:** READY
-- **Branch prevista:** `codex/E04-T04-create-accessible-shell`
-- **Entrada principal:** `docs/implementation/tasks/E04-T04.md`.
-- **Resultado anterior:** E04-T08 integrou `@fradelli/ui@0.1.0`, Tailwind CSS 4, Inter, dark, foundations e leitura autenticada no CI; os seis gates da PR #30 passaram.
-- **Objetivo:** criar o shell responsivo do Kaizen com navegação primária entre Dieta e Treino, sem regra de negócio ou duplicação do Design System.
+- **Branch prevista:** `codex/E04-T09-standardize-react-pages`
+- **Entrada principal:** `docs/implementation/tasks/E04-T09.md`.
+- **Resultado anterior:** E04-T04 entregou shell acessível server-side, navegação Dieta/Treino em ilha Client mínima e placeholders sem dados de domínio.
+- **Objetivo:** deixar as entradas de rota finas, separar responsabilidades dos componentes existentes e restringir `"use client"` à menor ilha necessária.
 - **Bloqueio atual:** nenhum.
-- **Próxima ação:** criar a branch prevista a partir de `developer` após o merge da PR #30 e implementar landmarks, navegação por teclado, placeholders e redirecionamento de `/` para `/dieta`.
+- **Próxima ação:** implementar a extração do placeholder compartilhado e tornar Foundations server-side com apenas o exemplo de `Sheet` no cliente.
 
-Preservar `/foundations`, a versão exata do Design System e todos os gates de E04-T08. Não criar providers, dados simulados, estado de domínio, tokens ou primitives locais.
+Preservar o resultado visual, o shell, a versão exata do Design System e todos os gates existentes. Não implementar E06/E07, banco, Server Actions, providers, tokens ou primitives locais.

@@ -33,6 +33,9 @@ Instruções específicas existem em `roadmap/AGENTS.md`, `data/AGENTS.md` e `do
 - Definições aprovadas podem ser públicas. Dados operacionais exigem sessão e autorização server-side.
 - `America/Sao_Paulo` governa datas civis; timestamps persistidos usam UTC.
 - Server Actions são endpoints públicos: valide sessão, origem, entrada e ownership no servidor.
+- Tarefas que criam ou ampliam componentes React devem listar
+  `docs/architecture/TARGET-ARCHITECTURE.md` nas entradas e seguir sua seção de
+  organização de componentes e fronteiras Server/Client.
 
 As decisões completas só devem ser lidas quando listadas pela tarefa em `docs/architecture/` ou `docs/decisions/`.
 
