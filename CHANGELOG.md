@@ -2,6 +2,14 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-10 — fronteira server-only criada
+
+- Adicionados contrato mínimo de ambiente e resolvedor fixo de workspace protegidos por `server-only`.
+- Limitada a configuração desta etapa a `APP_ENV` e `PERSONAL_WORKSPACE_ID`, sem antecipar banco, sessão ou autenticação.
+- Criado erro discriminado e sanitizado que não inclui valores de ambiente.
+- Adicionados testes de validação, cache, imutabilidade e resolução exclusiva no servidor.
+- Comprovado que um Client Component não consegue importar a boundary e que nenhum marcador privado aparece no bundle cliente.
+
 ## 2026-09-10 — adoção documental do Design System compartilhado
 
 - Criada a decisão local que adota por referência o ADR normativo e registra o contrato publicado de `@fradelli/ui@0.1.0`.
