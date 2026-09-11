@@ -3,8 +3,8 @@
 import { Button } from "@fradelli/ui/button";
 import Link from "next/link";
 
-import styles from "../app-shell.module.css";
-import { useAppShellNavigation } from "../hooks/use-app-shell-navigation";
+import styles from "./app-shell-navigation.module.css";
+import { useAppShellNavigation } from "./hooks/use-app-shell-navigation";
 
 export function AppShellNavigation() {
   const navigationItems = useAppShellNavigation();

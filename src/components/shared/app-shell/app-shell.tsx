@@ -1,6 +1,6 @@
 import styles from "./app-shell.module.css";
 import type { AppShellProps } from "./app-shell.types";
-import { AppShellNavigation } from "./components/app-shell-navigation";
+import { AppShellNavigation } from "./components/app-shell-navigation/app-shell-navigation";
 
 export function AppShell({ children }: AppShellProps) {
   return (

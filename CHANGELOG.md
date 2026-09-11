@@ -2,6 +2,13 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-11 — estrutura React padronizada
+
+- Reduzidas as entradas de Dieta, Treino e Foundations à composição server-side, com placeholder compartilhado e ilha Client mínima para o exemplo interativo.
+- Encapsulados componentes compartilhados e filhos privados em pastas próprias, mantendo tipos, estilos, constantes, hooks, utilitários e testes junto de seus responsáveis.
+- Registrada a convenção na arquitetura e adicionada validação estrutural local e na CI para impedir componentes soltos ou arquivos auxiliares misturados.
+- Preservados conteúdo, acessibilidade e comportamento visual; formato, lint, tipos, testes, dados, build e auditoria passaram.
+
 ## 2026-09-11 — shell acessível do Kaizen concluído
 
 - Criado shell mobile-first sobre `@fradelli/ui@0.1.0` com landmarks, skip link e navegação Dieta/Treino identificando a rota atual.

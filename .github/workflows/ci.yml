@@ -78,6 +78,8 @@ jobs:
         run: pnpm format:check
       - name: Lint
         run: pnpm lint
+      - name: Validate component structure
+        run: pnpm structure:check
       - name: Typecheck
         run: pnpm typecheck
 

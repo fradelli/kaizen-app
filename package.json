@@ -17,10 +17,11 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "test:ci-scripts": "node --test scripts/validate-governance.test.mjs scripts/validate-data.test.mjs",
+    "test:ci-scripts": "node --test scripts/validate-governance.test.mjs scripts/validate-data.test.mjs scripts/validate-component-structure.test.mjs",
     "governance": "node scripts/validate-governance.mjs",
     "data:check": "node scripts/validate-data.mjs",
-    "ci": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test:coverage && pnpm test:ci-scripts && pnpm data:check && pnpm build && pnpm audit --audit-level=moderate"
+    "structure:check": "node scripts/validate-component-structure.mjs",
+    "ci": "pnpm format:check && pnpm lint && pnpm structure:check && pnpm typecheck && pnpm test:coverage && pnpm test:ci-scripts && pnpm data:check && pnpm build && pnpm audit --audit-level=moderate"
   },
   "dependencies": {
     "@fradelli/ui": "0.1.0",
