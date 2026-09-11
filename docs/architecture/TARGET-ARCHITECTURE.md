@@ -150,6 +150,54 @@ Server Components carregam DTOs pelos casos de uso. Client Components existem so
 
 Tokens, tipografia, foco, motion, estados visuais genéricos e primitives acessíveis vêm de `@fradelli/ui`. O Kaizen mantém shell, layouts, páginas, rotas, textos, i18n, calendário composto e o mapeamento entre cores e conceitos do domínio. CSS local serve apenas à composição e não duplica o contrato visual compartilhado.
 
+### Organização dos componentes React
+
+`src/app` permanece fino e concentra rotas, metadata, layouts e composição no
+nível da rota. Blocos visuais compartilhados vivem em `src/components/shared`;
+blocos específicos de negócio vivem em `src/features/<feature>`. Um componente
+com mais de uma responsabilidade ganha uma pasta própria e separa somente os
+arquivos que tenham responsabilidade concreta:
+
+```text
+component-name/
+├── component-name.tsx
+├── component-name.types.ts
+├── component-name.constants.ts
+├── component-name.styles.ts
+├── component-name.module.css
+├── component-name.utils.ts
+├── component-name.test.tsx
+├── components/
+│   └── private-child.tsx
+└── hooks/
+    └── use-component-name.ts
+```
+
+- `*.tsx` renderiza e compõe UI;
+- `*.types.ts` mantém props, contratos locais e view models;
+- `*.constants.ts` mantém listas, ordem, defaults e constantes semânticas;
+- `*.styles.ts` mantém composição densa de classes utilitárias fora do JSX;
+- `*.module.css` mantém somente composição visual local com tokens públicos;
+- `*.utils.ts` mantém transformações puras e não importa React, roteador,
+  Prisma, adapters ou componentes;
+- `hooks/use-*.ts` mantém estado, efeitos, integração com contexto e estado de
+  rota que realmente dependam de hooks;
+- `components/` mantém filhos privados que não fazem parte da API compartilhada.
+
+Não se cria arquivo vazio apenas para cumprir o formato. A separação acontece
+quando existe responsabilidade real e melhora leitura, teste ou isolamento.
+Imports explícitos são o padrão; `index.ts` só existe quando a pasta expõe uma
+API pública pequena e intencional. `*.styles.ts` e `*.module.css` são
+alternativas conforme a composição; não se usam ambos sem necessidade real.
+
+Server Components são o padrão. O limite `"use client"` deve ficar na menor
+folha que precise de interação, estado, efeito ou API do navegador. O Server
+Component pode compor essa ilha e passar apenas props serializáveis ou conteúdo
+renderizável. Módulos client não importam acesso a dados, casos de uso
+server-only, Prisma, segredos ou variáveis privadas. Código de dados usa
+`server-only`; Server Actions ficam em módulos próprios, tratam a requisição
+como entrada pública e delegam regra de negócio para a camada de aplicação.
+
 ### Dependências permitidas
 
 | Origem | Pode depender de |

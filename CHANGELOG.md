@@ -2,6 +2,13 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-11 — shell acessível do Kaizen concluído
+
+- Criado shell mobile-first sobre `@fradelli/ui@0.1.0` com landmarks, skip link e navegação Dieta/Treino identificando a rota atual.
+- Mantido o shell como Server Component e isolado `usePathname` em uma ilha Client mínima, com tipos, constantes, estilos, hook e utilitário separados por responsabilidade.
+- Adicionados placeholders explícitos sem dados de domínio e redirecionamento de `/` para `/dieta`, preservando `/foundations`.
+- Validados teclado, foco, viewport de 320 px, ausência de overflow, testes, build e auditoria; criada E04-T09 para padronizar separadamente as páginas existentes.
+
 ## 2026-09-11 — integração versionada do Design System concluída
 
 - Fixados `@fradelli/ui@0.1.0`, Tailwind CSS `4.3.3`, `@tailwindcss/postcss@4.3.3` e PostCSS `8.5.28` com instalação congelada comprovada em worktree limpo.
