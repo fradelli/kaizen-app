@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/training-execution-metadata.schema.json",
+  "title": "Metadados revisados de execução de treino",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "last_updated", "reviewed_plan_paths", "exercises"],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date"
+    },
+    "reviewed_plan_paths": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^data/plans/[^/]+\\.json$"
+      }
+    },
+    "exercises": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/exercise"
+      }
+    }
+  },
+  "$defs": {
+    "prescription": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_text", "minimum", "maximum", "unit", "scope", "qualifier"],
+      "properties": {
+        "source_text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "minimum": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maximum": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "unit": {
+          "enum": ["repetitions", "seconds", "contacts"]
+        },
+        "scope": {
+          "enum": ["total", "each_side", "two_directions", "four_directions"]
+        },
+        "qualifier": {
+          "enum": [null, "easy", "easy_or_assisted", "at_60_75_90_percent"]
+        }
+      }
+    },
+    "exercise": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "exercise_id",
+        "measurement_type",
+        "load_applicable",
+        "load_unit",
+        "normalization_rule"
+      ],
+      "properties": {
+        "exercise_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$"
+        },
+        "measurement_type": {
+          "enum": ["repetitions", "seconds", "contacts", "per_side"]
+        },
+        "load_applicable": {
+          "type": "boolean"
+        },
+        "load_unit": {
+          "enum": ["kg", null]
+        },
+        "normalization_rule": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["prescriptions"],
+          "properties": {
+            "prescriptions": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/$defs/prescription"
+              }
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "load_applicable": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "load_unit": {
+                "const": "kg"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "load_unit": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

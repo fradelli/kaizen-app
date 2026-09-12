@@ -1,57 +1,59 @@
 # Schemas de dados
 
-Os schemas documentam contratos estruturais mínimos para os dados de treino e alimentação. Eles são intencionalmente permissivos nesta fase e não substituem validações entre arquivos, de produto ou clínicas.
+Os contratos usam JSON Schema Draft 2020-12. O $id sob https://example.local/
+é identificador do contrato, não endpoint publicado. Validação estrutural não
+comprova segurança clínica, eficácia ou adequação individual.
 
 ## Cobertura
 
-| Schema | Dados cobertos | Garantias principais |
-| --- | --- | --- |
-| [`exercise-library.schema.json`](exercise-library.schema.json) | [`data/exercises.json`](../data/exercises.json) | Campos obrigatórios da biblioteca e dos exercícios, ID em `snake_case`, categorias e nível de evidência |
-| [`training-plan.schema.json`](training-plan.schema.json) | Arquivos em [`data/plans/`](../data/plans/) | Metadados do plano, status permitido, sessões, duração e estrutura básica da prescrição |
-| [`nutrition-plan.schema.json`](nutrition-plan.schema.json) | Arquivos em [`data/nutrition/plans/`](../data/nutrition/plans/) | Metadados, aprovação, proveniência, tipos de dia, refeições, opções, horários e limites de uso |
+| Schema                                                                             | Dados                                                                             | Garantias                                                          |
+| ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| [exercise-library.schema.json](exercise-library.schema.json)                       | [data/exercises.json](../data/exercises.json)                                     | Estrutura da biblioteca, IDs snake_case e evidência                |
+| [training-plan.schema.json](training-plan.schema.json)                             | [data/plans/](../data/plans/)                                                     | Versão, status, sessões e estrutura de prescrição                  |
+| [nutrition-plan.schema.json](nutrition-plan.schema.json)                           | [data/nutrition/plans/](../data/nutrition/plans/)                                 | Aprovação, proveniência, tipos de dia, refeições, opções e limites |
+| [training-execution-metadata.schema.json](training-execution-metadata.schema.json) | [data/training-execution-metadata.json](../data/training-execution-metadata.json) | Medição, carga, unidade, doses normalizadas e cobertura revisada   |
 
-Ambos declaram JSON Schema Draft 2020-12. O `$id` sob `https://example.local/` é apenas um identificador do contrato e não representa endpoint publicado.
+## Metadados de execução
 
-## Permissividade intencional
+O contrato novo é estrito (additionalProperties: false), sem defaults. Cada
+exercício usado em qualquer plano versionado exige uma entrada revisada contendo
+exercise_id, measurement_type, load_applicable, load_unit e normalization_rule.
+reviewed_plan_paths lista exatamente os planos cobertos.
 
-- `additionalProperties: true` permite campos de domínio ainda não formalizados.
-- `schema_version`, regras globais e vários campos descritivos são exigidos ou aceitos sem formato semântico estrito.
-- Chaves de sessão são abertas para novas modalidades.
-- Um validador precisa habilitar `format` para verificar datas declaradas com `format: date`.
+- Carga aplicável exige unidade kg; não aplicável exige null.
+- Carga aplicável é possibilidade do contrato, não recomendação de adicioná-la.
+- Cada prescrição mantém texto original, mínimo, máximo, unidade, escopo e qualifier.
+- Minutos são normalizados em segundos; medidas por lado preservam sua unidade.
+- Direções cervical/punho e qualifiers de aquecimento não são descartados.
+- Biblioteca e planos históricos permanecem intactos; metadados os complementam.
+- Nenhum dado operacional pessoal pertence ao arquivo versionado.
 
-Não amplie nem restrinja os contratos sem dados de exemplo, impacto conhecido e migração explícita.
+O [modelo P0](../docs/architecture/DATA-MODEL.md) documenta a revisão por exercício.
+Categoria, nome e regex não determinam carga. A gramática do validador só verifica
+normalizações explícitas já revisadas; dose desconhecida exige revisão, não fallback.
 
-## Lacunas conhecidas
+## Permissividade e limites
 
-Ainda não existe schema inventariado para:
+Os três contratos migrados preservam additionalProperties: true para campos
+descritivos ainda não formalizados. O contrato dos metadados é fechado. Restringir
+contrato legado exige dados de exemplo, impacto e migração explícitos.
 
-- `data/profile.json`;
-- `data/schedule.json`;
-- `data/active.json`;
-- `data/reviews/`;
-- manifesto, guias e templates.
+Ainda não há schema inventariado para profile, schedule, ponteiros ativos,
+reviews, manifesto, guias e templates. Seus JSONs passam por parse; ponteiros e
+referências cobertos pelo validador têm checks semânticos próprios.
 
-Os schemas atuais também não verificam:
-
-- unicidade dos IDs da biblioteca;
-- existência de cada `exercise_id` referenciado pelos planos;
-- correspondência entre `active_plan_id`, `active_plan_path` e o plano selecionado;
-- que somente um plano seja o vigente;
-- coerência de dose, segurança, eficácia ou adequação individual.
-
-Essas invariantes devem ser validadas separadamente. O fato de um JSON validar contra o schema significa somente que sua estrutura mínima é aceita.
-
-## Validação atual
-
-E01-T05 confirmou com `Test-Json` que biblioteca, plano v1 e plano v2 validam contra seus contratos. Nenhum script, pacote ou dependência de validação foi adicionado ao repositório.
-
-Exemplos para conferência manual com PowerShell 7:
+## Validação automatizada
 
 ```powershell
-Get-Content -Raw data/exercises.json | Test-Json -SchemaFile schemas/exercise-library.schema.json
-Get-Content -Raw data/plans/2026-08-performance-v1.json | Test-Json -SchemaFile schemas/training-plan.schema.json
-Get-Content -Raw data/plans/2026-08-performance-v2.json | Test-Json -SchemaFile schemas/training-plan.schema.json
-Get-Content -Raw data/nutrition/plans/2026-09-personal-v1.json | Test-Json -SchemaFile schemas/nutrition-plan.schema.json
+pnpm data:check
+pnpm test:ci-scripts
 ```
 
-A automação estável desses contratos pertence ao futuro check `Data integrity`, não a esta etapa documental.
+[validate-data.mjs](../scripts/validate-data.mjs) habilita formatos e verifica:
+parse/schema, unicidade de IDs, referências de exercícios, ponteiros ativos,
+referências alimentares e cobertura/normalização dos metadados. Unicidade de
+exercise_id entre objetos e existência de referências não são garantidas apenas
+por JSON Schema. Ausência de classificação é erro bloqueante para a importação.
+
+O job Data integrity já executa essas validações na CI. Os testes usam fixtures
+sintéticas, não dados operacionais pessoais ou mock de banco pronto.

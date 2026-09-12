@@ -2,6 +2,13 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-12 — modelo P0 e metadados especificados
+
+- Documentadas as 18 entidades conceituais com ownership, vínculos de versão, unicidade, checks, índices e preservação histórica.
+- Revisados os 38 exercícios usados nos planos versionados, com doses explícitas, segundos por lado, direções e qualificadores preservados.
+- Criado schema estrito e ampliada a validação de dados para bloquear classificação ausente, referências inválidas, carga incompatível e normalizações não revisadas.
+- Nenhum plano histórico, banco, migration, Prisma Client, dependência ou endpoint foi alterado/criado.
+
 ## 2026-09-11 — estrutura React padronizada
 
 - Reduzidas as entradas de Dieta, Treino e Foundations à composição server-side, com placeholder compartilhado e ilha Client mínima para o exemplo interativo.

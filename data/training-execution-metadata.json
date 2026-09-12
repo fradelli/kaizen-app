@@ -1,0 +1,766 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2026-09-12",
+  "reviewed_plan_paths": [
+    "data/plans/2026-08-performance-v1.json",
+    "data/plans/2026-08-performance-v2.json"
+  ],
+  "exercises": [
+    {
+      "exercise_id": "snap_down_stick",
+      "measurement_type": "repetitions",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "3",
+            "minimum": 3,
+            "maximum": 3,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "jump_squat",
+      "measurement_type": "repetitions",
+      "load_applicable": true,
+      "load_unit": "kg",
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "3",
+            "minimum": 3,
+            "maximum": 3,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "loaded_squat",
+      "measurement_type": "repetitions",
+      "load_applicable": true,
+      "load_unit": "kg",
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "4-6",
+            "minimum": 4,
+            "maximum": 6,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "romanian_deadlift",
+      "measurement_type": "repetitions",
+      "load_applicable": true,
+      "load_unit": "kg",
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "5-8",
+            "minimum": 5,
+            "maximum": 8,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "nordic_hamstring",
+      "measurement_type": "repetitions",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "4-6",
+            "minimum": 4,
+            "maximum": 6,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "standing_calf_raise",
+      "measurement_type": "repetitions",
+      "load_applicable": true,
+      "load_unit": "kg",
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "6-10",
+            "minimum": 6,
+            "maximum": 10,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          },
+          {
+            "source_text": "8",
+            "minimum": 8,
+            "maximum": 8,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          },
+          {
+            "source_text": "10",
+            "minimum": 10,
+            "maximum": 10,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "seated_calf_raise",
+      "measurement_type": "repetitions",
+      "load_applicable": true,
+      "load_unit": "kg",
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "8-12",
+            "minimum": 8,
+            "maximum": 12,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "pallof_press",
+      "measurement_type": "per_side",
+      "load_applicable": true,
+      "load_unit": "kg",
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "8-12_each_side",
+            "minimum": 8,
+            "maximum": 12,
+            "unit": "repetitions",
+            "scope": "each_side",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "pogo_jump",
+      "measurement_type": "contacts",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "8_contacts",
+            "minimum": 8,
+            "maximum": 8,
+            "unit": "contacts",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "lateral_hop_and_stick",
+      "measurement_type": "per_side",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "3_each_side",
+            "minimum": 3,
+            "maximum": 3,
+            "unit": "repetitions",
+            "scope": "each_side",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "bulgarian_split_squat",
+      "measurement_type": "per_side",
+      "load_applicable": true,
+      "load_unit": "kg",
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "5-8_each_leg",
+            "minimum": 5,
+            "maximum": 8,
+            "unit": "repetitions",
+            "scope": "each_side",
+            "qualifier": null
+          },
+          {
+            "source_text": "5_each_leg",
+            "minimum": 5,
+            "maximum": 5,
+            "unit": "repetitions",
+            "scope": "each_side",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "hip_thrust",
+      "measurement_type": "repetitions",
+      "load_applicable": true,
+      "load_unit": "kg",
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "6-10",
+            "minimum": 6,
+            "maximum": 10,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "short_lever_copenhagen",
+      "measurement_type": "per_side",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "15-25_seconds_each_side",
+            "minimum": 15,
+            "maximum": 25,
+            "unit": "seconds",
+            "scope": "each_side",
+            "qualifier": null
+          },
+          {
+            "source_text": "15_seconds_each_side",
+            "minimum": 15,
+            "maximum": 15,
+            "unit": "seconds",
+            "scope": "each_side",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "pull_up",
+      "measurement_type": "repetitions",
+      "load_applicable": true,
+      "load_unit": "kg",
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "5-8",
+            "minimum": 5,
+            "maximum": 8,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          },
+          {
+            "source_text": "4-6",
+            "minimum": 4,
+            "maximum": 6,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          },
+          {
+            "source_text": "3_easy_or_assisted",
+            "minimum": 3,
+            "maximum": 3,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": "easy_or_assisted"
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "chin_up",
+      "measurement_type": "repetitions",
+      "load_applicable": true,
+      "load_unit": "kg",
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "6-10",
+            "minimum": 6,
+            "maximum": 10,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "australian_row",
+      "measurement_type": "repetitions",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "8-12",
+            "minimum": 8,
+            "maximum": 12,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "parallel_bar_dip",
+      "measurement_type": "repetitions",
+      "load_applicable": true,
+      "load_unit": "kg",
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "6-10",
+            "minimum": 6,
+            "maximum": 10,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          },
+          {
+            "source_text": "5-8",
+            "minimum": 5,
+            "maximum": 8,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "pike_push_up",
+      "measurement_type": "repetitions",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "6-10",
+            "minimum": 6,
+            "maximum": 10,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "push_up",
+      "measurement_type": "repetitions",
+      "load_applicable": true,
+      "load_unit": "kg",
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "8-12",
+            "minimum": 8,
+            "maximum": 12,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          },
+          {
+            "source_text": "5_easy",
+            "minimum": 5,
+            "maximum": 5,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": "easy"
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "side_plank",
+      "measurement_type": "per_side",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "20-30_seconds_each_side",
+            "minimum": 20,
+            "maximum": 30,
+            "unit": "seconds",
+            "scope": "each_side",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "cervical_isometric_four_way",
+      "measurement_type": "seconds",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "15-20_seconds_each_direction",
+            "minimum": 15,
+            "maximum": 20,
+            "unit": "seconds",
+            "scope": "four_directions",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "barbell_row",
+      "measurement_type": "repetitions",
+      "load_applicable": true,
+      "load_unit": "kg",
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "6-10",
+            "minimum": 6,
+            "maximum": 10,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "barbell_overhead_press",
+      "measurement_type": "repetitions",
+      "load_applicable": true,
+      "load_unit": "kg",
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "5-8",
+            "minimum": 5,
+            "maximum": 8,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "wall_handstand_push_up",
+      "measurement_type": "repetitions",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "1-2",
+            "minimum": 1,
+            "maximum": 2,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "plate_lateral_raise",
+      "measurement_type": "repetitions",
+      "load_applicable": true,
+      "load_unit": "kg",
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "10-20",
+            "minimum": 10,
+            "maximum": 20,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "hip_flexor_march",
+      "measurement_type": "per_side",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "15-20_seconds_each_side",
+            "minimum": 15,
+            "maximum": 20,
+            "unit": "seconds",
+            "scope": "each_side",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "dead_bug",
+      "measurement_type": "per_side",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "6-8_each_side",
+            "minimum": 6,
+            "maximum": 8,
+            "unit": "repetitions",
+            "scope": "each_side",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "plank_shoulder_tap",
+      "measurement_type": "per_side",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "6-10_each_side",
+            "minimum": 6,
+            "maximum": 10,
+            "unit": "repetitions",
+            "scope": "each_side",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "wrist_rock",
+      "measurement_type": "repetitions",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "8_each_direction",
+            "minimum": 8,
+            "maximum": 8,
+            "unit": "repetitions",
+            "scope": "two_directions",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "scapular_pull_up",
+      "measurement_type": "repetitions",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "5-6",
+            "minimum": 5,
+            "maximum": 6,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "scapular_push_up",
+      "measurement_type": "repetitions",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "8-10",
+            "minimum": 8,
+            "maximum": 10,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "quadruped_thoracic_rotation",
+      "measurement_type": "per_side",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "6_each_side",
+            "minimum": 6,
+            "maximum": 6,
+            "unit": "repetitions",
+            "scope": "each_side",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "knee_to_wall",
+      "measurement_type": "per_side",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "8_each_side",
+            "minimum": 8,
+            "maximum": 8,
+            "unit": "repetitions",
+            "scope": "each_side",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "hip_90_90_transition",
+      "measurement_type": "per_side",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "6_each_side",
+            "minimum": 6,
+            "maximum": 6,
+            "unit": "repetitions",
+            "scope": "each_side",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "dynamic_lunge_with_rotation",
+      "measurement_type": "per_side",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "5_each_side",
+            "minimum": 5,
+            "maximum": 5,
+            "unit": "repetitions",
+            "scope": "each_side",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "bodyweight_squat",
+      "measurement_type": "repetitions",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "8",
+            "minimum": 8,
+            "maximum": 8,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "progressive_vertical_jump",
+      "measurement_type": "repetitions",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "3_at_60_75_90_percent",
+            "minimum": 3,
+            "maximum": 3,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": "at_60_75_90_percent"
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "general_locomotion_warmup",
+      "measurement_type": "seconds",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "2-3_minutes",
+            "minimum": 120,
+            "maximum": 180,
+            "unit": "seconds",
+            "scope": "total",
+            "qualifier": null
+          },
+          {
+            "source_text": "2_minutes",
+            "minimum": 120,
+            "maximum": 120,
+            "unit": "seconds",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    }
+  ]
+}
