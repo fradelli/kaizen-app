@@ -7,6 +7,10 @@ import addFormats from "ajv-formats";
 
 const schemaAssignments = [
   {
+    matches: (path) => path === "data/training-execution-metadata.json",
+    schema: "https://example.local/schemas/training-execution-metadata.schema.json",
+  },
+  {
     matches: (path) => path === "data/exercises.json",
     schema: "https://example.local/schemas/exercise-library.schema.json",
   },
@@ -158,6 +162,117 @@ function validateSchemas(documents) {
   return errors;
 }
 
+function normalizePrescription(text) {
+  if (typeof text !== "string") return undefined;
+  const match =
+    /^(\d+)(?:-(\d+))?(?:_(minutes|contacts|seconds_each_side|seconds_each_direction|each_side|each_leg|each_direction|easy|easy_or_assisted|at_60_75_90_percent))?$/.exec(
+      text,
+    );
+  if (!match) return undefined;
+  const suffix = match[3];
+  const multiplier = suffix === "minutes" ? 60 : 1;
+  const minimum = Number(match[1]) * multiplier;
+  const maximum = Number(match[2] ?? match[1]) * multiplier;
+  if (
+    !Number.isSafeInteger(minimum) ||
+    !Number.isSafeInteger(maximum) ||
+    minimum < 1 ||
+    maximum < minimum
+  )
+    return undefined;
+  return {
+    minimum,
+    maximum,
+    unit:
+      suffix === "minutes" || suffix?.startsWith("seconds_")
+        ? "seconds"
+        : suffix === "contacts"
+          ? "contacts"
+          : "repetitions",
+    scope: ["each_side", "each_leg", "seconds_each_side"].includes(suffix)
+      ? "each_side"
+      : suffix === "seconds_each_direction"
+        ? "four_directions"
+        : suffix === "each_direction"
+          ? "two_directions"
+          : "total",
+    qualifier: ["easy", "easy_or_assisted", "at_60_75_90_percent"].includes(suffix) ? suffix : null,
+  };
+}
+
+function validateExecutionMetadata(documents, planEntries, exerciseIds) {
+  const errors = [];
+  const path = "data/training-execution-metadata.json";
+  const document = documents.get(path);
+  if (!document) return [`${path}: metadados obrigatórios ausentes.`];
+  const items = Array.isArray(document.exercises)
+    ? document.exercises.filter((item) => item && typeof item === "object" && !Array.isArray(item))
+    : [];
+  validateUniqueIds(
+    errors,
+    path,
+    "ID de metadado",
+    items.map((item) => item.exercise_id),
+  );
+  const expected = new Map();
+  for (const [, plan] of planEntries) {
+    for (const session of Object.values(plan.sessions ?? {})) {
+      for (const exercise of session.exercises ?? []) {
+        if (!expected.has(exercise.exercise_id)) expected.set(exercise.exercise_id, new Set());
+        expected.get(exercise.exercise_id).add(exercise.reps);
+      }
+    }
+  }
+  const reviewedPaths = Array.isArray(document.reviewed_plan_paths)
+    ? document.reviewed_plan_paths
+    : [];
+  const actualPaths = planEntries.map(([planPath]) => planPath);
+  if (JSON.stringify([...reviewedPaths].sort()) !== JSON.stringify(actualPaths.sort())) {
+    errors.push(`${path}: reviewed_plan_paths deve cobrir exatamente os planos versionados.`);
+  }
+  for (const exerciseId of expected.keys()) {
+    if (!items.some((item) => item.exercise_id === exerciseId))
+      errors.push(`${path}: classificação ausente: ${exerciseId}.`);
+  }
+  for (const item of items) {
+    const itemPath = `${path}/exercises/${item.exercise_id}`;
+    if (!exerciseIds.has(item.exercise_id)) errors.push(`${itemPath}: exercício inexistente.`);
+    if (!expected.has(item.exercise_id))
+      errors.push(`${itemPath}: exercício não usado pelos planos.`);
+    if (
+      typeof item.load_applicable !== "boolean" ||
+      item.load_unit !== (item.load_applicable ? "kg" : null)
+    )
+      errors.push(`${itemPath}: carga e unidade incompatíveis.`);
+    const prescriptions = Array.isArray(item.normalization_rule?.prescriptions)
+      ? item.normalization_rule.prescriptions.filter(
+          (rule) => rule && typeof rule === "object" && !Array.isArray(rule),
+        )
+      : [];
+    validateUniqueIds(
+      errors,
+      itemPath,
+      "Texto prescrito",
+      prescriptions.map((rule) => rule.source_text),
+    );
+    for (const text of expected.get(item.exercise_id) ?? []) {
+      if (!prescriptions.some((rule) => rule.source_text === text))
+        errors.push(`${itemPath}: normalização ausente: ${text}.`);
+    }
+    for (const rule of prescriptions) {
+      const normalized = normalizePrescription(rule.source_text);
+      if (!expected.get(item.exercise_id)?.has(rule.source_text))
+        errors.push(`${itemPath}: prescrição não usada: ${rule.source_text}.`);
+      if (!normalized || Object.entries(normalized).some(([key, value]) => rule[key] !== value))
+        errors.push(`${itemPath}: normalização incompatível: ${rule.source_text}.`);
+      const type = normalized?.scope === "each_side" ? "per_side" : normalized?.unit;
+      if (item.measurement_type !== type)
+        errors.push(`${itemPath}: medição incompatível: ${rule.source_text}.`);
+    }
+  }
+  return errors;
+}
+
 function validateTrainingData(documents) {
   const errors = [];
   const exerciseLibrary = documents.get("data/exercises.json");
@@ -188,7 +303,7 @@ function validateTrainingData(documents) {
   }
 
   return {
-    errors,
+    errors: [...errors, ...validateExecutionMetadata(documents, planEntries, exerciseIds)],
     planIds: new Set(planEntries.map(([, plan]) => plan.plan_id)),
   };
 }

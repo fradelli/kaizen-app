@@ -44,10 +44,44 @@ function createValidFixture() {
     createSchema("https://example.local/schemas/nutrition-plan.schema.json", ["plan_id", "meals"]),
   );
   writeJson("data/exercises.json", { exercises: [{ id: "jump" }] });
+  writeJson(
+    "schemas/training-execution-metadata.schema.json",
+    JSON.parse(
+      readFileSync(
+        new URL("../schemas/training-execution-metadata.schema.json", import.meta.url),
+        "utf8",
+      ),
+    ),
+  );
+  writeJson("data/training-execution-metadata.json", {
+    schema_version: "1.0.0",
+    last_updated: "2026-09-12",
+    reviewed_plan_paths: ["data/plans/training.json"],
+    exercises: [
+      {
+        exercise_id: "jump",
+        measurement_type: "repetitions",
+        load_applicable: false,
+        load_unit: null,
+        normalization_rule: {
+          prescriptions: [
+            {
+              source_text: "3",
+              minimum: 3,
+              maximum: 3,
+              unit: "repetitions",
+              scope: "total",
+              qualifier: null,
+            },
+          ],
+        },
+      },
+    ],
+  });
   writeJson("data/plans/training.json", {
     plan_id: "training_v1",
     sessions: {
-      main: { exercises: [{ exercise_id: "jump" }] },
+      main: { exercises: [{ exercise_id: "jump", reps: "3" }] },
     },
   });
   writeJson("data/reviews/review.json", { review_id: "review_v1" });
@@ -98,6 +132,167 @@ afterEach(() => {
 });
 
 describe("validateData", () => {
+  test("metadado estruturalmente inválido retorna erros sem interromper a validação", () => {
+    writeJson("data/training-execution-metadata.json", {
+      schema_version: "1.0.0",
+      last_updated: "invalid",
+      reviewed_plan_paths: [],
+      exercises: [null],
+    });
+    assert.ok(
+      validateData({ repositoryRoot }).some((error) => error.includes("classificação ausente")),
+    );
+  });
+
+  test("rejeita gramática desconhecida, faixa invertida e zero na dose prescrita", () => {
+    for (const source_text of ["3_new", "8-3", "0"]) {
+      writeJson("data/plans/training.json", {
+        plan_id: "training_v1",
+        sessions: { main: { exercises: [{ exercise_id: "jump", reps: source_text }] } },
+      });
+      writeJson("data/training-execution-metadata.json", {
+        schema_version: "1.0.0",
+        last_updated: "2026-09-12",
+        reviewed_plan_paths: ["data/plans/training.json"],
+        exercises: [
+          {
+            exercise_id: "jump",
+            measurement_type: "repetitions",
+            load_applicable: false,
+            load_unit: null,
+            normalization_rule: {
+              prescriptions: [
+                {
+                  source_text,
+                  minimum: 3,
+                  maximum: 3,
+                  unit: "repetitions",
+                  scope: "total",
+                  qualifier: null,
+                },
+              ],
+            },
+          },
+        ],
+      });
+      assert.ok(
+        validateData({ repositoryRoot }).some((error) =>
+          error.includes("normalização incompatível"),
+        ),
+        source_text,
+      );
+    }
+  });
+  test("rejeita metadados ausentes", () => {
+    rmSync(join(repositoryRoot, "data/training-execution-metadata.json"));
+    assert.ok(
+      validateData({ repositoryRoot }).some((error) =>
+        error.includes("metadados obrigatórios ausentes"),
+      ),
+    );
+  });
+
+  test("rejeita cobertura, IDs e textos duplicados", () => {
+    const path = "data/training-execution-metadata.json";
+    const metadata = JSON.parse(readFileSync(join(repositoryRoot, path), "utf8"));
+    metadata.exercises.push(structuredClone(metadata.exercises[0]));
+    metadata.exercises[0].normalization_rule.prescriptions.push(
+      structuredClone(metadata.exercises[0].normalization_rule.prescriptions[0]),
+    );
+    metadata.reviewed_plan_paths = ["data/plans/missing.json"];
+    writeJson(path, metadata);
+    const errors = validateData({ repositoryRoot });
+    assert.ok(errors.some((error) => error.includes("ID de metadado duplicado")));
+    assert.ok(errors.some((error) => error.includes("Texto prescrito duplicado")));
+    assert.ok(errors.some((error) => error.includes("reviewed_plan_paths")));
+  });
+
+  test("rejeita classificação ausente e exercício extra", () => {
+    const path = "data/training-execution-metadata.json";
+    const metadata = JSON.parse(readFileSync(join(repositoryRoot, path), "utf8"));
+    metadata.exercises[0].exercise_id = "unknown";
+    writeJson(path, metadata);
+    const errors = validateData({ repositoryRoot });
+    assert.ok(errors.some((error) => error.includes("classificação ausente")));
+    assert.ok(errors.some((error) => error.includes("exercício inexistente")));
+    assert.ok(errors.some((error) => error.includes("não usado pelos planos")));
+  });
+
+  test("rejeita carga, medição, normalização e propriedade desconhecida", () => {
+    const path = "data/training-execution-metadata.json";
+    const metadata = JSON.parse(readFileSync(join(repositoryRoot, path), "utf8"));
+    const item = metadata.exercises[0];
+    item.load_unit = "kg";
+    item.measurement_type = "invalid";
+    item.unknown = true;
+    item.normalization_rule.prescriptions[0].maximum = 2;
+    writeJson(path, metadata);
+    const errors = validateData({ repositoryRoot });
+    for (const message of [
+      "carga e unidade",
+      "medição incompatível",
+      "normalização incompatível",
+      "additional properties",
+    ])
+      assert.ok(
+        errors.some((error) => error.includes(message)),
+        message,
+      );
+  });
+
+  test("rejeita unidade ausente quando carga é aplicável", () => {
+    const path = "data/training-execution-metadata.json";
+    const metadata = JSON.parse(readFileSync(join(repositoryRoot, path), "utf8"));
+    metadata.exercises[0].load_applicable = true;
+    writeJson(path, metadata);
+    assert.ok(validateData({ repositoryRoot }).some((error) => error.includes("carga e unidade")));
+  });
+
+  test("normaliza minutos, lados, direções, contatos e qualificadores sem inferir carga", () => {
+    const cases = [
+      ["2-3_minutes", 120, 180, "seconds", "total", null, "seconds"],
+      ["15-20_seconds_each_side", 15, 20, "seconds", "each_side", null, "per_side"],
+      ["5_each_leg", 5, 5, "repetitions", "each_side", null, "per_side"],
+      ["8_each_direction", 8, 8, "repetitions", "two_directions", null, "repetitions"],
+      ["15-20_seconds_each_direction", 15, 20, "seconds", "four_directions", null, "seconds"],
+      ["8_contacts", 8, 8, "contacts", "total", null, "contacts"],
+      ["3_at_60_75_90_percent", 3, 3, "repetitions", "total", "at_60_75_90_percent", "repetitions"],
+      ["3_easy_or_assisted", 3, 3, "repetitions", "total", "easy_or_assisted", "repetitions"],
+    ];
+    for (const [source_text, minimum, maximum, unit, scope, qualifier, measurement_type] of cases) {
+      writeJson("data/plans/training.json", {
+        plan_id: "training_v1",
+        sessions: { main: { exercises: [{ exercise_id: "jump", reps: source_text }] } },
+      });
+      writeJson("data/training-execution-metadata.json", {
+        schema_version: "1.0.0",
+        last_updated: "2026-09-12",
+        reviewed_plan_paths: ["data/plans/training.json"],
+        exercises: [
+          {
+            exercise_id: "jump",
+            measurement_type,
+            load_applicable: false,
+            load_unit: null,
+            normalization_rule: {
+              prescriptions: [{ source_text, minimum, maximum, unit, scope, qualifier }],
+            },
+          },
+        ],
+      });
+      assert.deepEqual(validateData({ repositoryRoot }), [], source_text);
+    }
+  });
+
+  test("nova dose e gramática desconhecida exigem revisão explícita", () => {
+    writeJson("data/plans/training.json", {
+      plan_id: "training_v1",
+      sessions: { main: { exercises: [{ exercise_id: "jump", reps: "3_new" }] } },
+    });
+    assert.ok(
+      validateData({ repositoryRoot }).some((error) => error.includes("normalização ausente")),
+    );
+  });
   test("aceita schemas, ponteiros e referências válidos", () => {
     assert.deepEqual(validateData({ repositoryRoot }), []);
   });
