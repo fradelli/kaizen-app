@@ -1,0 +1,101 @@
+enum ImportResult {
+  in_progress
+  completed
+  failed
+
+  @@map("import_result")
+}
+
+enum PlanDomain {
+  training
+  nutrition
+
+  @@map("plan_domain")
+}
+
+enum LogicalEnvironment {
+  local
+  preview
+  staging
+  production
+
+  @@map("logical_environment")
+}
+
+model Workspace {
+  id                                  String                      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt                           DateTime                    @default(now()) @map("created_at") @db.Timestamptz(6)
+  pairingRateLimit_workspace          PairingRateLimit[]          @relation("PairingRateLimit_workspace")
+  dailyTrainingAssignment_workspace   DailyTrainingAssignment[]   @relation("DailyTrainingAssignment_workspace")
+  trainingExecution_workspace         TrainingExecution[]         @relation("TrainingExecution_workspace")
+  trainingExerciseExecution_workspace TrainingExerciseExecution[] @relation("TrainingExerciseExecution_workspace")
+  trainingSetExecution_workspace      TrainingSetExecution[]      @relation("TrainingSetExecution_workspace")
+  dailyNutritionAssignment_workspace  DailyNutritionAssignment[]  @relation("DailyNutritionAssignment_workspace")
+  mealExecution_workspace             MealExecution[]             @relation("MealExecution_workspace")
+
+  @@map("workspace")
+}
+
+model ImportBatch {
+  id                               String                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  sourceKind                       String                @map("source_kind") @db.Text
+  sourcePath                       String                @map("source_path") @db.Text
+  sourceSha256                     String                @map("source_sha256") @db.Char(64)
+  sourceSchemaVersion              String                @map("source_schema_version") @db.Text
+  applicationCommit                String                @map("application_commit") @db.Char(40)
+  sourceDocument                   Json                  @map("source_document") @db.JsonB
+  startedAt                        DateTime              @map("started_at") @db.Timestamptz(6)
+  finishedAt                       DateTime?             @map("finished_at") @db.Timestamptz(6)
+  result                           ImportResult
+  errorCode                        String?               @map("error_code") @db.Text
+  createdAt                        DateTime              @default(now()) @map("created_at") @db.Timestamptz(6)
+  planActivation_pointerBatch      PlanActivation[]      @relation("PlanActivation_pointerBatch")
+  exerciseDefinition_libraryBatch  ExerciseDefinition[]  @relation("ExerciseDefinition_libraryBatch")
+  exerciseDefinition_metadataBatch ExerciseDefinition[]  @relation("ExerciseDefinition_metadataBatch")
+  trainingPlanVersion_importBatch  TrainingPlanVersion?  @relation("TrainingPlanVersion_importBatch")
+  nutritionPlanVersion_importBatch NutritionPlanVersion? @relation("NutritionPlanVersion_importBatch")
+
+  @@unique([sourcePath, sourceSha256], map: "import_batch_u1")
+  @@index([applicationCommit], map: "import_batch_i1")
+  @@map("import_batch")
+}
+
+model PlanActivation {
+  id                     String                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  domain                 PlanDomain
+  logicalEnvironment     LogicalEnvironment    @map("logical_environment")
+  trainingPlanVersionId  String?               @map("training_plan_version_id") @db.Uuid
+  nutritionPlanVersionId String?               @map("nutrition_plan_version_id") @db.Uuid
+  pointerImportBatchId   String                @map("pointer_import_batch_id") @db.Uuid
+  activatedAt            DateTime              @map("activated_at") @db.Timestamptz(6)
+  supersededAt           DateTime?             @map("superseded_at") @db.Timestamptz(6)
+  createdAt              DateTime              @default(now()) @map("created_at") @db.Timestamptz(6)
+  trainingPlan           TrainingPlanVersion?  @relation("PlanActivation_trainingPlan", fields: [trainingPlanVersionId], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "plan_activation_training_plan_fk")
+  nutritionPlan          NutritionPlanVersion? @relation("PlanActivation_nutritionPlan", fields: [nutritionPlanVersionId], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "plan_activation_nutrition_plan_fk")
+  pointerBatch           ImportBatch           @relation("PlanActivation_pointerBatch", fields: [pointerImportBatchId], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "plan_activation_pointer_batch_fk")
+
+  @@index([logicalEnvironment, domain, activatedAt], map: "plan_activation_i1")
+  @@index([trainingPlanVersionId], map: "plan_activation_i2")
+  @@index([nutritionPlanVersionId], map: "plan_activation_i3")
+  @@index([pointerImportBatchId], map: "plan_activation_i4")
+  @@map("plan_activation")
+}
+
+model PairingRateLimit {
+  id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  workspaceId     String    @map("workspace_id") @db.Uuid
+  bucketKey       String    @map("bucket_key") @db.Text
+  windowStartedAt DateTime  @map("window_started_at") @db.Timestamptz(6)
+  attemptCount    Int       @map("attempt_count")
+  blockedUntil    DateTime? @map("blocked_until") @db.Timestamptz(6)
+  expiresAt       DateTime  @map("expires_at") @db.Timestamptz(6)
+  createdAt       DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt       DateTime  @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  revision        Int       @default(0)
+  workspace       Workspace @relation("PairingRateLimit_workspace", fields: [workspaceId], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "pairing_rate_limit_workspace_fk")
+
+  @@unique([workspaceId, bucketKey], map: "pairing_rate_limit_u1")
+  @@unique([workspaceId, id], map: "pairing_rate_limit_u2")
+  @@index([expiresAt], map: "pairing_rate_limit_i1")
+  @@map("pairing_rate_limit")
+}

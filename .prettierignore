@@ -1,6 +1,7 @@
 .next
 coverage
 node_modules
+src/generated/prisma
 playwright-report
 test-results
 pnpm-lock.yaml

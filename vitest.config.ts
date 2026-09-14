@@ -11,10 +11,16 @@ export default defineConfig({
   },
   test: {
     environment: "jsdom",
-    exclude: [...configDefaults.exclude, "scripts/**/*.test.mjs"],
+    exclude: [
+      ...configDefaults.exclude,
+      "scripts/**/*.test.mjs",
+      "tests/integration/**",
+      "src/generated/prisma/**",
+    ],
     setupFiles: ["./vitest.setup.ts"],
     coverage: {
       provider: "v8",
+      exclude: ["src/generated/prisma/**", "tests/integration/**"],
       reporter: ["text", "json", "html"],
       thresholds: {
         lines: 80,

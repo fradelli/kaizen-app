@@ -1,0 +1,223 @@
+enum MeasurementType {
+  repetitions
+  seconds
+  contacts
+  per_side
+
+  @@map("measurement_type")
+}
+
+enum TrainingAssignmentKind {
+  training
+  mobility
+  rest
+  unassigned
+
+  @@map("training_assignment_kind")
+}
+
+enum TrainingExecutionStatus {
+  not_started
+  in_progress
+  completed
+  followed_different
+  skipped
+
+  @@map("training_execution_status")
+}
+
+enum ItemStatus {
+  pending
+  completed
+  skipped
+
+  @@map("item_status")
+}
+
+enum ExerciseRole {
+  main
+  preparation
+  mobility
+
+  @@map("exercise_role")
+}
+
+model ExerciseDefinition {
+  id                                  String                       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  exerciseId                          String                       @map("exercise_id") @db.Text
+  libraryImportBatchId                String                       @map("library_import_batch_id") @db.Uuid
+  metadataImportBatchId               String                       @map("metadata_import_batch_id") @db.Uuid
+  namePt                              String                       @map("name_pt") @db.Text
+  definition                          Json                         @db.JsonB
+  measurementType                     MeasurementType              @map("measurement_type")
+  loadApplicable                      Boolean                      @map("load_applicable")
+  loadUnit                            String?                      @map("load_unit") @db.Text
+  normalizationRule                   Json                         @map("normalization_rule") @db.JsonB
+  createdAt                           DateTime                     @default(now()) @map("created_at") @db.Timestamptz(6)
+  libraryBatch                        ImportBatch                  @relation("ExerciseDefinition_libraryBatch", fields: [libraryImportBatchId], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "exercise_definition_library_batch_fk")
+  metadataBatch                       ImportBatch                  @relation("ExerciseDefinition_metadataBatch", fields: [metadataImportBatchId], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "exercise_definition_metadata_batch_fk")
+  trainingExerciseDefinition_exercise TrainingExerciseDefinition[] @relation("TrainingExerciseDefinition_exercise")
+
+  @@unique([libraryImportBatchId, metadataImportBatchId, exerciseId], map: "exercise_definition_u1")
+  @@index([metadataImportBatchId], map: "exercise_definition_i1")
+  @@map("exercise_definition")
+}
+
+model TrainingPlanVersion {
+  id                             String                      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  planId                         String                      @map("plan_id") @db.Text
+  version                        String                      @db.Text
+  sourceStatus                   String                      @map("source_status") @db.Text
+  sourceCreatedOn                DateTime                    @map("source_created_on") @db.Date
+  sourceUpdatedOn                DateTime                    @map("source_updated_on") @db.Date
+  importBatchId                  String                      @map("import_batch_id") @db.Uuid
+  createdAt                      DateTime                    @default(now()) @map("created_at") @db.Timestamptz(6)
+  importBatch                    ImportBatch                 @relation("TrainingPlanVersion_importBatch", fields: [importBatchId], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "training_plan_version_import_batch_fk")
+  planActivation_trainingPlan    PlanActivation[]            @relation("PlanActivation_trainingPlan")
+  trainingSessionDefinition_plan TrainingSessionDefinition[] @relation("TrainingSessionDefinition_plan")
+  dailyTrainingAssignment_plan   DailyTrainingAssignment[]   @relation("DailyTrainingAssignment_plan")
+
+  @@unique([planId, version], map: "training_plan_version_u1")
+  @@unique([importBatchId], map: "training_plan_version_u2")
+  @@map("training_plan_version")
+}
+
+model TrainingSessionDefinition {
+  id                                         String                       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  trainingPlanVersionId                      String                       @map("training_plan_version_id") @db.Uuid
+  sessionId                                  String                       @map("session_id") @db.Text
+  name                                       String                       @db.Text
+  targetDurationMinutes                      Int                          @map("target_duration_minutes")
+  shortDurationMinutes                       Int?                         @map("short_duration_minutes")
+  intensity                                  String?                      @db.Text
+  notes                                      String?                      @db.Text
+  createdAt                                  DateTime                     @default(now()) @map("created_at") @db.Timestamptz(6)
+  plan                                       TrainingPlanVersion          @relation("TrainingSessionDefinition_plan", fields: [trainingPlanVersionId], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "training_session_definition_plan_fk")
+  trainingExerciseDefinition_session         TrainingExerciseDefinition[] @relation("TrainingExerciseDefinition_session")
+  dailyTrainingAssignment_mainSession        DailyTrainingAssignment[]    @relation("DailyTrainingAssignment_mainSession")
+  dailyTrainingAssignment_preparationSession DailyTrainingAssignment[]    @relation("DailyTrainingAssignment_preparationSession")
+
+  @@unique([trainingPlanVersionId, sessionId], map: "training_session_definition_u1")
+  @@unique([trainingPlanVersionId, id], map: "training_session_definition_u2")
+  @@map("training_session_definition")
+}
+
+model TrainingExerciseDefinition {
+  id                                     String                      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  trainingPlanVersionId                  String                      @map("training_plan_version_id") @db.Uuid
+  sessionDefinitionId                    String                      @map("session_definition_id") @db.Uuid
+  exerciseDefinitionId                   String                      @map("exercise_definition_id") @db.Uuid
+  ordinal                                Int
+  sets                                   Int
+  prescribedText                         String                      @map("prescribed_text") @db.Text
+  restSeconds                            Int?                        @map("rest_seconds")
+  priority                               String?                     @db.Text
+  notes                                  String?                     @db.Text
+  normalizedDose                         Json                        @map("normalized_dose") @db.JsonB
+  createdAt                              DateTime                    @default(now()) @map("created_at") @db.Timestamptz(6)
+  session                                TrainingSessionDefinition   @relation("TrainingExerciseDefinition_session", fields: [trainingPlanVersionId, sessionDefinitionId], references: [trainingPlanVersionId, id], onDelete: Restrict, onUpdate: Restrict, map: "training_exercise_definition_session_fk")
+  exercise                               ExerciseDefinition          @relation("TrainingExerciseDefinition_exercise", fields: [exerciseDefinitionId], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "training_exercise_definition_exercise_fk")
+  trainingExerciseExecution_prescription TrainingExerciseExecution[] @relation("TrainingExerciseExecution_prescription")
+
+  @@unique([sessionDefinitionId, ordinal], map: "training_exercise_definition_u1")
+  @@unique([trainingPlanVersionId, sessionDefinitionId, id], map: "training_exercise_definition_u2")
+  @@index([exerciseDefinitionId], map: "training_exercise_definition_i1")
+  @@map("training_exercise_definition")
+}
+
+model DailyTrainingAssignment {
+  id                                  String                     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  workspaceId                         String                     @map("workspace_id") @db.Uuid
+  civilDate                           DateTime                   @map("civil_date") @db.Date
+  kind                                TrainingAssignmentKind
+  trainingPlanVersionId               String?                    @map("training_plan_version_id") @db.Uuid
+  mainSessionId                       String?                    @map("main_session_id") @db.Uuid
+  preparationSessionId                String?                    @map("preparation_session_id") @db.Uuid
+  reason                              String?                    @db.Text
+  createdAt                           DateTime                   @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt                           DateTime                   @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  revision                            Int                        @default(0)
+  plan                                TrainingPlanVersion?       @relation("DailyTrainingAssignment_plan", fields: [trainingPlanVersionId], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "daily_training_assignment_plan_fk")
+  mainSession                         TrainingSessionDefinition? @relation("DailyTrainingAssignment_mainSession", fields: [trainingPlanVersionId, mainSessionId], references: [trainingPlanVersionId, id], onDelete: Restrict, onUpdate: Restrict, map: "daily_training_assignment_main_session_fk")
+  preparationSession                  TrainingSessionDefinition? @relation("DailyTrainingAssignment_preparationSession", fields: [trainingPlanVersionId, preparationSessionId], references: [trainingPlanVersionId, id], onDelete: Restrict, onUpdate: Restrict, map: "daily_training_assignment_preparation_session_fk")
+  workspace                           Workspace                  @relation("DailyTrainingAssignment_workspace", fields: [workspaceId], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "daily_training_assignment_workspace_fk")
+  trainingExecution_assignment        TrainingExecution?         @relation("TrainingExecution_assignment")
+  trainingExecution_assignmentVersion TrainingExecution[]        @relation("TrainingExecution_assignmentVersion")
+
+  @@unique([workspaceId, civilDate], map: "daily_training_assignment_u1")
+  @@unique([workspaceId, id, trainingPlanVersionId], map: "daily_training_assignment_u2")
+  @@unique([workspaceId, id], map: "daily_training_assignment_u3")
+  @@index([trainingPlanVersionId, mainSessionId], map: "daily_training_assignment_i1")
+  @@index([trainingPlanVersionId, preparationSessionId], map: "daily_training_assignment_i2")
+  @@map("daily_training_assignment")
+}
+
+model TrainingExecution {
+  id                                  String                      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  workspaceId                         String                      @map("workspace_id") @db.Uuid
+  assignmentId                        String                      @map("assignment_id") @db.Uuid
+  trainingPlanVersionId               String?                     @map("training_plan_version_id") @db.Uuid
+  status                              TrainingExecutionStatus
+  comment                             String?                     @db.Text
+  startedAt                           DateTime?                   @map("started_at") @db.Timestamptz(6)
+  completedAt                         DateTime?                   @map("completed_at") @db.Timestamptz(6)
+  createdAt                           DateTime                    @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt                           DateTime                    @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  revision                            Int                         @default(0)
+  assignment                          DailyTrainingAssignment     @relation("TrainingExecution_assignment", fields: [workspaceId, assignmentId], references: [workspaceId, id], onDelete: Restrict, onUpdate: Restrict, map: "training_execution_assignment_fk")
+  assignmentVersion                   DailyTrainingAssignment?    @relation("TrainingExecution_assignmentVersion", fields: [workspaceId, assignmentId, trainingPlanVersionId], references: [workspaceId, id, trainingPlanVersionId], onDelete: Restrict, onUpdate: Restrict, map: "training_execution_assignment_version_fk")
+  workspace                           Workspace                   @relation("TrainingExecution_workspace", fields: [workspaceId], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "training_execution_workspace_fk")
+  trainingExerciseExecution_execution TrainingExerciseExecution[] @relation("TrainingExerciseExecution_execution")
+
+  @@unique([workspaceId, assignmentId], map: "training_execution_u1")
+  @@unique([workspaceId, id, trainingPlanVersionId], map: "training_execution_u2")
+  @@unique([workspaceId, id], map: "training_execution_u3")
+  @@map("training_execution")
+}
+
+model TrainingExerciseExecution {
+  id                                     String                     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  workspaceId                            String                     @map("workspace_id") @db.Uuid
+  trainingExecutionId                    String                     @map("training_execution_id") @db.Uuid
+  trainingPlanVersionId                  String                     @map("training_plan_version_id") @db.Uuid
+  sessionDefinitionId                    String                     @map("session_definition_id") @db.Uuid
+  exerciseDefinitionId                   String                     @map("exercise_definition_id") @db.Uuid
+  role                                   ExerciseRole
+  itemStatus                             ItemStatus                 @map("item_status")
+  comment                                String?                    @db.Text
+  createdAt                              DateTime                   @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt                              DateTime                   @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  revision                               Int                        @default(0)
+  execution                              TrainingExecution          @relation("TrainingExerciseExecution_execution", fields: [workspaceId, trainingExecutionId, trainingPlanVersionId], references: [workspaceId, id, trainingPlanVersionId], onDelete: Restrict, onUpdate: Restrict, map: "training_exercise_execution_execution_fk")
+  prescription                           TrainingExerciseDefinition @relation("TrainingExerciseExecution_prescription", fields: [trainingPlanVersionId, sessionDefinitionId, exerciseDefinitionId], references: [trainingPlanVersionId, sessionDefinitionId, id], onDelete: Restrict, onUpdate: Restrict, map: "training_exercise_execution_prescription_fk")
+  workspace                              Workspace                  @relation("TrainingExerciseExecution_workspace", fields: [workspaceId], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "training_exercise_execution_workspace_fk")
+  trainingSetExecution_exerciseExecution TrainingSetExecution[]     @relation("TrainingSetExecution_exerciseExecution")
+
+  @@unique([workspaceId, trainingExecutionId, exerciseDefinitionId, role], map: "training_exercise_execution_u1")
+  @@unique([workspaceId, id], map: "training_exercise_execution_u2")
+  @@index([workspaceId, trainingExecutionId, trainingPlanVersionId], map: "training_exercise_execution_i1")
+  @@index([trainingPlanVersionId, sessionDefinitionId, exerciseDefinitionId], map: "training_exercise_execution_i2")
+  @@map("training_exercise_execution")
+}
+
+model TrainingSetExecution {
+  id                  String                    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  workspaceId         String                    @map("workspace_id") @db.Uuid
+  exerciseExecutionId String                    @map("exercise_execution_id") @db.Uuid
+  setNumber           Int                       @map("set_number")
+  status              ItemStatus
+  value               Int?
+  leftValue           Int?                      @map("left_value")
+  rightValue          Int?                      @map("right_value")
+  directionValues     Json?                     @map("direction_values") @db.JsonB
+  loadKg              Decimal?                  @map("load_kg") @db.Decimal(10, 3)
+  createdAt           DateTime                  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt           DateTime                  @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  revision            Int                       @default(0)
+  exerciseExecution   TrainingExerciseExecution @relation("TrainingSetExecution_exerciseExecution", fields: [workspaceId, exerciseExecutionId], references: [workspaceId, id], onDelete: Restrict, onUpdate: Restrict, map: "training_set_execution_exercise_execution_fk")
+  workspace           Workspace                 @relation("TrainingSetExecution_workspace", fields: [workspaceId], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "training_set_execution_workspace_fk")
+
+  @@unique([workspaceId, exerciseExecutionId, setNumber], map: "training_set_execution_u1")
+  @@unique([workspaceId, id], map: "training_set_execution_u2")
+  @@map("training_set_execution")
+}

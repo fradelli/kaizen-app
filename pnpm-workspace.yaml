@@ -1,4 +1,6 @@
 allowBuilds:
+  "@prisma/engines": true
+  prisma: true
   unrs-resolver: true
 
 overrides:
@@ -6,3 +8,4 @@ overrides:
   # Compatibilidade deve ser validada também na E05-T02; remover quando o
   # Prisma estável incorporar a correção. Não amplia o override a outros pais.
   "@prisma/config@7.10.0>deepmerge-ts": 8.0.2
+  "prisma@7.10.0>mysql2": 3.23.1
