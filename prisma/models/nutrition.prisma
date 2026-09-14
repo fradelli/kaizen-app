@@ -1,0 +1,165 @@
+enum MealExecutionStatus {
+  pending
+  followed_plan
+  followed_different
+  skipped
+
+  @@map("meal_execution_status")
+}
+
+model NutritionPlanVersion {
+  id                              String                       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  planId                          String                       @map("plan_id") @db.Text
+  version                         String                       @db.Text
+  lifecycleStatus                 String                       @map("lifecycle_status") @db.Text
+  professionalStatus              String                       @map("professional_status") @db.Text
+  sourceCreatedOn                 DateTime                     @map("source_created_on") @db.Date
+  sourceUpdatedOn                 DateTime                     @map("source_updated_on") @db.Date
+  effectiveFrom                   DateTime                     @map("effective_from") @db.Date
+  effectiveUntil                  DateTime?                    @map("effective_until") @db.Date
+  timezone                        String                       @db.Text
+  importBatchId                   String                       @map("import_batch_id") @db.Uuid
+  createdAt                       DateTime                     @default(now()) @map("created_at") @db.Timestamptz(6)
+  importBatch                     ImportBatch                  @relation("NutritionPlanVersion_importBatch", fields: [importBatchId], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "nutrition_plan_version_import_batch_fk")
+  planActivation_nutritionPlan    PlanActivation[]             @relation("PlanActivation_nutritionPlan")
+  nutritionDayTypeDefinition_plan NutritionDayTypeDefinition[] @relation("NutritionDayTypeDefinition_plan")
+  mealDefinition_plan             MealDefinition[]             @relation("MealDefinition_plan")
+
+  @@unique([planId, version], map: "nutrition_plan_version_u1")
+  @@unique([importBatchId], map: "nutrition_plan_version_u2")
+  @@map("nutrition_plan_version")
+}
+
+model NutritionDayTypeDefinition {
+  id                               String                     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  nutritionPlanVersionId           String                     @map("nutrition_plan_version_id") @db.Uuid
+  dayTypeId                        String                     @map("day_type_id") @db.Text
+  ordinal                          Int
+  label                            String                     @db.Text
+  energyBandId                     String                     @map("energy_band_id") @db.Text
+  minimumKcal                      Int                        @map("minimum_kcal")
+  maximumKcal                      Int                        @map("maximum_kcal")
+  energyBandStatus                 String                     @map("energy_band_status") @db.Text
+  minimumModules                   Int                        @map("minimum_modules")
+  maximumModules                   Int                        @map("maximum_modules")
+  mealRule                         String                     @map("meal_rule") @db.Text
+  createdAt                        DateTime                   @default(now()) @map("created_at") @db.Timestamptz(6)
+  plan                             NutritionPlanVersion       @relation("NutritionDayTypeDefinition_plan", fields: [nutritionPlanVersionId], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "nutrition_day_type_definition_plan_fk")
+  nutritionDayTypeMeal_dayType     NutritionDayTypeMeal[]     @relation("NutritionDayTypeMeal_dayType")
+  dailyNutritionAssignment_dayType DailyNutritionAssignment[] @relation("DailyNutritionAssignment_dayType")
+
+  @@unique([nutritionPlanVersionId, dayTypeId], map: "nutrition_day_type_definition_u1")
+  @@unique([nutritionPlanVersionId, ordinal], map: "nutrition_day_type_definition_u2")
+  @@unique([nutritionPlanVersionId, id], map: "nutrition_day_type_definition_u3")
+  @@map("nutrition_day_type_definition")
+}
+
+model MealDefinition {
+  id                        String                 @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  nutritionPlanVersionId    String                 @map("nutrition_plan_version_id") @db.Uuid
+  mealId                    String                 @map("meal_id") @db.Text
+  ordinal                   Int
+  label                     String                 @db.Text
+  defaultTime               DateTime?              @map("default_time") @db.Time(0)
+  required                  Boolean
+  useWhen                   String?                @map("use_when") @db.Text
+  timingRules               Json                   @map("timing_rules") @db.JsonB
+  createdAt                 DateTime               @default(now()) @map("created_at") @db.Timestamptz(6)
+  plan                      NutritionPlanVersion   @relation("MealDefinition_plan", fields: [nutritionPlanVersionId], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "meal_definition_plan_fk")
+  nutritionDayTypeMeal_meal NutritionDayTypeMeal[] @relation("NutritionDayTypeMeal_meal")
+  mealOptionDefinition_meal MealOptionDefinition[] @relation("MealOptionDefinition_meal")
+  mealExecution_meal        MealExecution[]        @relation("MealExecution_meal")
+
+  @@unique([nutritionPlanVersionId, mealId], map: "meal_definition_u1")
+  @@unique([nutritionPlanVersionId, ordinal], map: "meal_definition_u2")
+  @@unique([nutritionPlanVersionId, id], map: "meal_definition_u3")
+  @@map("meal_definition")
+}
+
+model NutritionDayTypeMeal {
+  nutritionPlanVersionId String                     @map("nutrition_plan_version_id") @db.Uuid
+  dayTypeId              String                     @map("day_type_id") @db.Uuid
+  mealId                 String                     @map("meal_id") @db.Uuid
+  ordinal                Int
+  dayType                NutritionDayTypeDefinition @relation("NutritionDayTypeMeal_dayType", fields: [nutritionPlanVersionId, dayTypeId], references: [nutritionPlanVersionId, id], onDelete: Restrict, onUpdate: Restrict, map: "nutrition_day_type_meal_day_type_fk")
+  meal                   MealDefinition             @relation("NutritionDayTypeMeal_meal", fields: [nutritionPlanVersionId, mealId], references: [nutritionPlanVersionId, id], onDelete: Restrict, onUpdate: Restrict, map: "nutrition_day_type_meal_meal_fk")
+
+  @@id([dayTypeId, mealId])
+  @@unique([dayTypeId, ordinal], map: "nutrition_day_type_meal_u1")
+  @@index([mealId], map: "nutrition_day_type_meal_i1")
+  @@index([nutritionPlanVersionId, dayTypeId], map: "nutrition_day_type_meal_i2")
+  @@index([nutritionPlanVersionId, mealId], map: "nutrition_day_type_meal_i3")
+  @@map("nutrition_day_type_meal")
+}
+
+model MealOptionDefinition {
+  id                             String                 @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  nutritionPlanVersionId         String                 @map("nutrition_plan_version_id") @db.Uuid
+  mealDefinitionId               String                 @map("meal_definition_id") @db.Uuid
+  optionId                       String                 @map("option_id") @db.Text
+  ordinal                        Int
+  label                          String                 @db.Text
+  useWhen                        String?                @map("use_when") @db.Text
+  followUpRule                   String?                @map("follow_up_rule") @db.Text
+  items                          Json?                  @db.JsonB
+  unknowns                       Json?                  @db.JsonB
+  referenceOptionId              String?                @map("reference_option_id") @db.Uuid
+  createdAt                      DateTime               @default(now()) @map("created_at") @db.Timestamptz(6)
+  meal                           MealDefinition         @relation("MealOptionDefinition_meal", fields: [nutritionPlanVersionId, mealDefinitionId], references: [nutritionPlanVersionId, id], onDelete: Restrict, onUpdate: Restrict, map: "meal_option_definition_meal_fk")
+  reference                      MealOptionDefinition?  @relation("MealOptionDefinition_reference", fields: [nutritionPlanVersionId, referenceOptionId], references: [nutritionPlanVersionId, id], onDelete: Restrict, onUpdate: Restrict, map: "meal_option_definition_reference_fk")
+  mealOptionDefinition_reference MealOptionDefinition[] @relation("MealOptionDefinition_reference")
+  mealExecution_option           MealExecution[]        @relation("MealExecution_option")
+
+  @@unique([mealDefinitionId, optionId], map: "meal_option_definition_u1")
+  @@unique([mealDefinitionId, ordinal], map: "meal_option_definition_u2")
+  @@unique([nutritionPlanVersionId, mealDefinitionId, id], map: "meal_option_definition_u3")
+  @@unique([nutritionPlanVersionId, id], map: "meal_option_definition_u4")
+  @@index([nutritionPlanVersionId, referenceOptionId], map: "meal_option_definition_i1")
+  @@map("meal_option_definition")
+}
+
+model DailyNutritionAssignment {
+  id                       String                     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  workspaceId              String                     @map("workspace_id") @db.Uuid
+  civilDate                DateTime                   @map("civil_date") @db.Date
+  nutritionPlanVersionId   String                     @map("nutrition_plan_version_id") @db.Uuid
+  dayTypeId                String                     @map("day_type_id") @db.Uuid
+  createdAt                DateTime                   @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt                DateTime                   @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  revision                 Int                        @default(0)
+  dayType                  NutritionDayTypeDefinition @relation("DailyNutritionAssignment_dayType", fields: [nutritionPlanVersionId, dayTypeId], references: [nutritionPlanVersionId, id], onDelete: Restrict, onUpdate: Restrict, map: "daily_nutrition_assignment_day_type_fk")
+  workspace                Workspace                  @relation("DailyNutritionAssignment_workspace", fields: [workspaceId], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "daily_nutrition_assignment_workspace_fk")
+  mealExecution_assignment MealExecution[]            @relation("MealExecution_assignment")
+
+  @@unique([workspaceId, civilDate], map: "daily_nutrition_assignment_u1")
+  @@unique([workspaceId, id, nutritionPlanVersionId], map: "daily_nutrition_assignment_u2")
+  @@unique([workspaceId, id], map: "daily_nutrition_assignment_u3")
+  @@index([nutritionPlanVersionId, dayTypeId], map: "daily_nutrition_assignment_i1")
+  @@map("daily_nutrition_assignment")
+}
+
+model MealExecution {
+  id                     String                   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  workspaceId            String                   @map("workspace_id") @db.Uuid
+  assignmentId           String                   @map("assignment_id") @db.Uuid
+  nutritionPlanVersionId String                   @map("nutrition_plan_version_id") @db.Uuid
+  mealDefinitionId       String                   @map("meal_definition_id") @db.Uuid
+  status                 MealExecutionStatus
+  optionDefinitionId     String?                  @map("option_definition_id") @db.Uuid
+  alternativeDescription String?                  @map("alternative_description") @db.Text
+  comment                String?                  @db.Text
+  createdAt              DateTime                 @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt              DateTime                 @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  revision               Int                      @default(0)
+  assignment             DailyNutritionAssignment @relation("MealExecution_assignment", fields: [workspaceId, assignmentId, nutritionPlanVersionId], references: [workspaceId, id, nutritionPlanVersionId], onDelete: Restrict, onUpdate: Restrict, map: "meal_execution_assignment_fk")
+  meal                   MealDefinition           @relation("MealExecution_meal", fields: [nutritionPlanVersionId, mealDefinitionId], references: [nutritionPlanVersionId, id], onDelete: Restrict, onUpdate: Restrict, map: "meal_execution_meal_fk")
+  option                 MealOptionDefinition?    @relation("MealExecution_option", fields: [nutritionPlanVersionId, mealDefinitionId, optionDefinitionId], references: [nutritionPlanVersionId, mealDefinitionId, id], onDelete: Restrict, onUpdate: Restrict, map: "meal_execution_option_fk")
+  workspace              Workspace                @relation("MealExecution_workspace", fields: [workspaceId], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "meal_execution_workspace_fk")
+
+  @@unique([workspaceId, assignmentId, mealDefinitionId], map: "meal_execution_u1")
+  @@unique([workspaceId, id], map: "meal_execution_u2")
+  @@index([workspaceId, assignmentId, nutritionPlanVersionId], map: "meal_execution_i1")
+  @@index([nutritionPlanVersionId, mealDefinitionId], map: "meal_execution_i2")
+  @@index([nutritionPlanVersionId, mealDefinitionId, optionDefinitionId], map: "meal_execution_i3")
+  @@map("meal_execution")
+}

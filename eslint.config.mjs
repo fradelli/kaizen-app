@@ -11,5 +11,11 @@ export default defineConfig([
       "@typescript-eslint/no-explicit-any": "error",
     },
   },
-  globalIgnores([".next/**", "coverage/**", "playwright-report/**", "test-results/**"]),
+  globalIgnores([
+    ".next/**",
+    "coverage/**",
+    "playwright-report/**",
+    "test-results/**",
+    "src/generated/prisma/**",
+  ]),
 ]);

@@ -1,2 +1,6 @@
 allowBuilds:
+  "@prisma/engines": true
+  prisma: true
   unrs-resolver: true
+overrides:
+  "prisma@7.10.0>mysql2": 3.23.1

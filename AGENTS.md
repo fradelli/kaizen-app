@@ -40,6 +40,10 @@ Instruções específicas existem em `roadmap/AGENTS.md`, `data/AGENTS.md` e `do
 
 As decisões completas só devem ser lidas quando listadas pela tarefa em `docs/architecture/` ou `docs/decisions/`.
 
+Tarefas que alteram Prisma ou configuração de banco devem listar
+`docs/architecture/TARGET-ARCHITECTURE.md` nas entradas e seguir sua seção
+“Organização do Prisma e configuração de banco”. Essa é a fonte normativa dessas convenções.
+
 ## Git e entrega
 
 - Trabalho novo parte de `developer` em `codex/<ID>-descricao-curta` para branches do agente.

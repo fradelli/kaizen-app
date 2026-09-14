@@ -93,6 +93,10 @@ src/
     prisma/
 prisma/
   migrations/
+  models/
+    platform.prisma
+    training.prisma
+    nutrition.prisma
   schema.prisma
 tests/
   integration/
@@ -404,11 +408,22 @@ A arquitetura implementa [`PRIVACY-AND-OPERATIONS.md`](../decisions/PRIVACY-AND-
 
 O token de pareamento tem alta entropia; seu hash é comparado em tempo constante. A sessão é assinada/autenticada por biblioteca criptográfica consolidada, sem algoritmo caseiro.
 
+## Organização do Prisma e configuração de banco
+
+- `prisma/schema.prisma` contém somente generator e datasource. Modelos e enums ficam em `prisma/models/`, em arquivos por domínio; estruturas transversais ficam em `platform.prisma`. A configuração aponta para `prisma/`, sem criar namespaces de banco apenas para organizar arquivos.
+- `prisma.config.ts` é uma entrada fina: carrega o ambiente e declara caminhos/datasource. Validação e proteções da CLI ficam em auxiliar puro e testável, sem inicializar o Client da aplicação. Usar o carregador nativo de ambiente; adicionar dependência de carregamento/interpolação somente com necessidade comprovada.
+- Configuração de runtime é validada no servidor e tipada. Separar tipos, constantes de pool, utilitários puros de URL, leitura de ambiente e criação do Client. Criar arquivos auxiliares apenas quando houver consumidor; nunca exportar segredos para UI.
+- O Client é lazy, `server-only`, usa adapter PostgreSQL e pool limitado. Reutilizar instância no processo e durante hot reload; não conectar ao importar módulos nem desconectar por requisição. Ferramentas de duração finita encerram seu Client em `finally`.
+- Runtime usa `DATABASE_URL` pooled; migrations usam somente `DIRECT_URL`, sem fallback. Manter as proteções de destino local e a proibição de reset/db push no fluxo versionado; erros não revelam strings de conexão.
+- `dev`, `build`, `typecheck`, testes unitários, cobertura e integração geram o Client antes de executar sua ferramenta. Não depender de geração manual ou exclusiva da CI. O código gerado é ignorado pelo Git e não recebe edição manual.
+- Manter ESM e runtime Node do Next.js. Não importar convenções específicas de NestJS, CommonJS ou cascatas de outro projeto sem requisito aprovado. Tipos Prisma permanecem na camada de dados e são mapeados para contratos de aplicação.
+- Separar arquivos de schema sem mudar entidades não exige migration nova. Confirmar equivalência do schema e ausência de diferença SQL; migrations existentes permanecem intactas. Mudanças reais de modelo seguem o processo abaixo.
+
 ## Migrations
 
 ### Desenvolvimento
 
-- Alterar `prisma/schema.prisma` e criar migration com `prisma migrate dev` somente contra banco local descartável.
+- Alterar os arquivos de `prisma/models/` e criar migration com `pnpm db:migrate` somente contra banco local descartável.
 - Revisar o SQL gerado e adicionar constraints/índices explícitos necessários.
 - Commitar schema e diretório completo da migration juntos.
 - Validar do zero, não apenas sobre o banco do autor.
