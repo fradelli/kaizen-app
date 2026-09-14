@@ -105,6 +105,38 @@ tests/
 
 Pastas são criadas apenas quando recebem um arquivo necessário. Não serão adicionados barrels globais, diretórios vazios ou camadas sem consumidor.
 
+## Semântica e legibilidade do código
+
+Convenção permanente para novas implementações e para código alterado na tarefa:
+
+- Nomear features, arquivos, tipos e casos de uso pelo conceito de negócio e
+  responsabilidade real. O nome deve distinguir, por exemplo, importar definições
+  de planos de registrar uma execução pessoal.
+- Funções de ação usam verbo e objeto explícitos; mapeadores indicam conversão,
+  e validações indicam a condição garantida. Evitar nomes genéricos como `process`,
+  `handle` ou `data` quando escondem o propósito. Nomes locais curtos são aceitáveis
+  quando o contexto é inequívoco, sem repetir desnecessariamente o nome da feature.
+- Separar responsabilidades coesas em módulos com consumidores atuais. A
+  orquestração deve revelar a sequência do caso de uso; detalhes de leitura,
+  validação, mapeamento e persistência não devem encobrir essa sequência.
+- Manter tipos, erros, utilitários e implementação junto do responsável, mas em
+  arquivos próprios quando suas responsabilidades forem distintas. Componentes
+  React seguem adicionalmente a organização em pastas definida abaixo.
+- Converter formatos posicionais externos em propriedades nomeadas na fronteira
+  de leitura. Regras de negócio não dependem de índices de coluna sem significado.
+- Preservar fronteiras Server/Client, autorização, procedência e transações ao
+  extrair módulos. Uma validação ou operação não deve ser duplicada em camadas
+  diferentes sem necessidade explícita; atomicidade pertence ao caso de uso.
+- Testes devem descrever comportamento, condições de falha e garantias do domínio.
+  Comentários explicam decisões e restrições não evidentes, sem compensar nomes
+  obscuros ou simplesmente repetir a implementação.
+
+Antes da entrega, revisar se é possível identificar pelo código o que entra,
+o que muda, o que permanece preservado e o que acontece em caso de falha. Registrar
+essa revisão na PR; formato, lint, tipos e testes continuam obrigatórios, mas
+não comprovam sozinhos clareza semântica. Não criar abstrações futuras ou refatorar
+código alheio ao escopo apenas para atender à convenção.
+
 ## Boundaries
 
 ### Domínio

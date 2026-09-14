@@ -82,7 +82,7 @@ function validateUniqueIds(errors, path, label, values) {
   }
 }
 
-function resolveRepositoryLink(repositoryRoot, sourcePath, value, errors) {
+function resolveRepositoryLink(repositoryRoot, sourcePath, value, errors, availablePaths) {
   if (typeof value !== "string" || value.length === 0) {
     errors.push(`${sourcePath}: caminho ausente ou inválido.`);
     return undefined;
@@ -101,7 +101,7 @@ function resolveRepositoryLink(repositoryRoot, sourcePath, value, errors) {
     return undefined;
   }
 
-  if (!existsSync(target)) {
+  if (availablePaths ? !availablePaths.has(value.split("\\").join("/")) : !existsSync(target)) {
     errors.push(`${sourcePath}: destino inexistente: ${value}.`);
     return undefined;
   }
@@ -287,7 +287,7 @@ function validateTrainingData(documents) {
     errors,
     "data/plans",
     "ID de plano",
-    planEntries.map(([, plan]) => plan.plan_id),
+    planEntries.map(([, plan]) => `${plan.plan_id}@${plan.version ?? "unknown"}`),
   );
 
   for (const [path, plan] of planEntries) {
@@ -399,7 +399,7 @@ function validateNutritionPlan(path, plan, trainingPlanIds) {
   return errors;
 }
 
-function validatePointers(repositoryRoot, documents, trainingPlanIds) {
+function validatePointers(repositoryRoot, documents, trainingPlanIds, availablePaths) {
   const errors = [];
   const trainingActive = documents.get("data/active.json");
   const nutritionActive = documents.get("data/nutrition/active.json");
@@ -410,18 +410,21 @@ function validatePointers(repositoryRoot, documents, trainingPlanIds) {
       "data/active.json/active_plan_path",
       trainingActive.active_plan_path,
       errors,
+      availablePaths,
     );
     resolveRepositoryLink(
       repositoryRoot,
       "data/active.json/review_path",
       trainingActive.review_path,
       errors,
+      availablePaths,
     );
     resolveRepositoryLink(
       repositoryRoot,
       "data/active.json/human_guide_path",
       trainingActive.human_guide_path,
       errors,
+      availablePaths,
     );
 
     const activePlan = activePlanPath ? documents.get(activePlanPath) : undefined;
@@ -437,18 +440,21 @@ function validatePointers(repositoryRoot, documents, trainingPlanIds) {
       "data/nutrition/active.json/active_plan_path",
       nutritionActive.active_plan_path,
       errors,
+      availablePaths,
     );
     resolveRepositoryLink(
       repositoryRoot,
       "data/nutrition/active.json/plan_schema_path",
       nutritionActive.plan_schema_path,
       errors,
+      availablePaths,
     );
     resolveRepositoryLink(
       repositoryRoot,
       "data/nutrition/active.json/human_guide_path",
       nutritionActive.human_guide_path,
       errors,
+      availablePaths,
     );
 
     const activePlan = activePlanPath ? documents.get(activePlanPath) : undefined;
@@ -466,7 +472,7 @@ function validatePointers(repositoryRoot, documents, trainingPlanIds) {
     errors,
     "data/nutrition/plans",
     "ID de plano",
-    nutritionPlans.map(([, plan]) => plan.plan_id),
+    nutritionPlans.map(([, plan]) => `${plan.plan_id}@${plan.version ?? "unknown"}`),
   );
 
   for (const [path, plan] of nutritionPlans) {
@@ -476,6 +482,19 @@ function validatePointers(repositoryRoot, documents, trainingPlanIds) {
   return errors;
 }
 
+export function validateDocuments({
+  documents,
+  repositoryRoot = process.cwd(),
+  availablePaths,
+  stopOnSchemaError = false,
+}) {
+  const schemaErrors = validateSchemas(documents);
+  if (stopOnSchemaError && schemaErrors.length) return schemaErrors.sort();
+  const { errors: trainingErrors, planIds } = validateTrainingData(documents);
+  const pointerErrors = validatePointers(repositoryRoot, documents, planIds, availablePaths);
+  return [...schemaErrors, ...trainingErrors, ...pointerErrors].sort();
+}
+
 export function validateData({ repositoryRoot = process.cwd() } = {}) {
   const root = resolve(repositoryRoot);
   const files = [
@@ -483,11 +502,7 @@ export function validateData({ repositoryRoot = process.cwd() } = {}) {
     ...walkJsonFiles(resolve(root, "schemas")),
   ];
   const { documents, errors } = parseJsonFiles(root, files);
-  const schemaErrors = validateSchemas(documents);
-  const { errors: trainingErrors, planIds } = validateTrainingData(documents);
-  const pointerErrors = validatePointers(root, documents, planIds);
-
-  return [...errors, ...schemaErrors, ...trainingErrors, ...pointerErrors].sort();
+  return [...errors, ...validateDocuments({ documents, repositoryRoot: root })].sort();
 }
 
 function run() {

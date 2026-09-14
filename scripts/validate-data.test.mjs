@@ -1,8 +1,12 @@
+// @vitest-environment node
 import assert from "node:assert/strict";
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { afterEach, beforeEach, describe, test } from "node:test";
+// A mesma regressão participa do gate de scripts e da cobertura do importador.
+const { afterEach, beforeEach, describe, test } = process.env.VITEST
+  ? await import("vitest")
+  : await import("node:test");
 
 import { validateData } from "./validate-data.mjs";
 
@@ -295,6 +299,24 @@ describe("validateData", () => {
   });
   test("aceita schemas, ponteiros e referências válidos", () => {
     assert.deepEqual(validateData({ repositoryRoot }), []);
+  });
+
+  test("permite ID estável com versão nova e rejeita o mesmo par ID/versão", () => {
+    const path = "data/plans/training.json";
+    const original = JSON.parse(readFileSync(join(repositoryRoot, path), "utf8"));
+    writeJson(path, { ...original, version: "1.0.0" });
+    writeJson("data/plans/training-v2.json", { ...original, version: "2.0.0" });
+    const metadataPath = "data/training-execution-metadata.json";
+    const metadata = JSON.parse(readFileSync(join(repositoryRoot, metadataPath), "utf8"));
+    writeJson(metadataPath, {
+      ...metadata,
+      reviewed_plan_paths: [path, "data/plans/training-v2.json"],
+    });
+    assert.deepEqual(validateData({ repositoryRoot }), []);
+    writeJson("data/plans/training-v2.json", { ...original, version: "1.0.0" });
+    assert.ok(
+      validateData({ repositoryRoot }).some((error) => error.includes("ID de plano duplicado")),
+    );
   });
 
   test("rejeita JSON inválido", () => {

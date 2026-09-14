@@ -26,6 +26,7 @@
     "test:ci-scripts": "node --test scripts/validate-governance.test.mjs scripts/validate-data.test.mjs scripts/validate-component-structure.test.mjs",
     "governance": "node scripts/validate-governance.mjs",
     "data:check": "node scripts/validate-data.mjs",
+    "data:import": "pnpm db:generate && node --conditions=react-server --import tsx scripts/import-versioned-plan-definitions.ts",
     "structure:check": "node scripts/validate-component-structure.mjs",
     "ci": "pnpm db:validate && pnpm format:check && pnpm lint && pnpm structure:check && pnpm typecheck && pnpm test:coverage && pnpm test:integration && pnpm test:ci-scripts && pnpm data:check && pnpm build && pnpm audit --audit-level=moderate"
   },
@@ -58,6 +59,7 @@
     "prettier": "3.9.6",
     "prisma": "7.10.0",
     "tailwindcss": "4.3.3",
+    "tsx": "4.23.13",
     "typescript": "6.0.3",
     "vitest": "4.1.11"
   }
