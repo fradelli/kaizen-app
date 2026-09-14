@@ -2,6 +2,16 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-14 — importação canônica idempotente por CLI
+
+- Criada importação server-only de bytes Git fixados, com validação antes da escrita, origem/hash e documentos JSONB preservados.
+- Projetadas definições de treino/alimentação e ativações em transação serializable; segunda execução é no-op, conflitos não reescrevem versões e falhas não deixam projeção parcial.
+- Validados versão nova com ID estável, concorrência, rollback SQL real, referências alimentares e preservação operacional em PostgreSQL isolado; gates completos e auditoria passaram.
+- Compartilhadas as regressões do validador de dados com a cobertura e ancoradas exclusões de formatação na raiz para não ignorar os módulos `data/` das features.
+- Documentado comando e fluxo seguro de atualização. Shells e JSON canônicos permanecem intactos; Docker segue pendente na E05-T02 conforme autorização explícita de sequência.
+- Refinada a semântica em `plan-definition-import`: nomes ligados a definições versionadas, etapas de persistência separadas com transação centralizada, validação única antes do cliente do banco e manifesto com propriedades nomeadas.
+- Tornada permanente a revisão semântica: convenções na arquitetura, leitura obrigatória para mudanças de código no AGENTS e checklist no template de PR.
+
 ## 2026-09-14 — organização do Prisma e regras permanentes
 
 - Integrada correção isolada da auditoria pela PR #37: override restrito de deepmerge-ts 8.0.2, com compatibilidade Prisma e gates completos confirmados em developer e na composição E05-T02; Docker permanece pendente.

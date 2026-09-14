@@ -5,7 +5,7 @@ src/generated/prisma
 playwright-report
 test-results
 pnpm-lock.yaml
-data
-docs
-roadmap
-schemas
+/data
+/docs
+/roadmap
+/schemas

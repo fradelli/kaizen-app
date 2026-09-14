@@ -1,12 +1,12 @@
 # Tarefa ativa
 
-- **Tarefa:** E05-T02 — Configurar banco e migrations
-- **Status:** IN_PROGRESS
-- **Branch prevista:** `codex/E05-T02-configure-database-and-migrations`
-- **Entrada principal:** `roadmap/epics/E05-database-and-import/T02-configure-database-and-migrations.md`.
+- **Tarefa:** E05-T03 — Criar importação idempotente
+- **Status:** DONE
+- **Branch prevista:** `codex/E05-T03-create-idempotent-import`
+- **Entrada principal:** `roadmap/epics/E05-database-and-import/T03-create-idempotent-import.md`.
 - **Resultado anterior:** E05-T01 especificou o modelo relacional P0 e validou metadados dos 38 exercícios, preservando planos e biblioteca.
-- **Objetivo:** configurar PostgreSQL local, Prisma e migrations a partir do modelo aprovado.
-- **Bloqueio atual:** Docker Desktop local falha ao iniciar; auditoria corrigida pela PR #37 isolada.
-- **Próxima ação:** confirmar checks da PR #36 atualizada e validar os containers locais antes do merge.
+- **Objetivo:** importar definições de um commit fixado por CLI, com no-op e ativação atômica.
+- **Bloqueio atual:** nenhum para E05-T03; validação Docker permanece pendente na E05-T02.
+- **Próxima ação:** validar a entrega refinada localmente e solicitar commit/PR quando aprovado. E05-T04 está READY para planejamento, sem implementação iniciada. Em 14/09/2026, o proprietário autorizou explicitamente avançar apesar da dependência E05-T02 bloqueada somente pela validação dos containers.
 
-Não implementar importação, acesso pessoal ou infraestrutura de produção nesta tarefa.
+Não implementar interface, acesso pessoal ou infraestrutura de produção nesta tarefa.

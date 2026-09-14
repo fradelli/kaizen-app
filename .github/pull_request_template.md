@@ -42,6 +42,7 @@ Explique por que o repositório precisava desta mudança.
 - [ ] integridade dos dados (`Data integrity`)
 - [ ] build (`Build`)
 - [ ] auditoria de dependências (`Dependency audit`)
+- [ ] revisão semântica conforme `docs/architecture/TARGET-ARCHITECTURE.md`
 - [ ] validação manual concluída
 
 ## Observações

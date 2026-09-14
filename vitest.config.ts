@@ -13,7 +13,8 @@ export default defineConfig({
     environment: "jsdom",
     exclude: [
       ...configDefaults.exclude,
-      "scripts/**/*.test.mjs",
+      "scripts/validate-governance.test.mjs",
+      "scripts/validate-component-structure.test.mjs",
       "tests/integration/**",
       "src/generated/prisma/**",
     ],

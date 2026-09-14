@@ -25,6 +25,9 @@ Instruções específicas existem em `roadmap/AGENTS.md`, `data/AGENTS.md` e `do
 - O repositório é público. Nunca versione identidade desnecessária, credenciais, tokens, chaves, strings de conexão, comentários pessoais ou URLs com segredo.
 - Preserve histórico e IDs estáveis. Mudanças destrutivas exigem migração explícita e rollback.
 - Não crie abstração, dependência, endpoint ou serviço sem consumidor na tarefa atual.
+- Implementações de código devem listar `docs/architecture/TARGET-ARCHITECTURE.md`
+  nas entradas e seguir sua seção “Semântica e legibilidade do código”. A revisão
+  semântica é critério de entrega, não substituto dos testes ou das fronteiras de segurança.
 
 ## Arquitetura do P0
 
