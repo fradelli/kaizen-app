@@ -66,7 +66,7 @@ Configurar o banco e o ORM aprovados com migrations reproduzíveis.
 - [ ] Local e teste usam configuração reproduzível.
 - [x] Banco vazio converge e segunda aplicação não encontra migrations pendentes.
 - [x] Testes reais validam ownership, versões, carga, medidas, refeições e histórico.
-- [ ] Gates locais completos passam, incluindo auditoria das novas dependências.
+- [x] Gates locais completos passam, incluindo auditoria das novas dependências.
 
 ## Resultado
 
@@ -85,8 +85,11 @@ confirmaram convergência. Testes unitários e PostgreSQL, tipos, lint, dados e 
 foram executados. Containers locais ainda aguardam correção da inicialização do
 Docker Desktop; Compose foi validado sem iniciar containers.
 
-Auditoria permanece bloqueante por `deepmerge-ts@7.1.5` transitivo de
-`@prisma/config@7.10.0` (GHSA-ggr8-5vv4-36mx), sem correção compatível na linha
-Prisma 7 publicada. Os dois findings de mysql2 foram corrigidos com override
-restrito para 3.23.1. Nenhuma exceção de auditoria ou upgrade major incompatível
-foi aplicado. Tarefa não concluída até resolver as pendências.
+Após a falha da PR #36, a correção foi publicada e integrada separadamente pela
+PR #37, baseada em `developer`. Override restrito a `@prisma/config@7.10.0`
+resolve `deepmerge-ts@8.0.2`, com compatibilidade do uso concreto verificada.
+Instalação congelada e `ci` completo passaram em duas cópias limpas:
+`developer` + correção e E05-T02 + correção, com testes PostgreSQL reais.
+Os dois findings de mysql2 continuam corrigidos pelo override restrito 3.23.1.
+Nenhuma exceção de auditoria ou Prisma RC foi aplicado. Tarefa não concluída
+enquanto faltar a validação dos containers locais.

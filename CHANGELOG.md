@@ -4,6 +4,7 @@ Mudanças materiais do projeto serão registradas neste arquivo.
 
 ## 2026-09-14 — organização do Prisma e regras permanentes
 
+- Integrada correção isolada da auditoria pela PR #37: override restrito de deepmerge-ts 8.0.2, com compatibilidade Prisma e gates completos confirmados em developer e na composição E05-T02; Docker permanece pendente.
 - Separados schemas de plataforma, treino e alimentação, sem alterar a migration inicial.
 - Separadas configuração tipada server-only, limites de pool e validação pura; adicionados testes das proteções da CLI.
 - Tornada automática a geração do Client nos comandos de desenvolvimento, build, tipos e testes; documentadas convenções normativas na arquitetura e referência no AGENTS.

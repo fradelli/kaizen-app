@@ -6,7 +6,7 @@
 - **Entrada principal:** `roadmap/epics/E05-database-and-import/T02-configure-database-and-migrations.md`.
 - **Resultado anterior:** E05-T01 especificou o modelo relacional P0 e validou metadados dos 38 exercícios, preservando planos e biblioteca.
 - **Objetivo:** configurar PostgreSQL local, Prisma e migrations a partir do modelo aprovado.
-- **Bloqueio atual:** auditoria de deepmerge-ts transitivo do Prisma 7.10 sem correção compatível; Docker Desktop local falha ao iniciar.
-- **Próxima ação:** publicar PR de revisão, resolver finding upstream sem ocultar o gate e validar os containers locais antes do merge.
+- **Bloqueio atual:** Docker Desktop local falha ao iniciar; auditoria corrigida pela PR #37 isolada.
+- **Próxima ação:** confirmar checks da PR #36 atualizada e validar os containers locais antes do merge.
 
 Não implementar importação, acesso pessoal ou infraestrutura de produção nesta tarefa.
