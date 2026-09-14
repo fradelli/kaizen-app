@@ -2,6 +2,13 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-14 — validação Docker da E05-T02 concluída
+
+- Subidos PostgreSQL local e de teste pelo Compose com saúde, volume persistente e tmpfs independente confirmados.
+- Tornada configurável a porta de teste, preservando o padrão 5433 e permitindo coexistência com outros projetos sem interromper seus containers.
+- Confirmadas aplicação em banco vazio, reexecução sem pendências e persistência da migration após restart; gates completos passaram com 17 integrações no PostgreSQL Docker.
+- Encerrada a pendência da E05-T02 sem apagar volumes, alterar migrations ou publicar credenciais.
+
 ## 2026-09-14 — importação canônica idempotente por CLI
 
 - Criada importação server-only de bytes Git fixados, com validação antes da escrita, origem/hash e documentos JSONB preservados.

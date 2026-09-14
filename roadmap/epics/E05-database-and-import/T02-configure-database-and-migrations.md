@@ -13,6 +13,11 @@ Configurar o banco e o ORM aprovados com migrations reproduzíveis.
 ## Entradas
 
 - `AGENTS.md`
+- `compose.yaml`
+- `tests/integration/database.setup.ts`
+- `tests/integration/database.test.ts`
+- `tests/integration/import-versioned-plan-definitions.test.ts`
+- `tests/integration/fixtures/import-database.fixture.ts`
 - `docs/implementation/E05.md`
 - `docs/architecture/DATA-MODEL.md`
 - `docs/decisions/DATABASE-AND-ORM.md`
@@ -63,7 +68,7 @@ Configurar o banco e o ORM aprovados com migrations reproduzíveis.
 
 ## Critérios de aceite
 
-- [ ] Local e teste usam configuração reproduzível.
+- [x] Local e teste usam configuração reproduzível.
 - [x] Banco vazio converge e segunda aplicação não encontra migrations pendentes.
 - [x] Testes reais validam ownership, versões, carga, medidas, refeições e histórico.
 - [x] Gates locais completos passam, incluindo auditoria das novas dependências.
@@ -91,5 +96,28 @@ resolve `deepmerge-ts@8.0.2`, com compatibilidade do uso concreto verificada.
 Instalação congelada e `ci` completo passaram em duas cópias limpas:
 `developer` + correção e E05-T02 + correção, com testes PostgreSQL reais.
 Os dois findings de mysql2 continuam corrigidos pelo override restrito 3.23.1.
-Nenhuma exceção de auditoria ou Prisma RC foi aplicado. Tarefa não concluída
-enquanto faltar a validação dos containers locais.
+Nenhuma exceção de auditoria ou Prisma RC foi aplicado. Naquela execução,
+a validação dos containers locais ainda impedia a conclusão.
+
+### Encerramento da pendência Docker
+
+Em 14/09/2026, Docker Desktop respondeu normalmente e o Compose foi executado
+com PostgreSQL 18.6 Alpine real. O banco local ficou saudável em loopback na
+porta 5432, com volume nomeado; o banco de teste ficou saudável na porta 5434,
+com tmpfs independente. A porta 5433 estava ocupada por outro projeto, que foi
+preservado. Adicionado `TEST_DATABASE_PORT` opcional com padrão 5433; as duas URLs
+privadas de teste foram alinhadas à porta livre, sem alteração de credenciais.
+Padrão e override do Compose foram validados sem expor o ambiente privado.
+
+O banco local iniciou sem tabelas públicas. `db:deploy` aplicou a migration;
+segunda execução e `db:status` confirmaram convergência. Reiniciar o container
+local preservou identidade e checksum da migration no volume. O banco de teste
+recebeu a mesma migration e também confirmou ausência de pendências. As fixtures
+de importação foram removidas dos schemas isolados ao concluir; desenvolvimento
+permaneceu sem lotes importados ou execuções pessoais criadas pelos testes.
+
+Instalação congelada e `pnpm run ci` completo passaram: 85 testes unitários,
+17 integrações PostgreSQL, 29 regressões de scripts, formato, lint, estrutura,
+tipos, dados, build e auditoria sem findings. Ambos os serviços permanecem
+saudáveis para uso local. Nenhum volume foi apagado, migration alterada ou
+container de outro projeto interrompido. A pendência Docker está encerrada.
