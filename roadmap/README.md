@@ -68,7 +68,7 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E04-T08 | DONE | [Integrar Design System versionado](epics/E04-nextjs-foundation/T08-integrate-versioned-design-system.md) | E04-T07 |
 | E04-T09 | DONE | [Padronizar estrutura das páginas React](epics/E04-nextjs-foundation/T09-standardize-react-page-structure.md) | E04-T04 |
 | E05-T01 | DONE | [Modelar treino e alimentação](epics/E05-database-and-import/T01-design-relational-model.md) | E03-T05 |
-| E05-T02 | BLOCKED | [Configurar banco e migrations](epics/E05-database-and-import/T02-configure-database-and-migrations.md) | E04-T03, E05-T01 |
+| E05-T02 | DONE | [Configurar banco e migrations](epics/E05-database-and-import/T02-configure-database-and-migrations.md) | E04-T03, E05-T01 |
 | E05-T03 | DONE | [Criar importação idempotente](epics/E05-database-and-import/T03-create-idempotent-import.md) | E05-T02 |
 | E05-T04 | READY | [Testar integridade persistida](epics/E05-database-and-import/T04-test-persisted-integrity.md) | E05-T03 |
 | E05-T05 | PLANNED | [Validar backup e restauração](epics/E05-database-and-import/T05-validate-backup-and-restore.md) | E05-T04 |

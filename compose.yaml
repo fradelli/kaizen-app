@@ -27,7 +27,7 @@ services:
       POSTGRES_PASSWORD: ${TEST_DATABASE_PASSWORD:?Configure TEST_DATABASE_PASSWORD no .env}
       TZ: UTC
     ports:
-      - "127.0.0.1:5433:5432"
+      - "127.0.0.1:${TEST_DATABASE_PORT:-5433}:5432"
     tmpfs:
       - /var/lib/postgresql
     healthcheck:

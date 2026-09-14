@@ -1,12 +1,12 @@
 # Tarefa ativa
 
-- **Tarefa:** E05-T03 — Criar importação idempotente
+- **Tarefa:** E05-T02 — Configurar banco e migrations
 - **Status:** DONE
-- **Branch prevista:** `codex/E05-T03-create-idempotent-import`
-- **Entrada principal:** `roadmap/epics/E05-database-and-import/T03-create-idempotent-import.md`.
-- **Resultado anterior:** E05-T01 especificou o modelo relacional P0 e validou metadados dos 38 exercícios, preservando planos e biblioteca.
-- **Objetivo:** importar definições de um commit fixado por CLI, com no-op e ativação atômica.
-- **Bloqueio atual:** nenhum para E05-T03; validação Docker permanece pendente na E05-T02.
-- **Próxima ação:** validar a entrega refinada localmente e solicitar commit/PR quando aprovado. E05-T04 está READY para planejamento, sem implementação iniciada. Em 14/09/2026, o proprietário autorizou explicitamente avançar apesar da dependência E05-T02 bloqueada somente pela validação dos containers.
+- **Branch prevista:** `codex/E05-T02-validate-docker-containers`
+- **Entrada principal:** `roadmap/epics/E05-database-and-import/T02-configure-database-and-migrations.md`.
+- **Resultado anterior:** E05-T03 integrada pela PR #38 com importação idempotente e seis checks aprovados.
+- **Objetivo:** concluir a validação dos containers PostgreSQL local e de teste com Compose, migrations e gates reais.
+- **Bloqueio atual:** nenhum; containers, migrations e gates completos foram validados em Docker.
+- **Próxima ação:** revisar alterações locais e solicitar commit/PR; E05-T04 permanece READY para planejamento. Containers local e de teste ficaram saudáveis, sem exclusão de volumes.
 
 Não implementar interface, acesso pessoal ou infraestrutura de produção nesta tarefa.
