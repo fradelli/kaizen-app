@@ -2,6 +2,13 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-15 — recuperação local comprovada
+
+- Automatizados `pg_dump` e `pg_restore` entre dois PostgreSQL 18.6 descartáveis, sem tocar bancos ou volumes existentes.
+- Validada a restauração de definições canônicas e de um canário operacional com migrations, planos ativos, contagens, vínculos e identidades preservados.
+- Adicionados comando, runbook e job dedicado `Backup restore`; a prova real restaurou 151.376 bytes e todos os sete gates da PR passaram.
+- Mantidos fora do escopo dados reais, Neon, retenção, RPO/RTO gerenciado e restauração de produção.
+
 ## 2026-09-14 — integridade persistida comprovada
 
 - Implementado auditor server-only `REPEATABLE READ`/`READ ONLY` de paridade das definições canônicas e proveniência dos bytes Git, sem imprimir dados privados nem reparar divergências.
