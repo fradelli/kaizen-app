@@ -133,7 +133,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Run application tests with coverage
         run: pnpm test:coverage
-      - name: Apply migrations and run PostgreSQL integration tests
+      - name: Apply migrations and test PostgreSQL constraints, parity and read-only CLI
         run: pnpm test:integration
       - name: Run CI validator tests
         run: pnpm test:ci-scripts
