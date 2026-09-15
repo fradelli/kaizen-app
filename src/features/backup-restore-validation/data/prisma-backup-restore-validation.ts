@@ -105,22 +105,28 @@ export async function createRecoveryCanary(client: PrismaClient): Promise<Recove
     throw new BackupRestoreValidationError("SOURCE_PREPARATION_FAILED");
   const trainingPlanVersionId = trainingActivation.trainingPlanVersionId;
   const nutritionPlanVersionId = nutritionActivation.nutritionPlanVersionId;
-  const trainingSession = await client.trainingSessionDefinition.findFirst({
-    where: { trainingPlanVersionId },
-    orderBy: { sessionId: "asc" },
-  });
   const prescription = await client.trainingExerciseDefinition.findFirst({
     where: { trainingPlanVersionId },
     orderBy: [{ sessionDefinitionId: "asc" }, { ordinal: "asc" }],
   });
+  const trainingSession = prescription
+    ? await client.trainingSessionDefinition.findUnique({
+        where: { id: prescription.sessionDefinitionId },
+      })
+    : undefined;
   const dayType = await client.nutritionDayTypeDefinition.findFirst({
     where: { nutritionPlanVersionId },
     orderBy: { ordinal: "asc" },
   });
-  const meal = await client.mealDefinition.findFirst({
-    where: { nutritionPlanVersionId },
-    orderBy: { ordinal: "asc" },
-  });
+  const dayTypeMeal = dayType
+    ? await client.nutritionDayTypeMeal.findFirst({
+        where: { nutritionPlanVersionId, dayTypeId: dayType.id },
+        orderBy: { ordinal: "asc" },
+      })
+    : undefined;
+  const meal = dayTypeMeal
+    ? await client.mealDefinition.findUnique({ where: { id: dayTypeMeal.mealId } })
+    : undefined;
   const option = meal
     ? await client.mealOptionDefinition.findFirst({
         where: {
