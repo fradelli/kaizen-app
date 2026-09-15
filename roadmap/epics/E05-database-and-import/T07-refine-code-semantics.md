@@ -52,6 +52,7 @@ verificadas automaticamente.
 - `roadmap/README.md`
 - `roadmap/epics/E05-database-and-import/README.md`
 - `CHANGELOG.md`
+- `.github/pull_request_template.md`
 
 ## Entregáveis
 
