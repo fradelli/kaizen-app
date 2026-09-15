@@ -1,8 +1,11 @@
 import "server-only";
 import { z } from "zod";
 import { validateDocuments } from "../../../../scripts/validate-data.mjs";
-import type { PlanDefinitionSnapshot } from "../domain/plan-definition-import.types";
-import type { NutritionPlan } from "../domain/plan-definition-source.types";
+import type {
+  PlanDefinitionSnapshot,
+  PlanDefinitionSource,
+} from "../domain/plan-definition-import.types";
+import { findPlanDefinitionSourceByPath } from "../domain/plan-definition-source.utils";
 
 const pointerSchema = z.object({
   schema_version: z.string().min(1),
@@ -34,9 +37,18 @@ export function assertActivePointersSelectMatchingPlans(snapshot: PlanDefinition
   for (const domain of ["training", "nutrition"]) {
     const path = domain === "training" ? "data/active.json" : "data/nutrition/active.json";
     const pointer = pointerSchema.parse(snapshot.documents.get(path));
-    const source = snapshot.sources.find(
-      (source) => source.path === pointer.active_plan_path && source.kind === `${domain}_plan`,
-    );
+    const source =
+      domain === "training"
+        ? findPlanDefinitionSourceByPath(
+            snapshot.sources,
+            "training_plan",
+            pointer.active_plan_path,
+          )
+        : findPlanDefinitionSourceByPath(
+            snapshot.sources,
+            "nutrition_plan",
+            pointer.active_plan_path,
+          );
     if (!source || source.document.plan_id !== pointer.active_plan_id) throw new Error();
   }
 }
@@ -51,9 +63,11 @@ export function assertSourcesHaveValidProvenance(snapshot: PlanDefinitionSnapsho
   }
 }
 export function assertMealOptionReferencesAreAcyclic(snapshot: PlanDefinitionSnapshot): void {
-  for (const source of snapshot.sources) {
-    if (source.kind !== "nutrition_plan") continue;
-    const plan = source.document as unknown as NutritionPlan;
+  const nutritionSources = snapshot.sources.filter(
+    (source): source is PlanDefinitionSource<"nutrition_plan"> => source.kind === "nutrition_plan",
+  );
+  for (const source of nutritionSources) {
+    const plan = source.document;
     const references = new Map<string, string | undefined>(
       plan.meals.flatMap((meal) =>
         meal.options.map((option) => [`${meal.id}.${option.id}`, option.reference_option] as const),

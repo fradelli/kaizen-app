@@ -19,6 +19,8 @@ describe("argumentos da auditoria somente leitura", () => {
       ["--fix", "true"],
     ].map((args) => ({ args })),
   )("rejeita argumento inválido $args", ({ args }) =>
-    expect(() => parseIntegrityArguments(args)).toThrow(),
+    expect(() => parseIntegrityArguments(args)).toThrow(
+      expect.objectContaining({ code: "CLI_INVALID" }),
+    ),
   );
 });

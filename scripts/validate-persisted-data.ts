@@ -9,12 +9,19 @@ import { validatePersistedData } from "../src/features/persisted-data-integrity/
 import { readPersistedDefinitionSnapshot } from "../src/features/persisted-data-integrity/data/prisma-persisted-data-reader";
 import { readPlanDefinitionsFromGit } from "../src/features/plan-definition-import/data/read-plan-definitions-from-git";
 import { validatePlanDefinitionSnapshot } from "../src/features/plan-definition-import/data/validate-plan-definition-snapshot";
+import { PersistedDataIntegrityError } from "../src/features/persisted-data-integrity/domain/persisted-data-integrity.error";
+import { mapPersistedDataIntegrityError } from "../src/features/persisted-data-integrity/data/persisted-data-integrity-error.mapper";
 
 let client: PrismaClient | undefined;
 try {
   if (existsSync(".env")) loadEnvFile(".env");
   const args = parseIntegrityArguments(process.argv.slice(2));
-  const configuration = getTestDatabaseConfiguration(process.env);
+  let configuration;
+  try {
+    configuration = getTestDatabaseConfiguration(process.env);
+  } catch {
+    throw new PersistedDataIntegrityError("TEST_DATABASE_INVALID");
+  }
   client = new PrismaClient({
     adapter: new PrismaPg(
       { connectionString: configuration.runtimeUrl, options: `-c search_path=${args.schema}` },
@@ -32,8 +39,8 @@ try {
   });
   console.log(JSON.stringify(report, null, 2));
   if (report.result !== "valid") process.exitCode = 1;
-} catch {
-  console.error(JSON.stringify({ result: "failed", code: "INTEGRITY_UNAVAILABLE" }));
+} catch (error) {
+  console.error(JSON.stringify({ result: "failed", code: mapPersistedDataIntegrityError(error) }));
   process.exitCode = 1;
 } finally {
   try {

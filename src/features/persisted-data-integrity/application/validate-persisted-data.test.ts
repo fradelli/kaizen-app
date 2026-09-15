@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { validatePersistedData } from "./validate-persisted-data";
-import { createIntegrityFixture } from "./validate-persisted-data.fixture";
+import { createIntegrityFixture } from "../../../../tests/unit/fixtures/persisted-data-integrity.fixture";
 import type { PersistedDefinitionSnapshot } from "../domain/persisted-data-integrity.types";
 
 async function audit(

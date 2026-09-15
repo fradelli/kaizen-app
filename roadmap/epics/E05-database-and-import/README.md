@@ -1,3 +1,5 @@
+[ERROR] - (starship::print): Under a 'dumb' terminal (TERM=dumb).
+
 # E05 — Banco, importação e acesso
 
 ## Resultado esperado
@@ -14,6 +16,7 @@ Banco escolhido, migrations versionadas, importação idempotente e acesso pesso
 | E05-T04 | E05-T03 | Integridade testada |
 | E05-T05 | E05-T04 | Backup/restore local validado |
 | E05-T06 | E05-T05 | Acesso pessoal implementado antes das features |
+| E05-T07 | E05-T04 | Semântica e fronteiras do código verificadas |
 
 ## Fora de escopo
 

@@ -16,6 +16,7 @@ import {
   toPrismaDoseJson,
 } from "./plan-definition.mapper";
 import type { PlanDefinitionSnapshot } from "../domain/plan-definition-import.types";
+import { findPlanDefinitionSource } from "../domain/plan-definition-source.utils";
 let snapshot: PlanDefinitionSnapshot;
 beforeAll(async () => {
   snapshot = await readPlanDefinitionsFromGit(process.cwd());
@@ -101,7 +102,10 @@ describe("origem, validação e configuração de importação", () => {
       "fixture",
     ]);
     writeFileSync(join(root, "data/exercises.json"), "invalid private worktree");
-    const source = (await readPlanDefinitionsFromGit(root)).sources[0];
+    const source = findPlanDefinitionSource(
+      (await readPlanDefinitionsFromGit(root)).sources,
+      "exercise_library",
+    )!;
     expect(source.sha256).toBe(createHash("sha256").update(bytes).digest("hex"));
     expect(source.document.exercises).toEqual([]);
     writeFileSync(

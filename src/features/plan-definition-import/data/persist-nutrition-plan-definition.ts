@@ -5,15 +5,15 @@ import type {
 } from "./plan-definition-persistence.types";
 import { recordCreatedDefinition, throwSourceConflict } from "./plan-definition-persistence.utils";
 import type { PlanDefinitionSource } from "../domain/plan-definition-import.types";
-import type { NutritionPlan, MealOption } from "../domain/plan-definition-source.types";
+import type { MealOption } from "../domain/plan-definition-source.types";
 import { toPrismaJson, toMealTime, mapNutritionPlanVersion } from "./plan-definition.mapper";
 export async function persistNutritionPlanDefinition(
   tx: ImportTransaction,
-  source: PlanDefinitionSource,
+  source: PlanDefinitionSource<"nutrition_plan">,
   batchId: string,
   created: CreatedDefinitionCounts,
 ): Promise<string> {
-  const plan = source.document as unknown as NutritionPlan;
+  const plan = source.document;
   const existing = await tx.nutritionPlanVersion.findUnique({
     where: { planId_version: { planId: plan.plan_id, version: plan.version } },
   });
@@ -72,7 +72,7 @@ export async function persistNutritionPlanDefinition(
         followUpRule: entry.option.follow_up_rule ?? null,
         ...(reference
           ? { referenceOptionId: reference }
-          : { items: toPrismaJson(entry.option.items) }),
+          : { items: toPrismaJson(entry.option.items ?? []) }),
         ...(entry.option.unknowns ? { unknowns: toPrismaJson(entry.option.unknowns) } : {}),
       },
     });

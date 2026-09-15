@@ -15,6 +15,7 @@ export default defineConfig({
       ...configDefaults.exclude,
       "scripts/validate-governance.test.mjs",
       "scripts/validate-component-structure.test.mjs",
+      "scripts/validate-layer-boundaries.test.mjs",
       "tests/integration/**",
       "src/generated/prisma/**",
     ],

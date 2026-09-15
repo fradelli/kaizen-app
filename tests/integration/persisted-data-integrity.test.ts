@@ -109,7 +109,7 @@ describe("integridade persistida em PostgreSQL real", () => {
       expect(error).toMatchObject({ code: 1, stdout: "" });
       expect(JSON.parse((error as { stderr: string }).stderr)).toEqual({
         result: "failed",
-        code: "INTEGRITY_UNAVAILABLE",
+        code: "TEST_DATABASE_INVALID",
       });
     }
   }, 45_000);
