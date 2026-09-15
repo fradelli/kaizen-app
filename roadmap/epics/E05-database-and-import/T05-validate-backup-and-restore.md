@@ -47,13 +47,13 @@ Demonstrar recuperação dos dados em PostgreSQL local antes de depender de um p
 
 ## Subtarefas
 
-- [ ] Executar `pg_dump` no PostgreSQL local de origem.
-- [ ] Restaurar com `pg_restore` em outro PostgreSQL local descartável.
-- [ ] Validar contagens, IDs e versão ativa.
-- [ ] Registrar duração, limitações e evidência; RPO/RTO gerenciado pertence a E08.
-- [ ] Isolar origem e destino em containers descartáveis sem tocar volumes existentes.
-- [ ] Automatizar o fluxo e sua limpeza com erros sanitizados.
-- [ ] Executar a prova em job dedicado da CI.
+- [x] Executar `pg_dump` no PostgreSQL local de origem.
+- [x] Restaurar com `pg_restore` em outro PostgreSQL local descartável.
+- [x] Validar contagens, IDs e versão ativa.
+- [x] Registrar duração, limitações e evidência; RPO/RTO gerenciado pertence a E08.
+- [x] Isolar origem e destino em containers descartáveis sem tocar volumes existentes.
+- [x] Automatizar o fluxo e sua limpeza com erros sanitizados.
+- [x] Executar a prova em job dedicado da CI.
 
 ## Validações
 
@@ -62,8 +62,14 @@ Demonstrar recuperação dos dados em PostgreSQL local antes de depender de um p
 
 ## Critérios de aceite
 
-- [ ] Procedimento local é repetível e não expõe credenciais.
+- [x] Procedimento local é repetível e não expõe credenciais.
 
 ## Resultado
 
-Ainda não concluída.
+Concluída na PR #42. O job `Backup restore` executou PostgreSQL 18.6 em dois
+containers descartáveis, gerou dump custom de 151.376 bytes em 199 ms e restaurou
+em 231 ms. O destino manteve migrations atuais, integridade persistida válida,
+planos ativos, contagens globais e por workspace e todas as identidades do canário.
+Os sete gates da PR passaram. A estação local não tinha engine Docker disponível;
+a prova repetível foi executada no runner Linux isolado da CI. Neon, dados reais,
+RPO/RTO gerenciado, retenção e restauração de produção permanecem fora do escopo.
