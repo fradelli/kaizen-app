@@ -7,6 +7,6 @@
 - **Resultado anterior:** revisão semântica E05-T07 integrada pela PR #41.
 - **Objetivo:** comprovar backup e restauração entre PostgreSQL locais descartáveis, sem dados reais ou credenciais expostas.
 - **Bloqueio atual:** nenhum.
-- **Próxima ação:** revisar e integrar a PR #42; depois iniciar E05-T06, que está READY.
+- **Próxima ação:** integrar o registro conclusivo da PR #43; depois iniciar E05-T06, que está READY.
 
 Não implementar interface, acesso pessoal ou infraestrutura de produção nesta tarefa.
