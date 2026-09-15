@@ -46,6 +46,147 @@ async function rejected(tx: Prisma.TransactionClient, run: () => Promise<unknown
 }
 
 describe("PostgreSQL e migration P0", () => {
+  it("rejeita pais ausentes nas definições dos dois domínios", () =>
+    withFixture(async (tx) => {
+      await rejected(
+        tx,
+        () =>
+          tx.$executeRaw`INSERT INTO training_session_definition (training_plan_version_id,session_id,name,target_duration_minutes) VALUES (gen_random_uuid(),'missing','Sintético',30)`,
+        "23503",
+      );
+      await rejected(
+        tx,
+        () =>
+          tx.$executeRaw`INSERT INTO meal_definition (nutrition_plan_version_id,meal_id,ordinal,label,required,timing_rules) VALUES (gen_random_uuid(),'missing',1,'Sintético',true,'[]'::jsonb)`,
+        "23503",
+      );
+    }));
+
+  it("impede duplicação alimentar diária e workspace forjado na refeição", () =>
+    withFixture(async (tx, f) => {
+      await rejected(
+        tx,
+        () =>
+          tx.$executeRaw`INSERT INTO daily_nutrition_assignment (workspace_id,civil_date,nutrition_plan_version_id,day_type_id) VALUES (${f.workspace.id}::uuid,${f.date}::date,${f.nutritionPlan.id}::uuid,${f.dayTypes[0].id}::uuid)`,
+        "23505",
+      );
+      await rejected(
+        tx,
+        () =>
+          tx.$executeRaw`INSERT INTO meal_execution (workspace_id,assignment_id,nutrition_plan_version_id,meal_definition_id,status) VALUES (${f.anotherWorkspace.id}::uuid,${f.nutritionAssignment.id}::uuid,${f.nutritionPlan.id}::uuid,${f.meals[0].id}::uuid,'pending')`,
+      );
+    }));
+
+  it("limita comentários, descrição e revisão sem bloquear valores de fronteira", () =>
+    withFixture(async (tx, f) => {
+      const comment = "x".repeat(1000);
+      await tx.trainingExecution.update({ where: { id: f.execution.id }, data: { comment } });
+      await rejected(
+        tx,
+        () =>
+          tx.$executeRaw`UPDATE training_execution SET comment=${comment + "x"} WHERE id=${f.execution.id}::uuid`,
+      );
+      await rejected(
+        tx,
+        () =>
+          tx.$executeRaw`UPDATE training_execution SET revision=-1 WHERE id=${f.execution.id}::uuid`,
+      );
+      const meal = await tx.mealExecution.create({
+        data: {
+          workspaceId: f.workspace.id,
+          assignmentId: f.nutritionAssignment.id,
+          nutritionPlanVersionId: f.nutritionPlan.id,
+          mealDefinitionId: f.meals[0].id,
+          status: "followed_different",
+          alternativeDescription: "x".repeat(500),
+          comment,
+        },
+      });
+      await rejected(
+        tx,
+        () =>
+          tx.$executeRaw`UPDATE meal_execution SET alternative_description=${"x".repeat(501)} WHERE id=${meal.id}::uuid`,
+      );
+      await rejected(
+        tx,
+        () =>
+          tx.$executeRaw`UPDATE meal_execution SET comment=${comment + "x"} WHERE id=${meal.id}::uuid`,
+      );
+      await rejected(
+        tx,
+        () => tx.$executeRaw`UPDATE meal_execution SET revision=-1 WHERE id=${meal.id}::uuid`,
+      );
+      await tx.mealExecution.update({
+        where: { id: meal.id },
+        data: { status: "pending", alternativeDescription: null },
+      });
+      await tx.mealExecution.update({ where: { id: meal.id }, data: { status: "skipped" } });
+      expect(await tx.mealExecution.findUniqueOrThrow({ where: { id: meal.id } })).toMatchObject({
+        status: "skipped",
+        alternativeDescription: null,
+        optionDefinitionId: null,
+      });
+    }));
+
+  it("rejeita medidas negativas, carga negativa e número de série inválido", () =>
+    withFixture(async (tx, f) => {
+      await rejected(
+        tx,
+        () =>
+          tx.$executeRaw`INSERT INTO training_set_execution (workspace_id,exercise_execution_id,set_number,status,value) VALUES (${f.workspace.id}::uuid,${f.exerciseExecutions[0].id}::uuid,0,'completed',4)`,
+      );
+      await rejected(
+        tx,
+        () =>
+          tx.$executeRaw`INSERT INTO training_set_execution (workspace_id,exercise_execution_id,set_number,status,value) VALUES (${f.workspace.id}::uuid,${f.exerciseExecutions[0].id}::uuid,1,'completed',-1)`,
+      );
+      await rejected(
+        tx,
+        () =>
+          tx.$executeRaw`INSERT INTO training_set_execution (workspace_id,exercise_execution_id,set_number,status,value,load_kg) VALUES (${f.workspace.id}::uuid,${f.exerciseExecutions[0].id}::uuid,1,'completed',4,-1)`,
+      );
+      const series = await tx.trainingSetExecution.create({
+        data: {
+          workspaceId: f.workspace.id,
+          exerciseExecutionId: f.exerciseExecutions[0].id,
+          setNumber: 1,
+          status: "completed",
+          value: 0,
+          loadKg: "0",
+        },
+      });
+      expect(series.value).toBe(0);
+      await rejected(
+        tx,
+        () =>
+          tx.$executeRaw`UPDATE training_set_execution SET revision=-1 WHERE id=${series.id}::uuid`,
+      );
+    }));
+
+  it("mantém domínio e ambiente isolados nas ativações", () =>
+    withFixture(async (tx, f) => {
+      await rejected(
+        tx,
+        () =>
+          tx.$executeRaw`INSERT INTO plan_activation (domain,logical_environment,training_plan_version_id,nutrition_plan_version_id,pointer_import_batch_id,activated_at) VALUES ('nutrition','local',${f.trainingPlan.id}::uuid,${f.nutritionPlan.id}::uuid,${f.trainingPointer.id}::uuid,${f.date})`,
+      );
+      for (const logicalEnvironment of ["local", "preview"] as const)
+        await tx.planActivation.create({
+          data: {
+            domain: "training",
+            logicalEnvironment,
+            trainingPlanVersionId: f.trainingPlan.id,
+            pointerImportBatchId: f.trainingPointer.id,
+            activatedAt: f.date,
+          },
+        });
+      expect(
+        await tx.planActivation.count({
+          where: { trainingPlanVersionId: f.trainingPlan.id, supersededAt: null },
+        }),
+      ).toBe(2);
+    }));
+
   it("conecta via Client server-only e preserva data civil/timestamp", () =>
     withFixture(async (tx, f) => {
       const row = await tx.dailyTrainingAssignment.findUniqueOrThrow({

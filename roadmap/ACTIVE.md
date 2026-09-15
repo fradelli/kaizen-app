@@ -1,12 +1,12 @@
 # Tarefa ativa
 
-- **Tarefa:** E05-T02 — Configurar banco e migrations
+- **Tarefa:** E05-T04 — Testar integridade persistida
 - **Status:** DONE
-- **Branch prevista:** `codex/E05-T02-validate-docker-containers`
-- **Entrada principal:** `roadmap/epics/E05-database-and-import/T02-configure-database-and-migrations.md`.
-- **Resultado anterior:** E05-T03 integrada pela PR #38 com importação idempotente e seis checks aprovados.
-- **Objetivo:** concluir a validação dos containers PostgreSQL local e de teste com Compose, migrations e gates reais.
-- **Bloqueio atual:** nenhum; containers, migrations e gates completos foram validados em Docker.
-- **Próxima ação:** revisar alterações locais e solicitar commit/PR; E05-T04 permanece READY para planejamento. Containers local e de teste ficaram saudáveis, sem exclusão de volumes.
+- **Branch prevista:** `codex/E05-T04-test-persisted-integrity`
+- **Entrada principal:** `roadmap/epics/E05-database-and-import/T04-test-persisted-integrity.md`.
+- **Resultado anterior:** conclusão Docker E05-T02 integrada pela PR #39; importador E05-T03 integrado pela PR #38.
+- **Objetivo:** provar paridade, constraints e concorrência em PostgreSQL descartável com auditoria somente leitura.
+- **Bloqueio atual:** nenhum.
+- **Próxima ação:** validar implementação local e solicitar commit/PR da E05-T04; E05-T05 está READY. CI local completa aprovada com 30 integrações em PostgreSQL Docker, sem remoção de volumes.
 
 Não implementar interface, acesso pessoal ou infraestrutura de produção nesta tarefa.

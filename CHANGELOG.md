@@ -2,6 +2,13 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-14 — integridade persistida comprovada
+
+- Implementado auditor server-only `REPEATABLE READ`/`READ ONLY` de paridade das definições canônicas e proveniência dos bytes Git, sem imprimir dados privados nem reparar divergências.
+- Adicionada CLI protegida para `kaizen_test`, com resultados distintos para banco válido, divergente e não importado; executada em cenários preparados pelos testes da CI.
+- Ampliados testes relacionais de pais ausentes, unicidade, ownership alimentar, limites, medidas, carga e isolamento de ativações; concorrência real em dois Clients preserva somente a gravação vencedora por revisão.
+- Confirmados 144 testes unitários/validadores, 30 integrações e 29 regressões dos scripts, além dos gates completos e audit sem vulnerabilidades; migrations, planos, shells e volumes intactos.
+
 ## 2026-09-14 — validação Docker da E05-T02 concluída
 
 - Subidos PostgreSQL local e de teste pelo Compose com saúde, volume persistente e tmpfs independente confirmados.
