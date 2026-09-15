@@ -28,6 +28,7 @@
     "data:check": "node scripts/validate-data.mjs",
     "data:import": "pnpm db:generate && node --conditions=react-server --import tsx scripts/import-versioned-plan-definitions.ts",
     "data:check:persisted": "pnpm db:generate && node --conditions=react-server --import tsx scripts/validate-persisted-data.ts",
+    "db:recovery:check": "pnpm db:generate && node --conditions=react-server --import tsx scripts/validate-backup-and-restore.ts",
     "structure:check": "node scripts/validate-component-structure.mjs && node scripts/validate-layer-boundaries.mjs",
     "ci": "pnpm db:validate && pnpm format:check && pnpm lint && pnpm structure:check && pnpm typecheck && pnpm test:coverage && pnpm test:integration && pnpm test:ci-scripts && pnpm data:check && pnpm build && pnpm audit --audit-level=moderate"
   },
