@@ -75,7 +75,7 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E05-T04 | DONE | [Testar integridade persistida](epics/E05-database-and-import/T04-test-persisted-integrity.md) | E05-T03 |
 | E05-T05 | READY | [Validar backup e restauração](epics/E05-database-and-import/T05-validate-backup-and-restore.md) | E05-T04 |
 | E05-T06 | PLANNED | [Implementar acesso pessoal](epics/E05-database-and-import/T06-implement-personal-access.md) | E05-T05 |
-| E05-T07 | IN_PROGRESS | [Aprimorar semântica e fronteiras do código](epics/E05-database-and-import/T07-refine-code-semantics.md) | E05-T04 |
+| E05-T07 | DONE | [Aprimorar semântica e fronteiras do código](epics/E05-database-and-import/T07-refine-code-semantics.md) | E05-T04 |
 | E06-T01 | PLANNED | [Projetar treino e execução do dia](epics/E06-training-execution/T01-project-active-training-plan.md) | E05-T06 |
 | E06-T02 | PLANNED | [Criar página de treino do dia](epics/E06-training-execution/T02-create-daily-training-page.md) | E04-T04, E06-T01 |
 | E06-T03 | PLANNED | [Registrar preparação, séries e comentários](epics/E06-training-execution/T03-record-training-execution.md) | E06-T02 |

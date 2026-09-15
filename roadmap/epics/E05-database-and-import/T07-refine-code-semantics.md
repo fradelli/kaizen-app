@@ -84,8 +84,8 @@ verificadas automaticamente.
 
 ## Resultado
 
-Implementação concluída localmente. A suíte unitária possui 150 testes e os
-validadores de CI possuem 32 regressões. Formato, lint, estrutura, fronteiras,
-tipos, cobertura, dados, build e audit passaram. A integração PostgreSQL local
-ficou indisponível porque o engine Docker Desktop não iniciou; sua confirmação
-será feita pelos checks remotos da PR antes da conclusão da tarefa.
+Implementação concluída. A suíte unitária possui 150 testes, a integração possui
+30 casos PostgreSQL e os validadores de CI possuem 32 regressões. Os seis checks
+da PR #41 aprovaram governança, qualidade, testes, integridade dos dados, build e
+auditoria de dependências. A integração local ficou indisponível porque o engine
+Docker Desktop não iniciou, sem substituir ou enfraquecer a validação remota.
