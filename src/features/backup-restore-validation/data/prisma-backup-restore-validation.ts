@@ -138,7 +138,7 @@ export async function createRecoveryCanary(client: PrismaClient): Promise<Recove
     const pairingRateLimit = await transaction.pairingRateLimit.create({
       data: {
         workspaceId: workspace.id,
-        bucketKey: "backup-restore-canary",
+        bucketKey: "global",
         windowStartedAt: civilDate,
         attemptCount: 1,
         expiresAt: new Date("2026-09-15T00:15:00.000Z"),
