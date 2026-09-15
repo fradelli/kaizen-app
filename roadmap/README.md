@@ -1,3 +1,5 @@
+[ERROR] - (starship::print): Under a 'dumb' terminal (TERM=dumb).
+
 # Roadmap do Kaizen
 
 Este arquivo é a fonte canônica do status de todos os épicos e tarefas. Não é necessário abrir cada tarefa para descobrir o que foi concluído.
@@ -17,78 +19,78 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 
 ## Épicos
 
-| ID  | Status      | Épico                                                                   | Resultado                                                             |
-| --- | ----------- | ----------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| E00 | DONE        | [Governança do repositório](epics/E00-repository-governance/README.md)  | Repositório público governado, contexto otimizado e legado rastreável |
-| E01 | DONE        | [Migração de treino](epics/E01-training-data-migration/README.md)       | Fundação de treino migrada e validada                                 |
-| E02 | DONE        | [Migração de alimentação](epics/E02-nutrition-data-migration/README.md) | Plano alimentar revisado, versionado e validado                       |
-| E03 | DONE        | [Produto e arquitetura](epics/E03-product-and-architecture/README.md)   | P0, arquitetura e guia de implementação aprovados                     |
-| E04 | DONE        | [Fundação Next.js](epics/E04-nextjs-foundation/README.md)               | Aplicação mínima com gates e Design System compartilhado              |
-| E05 | IN_PROGRESS | [Banco, importação e acesso](epics/E05-database-and-import/README.md)   | Persistência, importação e acesso pessoal íntegros                    |
-| E06 | PLANNED     | [Execução de treino](epics/E06-training-execution/README.md)            | Consulta e registro utilizáveis de treino                             |
-| E07 | PLANNED     | [Execução de alimentação](epics/E07-nutrition-execution/README.md)      | Consulta e registro utilizáveis de alimentação                        |
-| E08 | PLANNED     | [Publicação pessoal](epics/E08-personal-release/README.md)              | Local, preview e produção verificados                                 |
-| E09 | PLANNED     | [Evolução futura](epics/E09-future-evolution/README.md)                 | Backlog posterior ao MVP pessoal                                      |
+| ID | Status | Épico | Resultado |
+| --- | --- | --- | --- |
+| E00 | DONE | [Governança do repositório](epics/E00-repository-governance/README.md) | Repositório público governado, contexto otimizado e legado rastreável |
+| E01 | DONE | [Migração de treino](epics/E01-training-data-migration/README.md) | Fundação de treino migrada e validada |
+| E02 | DONE | [Migração de alimentação](epics/E02-nutrition-data-migration/README.md) | Plano alimentar revisado, versionado e validado |
+| E03 | DONE | [Produto e arquitetura](epics/E03-product-and-architecture/README.md) | P0, arquitetura e guia de implementação aprovados |
+| E04 | DONE | [Fundação Next.js](epics/E04-nextjs-foundation/README.md) | Aplicação mínima com gates e Design System compartilhado |
+| E05 | IN_PROGRESS | [Banco, importação e acesso](epics/E05-database-and-import/README.md) | Persistência, importação e acesso pessoal íntegros |
+| E06 | PLANNED | [Execução de treino](epics/E06-training-execution/README.md) | Consulta e registro utilizáveis de treino |
+| E07 | PLANNED | [Execução de alimentação](epics/E07-nutrition-execution/README.md) | Consulta e registro utilizáveis de alimentação |
+| E08 | PLANNED | [Publicação pessoal](epics/E08-personal-release/README.md) | Local, preview e produção verificados |
+| E09 | PLANNED | [Evolução futura](epics/E09-future-evolution/README.md) | Backlog posterior ao MVP pessoal |
 
 ## Todas as tarefas
 
-| ID      | Status      | Tarefa                                                                                                                    | Depende de                            |
-| ------- | ----------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
-| E00-T01 | DONE        | [Inicializar repositório e branches](epics/E00-repository-governance/T01-initialize-repository-and-branches.md)           | —                                     |
-| E00-T02 | CANCELLED   | [Tornar o repositório privado](epics/E00-repository-governance/T02-make-repository-private.md)                            | Cancelada por decisão do proprietário |
-| E00-T03 | DONE        | [Criar contrato raiz](epics/E00-repository-governance/T03-create-root-contract.md)                                        | E00-T01                               |
-| E00-T04 | DONE        | [Criar sistema de roadmap](epics/E00-repository-governance/T04-create-roadmap-system.md)                                  | E00-T03                               |
-| E00-T06 | DONE        | [Adaptar governança de PR e CI/CD](epics/E00-repository-governance/T06-adapt-delivery-governance.md)                      | E00-T04                               |
-| E00-T05 | DONE        | [Registrar proveniência do legado](epics/E00-repository-governance/T05-register-legacy-provenance.md)                     | E00-T04, E00-T06                      |
-| E00-T07 | DONE        | [Otimizar contexto e sanear dependências pré-MVP](epics/E00-repository-governance/T07-optimize-agent-context.md)          | E03-T05                               |
-| E01-T01 | DONE        | [Congelar snapshot de origem](epics/E01-training-data-migration/T01-freeze-source-snapshot.md)                            | E00-T05                               |
-| E01-T02 | DONE        | [Migrar dados canônicos de treino](epics/E01-training-data-migration/T02-migrate-canonical-training-data.md)              | E01-T01                               |
-| E01-T03 | DONE        | [Migrar histórico de treino](epics/E01-training-data-migration/T03-migrate-training-history.md)                           | E01-T02                               |
-| E01-T04 | DONE        | [Migrar documentação humana](epics/E01-training-data-migration/T04-migrate-human-documentation.md)                        | E01-T03                               |
-| E01-T05 | DONE        | [Migrar schemas](epics/E01-training-data-migration/T05-migrate-schemas.md)                                                | E01-T04                               |
-| E01-T06 | DONE        | [Validar fundação de treino](epics/E01-training-data-migration/T06-validate-training-foundation.md)                       | E01-T05                               |
-| E02-T01 | DONE        | [Inventariar alimentação e unknowns](epics/E02-nutrition-data-migration/T01-inventory-nutrition-inputs.md)                | E01-T06                               |
-| E02-T02 | DONE        | [Preservar dieta original](epics/E02-nutrition-data-migration/T02-preserve-original-diet.md)                              | E02-T01, dieta fornecida              |
-| E02-T03 | DONE        | [Revisar plano alimentar](epics/E02-nutrition-data-migration/T03-review-nutrition-plan.md)                                | E02-T02                               |
-| E02-T04 | DONE        | [Estruturar plano alimentar](epics/E02-nutrition-data-migration/T04-structure-nutrition-plan.md)                          | E02-T03, decisões aprovadas           |
-| E02-T05 | DONE        | [Criar ponteiro, schema e guia](epics/E02-nutrition-data-migration/T05-create-nutrition-contracts.md)                     | E02-T04                               |
-| E02-T06 | DONE        | [Validar fundação alimentar](epics/E02-nutrition-data-migration/T06-validate-nutrition-foundation.md)                     | E02-T05                               |
-| E03-T01 | DONE        | [Definir jornadas do P0](epics/E03-product-and-architecture/T01-define-p0-journeys.md)                                    | E01-T06, E02-T06                      |
-| E03-T02 | DONE        | [Definir transição da fonte de verdade](epics/E03-product-and-architecture/T02-define-source-of-truth-transition.md)      | E03-T01                               |
-| E03-T03 | DONE        | [Definir privacidade e operação](epics/E03-product-and-architecture/T03-define-privacy-and-operations.md)                 | E03-T01                               |
-| E03-T04 | DONE        | [Definir arquitetura](epics/E03-product-and-architecture/T04-define-target-architecture.md)                               | E03-T02, E03-T03                      |
-| E03-T05 | DONE        | [Aprovar guia de implementação](epics/E03-product-and-architecture/T05-approve-implementation-guide.md)                   | E03-T04                               |
-| E04-T01 | DONE        | [Criar aplicação Next.js](epics/E04-nextjs-foundation/T01-scaffold-nextjs.md)                                             | E03-T05, E00-T07                      |
-| E04-T02 | DONE        | [Configurar qualidade estática](epics/E04-nextjs-foundation/T02-configure-static-quality.md)                              | E04-T01                               |
-| E04-T03 | DONE        | [Criar fronteira server-only](epics/E04-nextjs-foundation/T03-create-server-only-boundary.md)                             | E04-T02                               |
-| E04-T04 | DONE        | [Criar shell acessível](epics/E04-nextjs-foundation/T04-create-accessible-shell.md)                                       | E04-T08                               |
-| E04-T05 | DONE        | [Configurar CI mínimo](epics/E04-nextjs-foundation/T05-configure-minimal-ci.md)                                           | E04-T02, E04-T03, E04-T06             |
-| E04-T06 | DONE        | [Registrar adoção do Design System compartilhado](epics/E04-nextjs-foundation/T06-adopt-shared-design-system-decision.md) | E04-T02                               |
-| E04-T07 | DONE        | [Validar prontidão técnica para o Design System](epics/E04-nextjs-foundation/T07-validate-design-system-readiness.md)     | E04-T05, E04-T06                      |
-| E04-T08 | DONE        | [Integrar Design System versionado](epics/E04-nextjs-foundation/T08-integrate-versioned-design-system.md)                 | E04-T07                               |
-| E04-T09 | DONE        | [Padronizar estrutura das páginas React](epics/E04-nextjs-foundation/T09-standardize-react-page-structure.md)             | E04-T04                               |
-| E05-T01 | DONE        | [Modelar treino e alimentação](epics/E05-database-and-import/T01-design-relational-model.md)                              | E03-T05                               |
-| E05-T02 | DONE        | [Configurar banco e migrations](epics/E05-database-and-import/T02-configure-database-and-migrations.md)                   | E04-T03, E05-T01                      |
-| E05-T03 | DONE        | [Criar importação idempotente](epics/E05-database-and-import/T03-create-idempotent-import.md)                             | E05-T02                               |
-| E05-T04 | DONE        | [Testar integridade persistida](epics/E05-database-and-import/T04-test-persisted-integrity.md)                            | E05-T03                               |
-| E05-T05 | READY       | [Validar backup e restauração](epics/E05-database-and-import/T05-validate-backup-and-restore.md)                          | E05-T04                               |
-| E05-T06 | PLANNED     | [Implementar acesso pessoal](epics/E05-database-and-import/T06-implement-personal-access.md)                              | E05-T05                               |
-| E05-T07 | IN_PROGRESS | [Aprimorar semântica e fronteiras do código](epics/E05-database-and-import/T07-refine-code-semantics.md)                  | E05-T04                               |
-| E06-T01 | PLANNED     | [Projetar treino e execução do dia](epics/E06-training-execution/T01-project-active-training-plan.md)                     | E05-T06                               |
-| E06-T02 | PLANNED     | [Criar página de treino do dia](epics/E06-training-execution/T02-create-daily-training-page.md)                           | E04-T04, E06-T01                      |
-| E06-T03 | PLANNED     | [Registrar preparação, séries e comentários](epics/E06-training-execution/T03-record-training-execution.md)               | E06-T02                               |
-| E06-T04 | PLANNED     | [Exibir proveniência e histórico](epics/E06-training-execution/T04-show-training-provenance.md)                           | E06-T03                               |
-| E06-T05 | PLANNED     | [Validar fluxo de treino](epics/E06-training-execution/T05-validate-training-flow.md)                                     | E06-T04                               |
-| E07-T01 | PLANNED     | [Projetar dieta e execução do dia](epics/E07-nutrition-execution/T01-project-active-nutrition-plan.md)                    | E05-T06                               |
-| E07-T02 | PLANNED     | [Criar página de dieta do dia](epics/E07-nutrition-execution/T02-create-nutrition-page.md)                                | E04-T04, E07-T01                      |
-| E07-T03 | PLANNED     | [Registrar escolhas, cumprimento e comentários](epics/E07-nutrition-execution/T03-record-meal-execution.md)               | E07-T02                               |
-| E07-T04 | PLANNED     | [Exibir segurança e proveniência](epics/E07-nutrition-execution/T04-show-nutrition-safety.md)                             | E07-T03                               |
-| E07-T05 | PLANNED     | [Validar fluxo alimentar](epics/E07-nutrition-execution/T05-validate-nutrition-flow.md)                                   | E07-T04                               |
-| E08-T01 | PLANNED     | [Publicar preview](epics/E08-personal-release/T01-deploy-preview.md)                                                      | E06-T05, E07-T05                      |
-| E08-T02 | PLANNED     | [Validar e reforçar proteção](epics/E08-personal-release/T02-protect-access.md)                                           | E08-T01, E05-T06                      |
-| E08-T03 | PLANNED     | [Preparar produção](epics/E08-personal-release/T03-prepare-production.md)                                                 | E08-T02, E05-T05                      |
-| E08-T04 | PLANNED     | [Validar operação e rollback](epics/E08-personal-release/T04-validate-operations-and-rollback.md)                         | E08-T03                               |
-| E08-T05 | PLANNED     | [Publicar MVP pessoal](epics/E08-personal-release/T05-release-personal-mvp.md)                                            | E08-T04                               |
+| ID | Status | Tarefa | Depende de |
+| --- | --- | --- | --- |
+| E00-T01 | DONE | [Inicializar repositório e branches](epics/E00-repository-governance/T01-initialize-repository-and-branches.md) | — |
+| E00-T02 | CANCELLED | [Tornar o repositório privado](epics/E00-repository-governance/T02-make-repository-private.md) | Cancelada por decisão do proprietário |
+| E00-T03 | DONE | [Criar contrato raiz](epics/E00-repository-governance/T03-create-root-contract.md) | E00-T01 |
+| E00-T04 | DONE | [Criar sistema de roadmap](epics/E00-repository-governance/T04-create-roadmap-system.md) | E00-T03 |
+| E00-T06 | DONE | [Adaptar governança de PR e CI/CD](epics/E00-repository-governance/T06-adapt-delivery-governance.md) | E00-T04 |
+| E00-T05 | DONE | [Registrar proveniência do legado](epics/E00-repository-governance/T05-register-legacy-provenance.md) | E00-T04, E00-T06 |
+| E00-T07 | DONE | [Otimizar contexto e sanear dependências pré-MVP](epics/E00-repository-governance/T07-optimize-agent-context.md) | E03-T05 |
+| E01-T01 | DONE | [Congelar snapshot de origem](epics/E01-training-data-migration/T01-freeze-source-snapshot.md) | E00-T05 |
+| E01-T02 | DONE | [Migrar dados canônicos de treino](epics/E01-training-data-migration/T02-migrate-canonical-training-data.md) | E01-T01 |
+| E01-T03 | DONE | [Migrar histórico de treino](epics/E01-training-data-migration/T03-migrate-training-history.md) | E01-T02 |
+| E01-T04 | DONE | [Migrar documentação humana](epics/E01-training-data-migration/T04-migrate-human-documentation.md) | E01-T03 |
+| E01-T05 | DONE | [Migrar schemas](epics/E01-training-data-migration/T05-migrate-schemas.md) | E01-T04 |
+| E01-T06 | DONE | [Validar fundação de treino](epics/E01-training-data-migration/T06-validate-training-foundation.md) | E01-T05 |
+| E02-T01 | DONE | [Inventariar alimentação e unknowns](epics/E02-nutrition-data-migration/T01-inventory-nutrition-inputs.md) | E01-T06 |
+| E02-T02 | DONE | [Preservar dieta original](epics/E02-nutrition-data-migration/T02-preserve-original-diet.md) | E02-T01, dieta fornecida |
+| E02-T03 | DONE | [Revisar plano alimentar](epics/E02-nutrition-data-migration/T03-review-nutrition-plan.md) | E02-T02 |
+| E02-T04 | DONE | [Estruturar plano alimentar](epics/E02-nutrition-data-migration/T04-structure-nutrition-plan.md) | E02-T03, decisões aprovadas |
+| E02-T05 | DONE | [Criar ponteiro, schema e guia](epics/E02-nutrition-data-migration/T05-create-nutrition-contracts.md) | E02-T04 |
+| E02-T06 | DONE | [Validar fundação alimentar](epics/E02-nutrition-data-migration/T06-validate-nutrition-foundation.md) | E02-T05 |
+| E03-T01 | DONE | [Definir jornadas do P0](epics/E03-product-and-architecture/T01-define-p0-journeys.md) | E01-T06, E02-T06 |
+| E03-T02 | DONE | [Definir transição da fonte de verdade](epics/E03-product-and-architecture/T02-define-source-of-truth-transition.md) | E03-T01 |
+| E03-T03 | DONE | [Definir privacidade e operação](epics/E03-product-and-architecture/T03-define-privacy-and-operations.md) | E03-T01 |
+| E03-T04 | DONE | [Definir arquitetura](epics/E03-product-and-architecture/T04-define-target-architecture.md) | E03-T02, E03-T03 |
+| E03-T05 | DONE | [Aprovar guia de implementação](epics/E03-product-and-architecture/T05-approve-implementation-guide.md) | E03-T04 |
+| E04-T01 | DONE | [Criar aplicação Next.js](epics/E04-nextjs-foundation/T01-scaffold-nextjs.md) | E03-T05, E00-T07 |
+| E04-T02 | DONE | [Configurar qualidade estática](epics/E04-nextjs-foundation/T02-configure-static-quality.md) | E04-T01 |
+| E04-T03 | DONE | [Criar fronteira server-only](epics/E04-nextjs-foundation/T03-create-server-only-boundary.md) | E04-T02 |
+| E04-T04 | DONE | [Criar shell acessível](epics/E04-nextjs-foundation/T04-create-accessible-shell.md) | E04-T08 |
+| E04-T05 | DONE | [Configurar CI mínimo](epics/E04-nextjs-foundation/T05-configure-minimal-ci.md) | E04-T02, E04-T03, E04-T06 |
+| E04-T06 | DONE | [Registrar adoção do Design System compartilhado](epics/E04-nextjs-foundation/T06-adopt-shared-design-system-decision.md) | E04-T02 |
+| E04-T07 | DONE | [Validar prontidão técnica para o Design System](epics/E04-nextjs-foundation/T07-validate-design-system-readiness.md) | E04-T05, E04-T06 |
+| E04-T08 | DONE | [Integrar Design System versionado](epics/E04-nextjs-foundation/T08-integrate-versioned-design-system.md) | E04-T07 |
+| E04-T09 | DONE | [Padronizar estrutura das páginas React](epics/E04-nextjs-foundation/T09-standardize-react-page-structure.md) | E04-T04 |
+| E05-T01 | DONE | [Modelar treino e alimentação](epics/E05-database-and-import/T01-design-relational-model.md) | E03-T05 |
+| E05-T02 | DONE | [Configurar banco e migrations](epics/E05-database-and-import/T02-configure-database-and-migrations.md) | E04-T03, E05-T01 |
+| E05-T03 | DONE | [Criar importação idempotente](epics/E05-database-and-import/T03-create-idempotent-import.md) | E05-T02 |
+| E05-T04 | DONE | [Testar integridade persistida](epics/E05-database-and-import/T04-test-persisted-integrity.md) | E05-T03 |
+| E05-T05 | READY | [Validar backup e restauração](epics/E05-database-and-import/T05-validate-backup-and-restore.md) | E05-T04 |
+| E05-T06 | PLANNED | [Implementar acesso pessoal](epics/E05-database-and-import/T06-implement-personal-access.md) | E05-T05 |
+| E05-T07 | IN_PROGRESS | [Aprimorar semântica e fronteiras do código](epics/E05-database-and-import/T07-refine-code-semantics.md) | E05-T04 |
+| E06-T01 | PLANNED | [Projetar treino e execução do dia](epics/E06-training-execution/T01-project-active-training-plan.md) | E05-T06 |
+| E06-T02 | PLANNED | [Criar página de treino do dia](epics/E06-training-execution/T02-create-daily-training-page.md) | E04-T04, E06-T01 |
+| E06-T03 | PLANNED | [Registrar preparação, séries e comentários](epics/E06-training-execution/T03-record-training-execution.md) | E06-T02 |
+| E06-T04 | PLANNED | [Exibir proveniência e histórico](epics/E06-training-execution/T04-show-training-provenance.md) | E06-T03 |
+| E06-T05 | PLANNED | [Validar fluxo de treino](epics/E06-training-execution/T05-validate-training-flow.md) | E06-T04 |
+| E07-T01 | PLANNED | [Projetar dieta e execução do dia](epics/E07-nutrition-execution/T01-project-active-nutrition-plan.md) | E05-T06 |
+| E07-T02 | PLANNED | [Criar página de dieta do dia](epics/E07-nutrition-execution/T02-create-nutrition-page.md) | E04-T04, E07-T01 |
+| E07-T03 | PLANNED | [Registrar escolhas, cumprimento e comentários](epics/E07-nutrition-execution/T03-record-meal-execution.md) | E07-T02 |
+| E07-T04 | PLANNED | [Exibir segurança e proveniência](epics/E07-nutrition-execution/T04-show-nutrition-safety.md) | E07-T03 |
+| E07-T05 | PLANNED | [Validar fluxo alimentar](epics/E07-nutrition-execution/T05-validate-nutrition-flow.md) | E07-T04 |
+| E08-T01 | PLANNED | [Publicar preview](epics/E08-personal-release/T01-deploy-preview.md) | E06-T05, E07-T05 |
+| E08-T02 | PLANNED | [Validar e reforçar proteção](epics/E08-personal-release/T02-protect-access.md) | E08-T01, E05-T06 |
+| E08-T03 | PLANNED | [Preparar produção](epics/E08-personal-release/T03-prepare-production.md) | E08-T02, E05-T05 |
+| E08-T04 | PLANNED | [Validar operação e rollback](epics/E08-personal-release/T04-validate-operations-and-rollback.md) | E08-T03 |
+| E08-T05 | PLANNED | [Publicar MVP pessoal](epics/E08-personal-release/T05-release-personal-mvp.md) | E08-T04 |
 
 ## Regra de atualização
 
