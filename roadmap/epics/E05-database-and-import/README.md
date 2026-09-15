@@ -6,14 +6,15 @@ Banco escolhido, migrations versionadas, importação idempotente e acesso pesso
 
 ## Ordem
 
-| Tarefa | Depende de | Resultado |
-| --- | --- | --- |
-| E05-T01 | E03-T05 | Modelo relacional aprovado |
-| E05-T02 | E04-T03, E05-T01 | Banco e migrations |
-| E05-T03 | E05-T02 | Importação idempotente |
-| E05-T04 | E05-T03 | Integridade testada |
-| E05-T05 | E05-T04 | Backup/restore local validado |
-| E05-T06 | E05-T05 | Acesso pessoal implementado antes das features |
+| Tarefa  | Depende de       | Resultado                                      |
+| ------- | ---------------- | ---------------------------------------------- |
+| E05-T01 | E03-T05          | Modelo relacional aprovado                     |
+| E05-T02 | E04-T03, E05-T01 | Banco e migrations                             |
+| E05-T03 | E05-T02          | Importação idempotente                         |
+| E05-T04 | E05-T03          | Integridade testada                            |
+| E05-T05 | E05-T04          | Backup/restore local validado                  |
+| E05-T06 | E05-T05          | Acesso pessoal implementado antes das features |
+| E05-T07 | E05-T04          | Semântica e fronteiras do código verificadas   |
 
 ## Fora de escopo
 
