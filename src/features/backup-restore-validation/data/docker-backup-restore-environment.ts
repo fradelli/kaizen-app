@@ -28,6 +28,14 @@ function postgresArgs(
 }
 
 export class DockerBackupRestoreEnvironment {
+  private readonly commandEnvironment: NodeJS.ProcessEnv = {
+    ...process.env,
+    LOCAL_DATABASE_PASSWORD:
+      process.env.LOCAL_DATABASE_PASSWORD ?? "unused-by-backup-restore-validation",
+    TEST_DATABASE_PASSWORD:
+      process.env.TEST_DATABASE_PASSWORD ?? "unused-by-backup-restore-validation",
+  };
+
   constructor(
     private readonly repositoryRoot: string,
     private readonly configuration: BackupRestoreConfiguration,
@@ -37,6 +45,7 @@ export class DockerBackupRestoreEnvironment {
     await this.remove("DOCKER_UNAVAILABLE");
     await runSanitizedCommand("docker", composeArgs("up", "-d", "--wait", ...services), {
       cwd: this.repositoryRoot,
+      environment: this.commandEnvironment,
       failureCode: "DOCKER_UNAVAILABLE",
     });
   }
@@ -44,6 +53,7 @@ export class DockerBackupRestoreEnvironment {
   async remove(failureCode: "DOCKER_UNAVAILABLE" | "CLEANUP_FAILED"): Promise<void> {
     await runSanitizedCommand("docker", composeArgs("rm", "--stop", "--force", ...services), {
       cwd: this.repositoryRoot,
+      environment: this.commandEnvironment,
       failureCode,
     });
   }
@@ -64,7 +74,11 @@ export class DockerBackupRestoreEnvironment {
         "--no-privileges",
       ),
       path,
-      { cwd: this.repositoryRoot, failureCode: "BACKUP_FAILED" },
+      {
+        cwd: this.repositoryRoot,
+        environment: this.commandEnvironment,
+        failureCode: "BACKUP_FAILED",
+      },
     );
     const [bytes, metadata] = await Promise.all([readFile(path), stat(path)]);
     return {
@@ -91,7 +105,11 @@ export class DockerBackupRestoreEnvironment {
         "--no-owner",
         "--no-privileges",
       ),
-      { cwd: this.repositoryRoot, failureCode: "RESTORE_FAILED" },
+      {
+        cwd: this.repositoryRoot,
+        environment: this.commandEnvironment,
+        failureCode: "RESTORE_FAILED",
+      },
     );
   }
 
@@ -99,7 +117,11 @@ export class DockerBackupRestoreEnvironment {
     return captureSanitizedCommand(
       "docker",
       postgresArgs(this.configuration.source, "postgres", "--version"),
-      { cwd: this.repositoryRoot, failureCode: "DOCKER_UNAVAILABLE" },
+      {
+        cwd: this.repositoryRoot,
+        environment: this.commandEnvironment,
+        failureCode: "DOCKER_UNAVAILABLE",
+      },
     );
   }
 }

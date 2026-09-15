@@ -180,6 +180,8 @@ jobs:
       BACKUP_DATABASE_PASSWORD: ci-disposable-only
       BACKUP_SOURCE_DATABASE_PORT: 5434
       BACKUP_RESTORE_DATABASE_PORT: 5435
+      LOCAL_DATABASE_PASSWORD: unused-by-backup-restore-validation
+      TEST_DATABASE_PASSWORD: unused-by-backup-restore-validation
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
