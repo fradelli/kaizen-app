@@ -22,6 +22,8 @@ Provar joins, constraints, versão ativa e proveniência contra banco real de te
 - `prisma/migrations/20260913011504_initial_p0/migration.sql`
 - `src/features/plan-definition-import/domain/plan-definition-import.types.ts`
 - `src/features/plan-definition-import/domain/plan-definition-source.types.ts`
+- `src/features/plan-definition-import/domain/json-value.types.ts`
+- `src/features/plan-definition-import/domain/plan-definition-source.utils.ts`
 - `src/features/plan-definition-import/application/import-versioned-plan-definitions.ts`
 - `src/features/plan-definition-import/data/read-plan-definitions-from-git.ts`
 - `src/features/plan-definition-import/data/validate-plan-definition-snapshot.ts`
@@ -53,6 +55,33 @@ Provar joins, constraints, versão ativa e proveniência contra banco real de te
 - `scripts/validate-persisted-data.ts`
 - `tests/integration/persisted-data-integrity.test.ts`
 - `tests/integration/persisted-data-concurrency.test.ts`
+- `src/features/persisted-data-integrity/domain/persisted-data-integrity.types.ts`
+- `src/features/persisted-data-integrity/domain/persisted-data-integrity.error.ts`
+- `src/features/persisted-data-integrity/domain/definition-parity.utils.ts`
+- `src/features/persisted-data-integrity/domain/import-provenance-integrity.rules.ts`
+- `src/features/persisted-data-integrity/domain/reviewed-exercise-integrity.rules.ts`
+- `src/features/persisted-data-integrity/domain/training-plan-integrity.rules.ts`
+- `src/features/persisted-data-integrity/domain/training-session-integrity.rules.ts`
+- `src/features/persisted-data-integrity/domain/training-prescription-integrity.rules.ts`
+- `src/features/persisted-data-integrity/domain/nutrition-plan-integrity.rules.ts`
+- `src/features/persisted-data-integrity/domain/meal-definition-integrity.rules.ts`
+- `src/features/persisted-data-integrity/domain/meal-option-reference.utils.ts`
+- `src/features/persisted-data-integrity/domain/nutrition-day-type-integrity.rules.ts`
+- `src/features/persisted-data-integrity/data/prisma-persisted-data.mapper.ts`
+- `src/features/persisted-data-integrity/data/persisted-data-integrity-error.mapper.ts`
+- `src/features/persisted-data-integrity/data/persisted-data-integrity-error.mapper.test.ts`
+- `src/features/plan-definition-import/data/plan-definition-persistence.types.ts`
+- `src/features/plan-definition-import/data/plan-definition-persistence.utils.ts`
+- `src/features/plan-definition-import/data/plan-definition.mapper.ts`
+- `src/features/plan-definition-import/data/plan-definition-snapshot-validation.rules.ts`
+- `src/features/plan-definition-import/domain/plan-definition-import.error.ts`
+- `src/features/persisted-data-integrity/data/persisted-data-integrity-cli.utils.ts`
+- `tests/unit/fixtures/persisted-data-integrity.fixture.ts`
+- `scripts/validate-component-structure.mjs`
+- `scripts/validate-component-structure.test.mjs`
+- `scripts/validate-layer-boundaries.mjs`
+- `scripts/validate-layer-boundaries.test.mjs`
+- `eslint.config.mjs`
 
 ## Entregáveis
 
@@ -68,6 +97,11 @@ Provar joins, constraints, versão ativa e proveniência contra banco real de te
 - [x] Distinguir banco vazio de paridade válida, sem expor dados operacionais.
 - [x] Validar conflitos de revisão com duas conexões reais.
 - [x] Executar CLI em schema descartável preparado pela integração.
+- [ ] Tipar cada projeção persistida e mapear Prisma explicitamente.
+- [ ] Tornar as fontes do importador uma união discriminada e tipar contadores.
+- [ ] Separar regras de paridade por entidade e mover fixtures para testes.
+- [ ] Distinguir argumentos, fonte e infraestrutura nos erros da CLI.
+- [ ] Impedir imports entre camadas incompatíveis por gate automatizado.
 
 ## Validações
 

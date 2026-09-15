@@ -137,6 +137,13 @@ essa revisão na PR; formato, lint, tipos e testes continuam obrigatórios, mas
 não comprovam sozinhos clareza semântica. Não criar abstrações futuras ou refatorar
 código alheio ao escopo apenas para atender à convenção.
 
+O gate `pnpm structure:check` valida tanto a organização física dos componentes
+quanto imports entre camadas. Domínio não depende de aplicação ou infraestrutura;
+aplicação não acessa Prisma, banco ou adaptadores concretos; UI e módulos
+`use client` não importam a camada de dados, Client Prisma, scripts ou banco.
+Exceções arquiteturais devem ser decididas e documentadas, não contornadas com
+aliases ou imports relativos equivalentes.
+
 ## Boundaries
 
 ### Domínio

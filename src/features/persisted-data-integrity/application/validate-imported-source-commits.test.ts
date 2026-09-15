@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { validateImportedSourceCommits } from "./validate-imported-source-commits";
-import { createIntegrityFixture } from "./validate-persisted-data.fixture";
+import { createIntegrityFixture } from "../../../../tests/unit/fixtures/persisted-data-integrity.fixture";
 import type { IntegrityIssue } from "../domain/persisted-data-integrity.types";
 
 describe("proveniência dos bytes no commit de primeira importação", () => {

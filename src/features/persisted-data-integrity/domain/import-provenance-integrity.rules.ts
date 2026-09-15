@@ -2,8 +2,20 @@ import type {
   PlanDefinitionSnapshot,
   PlanDefinitionImportEnvironment,
 } from "../../plan-definition-import/domain/plan-definition-import.types";
+import {
+  findPlanDefinitionSource,
+  findPlanDefinitionSourceByPath,
+} from "../../plan-definition-import/domain/plan-definition-source.utils";
 import type { PersistedDefinitionSnapshot, IntegrityIssue } from "./persisted-data-integrity.types";
 import { compareDefinitionFields, findSourceBatch } from "./definition-parity.utils";
+
+function readPersistedPlanSelection(
+  document: unknown,
+): { active_plan_path?: unknown; active_plan_id?: unknown } | undefined {
+  return document && typeof document === "object" && !Array.isArray(document)
+    ? document
+    : undefined;
+}
 
 export function validateImportProvenance(
   source: PlanDefinitionSnapshot,
@@ -41,10 +53,14 @@ export function validateImportProvenance(
       });
   }
   for (const domain of ["training", "nutrition"] as const) {
-    const pointer = source.sources.find((entry) => entry.kind === `${domain}_pointer`)!;
-    const planSource = source.sources.find(
-      (entry) => entry.path === pointer.document.active_plan_path,
-    )!;
+    const pointer = findPlanDefinitionSource(source.sources, `${domain}_pointer`);
+    if (!pointer) continue;
+    const planSource = findPlanDefinitionSourceByPath(
+      source.sources,
+      `${domain}_plan`,
+      pointer.document.active_plan_path,
+    );
+    if (!planSource) continue;
     const batch = findSourceBatch(persisted.batches, planSource.path, planSource.sha256);
     const versions = domain === "training" ? persisted.trainingPlans : persisted.nutritionPlans;
     const version = versions.find((entry) => entry.importBatchId === batch?.id);
@@ -60,11 +76,7 @@ export function validateImportProvenance(
     const pointerBatch = persisted.batches.find(
       (entry) => entry.id === active[0]?.pointerImportBatchId,
     );
-    const pointerDocument = pointerBatch?.sourceDocument;
-    const selected =
-      pointerDocument && typeof pointerDocument === "object" && !Array.isArray(pointerDocument)
-        ? pointerDocument
-        : undefined;
+    const selected = readPersistedPlanSelection(pointerBatch?.sourceDocument);
     if (
       active.length !== 1 ||
       !version ||

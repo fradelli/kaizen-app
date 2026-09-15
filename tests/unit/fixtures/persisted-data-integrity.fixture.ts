@@ -1,9 +1,15 @@
 import type {
   PlanDefinitionSnapshot,
   PlanDefinitionSource,
-  JsonObject,
-} from "../../plan-definition-import/domain/plan-definition-import.types";
-import type { PersistedDefinitionSnapshot } from "../domain/persisted-data-integrity.types";
+} from "@/features/plan-definition-import/domain/plan-definition-import.types";
+import type {
+  ActivePlanPointer,
+  ExecutionMetadata,
+  ExerciseLibrary,
+  NutritionPlan,
+  TrainingPlan,
+} from "@/features/plan-definition-import/domain/plan-definition-source.types";
+import type { PersistedDefinitionSnapshot } from "@/features/persisted-data-integrity/domain/persisted-data-integrity.types";
 
 export function createIntegrityFixture(): {
   canonical: PlanDefinitionSnapshot;
@@ -19,8 +25,10 @@ export function createIntegrityFixture(): {
     scope: "total",
     qualifier: null,
   };
-  const library = { exercises: [{ id: "exercise", name_pt: "Exercício sintético" }] };
-  const metadata = {
+  const library: ExerciseLibrary = {
+    exercises: [{ id: "exercise", name_pt: "Exercício sintético" }],
+  };
+  const metadata: ExecutionMetadata = {
     exercises: [
       {
         exercise_id: "exercise",
@@ -31,7 +39,7 @@ export function createIntegrityFixture(): {
       },
     ],
   };
-  const training = {
+  const training: TrainingPlan = {
     plan_id: "training",
     version: "1",
     status: "active",
@@ -45,7 +53,7 @@ export function createIntegrityFixture(): {
       },
     },
   };
-  const nutrition: JsonObject = {
+  const nutrition: NutritionPlan = {
     plan_id: "nutrition",
     version: "1",
     lifecycle_status: "active",
@@ -80,35 +88,60 @@ export function createIntegrityFixture(): {
     ],
     timing_rules: [{ meal_id: "meal", rule: "synthetic" }],
   };
-  const definitions: { kind: PlanDefinitionSource["kind"]; path: string; document: JsonObject }[] =
-    [
-      { kind: "exercise_library", path: "data/exercises.json", document: library },
-      {
-        kind: "execution_metadata",
-        path: "data/training-execution-metadata.json",
-        document: metadata,
-      },
-      { kind: "training_plan", path: "data/plans/test.json", document: training },
-      { kind: "nutrition_plan", path: "data/nutrition/plans/test.json", document: nutrition },
-      {
-        kind: "training_pointer",
-        path: "data/active.json",
-        document: { active_plan_path: "data/plans/test.json", active_plan_id: "training" },
-      },
-      {
-        kind: "nutrition_pointer",
-        path: "data/nutrition/active.json",
-        document: {
-          active_plan_path: "data/nutrition/plans/test.json",
-          active_plan_id: "nutrition",
-        },
-      },
-    ];
-  const sources = definitions.map((definition, index) => ({
-    ...definition,
-    schemaVersion: "1",
-    sha256: String(index).repeat(64),
-  }));
+  const trainingPointer: ActivePlanPointer = {
+    schema_version: "1",
+    active_plan_path: "data/plans/test.json",
+    active_plan_id: "training",
+  };
+  const nutritionPointer: ActivePlanPointer = {
+    schema_version: "1",
+    active_plan_path: "data/nutrition/plans/test.json",
+    active_plan_id: "nutrition",
+  };
+  const sources: PlanDefinitionSource[] = [
+    {
+      kind: "exercise_library",
+      path: "data/exercises.json",
+      document: library,
+      schemaVersion: "1",
+      sha256: "0".repeat(64),
+    },
+    {
+      kind: "execution_metadata",
+      path: "data/training-execution-metadata.json",
+      document: metadata,
+      schemaVersion: "1",
+      sha256: "1".repeat(64),
+    },
+    {
+      kind: "training_plan",
+      path: "data/plans/test.json",
+      document: training,
+      schemaVersion: "1",
+      sha256: "2".repeat(64),
+    },
+    {
+      kind: "nutrition_plan",
+      path: "data/nutrition/plans/test.json",
+      document: nutrition,
+      schemaVersion: "1",
+      sha256: "3".repeat(64),
+    },
+    {
+      kind: "training_pointer",
+      path: "data/active.json",
+      document: trainingPointer,
+      schemaVersion: "1",
+      sha256: "4".repeat(64),
+    },
+    {
+      kind: "nutrition_pointer",
+      path: "data/nutrition/active.json",
+      document: nutritionPointer,
+      schemaVersion: "1",
+      sha256: "5".repeat(64),
+    },
+  ];
   const canonical = {
     commit: "a".repeat(40),
     sources,

@@ -8,6 +8,8 @@ import type {
   PlanDefinitionSnapshot,
   PlanDefinitionSource,
 } from "@/features/plan-definition-import/domain/plan-definition-import.types";
+import type { TrainingPlan } from "@/features/plan-definition-import/domain/plan-definition-source.types";
+import { findPlanDefinitionSourceByPath } from "@/features/plan-definition-import/domain/plan-definition-source.utils";
 import type { PrismaClient } from "@/generated/prisma/client";
 import { withImportDatabase } from "./fixtures/import-database.fixture";
 import { createDatabaseFixture } from "./fixtures/database.fixture";
@@ -137,7 +139,10 @@ describe("importação canônica em PostgreSQL real", () => {
       const snapshot = await readPlanDefinitionsFromGit(process.cwd());
       const invalid = replace(snapshot, (source) =>
         source.kind === "training_plan"
-          ? { ...source, document: { schema_version: "1.0.0" } }
+          ? {
+              ...source,
+              document: { schema_version: "1.0.0" } as unknown as TrainingPlan,
+            }
           : source,
       );
       await expect(run(client, invalid)).rejects.toMatchObject({ code: "SOURCE_INVALID" });
@@ -201,8 +206,13 @@ describe("importação canônica em PostgreSQL real", () => {
       const execution = await client.trainingExecution.findUniqueOrThrow({
         where: { id: fixture.execution.id },
       });
-      const version = snapshot.sources.find(
+      const versionPath = snapshot.sources.find(
         (source) => source.kind === "training_plan" && source.path.endsWith("-v1.json"),
+      )!.path;
+      const version = findPlanDefinitionSourceByPath(
+        snapshot.sources,
+        "training_plan",
+        versionPath,
       )!;
       const changed = replace(snapshot, (source) =>
         source.kind === "training_pointer"

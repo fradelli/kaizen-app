@@ -1,4 +1,4 @@
-import type { JsonValue } from "./plan-definition-import.types";
+import type { JsonValue } from "./json-value.types";
 export type Dose = {
   source_text: string;
   minimum: number;
@@ -17,6 +17,11 @@ export type ExecutionMetadata = {
   }[];
 };
 export type ExerciseLibrary = { exercises: { id: string; name_pt: string }[] };
+export type ActivePlanPointer = {
+  schema_version: string;
+  active_plan_id: string;
+  active_plan_path: string;
+};
 export type TrainingPlan = {
   plan_id: string;
   version: string;
@@ -42,15 +47,21 @@ export type TrainingPlan = {
     }
   >;
 };
-export type MealOption = {
+type MealOptionBase = {
   id: string;
   label: string;
   use_when?: string;
   follow_up_rule?: string;
-  items?: JsonValue[];
   unknowns?: JsonValue[];
-  reference_option?: string;
 };
+export type MealOption = MealOptionBase &
+  (
+    | { items: JsonValue[]; reference_option?: never }
+    | {
+        items?: never;
+        reference_option: string;
+      }
+  );
 export type NutritionPlan = {
   plan_id: string;
   version: string;

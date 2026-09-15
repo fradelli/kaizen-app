@@ -5,17 +5,17 @@ import type {
 } from "./plan-definition-persistence.types";
 import { recordCreatedDefinition, throwSourceConflict } from "./plan-definition-persistence.utils";
 import type { PlanDefinitionSource } from "../domain/plan-definition-import.types";
-import type { ExecutionMetadata, TrainingPlan } from "../domain/plan-definition-source.types";
+import type { ExecutionMetadata } from "../domain/plan-definition-source.types";
 import { toPrismaDoseJson, mapTrainingPlanVersion } from "./plan-definition.mapper";
 export async function persistTrainingPlanDefinition(
   tx: ImportTransaction,
-  source: PlanDefinitionSource,
+  source: PlanDefinitionSource<"training_plan">,
   batchId: string,
   exercises: ReadonlyMap<string, string>,
   metadata: ExecutionMetadata,
   created: CreatedDefinitionCounts,
 ): Promise<string> {
-  const plan = source.document as unknown as TrainingPlan;
+  const plan = source.document;
   const existing = await tx.trainingPlanVersion.findUnique({
     where: { planId_version: { planId: plan.plan_id, version: plan.version } },
   });

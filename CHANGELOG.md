@@ -8,6 +8,8 @@ Mudanças materiais do projeto serão registradas neste arquivo.
 - Adicionada CLI protegida para `kaizen_test`, com resultados distintos para banco válido, divergente e não importado; executada em cenários preparados pelos testes da CI.
 - Ampliados testes relacionais de pais ausentes, unicidade, ownership alimentar, limites, medidas, carga e isolamento de ativações; concorrência real em dois Clients preserva somente a gravação vencedora por revisão.
 - Confirmados 144 testes unitários/validadores, 30 integrações e 29 regressões dos scripts, além dos gates completos e audit sem vulnerabilidades; migrations, planos, shells e volumes intactos.
+- Refinada a semântica da implementação: fontes discriminadas, DTOs e mapeadores por entidade, regras de paridade coesas, fixtures fora da aplicação e códigos de falha distintos para argumentos, banco, fonte e infraestrutura.
+- Adicionado gate automatizado para impedir dependências incompatíveis entre domínio, aplicação, dados, UI e fronteiras `use client`.
 
 ## 2026-09-14 — validação Docker da E05-T02 concluída
 

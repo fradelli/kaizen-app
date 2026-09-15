@@ -5,6 +5,7 @@ import type {
   PlanDefinitionSnapshot,
   PlanDefinitionImportEnvironment,
 } from "../domain/plan-definition-import.types";
+import { findPlanDefinitionSource } from "../domain/plan-definition-source.utils";
 export async function activateSelectedPlanDefinitions(
   tx: ImportTransaction,
   snapshot: PlanDefinitionSnapshot,
@@ -15,7 +16,10 @@ export async function activateSelectedPlanDefinitions(
 ): Promise<number> {
   let activationsChanged = 0;
   for (const domain of ["training", "nutrition"] as const) {
-    const pointer = snapshot.sources.find((source) => source.kind === `${domain}_pointer`)!;
+    const pointer =
+      domain === "training"
+        ? findPlanDefinitionSource(snapshot.sources, "training_pointer")!
+        : findPlanDefinitionSource(snapshot.sources, "nutrition_pointer")!;
     const versionId = versions.get(pointer.document.active_plan_path as string);
     if (!versionId) throwSourceConflict();
     const existing = await tx.planActivation.findFirst({

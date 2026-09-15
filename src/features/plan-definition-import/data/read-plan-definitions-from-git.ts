@@ -24,6 +24,15 @@ export function sourceKind(path: string): PlanDefinitionSourceKind | undefined {
   if (/^data\/nutrition\/plans\/[a-z0-9-]+\.json$/.test(path)) return "nutrition_plan";
   return undefined;
 }
+
+function isGitRevisionFailure(error: unknown): boolean {
+  return (
+    error instanceof Error &&
+    "status" in error &&
+    typeof error.status === "number" &&
+    error.status !== 0
+  );
+}
 export async function readPlanDefinitionsFromGit(
   repositoryRoot: string,
   revision = "HEAD",
@@ -79,7 +88,10 @@ export async function readPlanDefinitionsFromGit(
         });
     }
     return { commit, sources, documents, availablePaths };
-  } catch {
-    throw new PlanDefinitionImportError("SOURCE_INVALID");
+  } catch (error) {
+    if (error instanceof PlanDefinitionImportError) throw error;
+    if (error instanceof SyntaxError || isGitRevisionFailure(error))
+      throw new PlanDefinitionImportError("SOURCE_INVALID");
+    throw new PlanDefinitionImportError("IMPORT_UNAVAILABLE");
   }
 }

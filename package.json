@@ -23,12 +23,12 @@
     "db:migrate": "prisma migrate dev",
     "db:deploy": "prisma migrate deploy",
     "db:status": "prisma migrate status",
-    "test:ci-scripts": "node --test scripts/validate-governance.test.mjs scripts/validate-data.test.mjs scripts/validate-component-structure.test.mjs",
+    "test:ci-scripts": "node --test scripts/validate-governance.test.mjs scripts/validate-data.test.mjs scripts/validate-component-structure.test.mjs scripts/validate-layer-boundaries.test.mjs",
     "governance": "node scripts/validate-governance.mjs",
     "data:check": "node scripts/validate-data.mjs",
     "data:import": "pnpm db:generate && node --conditions=react-server --import tsx scripts/import-versioned-plan-definitions.ts",
     "data:check:persisted": "pnpm db:generate && node --conditions=react-server --import tsx scripts/validate-persisted-data.ts",
-    "structure:check": "node scripts/validate-component-structure.mjs",
+    "structure:check": "node scripts/validate-component-structure.mjs && node scripts/validate-layer-boundaries.mjs",
     "ci": "pnpm db:validate && pnpm format:check && pnpm lint && pnpm structure:check && pnpm typecheck && pnpm test:coverage && pnpm test:integration && pnpm test:ci-scripts && pnpm data:check && pnpm build && pnpm audit --audit-level=moderate"
   },
   "dependencies": {
