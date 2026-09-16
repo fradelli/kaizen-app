@@ -36,6 +36,7 @@
 
 .brand {
   margin: 0;
+  color: var(--fd-color-foreground);
   font-size: var(--fd-font-size-xl);
   font-weight: var(--fd-font-weight-heading);
   line-height: var(--fd-font-line-height-xl);

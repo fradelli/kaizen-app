@@ -2,6 +2,14 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-16 — página de treino do dia implementada
+
+- Substituído o placeholder por uma página server-rendered com data civil canônica, navegação anterior/Hoje/seguinte e estados explícitos de treino, mobilidade, descanso e dia não atribuído.
+- Mantidos loading, indisponibilidade, data inválida, referência inconsistente e erro inesperado sem expor detalhes de infraestrutura ou aceitar ownership do navegador.
+- Organizados componentes, tipos, estilos e auxiliares por responsabilidade, com error boundary como único limite Client obrigatório.
+- Refinados o cabeçalho e a leitura móvel após validação visual: marca `改善`, navegação antes da data e destaque semântico para o dia atual.
+- Aprovados 196 testes unitários, 33 integrações PostgreSQL, cobertura, validadores, build de produção e auditoria sem vulnerabilidades conhecidas.
+
 ## 2026-09-16 — projeções de treino do dia implementadas
 
 - Separadas as projeções públicas do plano e operacionais do treino da data em DTOs discriminados, sem expor Prisma, JSON bruto ou ownership ao navegador.
