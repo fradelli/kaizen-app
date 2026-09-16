@@ -1,27 +1,29 @@
 ---
 id: E07-T01
 epic: E07
-depends_on: [E05-T06]
+depends_on: [E05-T05]
 ---
 
 # Projetar dieta e execução do dia
 
 ## Objetivo
 
-Criar projeções server-side separadas do plano público e da dieta pessoal da data.
+Criar projeções server-side separadas do plano público e da dieta operacional da data no workspace fixo.
 
 ## Entradas
 
 - `docs/implementation/E07.md`
 - `docs/product/P0.md`
 - `docs/architecture/DATA-MODEL.md`
+- `docs/architecture/TARGET-ARCHITECTURE.md`
+- `docs/decisions/PUBLIC-SINGLE-WORKSPACE-MODE.md`
 - `data/nutrition/active.json`
-- `src/lib/security/authorization.ts`
+- `src/lib/security/workspace.ts`
 - `prisma/schema.prisma`
 
 ## Entregáveis
 
-- DTO público do plano e DTO pessoal com tipo de dia, refeições, execuções e revisão.
+- DTO público do plano e DTO do workspace com tipo de dia, refeições, execuções e revisão.
 
 ## Subtarefas
 

@@ -2,6 +2,20 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-16 — projeções de treino do dia implementadas
+
+- Separadas as projeções públicas do plano e operacionais do treino da data em DTOs discriminados, sem expor Prisma, JSON bruto ou ownership ao navegador.
+- Implementados casos de uso independentes da infraestrutura, regras explícitas de domínio e repositório PostgreSQL server-only com leitura consistente.
+- Comprovados isolamento por workspace, preservação histórica, estados de treino, mobilidade, descanso e dia não atribuído, além do overlay de execuções parciais.
+- Validado o incremento pelo pipeline completo com 177 testes unitários, 33 testes PostgreSQL, build de produção e auditoria sem vulnerabilidades.
+
+## 2026-09-15 — modo público com workspace único aprovado
+
+- Cancelada E05-T06 no escopo de sessão e pareamento; nenhuma dependência ou tela de autenticação foi adicionada.
+- Registrado o risco aceito de leitura e alteração por quem descobrir a URL enquanto houver somente um usuário e dados considerados não sensíveis.
+- Mantido o workspace fixo resolvido exclusivamente no servidor, sem aceitar ownership do cliente e com filtros estruturais nos repositórios.
+- Autenticação real tornou-se gate explícito antes de múltiplos usuários, dados sensíveis ou qualquer promessa de privacidade; E06-T01 ficou pronta para implementação.
+
 ## 2026-09-15 — recuperação local comprovada
 
 - Automatizados `pg_dump` e `pg_restore` entre dois PostgreSQL 18.6 descartáveis, sem tocar bancos ou volumes existentes.

@@ -113,9 +113,11 @@ HMAC com segredo server-side e separação de domínio, não hash simples do IP.
 Uma janela global impede contornar o limite criando fingerprints; janela de origem
 limita abuso localizado. Incremento e bloqueio são atômicos.
 
-Duração da janela, limites, segredo de HMAC e prazo de retenção são parâmetros de
-segurança a fechar/testar na E05-T06, não fatos inventados nem constantes no schema.
-expires_at garante que retenção não seja infinita.
+A entidade permanece no schema para uma proteção de acesso futura, mas não é usada
+no modo público atual. Duração da janela, limites, segredo de HMAC e retenção só
+serão definidos quando houver tarefa aprovada de autenticação; não são fatos a
+inventar nem constantes do schema. `expires_at` garante retenção finita quando a
+entidade passar a ter consumidor.
 
 ## Definições de treino (públicas, imutáveis)
 
@@ -430,7 +432,7 @@ importação existente preserva seu hash e ExerciseDefinition.
 - `pnpm run ci` e `git diff --check`: gates locais, sem simular banco pronto.
 - Schema não comprova adequação clínica, eficácia ou execução pessoal.
 - Sem User/Membership, endpoint, backend separado, Prisma Client ou migration.
-- Segurança de pareamento e seus parâmetros continuam na E05-T06.
+- E05-T06 foi cancelada; pareamento e seus parâmetros permanecem fora do escopo até uma tarefa futura de autenticação.
 - Interface de valores direcionais continua na E06; o contrato evita perder a fonte.
 - Correção do modelo antes de persistência reverte apenas documentos/metadados/
   validadores. Após E05-T02, alteração estrutural exige migration e rollback explícitos.

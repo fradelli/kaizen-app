@@ -12,29 +12,29 @@
 
 1. Publicar rápido uma aplicação pessoal com somente duas jornadas.
 2. Preservar regras e versões de planos sem duplicar fontes editáveis.
-3. Registrar execuções privadas em PostgreSQL.
+3. Registrar execuções do workspace único em PostgreSQL.
 4. Operar localmente, em preview e em produção na Vercel.
 5. Permitir contas e múltiplos workspaces no futuro sem antecipar suas telas.
-6. Manter segurança, migrations, testes e rollback proporcionais aos dados pessoais.
+6. Manter segurança, migrations, testes e rollback proporcionais aos dados operacionais e ao risco aceito.
 
 ## Stack escolhida
 
-| Área | Escolha | Regra de versão |
-| --- | --- | --- |
-| Runtime | Node.js 24 LTS | versão exata pinada no repositório e Vercel |
-| Framework | Next.js 16 App Router | última versão estável corrigida da linha Active LTS; mínimo seguro 16.3.3 na data da decisão |
-| UI | React 19 | versão compatível exigida pelo Next.js pinado |
-| Linguagem | TypeScript em modo estrito | sem `any` implícito e sem emissão no typecheck |
-| Pacotes | pnpm via Corepack | campo `packageManager` e lockfile obrigatórios |
-| Design System | `@fradelli/ui` por versão exata | contrato externo versionado; primeira integração planejada em `0.1.0` |
-| Estilos | Tailwind CSS 4 + CSS público do Design System | pins comprovados na integração; CSS Modules somente para composição local |
-| Validação | Zod | schemas na fronteira de entrada; domínio mantém invariantes próprias |
-| Banco | PostgreSQL | local em container; Neon em preview e produção |
-| ORM | Prisma ORM 7 estável | Client gerado, driver adapter PostgreSQL e Prisma Migrate |
-| Testes unitários | Vitest | domínio, aplicação, parsers e validação |
-| Testes de UI | Testing Library | comportamento e acessibilidade de componentes interativos |
-| Testes E2E | Playwright | jornadas críticas em PostgreSQL real |
-| Hospedagem | Vercel | runtime Node.js, não Edge |
+| Área             | Escolha                                       | Regra de versão                                                                              |
+| ---------------- | --------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| Runtime          | Node.js 24 LTS                                | versão exata pinada no repositório e Vercel                                                  |
+| Framework        | Next.js 16 App Router                         | última versão estável corrigida da linha Active LTS; mínimo seguro 16.3.3 na data da decisão |
+| UI               | React 19                                      | versão compatível exigida pelo Next.js pinado                                                |
+| Linguagem        | TypeScript em modo estrito                    | sem `any` implícito e sem emissão no typecheck                                               |
+| Pacotes          | pnpm via Corepack                             | campo `packageManager` e lockfile obrigatórios                                               |
+| Design System    | `@fradelli/ui` por versão exata               | contrato externo versionado; primeira integração planejada em `0.1.0`                        |
+| Estilos          | Tailwind CSS 4 + CSS público do Design System | pins comprovados na integração; CSS Modules somente para composição local                    |
+| Validação        | Zod                                           | schemas na fronteira de entrada; domínio mantém invariantes próprias                         |
+| Banco            | PostgreSQL                                    | local em container; Neon em preview e produção                                               |
+| ORM              | Prisma ORM 7 estável                          | Client gerado, driver adapter PostgreSQL e Prisma Migrate                                    |
+| Testes unitários | Vitest                                        | domínio, aplicação, parsers e validação                                                      |
+| Testes de UI     | Testing Library                               | comportamento e acessibilidade de componentes interativos                                    |
+| Testes E2E       | Playwright                                    | jornadas críticas em PostgreSQL real                                                         |
+| Hospedagem       | Vercel                                        | runtime Node.js, não Edge                                                                    |
 
 Versões exatas pertencem ao guia E03-T05 e ao lockfile de E04-T01. Dependências `latest`, beta, canary, release candidate ou intervalos sem lockfile não entram no projeto. Em 2026-09-02, Node 24 é LTS e Next.js 16.3 é Active LTS; a implementação deve usar o patch estável mais recente e corrigido disponível no início de E04.
 
@@ -43,8 +43,8 @@ Versões exatas pertencem ao guia E03-T05 e ao lockfile de E04-T01. Dependência
 ```text
 Navegador
   ├─ leitura pública ───────────────┐
-  ├─ leitura pessoal com sessão ───┤
-  └─ Server Action autorizada ─────┤
+  ├─ leitura do workspace fixo ────┤
+  └─ Server Action pública ─────────┤
                                     v
 Next.js App Router no runtime Node.js
   ├─ UI: páginas, layouts e componentes
@@ -69,7 +69,6 @@ src/
     (public)/
     dieta/
     treino/
-    ativar/
     api/health/
     layout.tsx
     page.tsx
@@ -252,13 +251,13 @@ como entrada pública e delegam regra de negócio para a camada de aplicação.
 
 ### Dependências permitidas
 
-| Origem | Pode depender de |
-| --- | --- |
-| `domain` | biblioteca padrão e código do próprio domínio |
-| `application` | `domain` e portas definidas em `application` |
-| `data` | `application`, `domain`, Prisma e adapters server-only |
-| `ui` | DTOs/casos de uso públicos da feature e React |
-| `app` | `ui`, composition root e funções server-only em entrypoints do servidor |
+| Origem        | Pode depender de                                                        |
+| ------------- | ----------------------------------------------------------------------- |
+| `domain`      | biblioteca padrão e código do próprio domínio                           |
+| `application` | `domain` e portas definidas em `application`                            |
+| `data`        | `application`, `domain`, Prisma e adapters server-only                  |
+| `ui`          | DTOs/casos de uso públicos da feature e React                           |
+| `app`         | `ui`, composition root e funções server-only em entrypoints do servidor |
 
 Importação inversa falha no lint/validação arquitetural.
 
@@ -268,7 +267,7 @@ Importação inversa falha no lint/validação arquitetural.
 
 - São o padrão para páginas e leituras iniciais.
 - Leem conteúdo público versionado ou DTOs do banco pelo application layer.
-- Dados pessoais dependentes de cookie são dinâmicos e não usam cache público.
+- Dados operacionais mutáveis do workspace fixo são dinâmicos e não usam cache público.
 - Conteúdo público imutável pode usar cache por versão do plano.
 - Segredos e objetos do Prisma nunca são serializados para o cliente.
 
@@ -284,8 +283,8 @@ Importação inversa falha no lint/validação arquitetural.
 Cada mutação segue esta ordem:
 
 1. validar origem da requisição;
-2. resolver e verificar sessão do proprietário;
-3. derivar `workspace_id` no servidor;
+2. resolver o `workspace_id` fixo no servidor;
+3. ignorar/rejeitar qualquer ownership fornecido pelo cliente;
 4. validar input com Zod;
 5. converter para comando da aplicação;
 6. executar caso de uso em transação quando necessário;
@@ -307,13 +306,12 @@ Não existe REST interna, OpenAPI ou BFF separado para a própria UI.
 
 ## Rotas do P0
 
-| Rota | Renderização | Acesso |
-| --- | --- | --- |
-| `/` | redirect para `/dieta` | público |
-| `/dieta` | Server Component + ilhas de formulário | plano público; execução somente proprietário |
-| `/treino` | Server Component + ilhas de formulário | plano público; execução somente proprietário |
-| `/ativar` | formulário mínimo | público com rate limit; cria sessão em sucesso |
-| `/api/health` | Route Handler Node.js | público, sem dados pessoais |
+| Rota          | Renderização                           | Acesso                                      |
+| ------------- | -------------------------------------- | ------------------------------------------- |
+| `/`           | redirect para `/dieta`                 | público                                     |
+| `/dieta`      | Server Component + ilhas de formulário | plano e execução públicos no workspace fixo |
+| `/treino`     | Server Component + ilhas de formulário | plano e execução públicos no workspace fixo |
+| `/api/health` | Route Handler Node.js                  | público, sem dados pessoais                 |
 
 A data selecionada usa query string ISO `YYYY-MM-DD`. O servidor interpreta em `America/Sao_Paulo` e rejeita formato inválido.
 
@@ -351,7 +349,7 @@ Esse contrato pertence aos dados versionados e complementa, sem sobrescrever, a 
 - `Workspace`: boundary de ownership; existe um workspace fixo no MVP.
 - `ImportBatch`: proveniência e resultado de uma importação.
 - `PlanActivation`: versão ativa por domínio e ambiente lógico.
-- `PairingRateLimit`: janela e bloqueio de tentativas sem armazenar chave ou IP bruto.
+- `PairingRateLimit`: estrutura preservada para uma proteção de acesso futura; não é usada no P0 atual.
 
 ### Treino
 
@@ -406,17 +404,17 @@ JSON do commit -> parse/schema -> referências -> SHA-256
 - Ponteiro inválido preserva ativação anterior.
 - Importação não altera atribuições nem execuções.
 
-### Leitura pessoal
+### Leitura operacional
 
 ```text
-cookie -> sessão -> workspace -> caso de uso -> repository
+requisição -> workspace fixo server-only -> caso de uso -> repository
   -> plano ativado + execução da data -> DTO mínimo -> Server Component
 ```
 
 ### Mutação
 
 ```text
-form -> Server Action -> auth + Zod -> comando + revisão esperada
+form -> Server Action -> origem + workspace fixo + Zod -> comando + revisão esperada
   -> transação -> constraint/revision -> resultado tipado -> revalidação
 ```
 
@@ -431,21 +429,23 @@ form -> Server Action -> auth + Zod -> comando + revisão esperada
 
 ## Segurança
 
-A arquitetura implementa [`PRIVACY-AND-OPERATIONS.md`](../decisions/PRIVACY-AND-OPERATIONS.md):
+A arquitetura implementa o modo temporário definido em
+[`PUBLIC-SINGLE-WORKSPACE-MODE.md`](../decisions/PUBLIC-SINGLE-WORKSPACE-MODE.md):
 
-- sessão de proprietário em cookie `__Host-`, `HttpOnly`, `Secure`, `SameSite=Lax`;
 - secrets validados no boot e acessíveis apenas no servidor;
-- `WorkspaceResolver` server-only;
-- autorização na Data Access Layer e em toda mutação;
+- `WorkspaceResolver` fixo e server-only;
 - validação de origem e entrada;
-- queries sempre filtradas por workspace para dado pessoal;
-- conteúdo pessoal sem cache público;
+- queries e mutações sempre filtradas pelo workspace resolvido no servidor;
+- nenhum `workspace_id` do cliente define ownership;
+- conteúdo operacional mutável sem cache público;
 - headers de segurança e `noindex`;
 - logs sem payload, cookie ou segredo;
 - runtime role separada da migration role;
 - conexão TLS pooled no runtime e direta no CI de migration.
 
-O token de pareamento tem alta entropia; seu hash é comparado em tempo constante. A sessão é assinada/autenticada por biblioteca criptográfica consolidada, sem algoritmo caseiro.
+Não há autenticação, sessão ou pareamento nesta fase. Qualquer pessoa que acesse a
+URL pode usar as operações expostas; autenticação real é obrigatória antes de
+múltiplos usuários ou dados considerados sensíveis.
 
 ## Organização do Prisma e configuração de banco
 
@@ -479,15 +479,15 @@ O token de pareamento tem alta entropia; seu hash é comparado em tempo constant
 
 ## Estratégia de testes
 
-| Nível | Ferramenta | Cobertura mínima |
-| --- | --- | --- |
-| Dados documentais | validadores JSON + testes próprios | schemas, ponteiros, IDs, referências e metadados de execução |
-| Domínio | Vitest | transições, medidas, carga, comentários, conclusão e datas |
-| Aplicação | Vitest com fakes pequenos | autorização invocada, casos de uso, conflitos e erros |
-| Integração | Vitest + PostgreSQL real | repositories, constraints, transações, migration e importador duas vezes |
-| Componentes | Testing Library | formulários, erro associado, teclado e estados de envio |
-| E2E | Playwright + PostgreSQL isolado | Dieta, Treino, descanso, pareamento, anônimo e histórico |
-| Build/operação | Next build + smoke | env, headers, health, migration, importação e rollback |
+| Nível             | Ferramenta                         | Cobertura mínima                                                         |
+| ----------------- | ---------------------------------- | ------------------------------------------------------------------------ |
+| Dados documentais | validadores JSON + testes próprios | schemas, ponteiros, IDs, referências e metadados de execução             |
+| Domínio           | Vitest                             | transições, medidas, carga, comentários, conclusão e datas               |
+| Aplicação         | Vitest com fakes pequenos          | workspace resolvido, casos de uso, conflitos e erros                     |
+| Integração        | Vitest + PostgreSQL real           | repositories, constraints, transações, migration e importador duas vezes |
+| Componentes       | Testing Library                    | formulários, erro associado, teclado e estados de envio                  |
+| E2E               | Playwright + PostgreSQL isolado    | Dieta, Treino, descanso, workspace fixo e histórico                      |
+| Build/operação    | Next build + smoke                 | env, headers, health, migration, importação e rollback                   |
 
 SQLite, mocks do Prisma e snapshots visuais não substituem testes relacionais. Cada bug de domínio recebe teste no nível mais baixo capaz de reproduzi-lo.
 
@@ -501,7 +501,7 @@ SQLite, mocks do Prisma e snapshots visuais não substituem testes relacionais. 
 - conclusão com pendências não fabrica execução;
 - importação repetida não duplica;
 - versão com hash conflitante falha;
-- sessão ausente não lê registros nem executa mutação;
+- `workspace_id` fornecido pelo cliente não redireciona leitura nem mutação;
 - gravações concorrentes retornam conflito;
 - nova ativação não reescreve histórico;
 - timezone permanece correto na virada do dia.
@@ -510,7 +510,7 @@ SQLite, mocks do Prisma e snapshots visuais não substituem testes relacionais. 
 
 - Toda resposta e log de erro possuem request ID.
 - Health check informa somente status, versão e dependências agregadas.
-- Erros são categorizados em validação, autorização, conflito, indisponibilidade e interno.
+- Erros são categorizados em validação, conflito, indisponibilidade e interno.
 - Métricas não usam IDs pessoais, comentários ou descrições como labels.
 - Falha do banco mostra conteúdo público disponível quando seguro e bloqueia operações pessoais.
 - Backup/restore e deploy registram evidências separadas dos logs da aplicação.
@@ -518,10 +518,10 @@ SQLite, mocks do Prisma e snapshots visuais não substituem testes relacionais. 
 ## Incrementos
 
 1. E04 cria scaffold, qualidade, boundary server-only e CI; registra a decisão compartilhada, valida prontidão, integra `@fradelli/ui` por versão exata e só então cria o shell, sem regra de negócio.
-2. E05 modela PostgreSQL, cria metadados, migrations, importador, restore local e a fronteira de acesso pessoal.
-3. E06 implementa projeção e registros de Treino consumindo a autorização já testada.
-4. E07 implementa projeção e registros de Dieta consumindo a mesma autorização.
-5. E08 configura Vercel/Neon, valida e reforça a proteção em HTTPS e comprova backup, rollback e produção.
+2. E05 modela PostgreSQL, cria metadados, migrations, importador, restore local e o resolvedor fixo server-only.
+3. E06 implementa projeção e registros de Treino consumindo o workspace fixo.
+4. E07 implementa projeção e registros de Dieta consumindo a mesma fronteira.
+5. E08 configura Vercel/Neon, valida a exposição pública aceita e comprova backup, rollback e produção.
 
 Cada incremento deve manter lint, tipos, testes, integridade e build verdes. Não se cria abstração para fase futura sem consumidor no incremento atual.
 
@@ -537,7 +537,7 @@ Cada incremento deve manter lint, tipos, testes, integridade e build verdes. Nã
 - Prisma Accelerate: Neon já oferece pooling; outra camada não resolve requisito confirmado.
 - Redux ou TanStack Query: Server Components e estado local de formulário cobrem o P0.
 - Tailwind ou biblioteca de componentes: rejeição original de E03, substituída em E04-T06 após surgir um package compartilhado com ownership e consumidor reais; CSS Modules continuam válidos somente para composição local.
-- autenticação completa: pareamento pessoal atende o MVP; boundaries já aceitam evolução futura.
+- autenticação nesta fase: adiada enquanto há um único usuário e risco público aceito; os boundaries permitem o cutover futuro.
 
 ## Fontes oficiais
 
@@ -554,4 +554,4 @@ Cada incremento deve manter lint, tipos, testes, integridade e build verdes. Nã
 
 ## Critério de conclusão
 
-A arquitetura permite entregar cada jornada em incrementos pequenos, preserva uma fonte editável por classe de dado, protege operações pessoais e não introduz backend ou protocolo interno sem consumidor.
+A arquitetura permite entregar cada jornada em incrementos pequenos, preserva uma fonte editável por classe de dado, mantém ownership estrutural no workspace fixo e não introduz backend ou protocolo interno sem consumidor.

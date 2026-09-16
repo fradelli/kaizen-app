@@ -81,7 +81,11 @@ export async function createDatabaseFixture(tx: Prisma.TransactionClient) {
         libraryImportBatchId: library.id,
         metadataImportBatchId: metadata.id,
         namePt: "Exercício sintético",
-        definition: {},
+        definition: {
+          how_to: ["Execute com controle."],
+          cues: ["Mantenha a posição estável."],
+          risks: null,
+        },
         measurementType: scope === "each_side" ? "per_side" : "repetitions",
         loadApplicable: scope === "total",
         loadUnit: scope === "total" ? "kg" : null,

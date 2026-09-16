@@ -14,6 +14,7 @@ Conectar o projeto à Vercel e publicar um preview verificável sem promover pro
 
 - `docs/implementation/E08.md`
 - `docs/decisions/PRIVACY-AND-OPERATIONS.md`
+- `docs/decisions/PUBLIC-SINGLE-WORKSPACE-MODE.md`
 - `docs/decisions/CI-CD-GOVERNANCE.md`
 - `.github/workflows/`
 - `prisma/migrations/`
@@ -32,7 +33,7 @@ Conectar o projeto à Vercel e publicar um preview verificável sem promover pro
 - [ ] Executar CI no SHA promovido e confirmar o checkout imutável.
 - [ ] Usar Vercel CLI fixada, build prebuilt e uma única execução de deploy por vez.
 - [ ] Aplicar migrations compatíveis antes do deploy.
-- [ ] Executar smoke test pareado e anônimo.
+- [ ] Executar smoke público de leitura e mutação no workspace fixo.
 - [ ] Documentar promoção e diagnóstico de falhas.
 
 ## Validações

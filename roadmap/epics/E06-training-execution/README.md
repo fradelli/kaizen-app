@@ -2,17 +2,17 @@
 
 ## Resultado esperado
 
-Treino, preparação, mobilidade ou descanso do dia consultáveis e registráveis por dispositivo pareado, preservando plano e histórico.
+Treino, preparação, mobilidade ou descanso do dia consultáveis e registráveis no workspace fixo, preservando plano e histórico.
 
 ## Ordem
 
-| Tarefa | Depende de | Resultado |
-| --- | --- | --- |
-| E06-T01 | E05-T06 | Projeção autorizada de treino e execução do dia |
-| E06-T02 | E06-T01 | Página de treino do dia |
-| E06-T03 | E06-T02 | Preparação, séries e comentários |
-| E06-T04 | E06-T03 | Proveniência e histórico |
-| E06-T05 | E06-T04 | Fluxo validado |
+| Tarefa  | Depende de | Resultado                                         |
+| ------- | ---------- | ------------------------------------------------- |
+| E06-T01 | E05-T05    | Projeção do plano e da execução do workspace fixo |
+| E06-T02 | E06-T01    | Página de treino do dia                           |
+| E06-T03 | E06-T02    | Preparação, séries e comentários                  |
+| E06-T04 | E06-T03    | Proveniência e histórico                          |
+| E06-T05 | E06-T04    | Fluxo validado                                    |
 
 ## Fora de escopo
 

@@ -2,7 +2,7 @@
 
 ## Finalidade
 
-O Kaizen é a fonte de verdade versionada de um aplicativo pessoal de treino e alimentação. O P0 combina planos públicos aprovados com registros operacionais privados do proprietário.
+O Kaizen é a fonte de verdade versionada de um aplicativo pessoal de treino e alimentação. O P0 combina planos públicos aprovados com registros operacionais de um workspace único.
 
 ## Rota mínima de contexto
 
@@ -33,9 +33,9 @@ Instruções específicas existem em `roadmap/AGENTS.md`, `data/AGENTS.md` e `do
 
 - Uma aplicação Next.js full-stack; não criar backend separado ou cliente HTTP interno.
 - PostgreSQL com Prisma; JSON versionado define planos e o banco guarda atribuições e execuções.
-- Definições aprovadas podem ser públicas. Dados operacionais exigem sessão e autorização server-side.
+- O P0 atual é público e sem autenticação por decisão explícita. Dados operacionais usam um workspace fixo resolvido exclusivamente no servidor; autenticação é obrigatória antes de múltiplos usuários ou dados sensíveis.
 - `America/Sao_Paulo` governa datas civis; timestamps persistidos usam UTC.
-- Server Actions são endpoints públicos: valide sessão, origem, entrada e ownership no servidor.
+- Server Actions são endpoints públicos: valide origem, entrada, workspace fixo e ownership no servidor. Nunca aceite `workspace_id` do cliente.
 - Tarefas que criam ou ampliam componentes React devem listar
   `docs/architecture/TARGET-ARCHITECTURE.md` nas entradas e seguir sua seção de
   organização de componentes e fronteiras Server/Client. Cada componente fica

@@ -15,19 +15,19 @@ Não existe sincronização bidirecional. A aplicação não altera arquivos JSO
 
 ## Ownership por classe de dado
 
-| Classe | Fonte editável no MVP | Cópias ou projeções | Regra |
-| --- | --- | --- | --- |
-| Biblioteca de exercícios | Git/JSON | registros importados imutáveis | mudança nasce em nova versão validada no repositório |
-| Planos de treino | Git/JSON | versões importadas no banco | `plan_id` + `version` não podem mudar após importação |
-| Plano alimentar | Git/JSON | versão importada no banco | conteúdo aprovado permanece versionado e imutável |
-| Ponteiros ativos | Git/JSON | ativação correspondente no banco | importador aplica o ponteiro somente após importar a versão referenciada |
-| Regras e guias | Git/Markdown/JSON | texto exibido ou projeção derivada | banco não vira editor dessas regras |
-| Atribuição de treino ou tipo de dia | banco | nenhuma cópia versionada no Git | pertence ao workspace e à data civil |
-| Execução de treino | banco | backups e exportações | séries, medidas, status e comentários são operacionais |
-| Cumprimento alimentar | banco | backups e exportações | opção, estado, alternativa e comentário são operacionais |
-| Identidade e membership futuros | banco/provedor de autenticação | backups | não entram no Git |
-| Segredos e configuração de ambiente | plataforma do ambiente | configuração local ignorada | nunca entram no Git nem em exportação de domínio |
-| Proveniência de migração | Git/manifesto | metadados de importação no banco | o manifesto público continua sendo a evidência histórica |
+| Classe                              | Fonte editável no MVP          | Cópias ou projeções                | Regra                                                                    |
+| ----------------------------------- | ------------------------------ | ---------------------------------- | ------------------------------------------------------------------------ |
+| Biblioteca de exercícios            | Git/JSON                       | registros importados imutáveis     | mudança nasce em nova versão validada no repositório                     |
+| Planos de treino                    | Git/JSON                       | versões importadas no banco        | `plan_id` + `version` não podem mudar após importação                    |
+| Plano alimentar                     | Git/JSON                       | versão importada no banco          | conteúdo aprovado permanece versionado e imutável                        |
+| Ponteiros ativos                    | Git/JSON                       | ativação correspondente no banco   | importador aplica o ponteiro somente após importar a versão referenciada |
+| Regras e guias                      | Git/Markdown/JSON              | texto exibido ou projeção derivada | banco não vira editor dessas regras                                      |
+| Atribuição de treino ou tipo de dia | banco                          | nenhuma cópia versionada no Git    | pertence ao workspace e à data civil                                     |
+| Execução de treino                  | banco                          | backups e exportações              | séries, medidas, status e comentários são operacionais                   |
+| Cumprimento alimentar               | banco                          | backups e exportações              | opção, estado, alternativa e comentário são operacionais                 |
+| Identidade e membership futuros     | banco/provedor de autenticação | backups                            | não entram no Git                                                        |
+| Segredos e configuração de ambiente | plataforma do ambiente         | configuração local ignorada        | nunca entram no Git nem em exportação de domínio                         |
+| Proveniência de migração            | Git/manifesto                  | metadados de importação no banco   | o manifesto público continua sendo a evidência histórica                 |
 
 Backups e exportações são cópias, não fontes editáveis concorrentes.
 
@@ -124,7 +124,7 @@ Chaves técnicas podem variar, mas essas identidades naturais e restrições pre
 ## Escritas operacionais
 
 - Todas pertencem a `workspace_id` e data civil em `America/Sao_Paulo`.
-- O servidor resolve o workspace autorizado; valores enviados pelo cliente não definem ownership.
+- O servidor resolve o workspace fixo; valores enviados pelo cliente não definem ownership.
 - Unicidade impede duplicar o mesmo registro lógico do dia.
 - Atualizações usam revisão ou versão para detectar concorrência.
 - Texto é armazenado como texto simples e validado antes de persistir.
@@ -133,16 +133,16 @@ Chaves técnicas podem variar, mas essas identidades naturais e restrições pre
 
 ## Conflitos
 
-| Situação | Resultado |
-| --- | --- |
-| mesmo arquivo e mesmo hash | `no-op` |
-| mesmo `plan_id` + `version` e hash diferente | falha bloqueante; criar nova versão |
-| ponteiro para versão inexistente | falha bloqueante; ativação anterior preservada |
-| referência de exercício ou opção inexistente | falha bloqueante |
-| importação concorrente do mesmo lote | uma vence pela restrição única; a outra confirma `no-op` |
-| edição operacional baseada em revisão antiga | conflito; recarregar antes de reenviar |
-| banco contém plano sem proveniência | dado inválido; não pode ser ativado |
-| JSON e projeção ativa divergem | deploy falha; banco não é corrigido manualmente |
+| Situação                                     | Resultado                                                |
+| -------------------------------------------- | -------------------------------------------------------- |
+| mesmo arquivo e mesmo hash                   | `no-op`                                                  |
+| mesmo `plan_id` + `version` e hash diferente | falha bloqueante; criar nova versão                      |
+| ponteiro para versão inexistente             | falha bloqueante; ativação anterior preservada           |
+| referência de exercício ou opção inexistente | falha bloqueante                                         |
+| importação concorrente do mesmo lote         | uma vence pela restrição única; a outra confirma `no-op` |
+| edição operacional baseada em revisão antiga | conflito; recarregar antes de reenviar                   |
+| banco contém plano sem proveniência          | dado inválido; não pode ser ativado                      |
+| JSON e projeção ativa divergem               | deploy falha; banco não é corrigido manualmente          |
 
 ## Exportação e backup
 

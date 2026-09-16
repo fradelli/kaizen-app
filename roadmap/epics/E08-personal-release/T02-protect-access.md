@@ -1,43 +1,43 @@
 ---
 id: E08-T02
 epic: E08
-depends_on: [E08-T01, E05-T06]
+depends_on: [E08-T01]
 ---
 
-# Validar e reforçar proteção
+# Validar exposição pública
 
 ## Objetivo
 
-Comprovar e endurecer no preview a sessão, autorização e proteção implementadas antes das features operacionais.
+Comprovar no preview o modo público com workspace único e endurecer as proteções que não dependem de autenticação.
 
 ## Entradas
 
 - `docs/implementation/E08.md`
 - `docs/decisions/PRIVACY-AND-OPERATIONS.md`
-- `src/lib/security/`
-- `src/app/ativar/`
+- `docs/decisions/PUBLIC-SINGLE-WORKSPACE-MODE.md`
+- `src/lib/security/workspace.ts`
 - `next.config.ts`
 - Ambiente de preview publicado em E08-T01.
 
 ## Entregáveis
 
-- Proteção validada em HTTPS e configuração endurecida para produção.
+- Exposição aceita validada em HTTPS e configuração endurecida para produção.
 
 ## Subtarefas
 
-- [ ] Configurar segredos exclusivos de preview sem expor valores.
-- [ ] Confirmar cookie `__Host-`, expiração, rotação e invalidação em HTTPS.
-- [ ] Testar leitura e mutação anônimas em todas as rotas sensíveis.
+- [ ] Confirmar que leitura e mutação públicas atuam somente no workspace fixo.
+- [ ] Testar que `workspace_id` fornecido pelo cliente não altera ownership.
 - [ ] Verificar cache privado, indexação, headers, logs e erros.
-- [ ] Validar limite de tentativas no ambiente publicado.
+- [ ] Confirmar validação de origem, entrada e revisão nas mutações.
+- [ ] Confirmar que credenciais, fontes `DO_NOT_PUBLISH` e dados de outros ambientes não são expostos.
 
 ## Validações
 
-- Reexecutar os testes de acesso de E05-T06 contra a URL de preview.
+- Executar smoke de leitura e mutação pública contra a URL de preview e inspecionar o workspace persistido.
 
 ## Critérios de aceite
 
-- [ ] Dados pessoais não são acessíveis sem autorização, o conteúdo público continua legível e a proteção funciona em HTTPS real.
+- [ ] O comportamento público corresponde ao risco aceito, sem alegar autenticação, e nenhum cliente consegue selecionar outro workspace.
 
 ## Resultado
 
