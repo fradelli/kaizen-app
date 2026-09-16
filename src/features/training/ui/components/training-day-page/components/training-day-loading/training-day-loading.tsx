@@ -1,0 +1,21 @@
+import { Skeleton } from "@fradelli/ui/skeleton";
+
+import { trainingDayLoadingStyles } from "./training-day-loading.styles";
+
+export function TrainingDayLoading() {
+  return (
+    <div
+      className={trainingDayLoadingStyles.root}
+      aria-label="Carregando treino do dia"
+      aria-busy="true"
+    >
+      {[1, 2].map((item) => (
+        <div key={item} className={trainingDayLoadingStyles.card}>
+          <Skeleton className={trainingDayLoadingStyles.line} />
+          <Skeleton className={trainingDayLoadingStyles.shortLine} />
+          <Skeleton className={trainingDayLoadingStyles.bodyLine} />
+        </div>
+      ))}
+    </div>
+  );
+}

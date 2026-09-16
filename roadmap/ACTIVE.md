@@ -1,12 +1,12 @@
 # Tarefa ativa
 
-- **Tarefa:** E06-T01 — Projetar treino e execução do dia
-- **Status:** DONE
-- **Branch prevista:** `codex/E06-T01-project-active-training-plan`
-- **Entrada principal:** `roadmap/epics/E06-training-execution/T01-project-active-training-plan.md`.
-- **Resultado anterior:** E05-T06 cancelada; o P0 usa temporariamente acesso público com workspace único e risco aceito.
-- **Objetivo:** criar projeções server-side separadas do plano público e do treino operacional da data.
+- **Tarefa:** E06-T03 — Registrar preparação, séries e comentários
+- **Status:** READY
+- **Branch prevista:** `codex/E06-T03-record-training-execution`
+- **Entrada principal:** `roadmap/epics/E06-training-execution/T03-record-training-execution.md`.
+- **Resultado anterior:** E06-T02 concluída localmente com página server-rendered e responsiva para todos os estados de leitura do treino.
+- **Objetivo:** permitir registrar preparação, execução por série, comentários e conclusão parcial sem alterar a prescrição.
 - **Bloqueio atual:** nenhum.
-- **Próxima ação:** planejar e iniciar E06-T02, agora liberada pela conclusão da projeção server-side.
+- **Próxima ação:** detalhar escopo, contratos de mutação, segurança server-side, estados de formulário e testes da E06-T03 antes da implementação.
 
-Não implementar interface, mutações, autenticação ou infraestrutura de produção nesta tarefa.
+Não iniciar a implementação antes de concluir esse planejamento detalhado.

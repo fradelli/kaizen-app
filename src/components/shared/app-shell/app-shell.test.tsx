@@ -21,6 +21,9 @@ describe("AppShell", () => {
     );
 
     expect(screen.getByRole("banner")).toBeInTheDocument();
+    expect(screen.getByText("改善")).toHaveAttribute("lang", "ja");
+    expect(screen.getByLabelText("Kaizen")).toHaveTextContent("改善");
+    expect(screen.queryByText(/- kaizen/i)).not.toBeInTheDocument();
     expect(screen.getByRole("navigation", { name: "Navegação principal" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Pular para o conteúdo" })).toHaveAttribute(
       "href",

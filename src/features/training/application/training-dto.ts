@@ -128,3 +128,10 @@ export type TrainingDayDto =
       reason: string | null;
       execution: TrainingExecutionDto | null;
     }>;
+
+export type TrainingDayPageQueryResult =
+  | Readonly<{ status: "ready"; day: TrainingDayDto }>
+  | Readonly<{
+      status: "invalid_data";
+      reason: "definition_invalid" | "reference_invalid";
+    }>;

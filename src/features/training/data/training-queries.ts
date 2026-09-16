@@ -5,7 +5,12 @@ import { getServerEnvironment } from "@/lib/env/server";
 import { resolveFixedWorkspace } from "@/lib/security/workspace";
 import { getPublicTrainingPlan } from "../application/get-public-training-plan";
 import { getTrainingDay } from "../application/get-training-day";
-import type { PublicTrainingPlanDto, TrainingDayDto } from "../application/training-dto";
+import type {
+  PublicTrainingPlanDto,
+  TrainingDayDto,
+  TrainingDayPageQueryResult,
+} from "../application/training-dto";
+import { TrainingProjectionError } from "../domain/training-projection.error";
 import { PrismaTrainingRepository } from "./prisma-training-repository";
 
 export async function queryPublicTrainingPlan(): Promise<PublicTrainingPlanDto> {
@@ -28,4 +33,24 @@ export async function queryFixedWorkspaceTrainingDay(civilDate: string): Promise
     },
     { civilDate },
   );
+}
+
+export async function queryFixedWorkspaceTrainingDayPage(
+  civilDate: string,
+): Promise<TrainingDayPageQueryResult> {
+  try {
+    return { status: "ready", day: await queryFixedWorkspaceTrainingDay(civilDate) };
+  } catch (error) {
+    if (error instanceof TrainingProjectionError) {
+      if (error.code === "TRAINING_DEFINITION_INVALID") {
+        return { status: "invalid_data", reason: "definition_invalid" };
+      }
+
+      if (error.code === "TRAINING_REFERENCE_INVALID") {
+        return { status: "invalid_data", reason: "reference_invalid" };
+      }
+    }
+
+    throw error;
+  }
 }

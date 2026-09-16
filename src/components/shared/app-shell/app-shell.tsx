@@ -11,7 +11,9 @@ export function AppShell({ children }: AppShellProps) {
 
       <header className={styles.header}>
         <div className={styles.headerInner}>
-          <p className={styles.brand}>Kaizen</p>
+          <p className={styles.brand} aria-label="Kaizen">
+            <span lang="ja">改善</span>
+          </p>
           <AppShellNavigation />
         </div>
       </header>
