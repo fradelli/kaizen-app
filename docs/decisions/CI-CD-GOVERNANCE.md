@@ -24,14 +24,14 @@
 
 ## Checks estáveis
 
-| Nome | Responsabilidade |
-| --- | --- |
-| `Governance` | Branch, destino, título, corpo e direção da promoção |
-| `Quality` | Instalação reproduzível, formato, lint e typecheck |
-| `Test` | Testes automatizados proporcionais ao comportamento alterado |
-| `Data integrity` | Dados canônicos, schemas, IDs, importação e migrations |
-| `Build` | Build de produção do Next.js sem dependência oculta do ambiente local |
-| `Dependency audit` | Audit com limiar explícito, inicialmente `moderate` |
+| Nome               | Responsabilidade                                                      |
+| ------------------ | --------------------------------------------------------------------- |
+| `Governance`       | Branch, destino, título, corpo e direção da promoção                  |
+| `Quality`          | Instalação reproduzível, formato, lint e typecheck                    |
+| `Test`             | Testes automatizados proporcionais ao comportamento alterado          |
+| `Data integrity`   | Dados canônicos, schemas, IDs, importação e migrations                |
+| `Build`            | Build de produção do Next.js sem dependência oculta do ambiente local |
+| `Dependency audit` | Audit com limiar explícito, inicialmente `moderate`                   |
 
 Na fase exclusivamente documental, a validação é manual e inclui links, IDs, dependências e `git diff --check`. Os workflows e required checks serão criados em E04-T05 depois que existirem runtime, lockfile e scripts reais.
 
@@ -71,7 +71,7 @@ Dispara após merge em `staging`:
 2. faz checkout e confirma o SHA imutável;
 3. aplica migrations compatíveis usando credenciais do ambiente `preview`;
 4. constrói e publica artefato prebuilt com versão fixada da Vercel CLI;
-5. aguarda o deployment e executa smoke test pareado e anônimo;
+5. aguarda o deployment e executa smoke público no workspace fixo;
 6. mantém apenas uma execução de preview por vez, sem cancelar deploy iniciado.
 
 ## CD de produção

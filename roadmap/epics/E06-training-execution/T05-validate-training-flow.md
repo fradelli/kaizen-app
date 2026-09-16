@@ -27,7 +27,7 @@ Validar o fluxo completo de consulta e execução de treino antes da publicaçã
 - [ ] Testar atribuição, preparação, séries, carga, descanso, histórico e estados vazios.
 - [ ] Validar acessibilidade básica e navegação móvel.
 - [ ] Confirmar datas, horários, IDs e proveniência.
-- [ ] Confirmar acesso anônimo e pareado, erro de gravação e concorrência.
+- [ ] Confirmar acesso público no workspace fixo, erro de gravação e concorrência.
 - [ ] Registrar limitações conhecidas.
 
 ## Validações

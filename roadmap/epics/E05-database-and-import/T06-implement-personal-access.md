@@ -6,6 +6,13 @@ depends_on: [E05-T05]
 
 # Implementar acesso pessoal
 
+## Estado
+
+Cancelada em 2026-09-15 por decisão explícita do proprietário. O P0 será usado
+temporariamente em URL pública, sem autenticação, com o risco de leitura e
+alteração por terceiros aceito. A autenticação volta a ser obrigatória antes de
+múltiplos usuários ou dados sensíveis.
+
 ## Objetivo
 
 Criar sessão, autorização e pareamento antes de qualquer leitura ou mutação operacional de treino e alimentação.
@@ -14,6 +21,7 @@ Criar sessão, autorização e pareamento antes de qualquer leitura ou mutação
 
 - `docs/implementation/E05.md`
 - `docs/decisions/PRIVACY-AND-OPERATIONS.md`
+- `docs/decisions/PUBLIC-SINGLE-WORKSPACE-MODE.md`
 - `docs/architecture/TARGET-ARCHITECTURE.md`
 - `src/lib/security/workspace.ts`
 - `prisma/schema.prisma`
@@ -47,4 +55,6 @@ Criar sessão, autorização e pareamento antes de qualquer leitura ou mutação
 
 ## Resultado
 
-Ainda não concluída.
+Cancelada. Nenhuma sessão, chave de pareamento, cookie ou tela de ativação foi
+implementada. O resolvedor fixo server-only existente permanece como fronteira
+substituível por sessão e membership no futuro.

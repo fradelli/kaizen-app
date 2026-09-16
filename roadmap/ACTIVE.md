@@ -1,12 +1,12 @@
 # Tarefa ativa
 
-- **Tarefa:** E05-T05 — Validar backup e restauração
+- **Tarefa:** E06-T01 — Projetar treino e execução do dia
 - **Status:** DONE
-- **Branch prevista:** `codex/E05-T05-validate-backup-restore`
-- **Entrada principal:** `roadmap/epics/E05-database-and-import/T05-validate-backup-and-restore.md`.
-- **Resultado anterior:** revisão semântica E05-T07 integrada pela PR #41.
-- **Objetivo:** comprovar backup e restauração entre PostgreSQL locais descartáveis, sem dados reais ou credenciais expostas.
+- **Branch prevista:** `codex/E06-T01-project-active-training-plan`
+- **Entrada principal:** `roadmap/epics/E06-training-execution/T01-project-active-training-plan.md`.
+- **Resultado anterior:** E05-T06 cancelada; o P0 usa temporariamente acesso público com workspace único e risco aceito.
+- **Objetivo:** criar projeções server-side separadas do plano público e do treino operacional da data.
 - **Bloqueio atual:** nenhum.
-- **Próxima ação:** integrar o registro conclusivo da PR #43; depois iniciar E05-T06, que está READY.
+- **Próxima ação:** planejar e iniciar E06-T02, agora liberada pela conclusão da projeção server-side.
 
-Não implementar interface, acesso pessoal ou infraestrutura de produção nesta tarefa.
+Não implementar interface, mutações, autenticação ou infraestrutura de produção nesta tarefa.

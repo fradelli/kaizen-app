@@ -7,6 +7,11 @@
 - Tarefa: `E03-T03`
 - Escopo: acesso pessoal, Vercel, banco, segredos, backup e evolução para contas
 
+> **Substituição parcial em 2026-09-15:** o acesso do P0 passa a seguir
+> [Modo público com workspace único](PUBLIC-SINGLE-WORKSPACE-MODE.md). As seções
+> de pareamento, cookie e autorização abaixo permanecem como desenho histórico
+> adiado, não como requisito ou proteção existente da versão atual.
+
 ## Decisão resumida
 
 O Kaizen será publicado em uma URL gerada `*.vercel.app`, sem domínio próprio e sem cadastro ou login convencional no MVP. O shell e as definições de plano já aprovadas podem ser lidos anonimamente. Atribuições diárias, execuções, escolhas e comentários são privados e exigem uma sessão de proprietário instalada uma vez no dispositivo.
@@ -15,16 +20,16 @@ Conhecer a URL não concede autorização. Toda leitura de dado operacional e to
 
 ## Classificação do acesso
 
-| Recurso | Anônimo | Dispositivo do proprietário |
-| --- | --- | --- |
-| Shell, navegação e explicação do produto | leitura | leitura |
-| Planos públicos e biblioteca pública | leitura | leitura |
-| Tipo de dia e treino atribuídos a uma data | sem acesso | leitura e alteração |
-| Cumprimento alimentar e descrição alternativa | sem acesso | leitura e alteração |
-| Séries, cargas, repetições e status de treino | sem acesso | leitura e alteração |
-| Comentários e histórico operacional | sem acesso | leitura e alteração |
-| Definições de plano | sem edição | sem edição no MVP |
-| Operações administrativas e migrations | sem acesso | fora da interface; somente automação autorizada |
+| Recurso                                       | Anônimo    | Dispositivo do proprietário                     |
+| --------------------------------------------- | ---------- | ----------------------------------------------- |
+| Shell, navegação e explicação do produto      | leitura    | leitura                                         |
+| Planos públicos e biblioteca pública          | leitura    | leitura                                         |
+| Tipo de dia e treino atribuídos a uma data    | sem acesso | leitura e alteração                             |
+| Cumprimento alimentar e descrição alternativa | sem acesso | leitura e alteração                             |
+| Séries, cargas, repetições e status de treino | sem acesso | leitura e alteração                             |
+| Comentários e histórico operacional           | sem acesso | leitura e alteração                             |
+| Definições de plano                           | sem edição | sem edição no MVP                               |
+| Operações administrativas e migrations        | sem acesso | fora da interface; somente automação autorizada |
 
 A interface anônima não revela se o proprietário treinou, descansou, comeu ou comentou em determinada data.
 
@@ -96,12 +101,12 @@ A Vercel gera URLs públicas por padrão para deployments. A proteção nativa p
 
 ### Matriz
 
-| Ambiente | Origem Git | Aplicação | Banco | Dados permitidos |
-| --- | --- | --- | --- | --- |
-| Local | branch de tarefa baseada em `developer` | processo local | PostgreSQL local descartável | seeds e dados inseridos pelo proprietário localmente |
-| Preview de PR | branch temporária | URL de commit/branch | branch Neon isolada e expirável | schema + seeds sintéticos; sem logs pessoais de produção |
-| Preview estável | `staging` | URL de branch estável | branch Neon `staging` | dados de homologação separados |
-| Produção | `master` | URL de produção `*.vercel.app` | branch/projeto Neon de produção | dados pessoais reais |
+| Ambiente        | Origem Git                              | Aplicação                      | Banco                           | Dados permitidos                                         |
+| --------------- | --------------------------------------- | ------------------------------ | ------------------------------- | -------------------------------------------------------- |
+| Local           | branch de tarefa baseada em `developer` | processo local                 | PostgreSQL local descartável    | seeds e dados inseridos pelo proprietário localmente     |
+| Preview de PR   | branch temporária                       | URL de commit/branch           | branch Neon isolada e expirável | schema + seeds sintéticos; sem logs pessoais de produção |
+| Preview estável | `staging`                               | URL de branch estável          | branch Neon `staging`           | dados de homologação separados                           |
+| Produção        | `master`                                | URL de produção `*.vercel.app` | branch/projeto Neon de produção | dados pessoais reais                                     |
 
 - `developer` integra código; não é produção nem recebe dados reais automaticamente.
 - `staging` usa o ambiente Preview da Vercel, não exige Custom Environment pago.
@@ -112,16 +117,16 @@ A Vercel gera URLs públicas por padrão para deployments. A proteção nativa p
 
 ## Variáveis e segredos
 
-| Nome lógico | Sensível | Uso | Escopo |
-| --- | --- | --- | --- |
-| `DATABASE_URL` | sim | conexão pooled do runtime | local/preview/produção distintos |
-| `DIRECT_URL` | sim | migrations e operações administrativas | CI por ambiente; não exposta ao cliente |
-| `OWNER_EDIT_TOKEN_HASH` | sim | validar pareamento pessoal | preview estável e produção com valores distintos |
-| `SESSION_SECRET` | sim | autenticar cookie | valor exclusivo por ambiente |
-| `PERSONAL_WORKSPACE_ID` | sim por correlação | resolver workspace fixo | servidor por ambiente |
-| `APP_ORIGIN` | não | validar origem e gerar links internos necessários | valor próprio por ambiente |
-| `NEON_API_KEY` | sim | criar/limpar branches quando automatizado | somente CI; ausente no runtime |
-| credenciais Vercel | sim | deploy automatizado | somente CI e environments do GitHub |
+| Nome lógico             | Sensível           | Uso                                               | Escopo                                           |
+| ----------------------- | ------------------ | ------------------------------------------------- | ------------------------------------------------ |
+| `DATABASE_URL`          | sim                | conexão pooled do runtime                         | local/preview/produção distintos                 |
+| `DIRECT_URL`            | sim                | migrations e operações administrativas            | CI por ambiente; não exposta ao cliente          |
+| `OWNER_EDIT_TOKEN_HASH` | sim                | validar pareamento pessoal                        | preview estável e produção com valores distintos |
+| `SESSION_SECRET`        | sim                | autenticar cookie                                 | valor exclusivo por ambiente                     |
+| `PERSONAL_WORKSPACE_ID` | sim por correlação | resolver workspace fixo                           | servidor por ambiente                            |
+| `APP_ORIGIN`            | não                | validar origem e gerar links internos necessários | valor próprio por ambiente                       |
+| `NEON_API_KEY`          | sim                | criar/limpar branches quando automatizado         | somente CI; ausente no runtime                   |
+| credenciais Vercel      | sim                | deploy automatizado                               | somente CI e environments do GitHub              |
 
 Regras:
 
