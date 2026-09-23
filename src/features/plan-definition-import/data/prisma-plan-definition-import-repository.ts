@@ -33,7 +33,7 @@ export class PrismaPlanDefinitionImportRepository implements PlanDefinitionImpor
           attempt < 2
         )
           continue;
-        throw new PlanDefinitionImportError("IMPORT_UNAVAILABLE");
+        throw new PlanDefinitionImportError("IMPORT_UNAVAILABLE", { cause: error });
       }
     }
     throw new PlanDefinitionImportError("IMPORT_UNAVAILABLE");

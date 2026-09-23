@@ -84,6 +84,14 @@ export function readStringArrayProperty(value: unknown, property: string): reado
   return Object.freeze([...propertyValue]);
 }
 
+export function parseStringArray(value: unknown, label: string): readonly string[] {
+  if (!Array.isArray(value) || value.some((item) => typeof item !== "string")) {
+    return invalidTrainingDefinition(`${label} inválido.`);
+  }
+
+  return Object.freeze([...value]);
+}
+
 export function readNullableStringProperty(value: unknown, property: string): string | null {
   if (!isRecord(value)) {
     return invalidTrainingDefinition("Definição de exercício inválida.");

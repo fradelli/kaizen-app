@@ -6,13 +6,16 @@ import type {
 import { recordCreatedDefinition, throwSourceConflict } from "./plan-definition-persistence.utils";
 import type { PlanDefinitionSource } from "../domain/plan-definition-import.types";
 import type { ExecutionMetadata } from "../domain/plan-definition-source.types";
+import { resolveTrainingSessionAssignment } from "../domain/training-session-assignment.utils";
 import { toPrismaDoseJson, mapTrainingPlanVersion } from "./plan-definition.mapper";
+import { toPrismaJson } from "./plan-definition.mapper";
 export async function persistTrainingPlanDefinition(
   tx: ImportTransaction,
   source: PlanDefinitionSource<"training_plan">,
   batchId: string,
   exercises: ReadonlyMap<string, string>,
   metadata: ExecutionMetadata,
+  trainingSchedule: PlanDefinitionSource<"training_schedule"> | null,
   created: CreatedDefinitionCounts,
 ): Promise<string> {
   const plan = source.document;
@@ -21,13 +24,37 @@ export async function persistTrainingPlanDefinition(
   });
   if (existing) {
     if (existing.importBatchId !== batchId) throwSourceConflict();
+    if (
+      trainingSchedule &&
+      existing.weeklyScheduleSha256 &&
+      existing.weeklyScheduleSha256 !== trainingSchedule.sha256
+    )
+      throwSourceConflict();
+    if (trainingSchedule && !existing.weeklyScheduleSha256) {
+      await tx.trainingPlanVersion.update({
+        where: { id: existing.id },
+        data: {
+          weeklySchedule: toPrismaJson(trainingSchedule.document),
+          weeklyScheduleSha256: trainingSchedule.sha256,
+        },
+      });
+    }
     return existing.id;
   }
   const version = await tx.trainingPlanVersion.create({
-    data: mapTrainingPlanVersion(source, batchId),
+    data: {
+      ...mapTrainingPlanVersion(source, batchId),
+      ...(trainingSchedule
+        ? {
+            weeklySchedule: toPrismaJson(trainingSchedule.document),
+            weeklyScheduleSha256: trainingSchedule.sha256,
+          }
+        : {}),
+    },
   });
   recordCreatedDefinition(created, "trainingPlans");
   for (const [sessionId, session] of Object.entries(plan.sessions)) {
+    const assignment = resolveTrainingSessionAssignment(metadata, plan, sessionId);
     const definition = await tx.trainingSessionDefinition.create({
       data: {
         trainingPlanVersionId: version.id,
@@ -37,6 +64,8 @@ export async function persistTrainingPlanDefinition(
         shortDurationMinutes: session.short_version_target_minutes ?? null,
         intensity: session.intensity ?? null,
         notes: session.notes ?? null,
+        assignmentRole: assignment.assignmentRole,
+        compatiblePreparationSessionIds: assignment.compatiblePreparationSessionIds,
       },
     });
     recordCreatedDefinition(created, "trainingSessions");

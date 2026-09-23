@@ -1,10 +1,9 @@
-import { AssignedTrainingDay } from "../assigned-training-day/assigned-training-day";
 import { RestTrainingDay } from "../rest-training-day/rest-training-day";
 import { TrainingDayFeedback } from "../training-day-feedback/training-day-feedback";
-import { UnassignedTrainingDay } from "../unassigned-training-day/unassigned-training-day";
+import { TrainingActivitySection } from "../training-activity-section/training-activity-section";
 import type { TrainingDayContentProps } from "./training-day-content.types";
 
-export async function TrainingDayContent({ result }: TrainingDayContentProps) {
+export async function TrainingDayContent({ result, actions }: TrainingDayContentProps) {
   const queryResult = await result;
 
   if (queryResult.status === "invalid_data") {
@@ -22,22 +21,50 @@ export async function TrainingDayContent({ result }: TrainingDayContentProps) {
   }
 
   const { day } = queryResult;
+  let content;
 
   switch (day.state) {
     case "unavailable":
-      return (
+      content = (
         <TrainingDayFeedback
           variant="warning"
           title="Plano de treino indisponível"
           description="O plano ativo não pôde ser carregado para esta data. Tente novamente mais tarde."
         />
       );
+      break;
     case "unassigned":
-      return <UnassignedTrainingDay day={day} />;
+      content = day.activities.length ? null : (
+        <TrainingDayFeedback
+          variant="info"
+          title="Nenhuma atividade programada"
+          description="Use o botão + para adicionar um treino ou outra atividade."
+        />
+      );
+      break;
     case "rest":
-      return <RestTrainingDay day={day} />;
+      content = day.activities.length ? null : <RestTrainingDay day={day} actions={actions} />;
+      break;
     case "training":
     case "mobility":
-      return <AssignedTrainingDay day={day} />;
+      content = day.activities.length ? null : (
+        <TrainingDayFeedback
+          variant="info"
+          title="Nenhuma atividade programada"
+          description="Use o botão + para adicionar um treino ou outra atividade."
+        />
+      );
+      break;
   }
+
+  return (
+    <>
+      {content}
+      <TrainingActivitySection
+        civilDate={day.civilDate}
+        activities={day.activities}
+        actions={actions}
+      />
+    </>
+  );
 }

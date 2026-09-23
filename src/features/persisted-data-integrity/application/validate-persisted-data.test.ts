@@ -49,6 +49,8 @@ describe("paridade das definições persistidas", () => {
     ["trainingPlans", "sourceCreatedOn"],
     ["trainingPlans", "importBatchId"],
     ["sessions", "targetDurationMinutes"],
+    ["sessions", "assignmentRole"],
+    ["sessions", "compatiblePreparationSessionIds"],
     ["prescriptions", "sets"],
     ["prescriptions", "normalizedDose"],
     ["prescriptions", "exerciseDefinitionId"],

@@ -2,7 +2,10 @@ import { randomBytes } from "node:crypto";
 
 import type { Prisma } from "@/generated/prisma/client";
 
-export async function createDatabaseFixture(tx: Prisma.TransactionClient) {
+export async function createDatabaseFixture(
+  tx: Prisma.TransactionClient,
+  weeklySchedule?: Prisma.InputJsonValue,
+) {
   const date = new Date("2026-09-13T00:00:00Z");
   const workspace = await tx.workspace.create({ data: {} });
   const anotherWorkspace = await tx.workspace.create({ data: {} });
@@ -31,6 +34,8 @@ export async function createDatabaseFixture(tx: Prisma.TransactionClient) {
       sourceCreatedOn: date,
       sourceUpdatedOn: date,
       importBatchId: trainingBatch.id,
+      weeklySchedule,
+      weeklyScheduleSha256: weeklySchedule ? "a".repeat(64) : undefined,
     },
   });
   const otherTrainingBatch = await batch("training_plan");
@@ -50,6 +55,8 @@ export async function createDatabaseFixture(tx: Prisma.TransactionClient) {
       sessionId: "test_main",
       name: "Sessão sintética",
       targetDurationMinutes: 30,
+      assignmentRole: "main",
+      compatiblePreparationSessionIds: ["test_preparation"],
     },
   });
   const preparationSession = await tx.trainingSessionDefinition.create({
@@ -58,6 +65,7 @@ export async function createDatabaseFixture(tx: Prisma.TransactionClient) {
       sessionId: "test_preparation",
       name: "Preparação sintética",
       targetDurationMinutes: 5,
+      assignmentRole: "preparation",
     },
   });
   const prescriptions = [];

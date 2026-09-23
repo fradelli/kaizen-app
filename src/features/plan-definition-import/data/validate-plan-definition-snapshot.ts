@@ -7,6 +7,7 @@ import {
   assertActivePointersSelectMatchingPlans,
   assertSourcesHaveValidProvenance,
   assertMealOptionReferencesAreAcyclic,
+  assertWeeklyScheduleReferencesImportedSessions,
 } from "./plan-definition-snapshot-validation.rules";
 
 export function validatePlanDefinitionSnapshot(snapshot: PlanDefinitionSnapshot): void {
@@ -14,6 +15,7 @@ export function validatePlanDefinitionSnapshot(snapshot: PlanDefinitionSnapshot)
     assertSnapshotHasRequiredSources(snapshot);
     assertDocumentsMatchSchemasAndReferences(snapshot);
     assertActivePointersSelectMatchingPlans(snapshot);
+    assertWeeklyScheduleReferencesImportedSessions(snapshot);
     assertSourcesHaveValidProvenance(snapshot);
     assertMealOptionReferencesAreAcyclic(snapshot);
   } catch {

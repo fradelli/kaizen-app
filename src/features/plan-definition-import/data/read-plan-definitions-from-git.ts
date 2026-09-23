@@ -15,6 +15,7 @@ import {
 const fixedSources: Readonly<Record<string, PlanDefinitionSourceKind>> = {
   "data/exercises.json": "exercise_library",
   "data/training-execution-metadata.json": "execution_metadata",
+  "data/schedule.json": "training_schedule",
   "data/active.json": "training_pointer",
   "data/nutrition/active.json": "nutrition_pointer",
 };

@@ -357,10 +357,11 @@ Esse contrato pertence aos dados versionados e complementa, sem sobrescrever, a 
 - `TrainingPlanVersion`: versão imutável do plano.
 - `TrainingSessionDefinition`: sessão pertencente à versão.
 - `TrainingExerciseDefinition`: ordem, dose, descanso, prioridade e referência de exercício.
-- `DailyTrainingAssignment`: data + `training`, `mobility`, `rest` ou `unassigned` por workspace.
-- `TrainingExecution`: estado e comentário geral associados à atribuição e à versão.
-- `TrainingExerciseExecution`: resultado/comentário por exercício prescrito.
-- `TrainingSetExecution`: série, status, medida, lados e carga aplicável.
+- `DailyTrainingAssignment`: atribuição histórica da data ou descanso; não cria uma segunda execução visível quando suas atividades são removidas.
+- `TrainingDayActivity`: unidade operacional de agenda e execução; pode representar treino estruturado, prática esportiva, treino específico ou mobilidade.
+- `TrainingActivityExecutionInterval`: intervalos realizados, usados para descontar pausas da duração ativa.
+- `TrainingActivityExerciseExecution` e `TrainingActivitySetExecution`: resultados ligados à atividade e à prescrição versionada.
+- `TrainingExecution`, `TrainingExerciseExecution` e `TrainingSetExecution`: estruturas históricas preservadas para auditoria e migração; não recebem novas gravações pelo fluxo da tela.
 
 ### Alimentação
 

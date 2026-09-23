@@ -13,7 +13,9 @@ export function TrainingDateNavigation({ dateResolution }: TrainingDateNavigatio
           Anterior
         </Button>
         <Button className={trainingDateNavigationStyles.button} asChild>
-          <Link href={createTrainingDateHref(dateResolution.todayDate)}>Hoje</Link>
+          <Link prefetch={false} href={createTrainingDateHref(dateResolution.todayDate)}>
+            Hoje
+          </Link>
         </Button>
         <Button className={trainingDateNavigationStyles.button} variant="outline" disabled>
           Seguinte
@@ -26,6 +28,7 @@ export function TrainingDateNavigation({ dateResolution }: TrainingDateNavigatio
     <nav className={trainingDateNavigationStyles.root} aria-label="Navegação entre datas">
       <Button className={trainingDateNavigationStyles.button} variant="outline" asChild>
         <Link
+          prefetch={false}
           href={createTrainingDateHref(dateResolution.previousDate)}
           aria-label="Abrir dia anterior"
         >
@@ -38,20 +41,33 @@ export function TrainingDateNavigation({ dateResolution }: TrainingDateNavigatio
         asChild
       >
         <Link
+          prefetch={false}
           href={createTrainingDateHref(dateResolution.todayDate)}
           aria-current={dateResolution.isToday ? "date" : undefined}
         >
           Hoje
         </Link>
       </Button>
-      <Button className={trainingDateNavigationStyles.button} variant="outline" asChild>
-        <Link
-          href={createTrainingDateHref(dateResolution.nextDate)}
-          aria-label="Abrir dia seguinte"
+      {dateResolution.canNavigateNext ? (
+        <Button className={trainingDateNavigationStyles.button} variant="outline" asChild>
+          <Link
+            prefetch={false}
+            href={createTrainingDateHref(dateResolution.nextDate)}
+            aria-label="Abrir dia seguinte"
+          >
+            Seguinte
+          </Link>
+        </Button>
+      ) : (
+        <Button
+          className={trainingDateNavigationStyles.button}
+          variant="outline"
+          aria-label="Dia seguinte indisponível"
+          disabled
         >
           Seguinte
-        </Link>
-      </Button>
+        </Button>
+      )}
     </nav>
   );
 }

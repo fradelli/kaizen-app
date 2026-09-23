@@ -29,6 +29,15 @@ export function createIntegrityFixture(): {
     exercises: [{ id: "exercise", name_pt: "Exercício sintético" }],
   };
   const metadata: ExecutionMetadata = {
+    sessions: [
+      {
+        plan_id: "training",
+        plan_version: "1",
+        session_id: "main",
+        assignment_role: "main",
+        compatible_preparation_session_ids: [],
+      },
+    ],
     exercises: [
       {
         exercise_id: "exercise",
@@ -196,6 +205,8 @@ export function createIntegrityFixture(): {
         shortDurationMinutes: null,
         intensity: null,
         notes: null,
+        assignmentRole: "main",
+        compatiblePreparationSessionIds: [],
       },
     ],
     prescriptions: [

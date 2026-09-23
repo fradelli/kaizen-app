@@ -45,6 +45,8 @@ export type PersistedTrainingSession = Readonly<{
   shortDurationMinutes: number | null;
   intensity: string | null;
   notes: string | null;
+  assignmentRole: "main" | "preparation" | "mobility";
+  compatiblePreparationSessionIds: readonly string[];
 }>;
 export type PersistedTrainingPrescription = Readonly<{
   id: string;

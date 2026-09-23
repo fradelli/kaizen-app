@@ -1,7 +1,6 @@
 import { Badge } from "@fradelli/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@fradelli/ui/card";
 
-import { TrainingExecutionSummary } from "../training-execution-summary/training-execution-summary";
 import { restTrainingDayStyles } from "./rest-training-day.styles";
 import type { RestTrainingDayProps } from "./rest-training-day.types";
 
@@ -19,7 +18,6 @@ export function RestTrainingDay({ day }: RestTrainingDayProps) {
       </CardHeader>
       <CardContent className={restTrainingDayStyles.content}>
         {day.reason ? <p className={restTrainingDayStyles.reason}>{day.reason}</p> : null}
-        <TrainingExecutionSummary execution={day.execution} />
       </CardContent>
     </Card>
   );

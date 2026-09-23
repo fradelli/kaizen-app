@@ -61,6 +61,15 @@ function createValidFixture() {
     schema_version: "1.0.0",
     last_updated: "2026-09-12",
     reviewed_plan_paths: ["data/plans/training.json"],
+    sessions: [
+      {
+        plan_id: "training_v1",
+        plan_version: "1.0.0",
+        session_id: "main",
+        assignment_role: "main",
+        compatible_preparation_session_ids: [],
+      },
+    ],
     exercises: [
       {
         exercise_id: "jump",
@@ -136,6 +145,31 @@ afterEach(() => {
 });
 
 describe("validateData", () => {
+  test("rejeita sessão semanal ausente do plano importado", () => {
+    writeJson(
+      "schemas/schedule.schema.json",
+      JSON.parse(readFileSync(new URL("../schemas/schedule.schema.json", import.meta.url), "utf8")),
+    );
+    const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+    const model = days.map((day) => ({ day, time: null, session: "rest" }));
+    model[0] = { day: "monday", time: "09:00", session: "missing_session" };
+    writeJson("data/schedule.json", {
+      schema_version: "1.0.0",
+      last_updated: "2026-09-22",
+      timezone: "America/Sao_Paulo",
+      footvolley_sessions: [{ day: "monday", start_time: "16:00", intensity: null }],
+      weekend_game: { enabled: true, day: "saturday", start_time: null },
+      planning_defaults: { footvolley_duration_minutes: 90 },
+      placement_rules: {},
+      models: {
+        saturday_game: model,
+        sunday_game: days.map((day) => ({ day, time: null, session: "rest" })),
+      },
+    });
+    assert.ok(
+      validateData({ repositoryRoot }).some((error) => error.includes("sessão inexistente")),
+    );
+  });
   test("metadado estruturalmente inválido retorna erros sem interromper a validação", () => {
     writeJson("data/training-execution-metadata.json", {
       schema_version: "1.0.0",
@@ -158,6 +192,15 @@ describe("validateData", () => {
         schema_version: "1.0.0",
         last_updated: "2026-09-12",
         reviewed_plan_paths: ["data/plans/training.json"],
+        sessions: [
+          {
+            plan_id: "training_v1",
+            plan_version: "1.0.0",
+            session_id: "main",
+            assignment_role: "main",
+            compatible_preparation_session_ids: [],
+          },
+        ],
         exercises: [
           {
             exercise_id: "jump",
@@ -272,6 +315,15 @@ describe("validateData", () => {
         schema_version: "1.0.0",
         last_updated: "2026-09-12",
         reviewed_plan_paths: ["data/plans/training.json"],
+        sessions: [
+          {
+            plan_id: "training_v1",
+            plan_version: "1.0.0",
+            session_id: "main",
+            assignment_role: "main",
+            compatible_preparation_session_ids: [],
+          },
+        ],
         exercises: [
           {
             exercise_id: "jump",

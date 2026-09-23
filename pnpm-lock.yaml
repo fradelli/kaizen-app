@@ -13,8 +13,8 @@ importers:
   .:
     dependencies:
       '@fradelli/ui':
-        specifier: 0.1.0
-        version: 0.1.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(tailwindcss@4.3.3)
+        specifier: 0.2.0
+        version: 0.2.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(tailwindcss@4.3.3)
       '@prisma/adapter-pg':
         specifier: 7.10.0
         version: 7.10.0
@@ -468,8 +468,8 @@ packages:
       '@noble/hashes':
         optional: true
 
-  '@fradelli/ui@0.1.0':
-    resolution: {integrity: sha512-TBjtFVAFvL1G9gAmKyg6hJSu54UmcYoWaH+DxtJbCUNwC6u3gK9xgtiRlngjFP42VOlwH1xDG1dAqsmGQeGxtw==, tarball: https://npm.pkg.github.com/download/@fradelli/ui/0.1.0/218b1e77ce2e78820ac796b585ccc74f0f8f9b82}
+  '@fradelli/ui@0.2.0':
+    resolution: {integrity: sha512-ACYHOuR+z3O7l0OnLe3DIbWI39B/h3w0QSTck3sS/jzXGMldaaILNGXVv0h05dai2f6XQOhcdrJDy5Eh6Zp1Uw==, tarball: https://npm.pkg.github.com/download/@fradelli/ui/0.2.0/f009f2b8d05723c3ddedea8d2348153c24bd5fe6}
     engines: {node: '>=24.20.0 <25'}
     peerDependencies:
       react: '>=19.2.7 <20'
@@ -4051,7 +4051,7 @@ snapshots:
 
   '@exodus/bytes@1.15.1': {}
 
-  '@fradelli/ui@0.1.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(tailwindcss@4.3.3)':
+  '@fradelli/ui@0.2.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(tailwindcss@4.3.3)':
     dependencies:
       '@phosphor-icons/react': 2.1.10(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@radix-ui/react-dialog': 1.1.23(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)

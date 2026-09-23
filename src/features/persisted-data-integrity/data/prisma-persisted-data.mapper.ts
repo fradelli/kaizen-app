@@ -21,6 +21,11 @@ import type {
 const serializeDate = (value: Date | null): string | null => value?.toISOString() ?? null;
 const serializeRequiredDate = (value: Date): string => value.toISOString();
 const serializeJson = (value: Prisma.JsonValue | null): JsonValue => value as JsonValue;
+const serializeStringArray = (value: Prisma.JsonValue): readonly string[] => {
+  if (!Array.isArray(value) || value.some((item) => typeof item !== "string"))
+    throw new Error("Lista de identificadores persistida inválida.");
+  return value as string[];
+};
 const mapSourceKind = (value: string): PlanDefinitionSourceKind => {
   switch (value) {
     case "exercise_library":
@@ -85,6 +90,8 @@ export const mapPersistedTrainingSession = (
   shortDurationMinutes: row.shortDurationMinutes,
   intensity: row.intensity,
   notes: row.notes,
+  assignmentRole: row.assignmentRole,
+  compatiblePreparationSessionIds: serializeStringArray(row.compatiblePreparationSessionIds),
 });
 export const mapPersistedTrainingPrescription = (
   row: Prisma.TrainingExerciseDefinitionGetPayload<object>,

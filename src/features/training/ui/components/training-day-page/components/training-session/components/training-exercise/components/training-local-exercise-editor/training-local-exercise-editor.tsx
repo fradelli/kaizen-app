@@ -1,0 +1,193 @@
+"use client";
+
+import { Button } from "@fradelli/ui/button";
+import { Input } from "@fradelli/ui/input";
+import { useState } from "react";
+
+import {
+  isTrainingSetPerformed,
+  requiredDirections,
+} from "@/features/training/ui/hooks/use-training-exercise-draft/use-training-exercise-draft.utils";
+import type { TrainingSetDraft } from "@/features/training/ui/hooks/use-training-exercise-draft/use-training-exercise-draft.types";
+import { trainingLocalExerciseEditorStyles as styles } from "./training-local-exercise-editor.styles";
+import type { TrainingLocalExerciseEditorProps } from "./training-local-exercise-editor.types";
+
+export function TrainingLocalExerciseEditor({
+  exercise,
+  draft,
+  onChange,
+}: TrainingLocalExerciseEditorProps) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [commentOpen, setCommentOpen] = useState(false);
+  const currentSet = draft.sets[currentIndex];
+  if (!currentSet) return null;
+
+  function updateSet(field: keyof TrainingSetDraft | string, value: string) {
+    const updated = draft.sets.map((set, index) => {
+      if (index !== currentIndex) return set;
+      if (field.startsWith("direction:")) {
+        const direction = field.slice("direction:".length);
+        return { ...set, directionValues: { ...set.directionValues, [direction]: value } };
+      }
+      return { ...set, [field]: value };
+    });
+    const next = updated[currentIndex];
+    if (!next) return;
+    if (
+      isTrainingSetPerformed(currentSet, exercise.dose) &&
+      !isTrainingSetPerformed(next, exercise.dose) &&
+      updated.slice(currentIndex + 1).some((set) => isTrainingSetPerformed(set, exercise.dose))
+    ) {
+      if (!window.confirm("Zerar esta série também limpará as séries seguintes. Deseja continuar?"))
+        return;
+      for (let index = currentIndex + 1; index < updated.length; index++) {
+        const set = updated[index];
+        if (set)
+          updated[index] = {
+            ...set,
+            value: "",
+            leftValue: "",
+            rightValue: "",
+            loadKg: "",
+            directionValues: {},
+          };
+      }
+    }
+    onChange({ ...draft, sets: updated });
+  }
+
+  const nextEnabled =
+    currentIndex < draft.sets.length - 1 && isTrainingSetPerformed(currentSet, exercise.dose);
+  const fields: { key: string; label: string; value: string; className: string; step?: string }[] =
+    [];
+  if (exercise.dose.scope === "total")
+    fields.push({
+      key: "value",
+      label:
+        exercise.dose.unit === "seconds"
+          ? "Segundos"
+          : exercise.dose.unit === "contacts"
+            ? "Contatos"
+            : "Repetições",
+      value: currentSet.value,
+      className: styles.measureInput,
+    });
+  if (exercise.dose.scope === "each_side")
+    fields.push(
+      {
+        key: "leftValue",
+        label: "Esquerdo",
+        value: currentSet.leftValue,
+        className: styles.measureInput,
+      },
+      {
+        key: "rightValue",
+        label: "Direito",
+        value: currentSet.rightValue,
+        className: styles.measureInput,
+      },
+    );
+  for (const direction of requiredDirections(exercise.dose.scope)) {
+    fields.push({
+      key: `direction:${direction}`,
+      label: direction,
+      value: currentSet.directionValues[direction] ?? "",
+      className: styles.measureInput,
+    });
+  }
+  if (exercise.loadApplicable)
+    fields.push({
+      key: "loadKg",
+      label: `Carga (${exercise.loadUnit ?? "kg"})`,
+      value: currentSet.loadKg,
+      className: styles.loadInput,
+      step: "0.001",
+    });
+
+  return (
+    <div className={styles.root}>
+      <div className={styles.seriesHeader}>
+        <strong>Série {currentSet.setNumber}</strong>
+        <nav className={styles.navigation} aria-label="Navegação entre séries">
+          <Button
+            type="button"
+            variant="outline"
+            size="icon-sm"
+            aria-label="Abrir série anterior"
+            disabled={currentIndex === 0}
+            onClick={() => setCurrentIndex(currentIndex - 1)}
+          >
+            ←
+          </Button>
+          <span className={styles.counter} aria-live="polite">
+            {currentIndex + 1} de {draft.sets.length}
+          </span>
+          <Button
+            type="button"
+            variant="outline"
+            size="icon-sm"
+            aria-label="Abrir próxima série"
+            disabled={!nextEnabled}
+            onClick={() => setCurrentIndex(currentIndex + 1)}
+          >
+            →
+          </Button>
+        </nav>
+      </div>
+      <div className={styles.fields}>
+        {fields.map((field) => (
+          <div key={field.key} className={styles.field}>
+            <label
+              className={styles.label}
+              htmlFor={`${exercise.prescriptionId}-${currentSet.setNumber}-${field.key}`}
+            >
+              {field.label}
+            </label>
+            <Input
+              id={`${exercise.prescriptionId}-${currentSet.setNumber}-${field.key}`}
+              type="number"
+              min={0}
+              step={field.step ?? "1"}
+              inputMode="decimal"
+              value={field.value}
+              className={field.className}
+              onChange={(event) => updateSet(field.key, event.currentTarget.value)}
+            />
+          </div>
+        ))}
+      </div>
+      {commentOpen ? (
+        <div className={styles.commentPanel}>
+          <div className={styles.commentHeader}>
+            <label htmlFor={`${exercise.prescriptionId}-local-comment`}>Comentário</label>
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon-sm"
+              aria-label="Fechar comentário"
+              onClick={() => setCommentOpen(false)}
+            >
+              ×
+            </Button>
+          </div>
+          <Input
+            id={`${exercise.prescriptionId}-local-comment`}
+            value={draft.comment}
+            maxLength={1000}
+            onChange={(event) => onChange({ ...draft, comment: event.currentTarget.value })}
+          />
+        </div>
+      ) : null}
+      <Button
+        type="button"
+        variant="ghost"
+        size="sm"
+        className={styles.commentButton}
+        aria-expanded={commentOpen}
+        onClick={() => setCommentOpen(!commentOpen)}
+      >
+        <span aria-hidden="true">💬</span> Comentário
+      </Button>
+    </div>
+  );
+}
