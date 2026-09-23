@@ -11,7 +11,7 @@ export function TrainingDayFeedback({
 }: TrainingDayFeedbackProps) {
   return (
     <Alert variant={variant}>
-      <AlertTitle>{title}</AlertTitle>
+      <AlertTitle className={trainingDayFeedbackStyles.title}>{title}</AlertTitle>
       <AlertDescription>
         <p>{description}</p>
         {action ? <div className={trainingDayFeedbackStyles.action}>{action}</div> : null}

@@ -69,6 +69,12 @@ Permitir executar a programação diária definida pelo plano, salvando prepara�
 - `src/features/training/domain/training-exercise-priority.test.ts`
 - `src/features/training/ui/components/training-day-page/components/training-day-content/training-day-content.tsx`
 - `src/features/training/ui/components/training-day-page/components/training-day-content/training-day-content.test.tsx`
+- `src/features/training/ui/components/training-day-page/components/training-day-feedback/training-day-feedback.tsx`
+- `src/features/training/ui/components/training-day-page/components/training-day-feedback/training-day-feedback.styles.ts`
+- `src/features/training/ui/components/training-day-page/components/training-day-feedback/training-day-feedback.test.tsx`
+- `src/features/training/ui/components/training-day-unexpected-error/training-day-unexpected-error.tsx`
+- `src/features/training/ui/components/training-day-unexpected-error/training-day-unexpected-error.styles.ts`
+- `src/features/training/ui/components/training-day-unexpected-error/training-day-unexpected-error.test.tsx`
 - `src/features/training/ui/components/training-day-page/components/training-agenda-badges/training-agenda-badges.tsx`
 - `src/features/training/ui/components/training-day-page/components/training-agenda-drawer/training-agenda-drawer.tsx`
 - `src/features/training/ui/components/training-day-page/components/training-activity-form/training-activity-form.tsx`
@@ -157,6 +163,7 @@ Permitir executar a programação diária definida pelo plano, salvando prepara�
 - [x] Tratar uma agenda vazia após exclusão como vazia, sem ressuscitar o treino antigo; distinguir exclusão intencional de referência ausente.
 - [x] Manter correções explícitas de exercícios após a conclusão, sem permitir gravações antecipadas no banco.
 - [x] Permitir a fonte de agenda semanal no banco, vinculá-la uma única vez a versões legadas e auditar seu conteúdo sem enfraquecer a imutabilidade das demais definições.
+- [x] Alinhar título e descrição dos avisos sem ícone na mesma coluna para evitar sobreposição em telas estreitas.
 
 ## Validações
 
@@ -170,4 +177,4 @@ Permitir executar a programação diária definida pelo plano, salvando prepara�
 
 ## Resultado
 
-Fluxo guiado, agenda diária genérica e registro separado entre planejamento e realização disponíveis localmente. A agenda continua persistida ao ser alterada. Uma nova atividade inicia expandida; cronômetro, pausas, aquecimento, exercícios e comentários permanecem em rascunho neste navegador e são gravados em uma única transação ao finalizar cada atividade. Registros iniciados antes dessa mudança também são recuperados como rascunho local; a finalização preserva os IDs dos intervalos e séries existentes. O modelo semanal com jogo no sábado foi escolhido explicitamente como padrão temporário. O importador vincula uma cópia versionada da agenda à versão ativa do plano, e a leitura cria apenas a data consultada dentro do limite de quatro dias futuros. Os treinos de futevôlei usam 90 minutos planejados provisórios; o jogo de sábado permanece com horário a definir. A interface e os comandos antigos de atribuição/execução foram removidos: excluir a última atividade não reexibe a prescrição histórica, e correções posteriores à conclusão continuam possíveis por ação explícita. A migração permite importar a nova fonte e vincular a agenda uma única vez a versões antigas, sem abrir a edição das demais definições. A auditoria cobre o documento da agenda ativo e seus vínculos históricos.
+Fluxo guiado, agenda diária genérica e registro separado entre planejamento e realização disponíveis localmente. A agenda continua persistida ao ser alterada. Uma nova atividade inicia expandida; cronômetro, pausas, aquecimento, exercícios e comentários permanecem em rascunho neste navegador e são gravados em uma única transação ao finalizar cada atividade. Registros iniciados antes dessa mudança também são recuperados como rascunho local; a finalização preserva os IDs dos intervalos e séries existentes. O modelo semanal com jogo no sábado foi escolhido explicitamente como padrão temporário. O importador vincula uma cópia versionada da agenda à versão ativa do plano, e a leitura cria apenas a data consultada dentro do limite de quatro dias futuros. Os treinos de futevôlei usam 90 minutos planejados provisórios; o jogo de sábado permanece com horário a definir. A interface e os comandos antigos de atribuição/execução foram removidos: excluir a última atividade não reexibe a prescrição histórica, e correções posteriores à conclusão continuam possíveis por ação explícita. A migração permite importar a nova fonte e vincular a agenda uma única vez a versões antigas, sem abrir a edição das demais definições. A auditoria cobre o documento da agenda ativo e seus vínculos históricos. Avisos sem ícone agora alinham título e descrição para evitar sobreposição em telas estreitas.
