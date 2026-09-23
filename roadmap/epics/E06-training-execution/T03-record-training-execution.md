@@ -36,6 +36,7 @@ Permitir executar a programação diária definida pelo plano, salvando prepara�
 - `prisma/migrations/20260919040000_unify_training_activity_execution/migration.sql`
 - `prisma/migrations/20260919050000_allow_planned_mobility_definition/migration.sql`
 - `prisma/migrations/20260922160000_training_weekly_schedule/migration.sql`
+- `prisma/migrations/20260923180000_allow_training_schedule_import_batch/migration.sql`
 - `scripts/validate-data.mjs`
 - `scripts/validate-data.test.mjs`
 - `src/lib/security/workspace.ts`
@@ -94,9 +95,17 @@ Permitir executar a programação diária definida pelo plano, salvando prepara�
 - `src/features/training/ui/hooks/use-training-exercise-draft/use-training-exercise-draft.utils.ts`
 - `src/features/training/ui/hooks/use-training-exercise-draft/use-training-exercise-draft.test.ts`
 - `tests/integration/training-mutations.test.ts`
+- `tests/integration/training-projections.test.ts`
 - `tests/integration/fixtures/database.fixture.ts`
 - `tests/integration/fixtures/import-database.fixture.ts`
 - `src/features/plan-definition-import/data/plan-definition-import-validation.test.ts`
+- `src/features/persisted-data-integrity/data/prisma-persisted-data.mapper.ts`
+- `src/features/persisted-data-integrity/domain/persisted-data-integrity.types.ts`
+- `src/features/persisted-data-integrity/domain/training-plan-integrity.rules.ts`
+- `src/features/persisted-data-integrity/application/validate-persisted-data.test.ts`
+- `tests/unit/fixtures/persisted-data-integrity.fixture.ts`
+- `tests/integration/import-versioned-plan-definitions.test.ts`
+- `tests/integration/persisted-data-integrity.test.ts`
 
 ## Entregáveis
 
@@ -147,6 +156,7 @@ Permitir executar a programação diária definida pelo plano, salvando prepara�
 - [x] Remover a interface e os comandos antigos de atribuição e execução que duplicavam o fluxo por atividades.
 - [x] Tratar uma agenda vazia após exclusão como vazia, sem ressuscitar o treino antigo; distinguir exclusão intencional de referência ausente.
 - [x] Manter correções explícitas de exercícios após a conclusão, sem permitir gravações antecipadas no banco.
+- [x] Permitir a fonte de agenda semanal no banco, vinculá-la uma única vez a versões legadas e auditar seu conteúdo sem enfraquecer a imutabilidade das demais definições.
 
 ## Validações
 
@@ -160,4 +170,4 @@ Permitir executar a programação diária definida pelo plano, salvando prepara�
 
 ## Resultado
 
-Fluxo guiado, agenda diária genérica e registro separado entre planejamento e realização disponíveis localmente. A agenda continua persistida ao ser alterada. Uma nova atividade inicia expandida; cronômetro, pausas, aquecimento, exercícios e comentários permanecem em rascunho neste navegador e são gravados em uma única transação ao finalizar cada atividade. Registros iniciados antes dessa mudança também são recuperados como rascunho local; a finalização preserva os IDs dos intervalos e séries existentes. O modelo semanal com jogo no sábado foi escolhido explicitamente como padrão temporário. O importador vincula uma cópia versionada da agenda à versão ativa do plano, e a leitura cria apenas a data consultada dentro do limite de quatro dias futuros. Os treinos de futevôlei usam 90 minutos planejados provisórios; o jogo de sábado permanece com horário a definir. A interface e os comandos antigos de atribuição/execução foram removidos: excluir a última atividade não reexibe a prescrição histórica, e correções posteriores à conclusão continuam possíveis por ação explícita.
+Fluxo guiado, agenda diária genérica e registro separado entre planejamento e realização disponíveis localmente. A agenda continua persistida ao ser alterada. Uma nova atividade inicia expandida; cronômetro, pausas, aquecimento, exercícios e comentários permanecem em rascunho neste navegador e são gravados em uma única transação ao finalizar cada atividade. Registros iniciados antes dessa mudança também são recuperados como rascunho local; a finalização preserva os IDs dos intervalos e séries existentes. O modelo semanal com jogo no sábado foi escolhido explicitamente como padrão temporário. O importador vincula uma cópia versionada da agenda à versão ativa do plano, e a leitura cria apenas a data consultada dentro do limite de quatro dias futuros. Os treinos de futevôlei usam 90 minutos planejados provisórios; o jogo de sábado permanece com horário a definir. A interface e os comandos antigos de atribuição/execução foram removidos: excluir a última atividade não reexibe a prescrição histórica, e correções posteriores à conclusão continuam possíveis por ação explícita. A migração permite importar a nova fonte e vincular a agenda uma única vez a versões antigas, sem abrir a edição das demais definições. A auditoria cobre o documento da agenda ativo e seus vínculos históricos.

@@ -79,6 +79,12 @@ export async function withImportDatabase(
         "utf8",
       ),
     );
+    await admin.query(
+      readFileSync(
+        "prisma/migrations/20260923180000_allow_training_schedule_import_batch/migration.sql",
+        "utf8",
+      ),
+    );
     client = createConnection();
     await run(client, { schema, createConnection });
   } finally {

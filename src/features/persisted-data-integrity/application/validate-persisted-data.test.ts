@@ -48,6 +48,8 @@ describe("paridade das definições persistidas", () => {
     ["exercises", "normalizationRule"],
     ["trainingPlans", "sourceCreatedOn"],
     ["trainingPlans", "importBatchId"],
+    ["trainingPlans", "weeklySchedule"],
+    ["trainingPlans", "weeklyScheduleSha256"],
     ["sessions", "targetDurationMinutes"],
     ["sessions", "assignmentRole"],
     ["sessions", "compatiblePreparationSessionIds"],

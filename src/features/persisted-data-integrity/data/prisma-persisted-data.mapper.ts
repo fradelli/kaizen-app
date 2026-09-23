@@ -30,6 +30,7 @@ const mapSourceKind = (value: string): PlanDefinitionSourceKind => {
   switch (value) {
     case "exercise_library":
     case "execution_metadata":
+    case "training_schedule":
     case "training_plan":
     case "nutrition_plan":
     case "training_pointer":
@@ -78,6 +79,8 @@ export const mapPersistedTrainingPlan = (
   sourceCreatedOn: serializeRequiredDate(row.sourceCreatedOn),
   sourceUpdatedOn: serializeRequiredDate(row.sourceUpdatedOn),
   importBatchId: row.importBatchId,
+  weeklySchedule: row.weeklySchedule as JsonValue | null,
+  weeklyScheduleSha256: row.weeklyScheduleSha256,
 });
 export const mapPersistedTrainingSession = (
   row: Prisma.TrainingSessionDefinitionGetPayload<object>,

@@ -7,6 +7,6 @@
 - **Resultado anterior:** E06-T02 concluída localmente com página server-rendered e responsiva para todos os estados de leitura do treino.
 - **Objetivo:** permitir registrar preparação, execução por série, comentários e conclusão parcial sem alterar a prescrição.
 - **Bloqueio atual:** nenhum.
-- **Próxima ação:** validar visualmente e funcionalmente a tela local, incorporar ajustes e concluir os gates sobre o snapshot commitado.
+- **Próxima ação:** validar visualmente e funcionalmente a tela local e incorporar eventuais ajustes; os gates automatizados passaram no snapshot commitado.
 
 Não iniciar a E06-T04 antes da validação e conclusão da E06-T03.

@@ -20,6 +20,8 @@ export function validateTrainingPlanParity(
 ): void {
   const library = findPlanDefinitionSource(canonical.sources, "exercise_library");
   const metadata = findPlanDefinitionSource(canonical.sources, "execution_metadata");
+  const schedule = findPlanDefinitionSource(canonical.sources, "training_schedule");
+  const pointer = findPlanDefinitionSource(canonical.sources, "training_pointer");
   if (!library || !metadata) return;
   const plan = source.document;
   const batch = findSourceBatch(persisted.batches, source.path, source.sha256);
@@ -28,6 +30,18 @@ export function validateTrainingPlanParity(
   );
   compareDefinitionCount(versions.length, 1, source.path, "trainingPlans", issues);
   const version = versions[0];
+  const isActivePlan = pointer?.document.active_plan_path === source.path;
+  const historicalScheduleBatch = persisted.batches.find(
+    (entry) =>
+      entry.sourceKind === "training_schedule" &&
+      entry.sourceSha256 === version?.weeklyScheduleSha256,
+  );
+  const expectedSchedule = isActivePlan
+    ? schedule?.document
+    : historicalScheduleBatch?.sourceDocument;
+  const expectedScheduleSha256 = isActivePlan
+    ? schedule?.sha256
+    : historicalScheduleBatch?.sourceSha256;
   compareDefinitionFields(
     version,
     {
@@ -37,6 +51,8 @@ export function validateTrainingPlanParity(
       sourceCreatedOn: civilDateTimestamp(plan.created_at),
       sourceUpdatedOn: civilDateTimestamp(plan.last_updated),
       importBatchId: batch?.id ?? null,
+      weeklySchedule: expectedSchedule ?? null,
+      weeklyScheduleSha256: expectedScheduleSha256 ?? null,
     },
     source.path,
     "trainingPlans",

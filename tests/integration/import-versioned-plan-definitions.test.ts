@@ -87,7 +87,7 @@ describe("importação canônica em PostgreSQL real", () => {
       expect(first.created.trainingPlans).toBe(2);
       expect(first.created.nutritionPlans).toBe(1);
       expect(first.created).toEqual({
-        batches: 7,
+        batches: 8,
         exercises: 38,
         trainingPlans: 2,
         trainingSessions: 14,
@@ -109,6 +109,18 @@ describe("importação canônica em PostgreSQL real", () => {
       });
       expect(libraryBatch.sourceSha256).toBe(library.sha256);
       expect(libraryBatch.sourceDocument).toEqual(library.document);
+      const activeTrainingPlan = await client.trainingPlanVersion.findFirstOrThrow({
+        where: { weeklyScheduleSha256: { not: null } },
+      });
+      const schedule = snapshot.sources.find((source) => source.kind === "training_schedule")!;
+      expect(activeTrainingPlan.weeklyScheduleSha256).toBe(schedule.sha256);
+      expect(activeTrainingPlan.weeklySchedule).toEqual(schedule.document);
+      await expect(
+        client.trainingPlanVersion.update({
+          where: { id: activeTrainingPlan.id },
+          data: { weeklyScheduleSha256: "f".repeat(64) },
+        }),
+      ).rejects.toThrow();
       expect(await client.trainingExerciseDefinition.count()).toBe(
         first.created.trainingPrescriptions,
       );
