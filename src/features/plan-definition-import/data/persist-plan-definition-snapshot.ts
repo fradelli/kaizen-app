@@ -13,6 +13,7 @@ import { persistReviewedExerciseDefinitions } from "./persist-reviewed-exercise-
 import { persistTrainingPlanDefinition } from "./persist-training-plan-definition";
 import { persistNutritionPlanDefinition } from "./persist-nutrition-plan-definition";
 import { activateSelectedPlanDefinitions } from "./activate-selected-plan-definitions";
+import { findPlanDefinitionSource } from "../domain/plan-definition-source.utils";
 export async function persistPlanDefinitionSnapshot(
   tx: ImportTransaction,
   snapshot: PlanDefinitionSnapshot,
@@ -29,6 +30,10 @@ export async function persistPlanDefinitionSnapshot(
     created,
   );
   const versions = new Map<string, string>();
+  const trainingSchedule = findPlanDefinitionSource(snapshot.sources, "training_schedule");
+  const trainingPointer = findPlanDefinitionSource(snapshot.sources, "training_pointer");
+  if (!trainingSchedule) throw new Error("A agenda semanal versionada não foi encontrada.");
+  if (!trainingPointer) throw new Error("O plano ativo de treino não foi encontrado.");
   for (const source of snapshot.sources) {
     if (source.kind === "training_plan")
       versions.set(
@@ -39,6 +44,7 @@ export async function persistPlanDefinitionSnapshot(
           batches.get(source.path)!,
           exercises,
           metadata,
+          source.path === trainingPointer.document.active_plan_path ? trainingSchedule : null,
           created,
         ),
       );

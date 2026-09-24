@@ -21,10 +21,16 @@ import type {
 const serializeDate = (value: Date | null): string | null => value?.toISOString() ?? null;
 const serializeRequiredDate = (value: Date): string => value.toISOString();
 const serializeJson = (value: Prisma.JsonValue | null): JsonValue => value as JsonValue;
+const serializeStringArray = (value: Prisma.JsonValue): readonly string[] => {
+  if (!Array.isArray(value) || value.some((item) => typeof item !== "string"))
+    throw new Error("Lista de identificadores persistida inválida.");
+  return value as string[];
+};
 const mapSourceKind = (value: string): PlanDefinitionSourceKind => {
   switch (value) {
     case "exercise_library":
     case "execution_metadata":
+    case "training_schedule":
     case "training_plan":
     case "nutrition_plan":
     case "training_pointer":
@@ -73,6 +79,8 @@ export const mapPersistedTrainingPlan = (
   sourceCreatedOn: serializeRequiredDate(row.sourceCreatedOn),
   sourceUpdatedOn: serializeRequiredDate(row.sourceUpdatedOn),
   importBatchId: row.importBatchId,
+  weeklySchedule: row.weeklySchedule as JsonValue | null,
+  weeklyScheduleSha256: row.weeklyScheduleSha256,
 });
 export const mapPersistedTrainingSession = (
   row: Prisma.TrainingSessionDefinitionGetPayload<object>,
@@ -85,6 +93,8 @@ export const mapPersistedTrainingSession = (
   shortDurationMinutes: row.shortDurationMinutes,
   intensity: row.intensity,
   notes: row.notes,
+  assignmentRole: row.assignmentRole,
+  compatiblePreparationSessionIds: serializeStringArray(row.compatiblePreparationSessionIds),
 });
 export const mapPersistedTrainingPrescription = (
   row: Prisma.TrainingExerciseDefinitionGetPayload<object>,

@@ -8,6 +8,7 @@ import type {
   ExerciseLibrary,
   NutritionPlan,
   TrainingPlan,
+  TrainingSchedule,
 } from "@/features/plan-definition-import/domain/plan-definition-source.types";
 import type { PersistedDefinitionSnapshot } from "@/features/persisted-data-integrity/domain/persisted-data-integrity.types";
 
@@ -29,6 +30,15 @@ export function createIntegrityFixture(): {
     exercises: [{ id: "exercise", name_pt: "Exercício sintético" }],
   };
   const metadata: ExecutionMetadata = {
+    sessions: [
+      {
+        plan_id: "training",
+        plan_version: "1",
+        session_id: "main",
+        assignment_role: "main",
+        compatible_preparation_session_ids: [],
+      },
+    ],
     exercises: [
       {
         exercise_id: "exercise",
@@ -93,6 +103,17 @@ export function createIntegrityFixture(): {
     active_plan_path: "data/plans/test.json",
     active_plan_id: "training",
   };
+  const schedule: TrainingSchedule = {
+    schema_version: "1",
+    last_updated: date,
+    timezone: "America/Sao_Paulo",
+    weekend_game: { enabled: true, day: "saturday", start_time: null },
+    planning_defaults: { footvolley_duration_minutes: 90 },
+    models: {
+      saturday_game: [{ day: "monday", time: "09:00", session: "main" }],
+      sunday_game: [{ day: "monday", time: "09:00", session: "main" }],
+    },
+  };
   const nutritionPointer: ActivePlanPointer = {
     schema_version: "1",
     active_plan_path: "data/nutrition/plans/test.json",
@@ -141,6 +162,13 @@ export function createIntegrityFixture(): {
       schemaVersion: "1",
       sha256: "5".repeat(64),
     },
+    {
+      kind: "training_schedule",
+      path: "data/schedule.json",
+      document: schedule,
+      schemaVersion: "1",
+      sha256: "6".repeat(64),
+    },
   ];
   const canonical = {
     commit: "a".repeat(40),
@@ -184,6 +212,8 @@ export function createIntegrityFixture(): {
         sourceCreatedOn: timestamp,
         sourceUpdatedOn: timestamp,
         importBatchId: "batch2",
+        weeklySchedule: schedule,
+        weeklyScheduleSha256: "6".repeat(64),
       },
     ],
     sessions: [
@@ -196,6 +226,8 @@ export function createIntegrityFixture(): {
         shortDurationMinutes: null,
         intensity: null,
         notes: null,
+        assignmentRole: "main",
+        compatiblePreparationSessionIds: [],
       },
     ],
     prescriptions: [

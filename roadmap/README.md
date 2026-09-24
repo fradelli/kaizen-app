@@ -78,7 +78,7 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E05-T07 | DONE      | [Aprimorar semântica e fronteiras do código](epics/E05-database-and-import/T07-refine-code-semantics.md)                  | E05-T04                               |
 | E06-T01 | DONE      | [Projetar treino e execução do dia](epics/E06-training-execution/T01-project-active-training-plan.md)                   | E05-T05                               |
 | E06-T02 | DONE      | [Criar página de treino do dia](epics/E06-training-execution/T02-create-daily-training-page.md)                           | E04-T04, E06-T01                      |
-| E06-T03 | READY     | [Registrar preparação, séries e comentários](epics/E06-training-execution/T03-record-training-execution.md)               | E06-T02                               |
+| E06-T03 | IN_PROGRESS | [Registrar preparação, séries e comentários](epics/E06-training-execution/T03-record-training-execution.md)             | E06-T02                               |
 | E06-T04 | PLANNED   | [Exibir proveniência e histórico](epics/E06-training-execution/T04-show-training-provenance.md)                           | E06-T03                               |
 | E06-T05 | PLANNED   | [Validar fluxo de treino](epics/E06-training-execution/T05-validate-training-flow.md)                                     | E06-T04                               |
 | E07-T01 | PLANNED   | [Projetar dieta e execução do dia](epics/E07-nutrition-execution/T01-project-active-nutrition-plan.md)                    | E05-T05                               |

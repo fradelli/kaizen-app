@@ -5,4 +5,6 @@ import type { TrainingDayDateResolution } from "../../../application/resolve-tra
 export type TrainingDayPageProps = Readonly<{
   dateResolution: TrainingDayDateResolution;
   children: ReactNode;
+  controls?: ReactNode;
+  summary?: ReactNode;
 }>;

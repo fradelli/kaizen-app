@@ -35,6 +35,8 @@ export type PersistedTrainingPlan = Readonly<{
   sourceCreatedOn: string;
   sourceUpdatedOn: string;
   importBatchId: string;
+  weeklySchedule: JsonValue | null;
+  weeklyScheduleSha256: string | null;
 }>;
 export type PersistedTrainingSession = Readonly<{
   id: string;
@@ -45,6 +47,8 @@ export type PersistedTrainingSession = Readonly<{
   shortDurationMinutes: number | null;
   intensity: string | null;
   notes: string | null;
+  assignmentRole: "main" | "preparation" | "mobility";
+  compatiblePreparationSessionIds: readonly string[];
 }>;
 export type PersistedTrainingPrescription = Readonly<{
   id: string;

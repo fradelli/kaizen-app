@@ -3,6 +3,7 @@ import type {
   ExecutionMetadata,
   ExerciseLibrary,
 } from "../../plan-definition-import/domain/plan-definition-source.types";
+import { resolveTrainingSessionAssignment } from "../../plan-definition-import/domain/training-session-assignment.utils";
 import type {
   IntegrityIssue,
   PersistedDefinitionSnapshot,
@@ -31,6 +32,7 @@ export function validateTrainingSessionParity(
   );
   for (const [sessionId, definition] of Object.entries(source.document.sessions)) {
     const session = sessions.find((entry) => entry.sessionId === sessionId);
+    const assignment = resolveTrainingSessionAssignment(metadata, source.document, sessionId);
     compareDefinitionFields(
       session,
       {
@@ -39,6 +41,8 @@ export function validateTrainingSessionParity(
         shortDurationMinutes: definition.short_version_target_minutes ?? null,
         intensity: definition.intensity ?? null,
         notes: definition.notes ?? null,
+        assignmentRole: assignment.assignmentRole,
+        compatiblePreparationSessionIds: assignment.compatiblePreparationSessionIds,
       },
       source.path,
       "sessions",

@@ -33,6 +33,58 @@ export async function withImportDatabase(
     await admin.query(
       readFileSync("prisma/migrations/20260913011504_initial_p0/migration.sql", "utf8"),
     );
+    await admin.query(
+      readFileSync(
+        "prisma/migrations/20260916150000_training_session_assignment_metadata/migration.sql",
+        "utf8",
+      ),
+    );
+    await admin.query(
+      readFileSync("prisma/migrations/20260916190000_training_activity_log/migration.sql", "utf8"),
+    );
+    await admin.query(
+      readFileSync(
+        "prisma/migrations/20260919010000_generalize_training_day_activity/migration.sql",
+        "utf8",
+      ),
+    );
+    await admin.query(
+      readFileSync(
+        "prisma/migrations/20260919020000_training_assignment_times/migration.sql",
+        "utf8",
+      ),
+    );
+    await admin.query(
+      readFileSync(
+        "prisma/migrations/20260919030000_training_activity_execution_lifecycle/migration.sql",
+        "utf8",
+      ),
+    );
+    const unifiedActivityMigration = readFileSync(
+      "prisma/migrations/20260919040000_unify_training_activity_execution/migration.sql",
+      "utf8",
+    );
+    const enumStatementEnd = unifiedActivityMigration.indexOf(";") + 1;
+    await admin.query(unifiedActivityMigration.slice(0, enumStatementEnd));
+    await admin.query(unifiedActivityMigration.slice(enumStatementEnd));
+    await admin.query(
+      readFileSync(
+        "prisma/migrations/20260919050000_allow_planned_mobility_definition/migration.sql",
+        "utf8",
+      ),
+    );
+    await admin.query(
+      readFileSync(
+        "prisma/migrations/20260922160000_training_weekly_schedule/migration.sql",
+        "utf8",
+      ),
+    );
+    await admin.query(
+      readFileSync(
+        "prisma/migrations/20260923180000_allow_training_schedule_import_batch/migration.sql",
+        "utf8",
+      ),
+    );
     client = createConnection();
     await run(client, { schema, createConnection });
   } finally {

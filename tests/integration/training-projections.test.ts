@@ -31,6 +31,20 @@ describe("training projections with PostgreSQL", () => {
           loadKg: "20.500",
         },
       });
+      await client.trainingDayActivity.create({
+        data: {
+          workspaceId: fixture.workspace.id,
+          civilDate: fixture.date,
+          type: "structured_training",
+          source: "plan",
+          name: fixture.mainSession.name,
+          plannedStartMinute: 540,
+          plannedEndMinute: 570,
+          assignmentId: fixture.assignment.id,
+          trainingPlanVersionId: fixture.trainingPlan.id,
+          sessionDefinitionId: fixture.mainSession.id,
+        },
+      });
 
       const repository = new PrismaTrainingRepository(client);
       const publicPlan = await getPublicTrainingPlan({ repository, environment: "local" });
@@ -85,6 +99,20 @@ describe("training projections with PostgreSQL", () => {
           reason: "Outro workspace",
         },
       });
+      await client.trainingDayActivity.create({
+        data: {
+          workspaceId: fixture.workspace.id,
+          civilDate: fixture.date,
+          type: "structured_training",
+          source: "plan",
+          name: fixture.mainSession.name,
+          plannedStartMinute: 540,
+          plannedEndMinute: 570,
+          assignmentId: fixture.assignment.id,
+          trainingPlanVersionId: fixture.trainingPlan.id,
+          sessionDefinitionId: fixture.mainSession.id,
+        },
+      });
 
       const repository = new PrismaTrainingRepository(client);
       const ownerDay = await getTrainingDay(
@@ -127,6 +155,7 @@ describe("training projections with PostgreSQL", () => {
         state: "unavailable",
         civilDate: "2026-09-14",
         reason: "active_plan_not_found",
+        activities: [],
       });
     });
   });

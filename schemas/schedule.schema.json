@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/schedule.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "last_updated", "timezone", "footvolley_sessions", "weekend_game", "planning_defaults", "placement_rules", "models"],
+  "properties": {
+    "schema_version": { "type": "string", "minLength": 1 },
+    "last_updated": { "type": "string", "format": "date" },
+    "timezone": { "const": "America/Sao_Paulo" },
+    "footvolley_sessions": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/timedActivity" } },
+    "weekend_game": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled", "day", "start_time"],
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "day": { "oneOf": [{ "enum": ["saturday", "sunday"] }, { "type": "null" }] },
+        "start_time": { "$ref": "#/$defs/nullableTime" }
+      }
+    },
+    "planning_defaults": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["footvolley_duration_minutes"],
+      "properties": {
+        "footvolley_duration_minutes": { "type": "integer", "minimum": 1, "maximum": 720 }
+      }
+    },
+    "placement_rules": { "type": "object" },
+    "models": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["saturday_game", "sunday_game"],
+      "properties": {
+        "saturday_game": { "$ref": "#/$defs/scheduleModel" },
+        "sunday_game": { "$ref": "#/$defs/scheduleModel" }
+      }
+    }
+  },
+  "$defs": {
+    "weekday": { "enum": ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"] },
+    "nullableTime": { "oneOf": [{ "type": "string", "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d$" }, { "type": "null" }] },
+    "timedActivity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["day", "start_time", "intensity"],
+      "properties": {
+        "day": { "$ref": "#/$defs/weekday" },
+        "start_time": { "type": "string", "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d$" },
+        "intensity": { "oneOf": [{ "type": "string", "minLength": 1 }, { "type": "null" }] }
+      }
+    },
+    "scheduleModel": {
+      "type": "array",
+      "minItems": 7,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["day", "time", "session"],
+        "properties": {
+          "day": { "$ref": "#/$defs/weekday" },
+          "time": { "$ref": "#/$defs/nullableTime" },
+          "session": { "type": "string", "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$" }
+        }
+      }
+    }
+  }
+}

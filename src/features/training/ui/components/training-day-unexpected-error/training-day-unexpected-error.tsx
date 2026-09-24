@@ -13,7 +13,10 @@ export function TrainingDayUnexpectedError({ reset }: TrainingDayUnexpectedError
       aria-labelledby="training-unexpected-error-title"
     >
       <Alert variant="destructive">
-        <AlertTitle id="training-unexpected-error-title">
+        <AlertTitle
+          id="training-unexpected-error-title"
+          className={trainingDayUnexpectedErrorStyles.title}
+        >
           Não foi possível carregar o treino
         </AlertTitle>
         <AlertDescription>

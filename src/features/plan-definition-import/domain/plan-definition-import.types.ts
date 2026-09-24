@@ -4,6 +4,7 @@ import type {
   ExerciseLibrary,
   NutritionPlan,
   TrainingPlan,
+  TrainingSchedule,
 } from "./plan-definition-source.types";
 export type { JsonObject, JsonValue } from "./json-value.types";
 export type PlanDefinitionImportEnvironment = "local" | "preview" | "staging" | "production";
@@ -11,6 +12,7 @@ export type PlanDefinitionSourceKind =
   | "exercise_library"
   | "execution_metadata"
   | "training_plan"
+  | "training_schedule"
   | "nutrition_plan"
   | "training_pointer"
   | "nutrition_pointer";
@@ -18,6 +20,7 @@ export type PlanDefinitionDocumentByKind = Readonly<{
   exercise_library: ExerciseLibrary;
   execution_metadata: ExecutionMetadata;
   training_plan: TrainingPlan;
+  training_schedule: TrainingSchedule;
   nutrition_plan: NutritionPlan;
   training_pointer: ActivePlanPointer;
   nutrition_pointer: ActivePlanPointer;

@@ -31,6 +31,7 @@ describe("queryFixedWorkspaceTrainingDayPage", () => {
       state: "unavailable",
       civilDate: "2026-09-16" as CivilDate,
       reason: "active_plan_not_found",
+      activities: [],
     });
 
     await expect(queryFixedWorkspaceTrainingDayPage("2026-09-16")).resolves.toEqual({
@@ -39,6 +40,7 @@ describe("queryFixedWorkspaceTrainingDayPage", () => {
         state: "unavailable",
         civilDate: "2026-09-16",
         reason: "active_plan_not_found",
+        activities: [],
       },
     });
   });

@@ -7,6 +7,14 @@ export type TrainingExecutionStatus =
 export type TrainingItemStatus = "pending" | "completed" | "skipped";
 export type TrainingExerciseRole = "main" | "preparation" | "mobility";
 export type TrainingMeasurementType = "repetitions" | "seconds" | "contacts" | "per_side";
+export type TrainingActivityType =
+  "structured_training" | "sport_practice" | "specific_training" | "mobility";
+export type TrainingActivityStatus =
+  "scheduled" | "in_progress" | "paused" | "completed" | "skipped";
+export type TrainingActivityRole = "primary" | "preparation";
+export type TrainingActivitySource = "plan" | "manual";
+export type TrainingActivityIntensity = "low" | "moderate" | "high";
+export type TrainingActivityEnergy = "tired" | "normal" | "energized";
 
 export type NormalizedTrainingDose = Readonly<{
   sourceText: string;
@@ -48,6 +56,8 @@ export type TrainingSessionSnapshot = Readonly<{
   shortDurationMinutes: number | null;
   intensity: string | null;
   notes: string | null;
+  assignmentRole: TrainingExerciseRole;
+  compatiblePreparationSessionIds: readonly string[];
   exercises: readonly TrainingExercisePrescriptionSnapshot[];
 }>;
 
@@ -85,6 +95,10 @@ export type TrainingExecutionSnapshot = Readonly<{
   id: string;
   status: TrainingExecutionStatus;
   comment: string | null;
+  intensity: TrainingActivityIntensity | null;
+  energy: TrainingActivityEnergy | null;
+  actualStartMinute: number | null;
+  actualEndMinute: number | null;
   startedAt: string | null;
   completedAt: string | null;
   revision: number;
@@ -97,13 +111,45 @@ export type TrainingAssignmentSnapshot = Readonly<{
   kind: TrainingAssignmentKind;
   mainSessionDatabaseId: string | null;
   preparationSessionDatabaseId: string | null;
+  plannedStartMinute: number | null;
+  plannedEndMinute: number | null;
   reason: string | null;
   revision: number;
   plan: TrainingPlanSnapshot | null;
   execution: TrainingExecutionSnapshot | null;
 }>;
 
+export type TrainingActivitySnapshot = Readonly<{
+  id: string;
+  type: TrainingActivityType;
+  source: TrainingActivitySource;
+  role: TrainingActivityRole;
+  name: string;
+  sport: string | null;
+  status: TrainingActivityStatus;
+  plannedStartMinute: number | null;
+  plannedEndMinute: number | null;
+  actualStartMinute: number | null;
+  actualEndMinute: number | null;
+  startedAt: string | null;
+  completedAt: string | null;
+  intensity: TrainingActivityIntensity | null;
+  energy: TrainingActivityEnergy | null;
+  comment: string | null;
+  revision: number;
+  plan: TrainingPlanSnapshot | null;
+  session: TrainingSessionSnapshot | null;
+  preparationSession: TrainingSessionSnapshot | null;
+  exerciseExecutions: readonly TrainingExerciseExecutionSnapshot[];
+  intervals: readonly Readonly<{
+    startedAt: string;
+    endedAt: string | null;
+  }>[];
+  preparations: readonly TrainingActivitySnapshot[];
+}>;
+
 export type TrainingDaySnapshot = Readonly<{
   activePlan: TrainingPlanSnapshot | null;
   assignment: TrainingAssignmentSnapshot | null;
+  activities: readonly TrainingActivitySnapshot[];
 }>;

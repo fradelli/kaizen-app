@@ -132,7 +132,7 @@ describe("integridade persistida em PostgreSQL real", () => {
         scope: "canonical-plan-definitions",
         issues: [],
         counts: {
-          batches: 7,
+          batches: 8,
           exercises: 38,
           trainingPlans: 2,
           sessions: 14,

@@ -8,6 +8,13 @@ export type Dose = {
   qualifier: string | null;
 };
 export type ExecutionMetadata = {
+  sessions?: {
+    plan_id: string;
+    plan_version: string;
+    session_id: string;
+    assignment_role: "main" | "preparation" | "mobility";
+    compatible_preparation_session_ids: string[];
+  }[];
   exercises: {
     exercise_id: string;
     measurement_type: "repetitions" | "seconds" | "contacts" | "per_side";
@@ -21,6 +28,21 @@ export type ActivePlanPointer = {
   schema_version: string;
   active_plan_id: string;
   active_plan_path: string;
+};
+export type TrainingSchedule = {
+  schema_version: string;
+  last_updated: string;
+  timezone: "America/Sao_Paulo";
+  weekend_game: {
+    enabled: boolean;
+    day: "saturday" | "sunday" | null;
+    start_time: string | null;
+  };
+  planning_defaults: { footvolley_duration_minutes: number };
+  models: Record<
+    "saturday_game" | "sunday_game",
+    { day: string; time: string | null; session: string }[]
+  >;
 };
 export type TrainingPlan = {
   plan_id: string;
