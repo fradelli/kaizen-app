@@ -17,6 +17,7 @@ export function assertSnapshotHasRequiredSources(snapshot: PlanDefinitionSnapsho
   for (const kind of [
     "exercise_library",
     "execution_metadata",
+    "training_schedule",
     "training_pointer",
     "nutrition_pointer",
   ]) {
@@ -50,6 +51,35 @@ export function assertActivePointersSelectMatchingPlans(snapshot: PlanDefinition
             pointer.active_plan_path,
           );
     if (!source || source.document.plan_id !== pointer.active_plan_id) throw new Error();
+  }
+}
+export function assertWeeklyScheduleReferencesImportedSessions(
+  snapshot: PlanDefinitionSnapshot,
+): void {
+  const schedule = snapshot.sources.find((source) => source.kind === "training_schedule");
+  if (!schedule || schedule.kind !== "training_schedule") throw new Error();
+  const pointer = snapshot.sources.find((source) => source.kind === "training_pointer");
+  if (!pointer || pointer.kind !== "training_pointer") throw new Error();
+  const plan = snapshot.sources.find(
+    (source) =>
+      source.kind === "training_plan" && source.path === pointer.document.active_plan_path,
+  );
+  if (!plan || plan.kind !== "training_plan") throw new Error();
+  const genericEntries = new Set([
+    "footvolley",
+    "footvolley_only",
+    "game",
+    "rest",
+    "rest_or_light_mobility",
+  ]);
+  for (const model of Object.values(schedule.document.models)) {
+    for (const entry of model) {
+      if (
+        !genericEntries.has(entry.session) &&
+        !Object.hasOwn(plan.document.sessions, entry.session)
+      )
+        throw new Error();
+    }
   }
 }
 export function assertSourcesHaveValidProvenance(snapshot: PlanDefinitionSnapshot): void {

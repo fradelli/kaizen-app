@@ -1,34 +1,15 @@
 {
   "schema_version": "1.0.0",
-  "last_updated": "2026-08-31",
+  "last_updated": "2026-09-22",
   "timezone": "America/Sao_Paulo",
   "footvolley_sessions": [
-    {
-      "day": null,
-      "start_time": null,
-      "intensity": null
-    },
-    {
-      "day": null,
-      "start_time": null,
-      "intensity": null
-    },
-    {
-      "day": null,
-      "start_time": null,
-      "intensity": null
-    },
-    {
-      "day": null,
-      "start_time": null,
-      "intensity": null
-    }
+    { "day": "monday", "start_time": "16:00", "intensity": null },
+    { "day": "tuesday", "start_time": "12:00", "intensity": null },
+    { "day": "wednesday", "start_time": "16:00", "intensity": null },
+    { "day": "thursday", "start_time": "12:00", "intensity": null }
   ],
-  "weekend_game": {
-    "enabled": true,
-    "day": null,
-    "start_time": null
-  },
+  "weekend_game": { "enabled": true, "day": "saturday", "start_time": null },
+  "planning_defaults": { "footvolley_duration_minutes": 90 },
   "placement_rules": {
     "main_lower_sessions_per_week": 2,
     "short_upper_sessions_per_week": 2,
@@ -39,5 +20,31 @@
     "main_strength_target_hours_before_game": "72-96",
     "secondary_lower_target_hours_before_game": ">=48 and low volume"
   },
-  "models": {}
+  "models": {
+    "saturday_game": [
+      { "day": "monday", "time": "09:00", "session": "lower_a" },
+      { "day": "monday", "time": "16:00", "session": "footvolley" },
+      { "day": "tuesday", "time": "12:00", "session": "footvolley" },
+      { "day": "tuesday", "time": "13:30", "session": "upper_a" },
+      { "day": "wednesday", "time": "09:00", "session": "lower_b" },
+      { "day": "wednesday", "time": "16:00", "session": "footvolley" },
+      { "day": "thursday", "time": "12:00", "session": "footvolley" },
+      { "day": "thursday", "time": "13:30", "session": "upper_b" },
+      { "day": "friday", "time": null, "session": "rest_or_light_mobility" },
+      { "day": "saturday", "time": null, "session": "game" },
+      { "day": "sunday", "time": null, "session": "rest" }
+    ],
+    "sunday_game": [
+      { "day": "monday", "time": "16:00", "session": "footvolley_only" },
+      { "day": "tuesday", "time": "12:00", "session": "footvolley" },
+      { "day": "tuesday", "time": "13:30", "session": "upper_a" },
+      { "day": "wednesday", "time": "09:00", "session": "lower_a" },
+      { "day": "wednesday", "time": "16:00", "session": "footvolley" },
+      { "day": "thursday", "time": "12:00", "session": "footvolley" },
+      { "day": "thursday", "time": "13:30", "session": "upper_b" },
+      { "day": "friday", "time": "10:00", "session": "lower_b_microdose" },
+      { "day": "saturday", "time": null, "session": "rest" },
+      { "day": "sunday", "time": null, "session": "game" }
+    ]
+  }
 }

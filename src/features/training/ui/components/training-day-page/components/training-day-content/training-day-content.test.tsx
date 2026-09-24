@@ -4,6 +4,7 @@ import { afterEach, describe, expect, it } from "vitest";
 import type {
   PublicTrainingExerciseDto,
   TrainingDayDto,
+  TrainingDayExerciseDto,
   TrainingDayPageQueryResult,
   TrainingDaySessionDto,
 } from "@/features/training/application/training-dto";
@@ -16,6 +17,20 @@ const civilDate = "2026-09-16" as CivilDate;
 afterEach(cleanup);
 
 describe("TrainingDayContent", () => {
+  it("does not reveal the former assignment when the last activity was removed", async () => {
+    render(
+      await renderReadyDay({
+        ...assignedBase,
+        state: "training",
+        preparation: null,
+        main: createSession("main", "Treino excluído"),
+      }),
+    );
+
+    expect(screen.getByText("Nenhuma atividade programada")).toBeInTheDocument();
+    expect(screen.queryByText("Treino excluído")).not.toBeInTheDocument();
+  });
+
   it("renders a safe failure instead of a partial projection", async () => {
     render(
       await TrainingDayContent({
@@ -33,6 +48,7 @@ describe("TrainingDayContent", () => {
         state: "unavailable",
         civilDate,
         reason: "active_plan_not_found",
+        activities: [],
       }),
     );
 
@@ -40,66 +56,37 @@ describe("TrainingDayContent", () => {
     expect(screen.queryByText("Não foi possível resolver o treino")).not.toBeInTheDocument();
   });
 
-  it("shows available sessions for an unassigned day without mutation controls", async () => {
+  it("reports a missing plan schedule without turning session choice into the primary flow", async () => {
     render(
       await renderReadyDay({
         state: "unassigned",
         civilDate,
         assignmentId: null,
         assignmentRevision: null,
+        activities: [],
         availablePlan: {
           status: "available",
           planId: "performance",
           version: "2.0.0",
           sourceStatus: "approved",
-          sessions: [createSession("main")],
+          sessions: [
+            {
+              ...createSession("main"),
+              assignmentRole: "main",
+              compatiblePreparationSessionIds: [],
+            },
+          ],
         },
       }),
     );
 
-    expect(screen.getByText("Nenhum treino foi definido para esta data")).toBeInTheDocument();
-    expect(screen.getByText("Sessão principal")).toBeInTheDocument();
-    expect(screen.getByText("Descanso")).toBeInTheDocument();
+    expect(screen.getByText("Nenhuma atividade programada")).toBeInTheDocument();
+    expect(screen.queryByText("Sessão principal")).not.toBeInTheDocument();
     expect(screen.queryByRole("button")).not.toBeInTheDocument();
     expect(screen.queryByRole("textbox")).not.toBeInTheDocument();
   });
 
-  it("keeps preparation before the main session and only shows applicable load", async () => {
-    const preparation = createSession("preparation", "Preparação");
-    const main = createSession("main", "Treino principal", [
-      createExercise({
-        loadApplicable: true,
-        loadUnit: "kg",
-        loadKg: "20.500",
-        name: "Agachamento",
-      }),
-      createExercise({
-        prescriptionId: "prescription-without-load",
-        loadApplicable: false,
-        loadKg: null,
-        name: "Salto vertical",
-      }),
-    ]);
-
-    render(
-      await renderReadyDay({
-        ...assignedBase,
-        state: "training",
-        preparation,
-        main,
-      }),
-    );
-
-    const sectionHeadings = screen.getAllByRole("heading", { level: 2 });
-    expect(sectionHeadings.map((heading) => heading.textContent)).toEqual([
-      "Preparação",
-      "Treino principal",
-    ]);
-    expect(screen.getByText("20.500 kg")).toBeInTheDocument();
-    expect(screen.queryByText("0 kg")).not.toBeInTheDocument();
-  });
-
-  it("renders mobility without a main training section", async () => {
+  it("does not render assignment sessions without an activity", async () => {
     render(
       await renderReadyDay({
         ...assignedBase,
@@ -108,8 +95,8 @@ describe("TrainingDayContent", () => {
       }),
     );
 
-    expect(screen.getByRole("heading", { level: 2, name: "Mobilidade leve" })).toBeInTheDocument();
-    expect(screen.queryByText("Treino principal")).not.toBeInTheDocument();
+    expect(screen.getByText("Nenhuma atividade programada")).toBeInTheDocument();
+    expect(screen.queryByText("Mobilidade leve")).not.toBeInTheDocument();
   });
 
   it("renders rest explicitly without artificial exercises", async () => {
@@ -119,8 +106,10 @@ describe("TrainingDayContent", () => {
         civilDate,
         assignmentId: "assignment-rest",
         assignmentRevision: 1,
+        availablePlan: null,
         reason: "Recuperação programada",
         execution: null,
+        activities: [],
       }),
     );
 
@@ -136,7 +125,18 @@ const assignedBase = {
   assignmentRevision: 1,
   planId: "performance",
   planVersion: "2.0.0",
+  availablePlan: {
+    status: "available",
+    planId: "performance",
+    version: "2.0.0",
+    sourceStatus: "approved",
+    sessions: [],
+  },
   execution: null,
+  plannedStartTime: "09:00",
+  plannedEndTime: "10:05",
+  plannedDurationMinutes: 65,
+  activities: [],
 } as const;
 
 async function renderReadyDay(day: TrainingDayDto) {
@@ -162,7 +162,7 @@ function createSession(
 }
 
 function createExercise(
-  overrides: Partial<PublicTrainingExerciseDto> &
+  overrides: Partial<PublicTrainingExerciseDto & TrainingDayExerciseDto> &
     Readonly<{ prescriptionId?: string; loadKg?: string | null }> = {},
 ) {
   const { loadKg = null, ...publicOverrides } = overrides;
@@ -175,7 +175,7 @@ function createExercise(
     prescribedSets: 1,
     prescribedText: "1 x 8 repetições",
     restSeconds: 60,
-    priority: null,
+    priorityLevel: null,
     notes: null,
     dose: {
       sourceText: "8 repetições",

@@ -4,6 +4,7 @@ import type {
   PublicTrainingPlanDto,
   PublicTrainingSessionDto,
 } from "./training-dto";
+import { resolveTrainingExercisePriorityLevel } from "../domain/training-exercise-priority";
 import type { GetPublicTrainingPlanDependencies } from "./get-public-training-plan.types";
 
 export async function getPublicTrainingPlan(
@@ -36,6 +37,8 @@ function projectPublicTrainingSession(
     shortDurationMinutes: session.shortDurationMinutes,
     intensity: session.intensity,
     notes: session.notes,
+    assignmentRole: session.assignmentRole,
+    compatiblePreparationSessionIds: session.compatiblePreparationSessionIds,
     exercises: Object.freeze(
       session.exercises.map((prescription) =>
         Object.freeze({
@@ -46,7 +49,7 @@ function projectPublicTrainingSession(
           prescribedSets: prescription.sets,
           prescribedText: prescription.prescribedText,
           restSeconds: prescription.restSeconds,
-          priority: prescription.priority,
+          priorityLevel: resolveTrainingExercisePriorityLevel(prescription.priority),
           notes: prescription.notes,
           dose: prescription.dose,
           measurementType: prescription.exercise.measurementType,

@@ -8,7 +8,7 @@
   },
   "packageManager": "pnpm@11.25.0",
   "scripts": {
-    "dev": "pnpm db:generate && next dev",
+    "dev": "pnpm db:generate && pnpm workspace:ensure && next dev",
     "build": "pnpm db:generate && next build",
     "start": "next start",
     "format": "prettier --write src scripts tests .github prisma/*.ts *.json *.ts *.mjs *.yaml",
@@ -28,12 +28,13 @@
     "data:check": "node scripts/validate-data.mjs",
     "data:import": "pnpm db:generate && node --conditions=react-server --import tsx scripts/import-versioned-plan-definitions.ts",
     "data:check:persisted": "pnpm db:generate && node --conditions=react-server --import tsx scripts/validate-persisted-data.ts",
+    "workspace:ensure": "node --conditions=react-server --import tsx scripts/ensure-fixed-workspace.ts",
     "db:recovery:check": "pnpm db:generate && node --conditions=react-server --import tsx scripts/validate-backup-and-restore.ts",
     "structure:check": "node scripts/validate-component-structure.mjs && node scripts/validate-layer-boundaries.mjs",
     "ci": "pnpm db:validate && pnpm format:check && pnpm lint && pnpm structure:check && pnpm typecheck && pnpm test:coverage && pnpm test:integration && pnpm test:ci-scripts && pnpm data:check && pnpm build && pnpm audit --audit-level=moderate"
   },
   "dependencies": {
-    "@fradelli/ui": "0.1.0",
+    "@fradelli/ui": "0.2.0",
     "@prisma/adapter-pg": "7.10.0",
     "@prisma/client": "7.10.0",
     "next": "16.3.5",

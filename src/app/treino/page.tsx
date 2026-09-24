@@ -1,12 +1,19 @@
-import { Suspense } from "react";
 import { redirect } from "next/navigation";
 
 import { resolveTrainingDayDate } from "@/features/training/application/resolve-training-day-date";
 import { queryFixedWorkspaceTrainingDayPage } from "@/features/training/data/training-queries";
 import { InvalidTrainingDate } from "@/features/training/ui/components/training-day-page/components/invalid-training-date/invalid-training-date";
 import { TrainingDayContent } from "@/features/training/ui/components/training-day-page/components/training-day-content/training-day-content";
-import { TrainingDayLoading } from "@/features/training/ui/components/training-day-page/components/training-day-loading/training-day-loading";
+import { TrainingAgendaBadges } from "@/features/training/ui/components/training-day-page/components/training-agenda-badges/training-agenda-badges";
+import { TrainingAgendaDrawer } from "@/features/training/ui/components/training-day-page/components/training-agenda-drawer/training-agenda-drawer";
 import { TrainingDayPage } from "@/features/training/ui/components/training-day-page/training-day-page";
+import {
+  addTrainingActivityAction,
+  controlTrainingActivityAction,
+  deleteTrainingActivityAction,
+  saveTrainingActivityExerciseAction,
+  updateTrainingActivityAction,
+} from "./training-actions";
 
 type TrainingPageProps = Readonly<{
   searchParams: Promise<Readonly<{ date?: string | readonly string[] }>>;
@@ -21,7 +28,8 @@ export default async function TrainingPage({ searchParams }: TrainingPageProps) 
       <TrainingDayPage dateResolution={dateResolution}>
         <InvalidTrainingDate
           todayDate={dateResolution.todayDate}
-          repeated={dateResolution.reason === "repeated_date"}
+          reason={dateResolution.reason}
+          maximumFutureDate={dateResolution.maximumFutureDate}
         />
       </TrainingDayPage>
     );
@@ -31,13 +39,23 @@ export default async function TrainingPage({ searchParams }: TrainingPageProps) 
     redirect(`/treino?date=${encodeURIComponent(dateResolution.civilDate)}`);
   }
 
-  const trainingDayResult = queryFixedWorkspaceTrainingDayPage(dateResolution.civilDate);
+  const trainingDayResult = await queryFixedWorkspaceTrainingDayPage(dateResolution.civilDate);
+  const actions = {
+    addActivity: addTrainingActivityAction,
+    updateActivity: updateTrainingActivityAction,
+    controlActivity: controlTrainingActivityAction,
+    saveActivityExercise: saveTrainingActivityExerciseAction,
+    deleteActivity: deleteTrainingActivityAction,
+  };
+  const day = trainingDayResult.status === "ready" ? trainingDayResult.day : null;
 
   return (
-    <TrainingDayPage dateResolution={dateResolution}>
-      <Suspense key={dateResolution.civilDate} fallback={<TrainingDayLoading />}>
-        <TrainingDayContent result={trainingDayResult} />
-      </Suspense>
+    <TrainingDayPage
+      dateResolution={dateResolution}
+      controls={day ? <TrainingAgendaDrawer day={day} actions={actions} /> : null}
+      summary={day ? <TrainingAgendaBadges day={day} /> : null}
+    >
+      <TrainingDayContent result={Promise.resolve(trainingDayResult)} actions={actions} />
     </TrainingDayPage>
   );
 }

@@ -1,10 +1,17 @@
 import type {
   CivilDate,
   NormalizedTrainingDose,
+  TrainingExerciseRole,
   TrainingExecutionStatus,
   TrainingItemStatus,
   TrainingMeasurementType,
+  TrainingActivityEnergy,
+  TrainingActivityIntensity,
+  TrainingActivityStatus,
+  TrainingActivityType,
+  TrainingActivitySource,
 } from "../domain/training-day.types";
+import type { TrainingExercisePriorityLevel } from "../domain/training-exercise-priority";
 
 export type PublicTrainingExerciseDto = Readonly<{
   prescriptionId: string;
@@ -14,7 +21,7 @@ export type PublicTrainingExerciseDto = Readonly<{
   prescribedSets: number;
   prescribedText: string;
   restSeconds: number | null;
-  priority: string | null;
+  priorityLevel: TrainingExercisePriorityLevel | null;
   notes: string | null;
   dose: NormalizedTrainingDose;
   measurementType: TrainingMeasurementType;
@@ -32,6 +39,8 @@ export type PublicTrainingSessionDto = Readonly<{
   shortDurationMinutes: number | null;
   intensity: string | null;
   notes: string | null;
+  assignmentRole: TrainingExerciseRole;
+  compatiblePreparationSessionIds: readonly string[];
   exercises: readonly PublicTrainingExerciseDto[];
 }>;
 
@@ -82,33 +91,78 @@ export type TrainingExecutionDto = Readonly<{
   id: string;
   status: TrainingExecutionStatus;
   comment: string | null;
+  intensity: TrainingActivityIntensity | null;
+  energy: TrainingActivityEnergy | null;
+  actualStartTime: string | null;
+  actualEndTime: string | null;
   startedAt: string | null;
   completedAt: string | null;
   revision: number;
 }>;
 
-type AssignedTrainingDayBaseDto = Readonly<{
-  civilDate: CivilDate;
-  assignmentId: string;
-  assignmentRevision: number;
-  planId: string;
-  planVersion: string;
-  execution: TrainingExecutionDto | null;
+export type TrainingActivityDto = Readonly<{
+  id: string;
+  type: TrainingActivityType;
+  source: TrainingActivitySource;
+  role: "primary" | "preparation";
+  name: string;
+  sport: string | null;
+  status: TrainingActivityStatus;
+  plannedStartTime: string | null;
+  plannedEndTime: string | null;
+  plannedDurationMinutes: number | null;
+  actualStartTime: string | null;
+  actualEndTime: string | null;
+  actualDurationMinutes: number | null;
+  startedAt: string | null;
+  completedAt: string | null;
+  accumulatedActiveSeconds: number;
+  currentIntervalStartedAt: string | null;
+  intervals: readonly Readonly<{ startedAt: string; endedAt: string | null }>[];
+  intensity: TrainingActivityIntensity | null;
+  energy: TrainingActivityEnergy | null;
+  comment: string | null;
+  revision: number;
+  structured: Readonly<{
+    main: TrainingDaySessionDto;
+    preparation: TrainingDaySessionDto | null;
+  }> | null;
+  preparations: readonly TrainingActivityDto[];
 }>;
 
+type TrainingDayActivitiesDto = Readonly<{
+  activities: readonly TrainingActivityDto[];
+}>;
+
+type AssignedTrainingDayBaseDto = TrainingDayActivitiesDto &
+  Readonly<{
+    civilDate: CivilDate;
+    assignmentId: string;
+    assignmentRevision: number;
+    planId: string;
+    planVersion: string;
+    availablePlan: AvailablePublicTrainingPlanDto;
+    execution: TrainingExecutionDto | null;
+    plannedStartTime: string | null;
+    plannedEndTime: string | null;
+    plannedDurationMinutes: number | null;
+  }>;
+
 export type TrainingDayDto =
-  | Readonly<{
-      state: "unavailable";
-      civilDate: CivilDate;
-      reason: "active_plan_not_found";
-    }>
-  | Readonly<{
-      state: "unassigned";
-      civilDate: CivilDate;
-      assignmentId: string | null;
-      assignmentRevision: number | null;
-      availablePlan: AvailablePublicTrainingPlanDto;
-    }>
+  | (TrainingDayActivitiesDto &
+      Readonly<{
+        state: "unavailable";
+        civilDate: CivilDate;
+        reason: "active_plan_not_found";
+      }>)
+  | (TrainingDayActivitiesDto &
+      Readonly<{
+        state: "unassigned";
+        civilDate: CivilDate;
+        assignmentId: string | null;
+        assignmentRevision: number | null;
+        availablePlan: AvailablePublicTrainingPlanDto;
+      }>)
   | (AssignedTrainingDayBaseDto &
       Readonly<{
         state: "training";
@@ -120,14 +174,16 @@ export type TrainingDayDto =
         state: "mobility";
         mobility: TrainingDaySessionDto;
       }>)
-  | Readonly<{
-      state: "rest";
-      civilDate: CivilDate;
-      assignmentId: string;
-      assignmentRevision: number;
-      reason: string | null;
-      execution: TrainingExecutionDto | null;
-    }>;
+  | (TrainingDayActivitiesDto &
+      Readonly<{
+        state: "rest";
+        civilDate: CivilDate;
+        assignmentId: string;
+        assignmentRevision: number;
+        availablePlan: AvailablePublicTrainingPlanDto | null;
+        reason: string | null;
+        execution: TrainingExecutionDto | null;
+      }>);
 
 export type TrainingDayPageQueryResult =
   | Readonly<{ status: "ready"; day: TrainingDayDto }>

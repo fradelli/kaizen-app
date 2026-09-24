@@ -5,15 +5,22 @@ import { TrainingDayFeedback } from "../training-day-feedback/training-day-feedb
 import { createTrainingDateHref } from "../training-date-navigation/training-date-navigation.utils";
 import type { InvalidTrainingDateProps } from "./invalid-training-date.types";
 
-export function InvalidTrainingDate({ todayDate, repeated }: InvalidTrainingDateProps) {
+export function InvalidTrainingDate({
+  todayDate,
+  reason,
+  maximumFutureDate,
+}: InvalidTrainingDateProps) {
+  const isFutureDateOutOfRange = reason === "future_date_out_of_range";
   return (
     <TrainingDayFeedback
-      variant="destructive"
-      title="Data inválida"
+      variant={isFutureDateOutOfRange ? "warning" : "destructive"}
+      title={isFutureDateOutOfRange ? "Programação ainda indisponível" : "Data inválida"}
       description={
-        repeated
+        reason === "repeated_date"
           ? "Informe somente uma data na URL para abrir o treino do dia."
-          : "Use uma data existente no formato ano-mês-dia, por exemplo 2026-09-16."
+          : isFutureDateOutOfRange
+            ? `Você pode consultar e preparar treinos somente até ${maximumFutureDate ?? "quatro dias à frente"}.`
+            : "Use uma data existente no formato ano-mês-dia, por exemplo 2026-09-16."
       }
       action={
         <Button asChild>

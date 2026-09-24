@@ -6,14 +6,17 @@ export type TrainingDayDateResolution =
       civilDate: CivilDate;
       previousDate: CivilDate;
       nextDate: CivilDate;
+      canNavigateNext: boolean;
+      maximumFutureDate: CivilDate;
       todayDate: CivilDate;
       isToday: boolean;
       requiresCanonicalRedirect: boolean;
     }>
   | Readonly<{
       status: "invalid";
-      reason: "invalid_date" | "repeated_date";
+      reason: "invalid_date" | "repeated_date" | "future_date_out_of_range";
       todayDate: CivilDate;
+      maximumFutureDate?: CivilDate;
     }>;
 
 export type ResolveTrainingDayDateInput = Readonly<{

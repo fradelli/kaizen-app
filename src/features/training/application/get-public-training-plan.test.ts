@@ -40,7 +40,8 @@ describe("getPublicTrainingPlan", () => {
 function createRepository(activePlan: TrainingPlanSnapshot | null): TrainingRepository {
   return {
     findActiveTrainingPlan: async () => activePlan,
-    findTrainingDay: async () => ({ activePlan, assignment: null }),
+    ensureScheduledTrainingDay: async () => {},
+    findTrainingDay: async () => ({ activePlan, assignment: null, activities: [] }),
   };
 }
 
@@ -59,6 +60,8 @@ export function trainingPlanFixture(): TrainingPlanSnapshot {
         shortDurationMinutes: null,
         intensity: "moderate",
         notes: null,
+        assignmentRole: "main",
+        compatiblePreparationSessionIds: [],
         exercises: [
           {
             prescriptionId: "prescription-squat",

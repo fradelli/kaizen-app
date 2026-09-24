@@ -4,7 +4,7 @@
   "title": "Metadados revisados de execução de treino",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "last_updated", "reviewed_plan_paths", "exercises"],
+  "required": ["schema_version", "last_updated", "reviewed_plan_paths", "sessions", "exercises"],
   "properties": {
     "schema_version": {
       "const": "1.0.0"
@@ -22,6 +22,13 @@
         "pattern": "^data/plans/[^/]+\\.json$"
       }
     },
+    "sessions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/session"
+      }
+    },
     "exercises": {
       "type": "array",
       "minItems": 1,
@@ -31,6 +38,38 @@
     }
   },
   "$defs": {
+    "session": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "plan_id",
+        "plan_version",
+        "session_id",
+        "assignment_role",
+        "compatible_preparation_session_ids"
+      ],
+      "properties": {
+        "plan_id": { "type": "string", "minLength": 1 },
+        "plan_version": { "type": "string", "minLength": 1 },
+        "session_id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+        "assignment_role": { "enum": ["main", "preparation", "mobility"] },
+        "compatible_preparation_session_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[a-z0-9_]+$" }
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "assignment_role": { "const": "main" } } },
+          "else": {
+            "properties": {
+              "compatible_preparation_session_ids": { "type": "array", "maxItems": 0 }
+            }
+          }
+        }
+      ]
+    },
     "prescription": {
       "type": "object",
       "additionalProperties": false,

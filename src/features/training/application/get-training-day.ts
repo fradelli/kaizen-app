@@ -1,7 +1,9 @@
 import type {
   TrainingAssignmentSnapshot,
+  TrainingActivitySnapshot,
   TrainingExerciseExecutionSnapshot,
   TrainingExerciseRole,
+  TrainingItemStatus,
   TrainingPlanSnapshot,
   TrainingSessionSnapshot,
 } from "../domain/training-day.types";
@@ -12,8 +14,10 @@ import type {
   TrainingDayExerciseDto,
   TrainingDaySessionDto,
   TrainingExecutionDto,
+  TrainingActivityDto,
   TrainingSetDto,
 } from "./training-dto";
+import { resolveTrainingExercisePriorityLevel } from "../domain/training-exercise-priority";
 import type { GetTrainingDayDependencies, GetTrainingDayInput } from "./get-training-day.types";
 import { projectAvailablePublicTrainingPlan } from "./get-public-training-plan";
 
@@ -23,12 +27,18 @@ export async function getTrainingDay(
 ): Promise<TrainingDayDto> {
   const civilDate = parseCivilDate(input.civilDate);
   const { workspaceId } = await dependencies.resolveWorkspace();
+  await dependencies.repository.ensureScheduledTrainingDay({
+    workspaceId,
+    civilDate,
+    environment: dependencies.environment,
+  });
   const snapshot = await dependencies.repository.findTrainingDay({
     workspaceId,
     civilDate,
     environment: dependencies.environment,
   });
   const assignment = snapshot.assignment;
+  const activities = Object.freeze(snapshot.activities.map(projectTrainingActivity));
 
   if (!assignment || assignment.kind === "unassigned") {
     if (assignment) {
@@ -40,6 +50,7 @@ export async function getTrainingDay(
         state: "unavailable",
         civilDate,
         reason: "active_plan_not_found",
+        activities,
       });
     }
 
@@ -49,6 +60,7 @@ export async function getTrainingDay(
       assignmentId: assignment?.id ?? null,
       assignmentRevision: assignment?.revision ?? null,
       availablePlan: projectAvailablePublicTrainingPlan(snapshot.activePlan),
+      activities,
     });
   }
 
@@ -60,8 +72,12 @@ export async function getTrainingDay(
       civilDate,
       assignmentId: assignment.id,
       assignmentRevision: assignment.revision,
+      availablePlan: snapshot.activePlan
+        ? projectAvailablePublicTrainingPlan(snapshot.activePlan)
+        : null,
       reason: assignment.reason,
       execution: projectTrainingExecution(assignment),
+      activities,
     });
   }
 
@@ -80,8 +96,11 @@ export async function getTrainingDay(
       assignmentRevision: assignment.revision,
       planId: plan.planId,
       planVersion: plan.version,
+      availablePlan: projectAvailablePublicTrainingPlan(plan),
       execution,
+      ...projectAssignmentSchedule(assignment),
       mobility: projectTrainingDaySession(mainSession, "mobility", assignment),
+      activities,
     });
   }
 
@@ -106,10 +125,105 @@ export async function getTrainingDay(
     assignmentRevision: assignment.revision,
     planId: plan.planId,
     planVersion: plan.version,
+    availablePlan: projectAvailablePublicTrainingPlan(plan),
     execution,
+    ...projectAssignmentSchedule(assignment),
     preparation,
     main: projectTrainingDaySession(mainSession, "main", assignment),
+    activities,
   });
+}
+
+function projectTrainingActivity(activity: TrainingActivitySnapshot): TrainingActivityDto {
+  const currentInterval = activity.intervals.find((interval) => interval.endedAt === null) ?? null;
+  const accumulatedActiveSeconds = activity.intervals.reduce((total, interval) => {
+    if (!interval.endedAt) return total;
+    return (
+      total + Math.max(0, Date.parse(interval.endedAt) - Date.parse(interval.startedAt)) / 1000
+    );
+  }, 0);
+  return Object.freeze({
+    id: activity.id,
+    type: activity.type,
+    source: activity.source,
+    role: activity.role,
+    name: activity.name,
+    sport: activity.sport,
+    status: activity.status,
+    plannedStartTime:
+      activity.plannedStartMinute === null ? null : formatMinuteOfDay(activity.plannedStartMinute),
+    plannedEndTime:
+      activity.plannedEndMinute === null ? null : formatMinuteOfDay(activity.plannedEndMinute),
+    plannedDurationMinutes:
+      activity.plannedStartMinute === null || activity.plannedEndMinute === null
+        ? null
+        : activity.plannedEndMinute - activity.plannedStartMinute,
+    actualStartTime:
+      activity.actualStartMinute === null ? null : formatMinuteOfDay(activity.actualStartMinute),
+    actualEndTime:
+      activity.actualEndMinute === null ? null : formatMinuteOfDay(activity.actualEndMinute),
+    actualDurationMinutes:
+      activity.actualStartMinute === null || activity.actualEndMinute === null
+        ? null
+        : activity.actualEndMinute - activity.actualStartMinute,
+    startedAt: activity.startedAt,
+    completedAt: activity.completedAt,
+    accumulatedActiveSeconds: Math.floor(accumulatedActiveSeconds),
+    currentIntervalStartedAt: currentInterval?.startedAt ?? null,
+    intervals: activity.intervals,
+    intensity: activity.intensity,
+    energy: activity.energy,
+    comment: activity.comment,
+    revision: activity.revision,
+    structured: activity.session
+      ? Object.freeze({
+          main: projectTrainingActivitySession(activity.session, "main", activity),
+          preparation: activity.preparationSession
+            ? projectTrainingActivitySession(activity.preparationSession, "preparation", activity)
+            : null,
+        })
+      : null,
+    preparations: Object.freeze(activity.preparations.map(projectTrainingActivity)),
+  });
+}
+
+function projectTrainingActivitySession(
+  session: TrainingSessionSnapshot,
+  role: TrainingExerciseRole,
+  activity: TrainingActivitySnapshot,
+): TrainingDaySessionDto {
+  const persistedByPrescription = new Map(
+    activity.exerciseExecutions
+      .filter(
+        (execution) =>
+          execution.sessionDatabaseId === session.databaseId && execution.role === role,
+      )
+      .map((execution) => [execution.prescriptionId, execution]),
+  );
+  return Object.freeze({
+    role,
+    sessionId: session.sessionId,
+    name: session.name,
+    targetDurationMinutes: session.targetDurationMinutes,
+    shortDurationMinutes: session.shortDurationMinutes,
+    intensity: session.intensity,
+    notes: session.notes,
+    exercises: Object.freeze(
+      session.exercises.map((prescription) =>
+        projectTrainingDayExercise(
+          prescription,
+          role,
+          persistedByPrescription.get(prescription.prescriptionId),
+        ),
+      ),
+    ),
+  });
+}
+
+function formatMinuteOfDay(value: number): string {
+  const hours = Math.floor(value / 60);
+  const minutes = value % 60;
+  return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
 }
 
 function projectTrainingDaySession(
@@ -190,7 +304,7 @@ function projectTrainingDayExercise(
     prescribedSets: prescription.sets,
     prescribedText: prescription.prescribedText,
     restSeconds: prescription.restSeconds,
-    priority: prescription.priority,
+    priorityLevel: resolveTrainingExercisePriorityLevel(prescription.priority),
     notes: prescription.notes,
     dose: prescription.dose,
     measurementType: prescription.exercise.measurementType,
@@ -200,11 +314,23 @@ function projectTrainingDayExercise(
     cues: prescription.exercise.cues,
     risks: prescription.exercise.risks,
     executionId: persisted?.id ?? null,
-    status: persisted?.itemStatus ?? "pending",
+    status: projectTrainingExerciseStatus(role, sets, persisted?.itemStatus),
     comment: persisted?.comment ?? null,
     revision: persisted?.revision ?? null,
     sets: Object.freeze(sets),
   });
+}
+
+function projectTrainingExerciseStatus(
+  role: TrainingExerciseRole,
+  sets: readonly TrainingSetDto[],
+  persistedStatus: TrainingItemStatus | undefined,
+): TrainingItemStatus {
+  if (role !== "main") return persistedStatus ?? "pending";
+  if (!sets.length) return "pending";
+  if (sets.some((set) => set.status === "pending")) return "pending";
+  if (sets.every((set) => set.status === "skipped")) return "skipped";
+  return "completed";
 }
 
 function projectTrainingSet(
@@ -233,11 +359,34 @@ function projectTrainingExecution(
         id: execution.id,
         status: execution.status,
         comment: execution.comment,
+        intensity: execution.intensity,
+        energy: execution.energy,
+        actualStartTime:
+          execution.actualStartMinute === null
+            ? null
+            : formatMinuteOfDay(execution.actualStartMinute),
+        actualEndTime:
+          execution.actualEndMinute === null ? null : formatMinuteOfDay(execution.actualEndMinute),
         startedAt: execution.startedAt,
         completedAt: execution.completedAt,
         revision: execution.revision,
       })
     : null;
+}
+
+function projectAssignmentSchedule(assignment: TrainingAssignmentSnapshot) {
+  return {
+    plannedStartTime:
+      assignment.plannedStartMinute === null
+        ? null
+        : formatMinuteOfDay(assignment.plannedStartMinute),
+    plannedEndTime:
+      assignment.plannedEndMinute === null ? null : formatMinuteOfDay(assignment.plannedEndMinute),
+    plannedDurationMinutes:
+      assignment.plannedStartMinute === null || assignment.plannedEndMinute === null
+        ? null
+        : assignment.plannedEndMinute - assignment.plannedStartMinute,
+  } as const;
 }
 
 function requireAssignedPlan(assignment: TrainingAssignmentSnapshot): TrainingPlanSnapshot {

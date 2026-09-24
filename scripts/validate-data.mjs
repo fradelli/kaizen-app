@@ -7,6 +7,10 @@ import addFormats from "ajv-formats";
 
 const schemaAssignments = [
   {
+    matches: (path) => path === "data/schedule.json",
+    schema: "https://example.local/schemas/schedule.schema.json",
+  },
+  {
     matches: (path) => path === "data/training-execution-metadata.json",
     schema: "https://example.local/schemas/training-execution-metadata.schema.json",
   },
@@ -296,6 +300,32 @@ function validateTrainingData(documents) {
         if (!exerciseIds.has(exercise.exercise_id)) {
           errors.push(
             `${path}/sessions/${sessionId}/exercises/${index}: exercício inexistente: ${exercise.exercise_id}.`,
+          );
+        }
+      }
+    }
+  }
+
+  const schedule = documents.get("data/schedule.json");
+  const activeTrainingPlanPath = documents.get("data/active.json")?.active_plan_path;
+  const activeTrainingPlan = planEntries.find(([path]) => path === activeTrainingPlanPath);
+  const genericSessions = new Set([
+    "footvolley",
+    "footvolley_only",
+    "game",
+    "rest",
+    "rest_or_light_mobility",
+  ]);
+  if (schedule?.models && activeTrainingPlan) {
+    const [path, plan] = activeTrainingPlan;
+    for (const [modelName, model] of Object.entries(schedule.models)) {
+      for (const [index, entry] of (model ?? []).entries()) {
+        if (
+          !genericSessions.has(entry.session) &&
+          !Object.hasOwn(plan.sessions ?? {}, entry.session)
+        ) {
+          errors.push(
+            `data/schedule.json/models/${modelName}/${index}: sessão inexistente em ${path}: ${entry.session}.`,
           );
         }
       }

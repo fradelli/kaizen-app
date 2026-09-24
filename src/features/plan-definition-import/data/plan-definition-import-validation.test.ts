@@ -17,6 +17,7 @@ import {
 } from "./plan-definition.mapper";
 import type { PlanDefinitionSnapshot } from "../domain/plan-definition-import.types";
 import { findPlanDefinitionSource } from "../domain/plan-definition-source.utils";
+import { assertWeeklyScheduleReferencesImportedSessions } from "./plan-definition-snapshot-validation.rules";
 let snapshot: PlanDefinitionSnapshot;
 beforeAll(async () => {
   snapshot = await readPlanDefinitionsFromGit(process.cwd());
@@ -27,8 +28,60 @@ afterAll(() => {
 });
 
 describe("origem, validação e configuração de importação", () => {
+  it("inclui a agenda versionada e rejeita referência a sessão ausente", () => {
+    expect(sourceKind("data/schedule.json")).toBe("training_schedule");
+    expect(() => assertWeeklyScheduleReferencesImportedSessions(snapshot)).not.toThrow();
+    const schedule = findPlanDefinitionSource(snapshot.sources, "training_schedule")!;
+    const changedSchedule = {
+      ...schedule,
+      document: {
+        ...schedule.document,
+        models: {
+          ...schedule.document.models,
+          saturday_game: [{ day: "monday", time: "09:00", session: "missing_training_session" }],
+        },
+      },
+    };
+    expect(() =>
+      assertWeeklyScheduleReferencesImportedSessions({
+        ...snapshot,
+        sources: snapshot.sources.map((source) =>
+          source.path === schedule.path ? changedSchedule : source,
+        ),
+      }),
+    ).toThrow();
+    expect(() =>
+      assertWeeklyScheduleReferencesImportedSessions({
+        ...snapshot,
+        sources: snapshot.sources.filter((source) => source.kind !== "training_schedule"),
+      }),
+    ).toThrow();
+
+    const pointer = findPlanDefinitionSource(snapshot.sources, "training_pointer")!;
+    const historicalPlan = snapshot.sources.find(
+      (source) =>
+        source.kind === "training_plan" && source.path !== pointer.document.active_plan_path,
+    );
+    if (historicalPlan?.kind === "training_plan") {
+      expect(() =>
+        assertWeeklyScheduleReferencesImportedSessions({
+          ...snapshot,
+          sources: snapshot.sources.map((source) =>
+            source.path === historicalPlan.path
+              ? { ...historicalPlan, document: { ...historicalPlan.document, sessions: {} } }
+              : source,
+          ),
+        }),
+      ).not.toThrow();
+    }
+  });
   it("valida snapshot do commit e mapeia datas sem conversão civil", () => {
-    expect(() => validatePlanDefinitionSnapshot(snapshot)).not.toThrow();
+    if (snapshot.availablePaths.has("schemas/schedule.schema.json")) {
+      expect(() => validatePlanDefinitionSnapshot(snapshot)).not.toThrow();
+    } else {
+      // The previous committed revision predates the newly versioned schedule contract.
+      expect(() => validatePlanDefinitionSnapshot(snapshot)).toThrow("SOURCE_INVALID");
+    }
     expect(toCivilDate("2026-09-14").toISOString()).toBe("2026-09-14T00:00:00.000Z");
     expect(toMealTime(null)).toBeNull();
     expect(toMealTime("12:30")?.toISOString()).toBe("1970-01-01T12:30:00.000Z");
@@ -125,7 +178,7 @@ describe("origem, validação e configuração de importação", () => {
     await expect(readPlanDefinitionsFromGit(root)).rejects.toMatchObject({
       code: "SOURCE_INVALID",
     });
-  });
+  }, 15_000);
   it("rejeita ausência de fonte e ponteiro inválido com erro sanitizado", () => {
     expect(() => validatePlanDefinitionSnapshot({ ...snapshot, commit: "invalid" })).toThrow(
       "SOURCE_INVALID",

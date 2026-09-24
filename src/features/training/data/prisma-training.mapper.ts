@@ -2,6 +2,7 @@ import type { Prisma } from "@/generated/prisma/client";
 import {
   parseDirectionValues,
   parseNormalizedTrainingDose,
+  parseStringArray,
   readNullableStringProperty,
   readStringArrayProperty,
   toCivilDateString,
@@ -42,6 +43,8 @@ export function mapPrismaTrainingAssignment(
     kind: row.kind,
     mainSessionDatabaseId: row.mainSessionId,
     preparationSessionDatabaseId: row.preparationSessionId,
+    plannedStartMinute: row.plannedStartMinute,
+    plannedEndMinute: row.plannedEndMinute,
     reason: row.reason,
     revision: row.revision,
     plan: row.plan ? mapPrismaTrainingPlan(row.plan) : null,
@@ -50,6 +53,10 @@ export function mapPrismaTrainingAssignment(
           id: execution.id,
           status: execution.status,
           comment: execution.comment,
+          intensity: execution.intensity,
+          energy: execution.energy,
+          actualStartMinute: execution.actualStartMinute,
+          actualEndMinute: execution.actualEndMinute,
           startedAt: toTimestamp(execution.startedAt),
           completedAt: toTimestamp(execution.completedAt),
           revision: execution.revision,
@@ -72,6 +79,11 @@ function mapPrismaTrainingSession(
     shortDurationMinutes: row.shortDurationMinutes,
     intensity: row.intensity,
     notes: row.notes,
+    assignmentRole: row.assignmentRole,
+    compatiblePreparationSessionIds: parseStringArray(
+      row.compatiblePreparationSessionIds,
+      "Lista de preparações compatíveis",
+    ),
     exercises: Object.freeze(
       [...row.trainingExerciseDefinition_session]
         .sort((left, right) => left.ordinal - right.ordinal)

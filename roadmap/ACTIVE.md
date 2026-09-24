@@ -1,12 +1,12 @@
 # Tarefa ativa
 
 - **Tarefa:** E06-T03 — Registrar preparação, séries e comentários
-- **Status:** READY
+- **Status:** IN_PROGRESS
 - **Branch prevista:** `codex/E06-T03-record-training-execution`
 - **Entrada principal:** `roadmap/epics/E06-training-execution/T03-record-training-execution.md`.
 - **Resultado anterior:** E06-T02 concluída localmente com página server-rendered e responsiva para todos os estados de leitura do treino.
 - **Objetivo:** permitir registrar preparação, execução por série, comentários e conclusão parcial sem alterar a prescrição.
 - **Bloqueio atual:** nenhum.
-- **Próxima ação:** detalhar escopo, contratos de mutação, segurança server-side, estados de formulário e testes da E06-T03 antes da implementação.
+- **Próxima ação:** validar visualmente e funcionalmente a tela local e incorporar eventuais ajustes; os gates automatizados passaram no snapshot commitado.
 
-Não iniciar a implementação antes de concluir esse planejamento detalhado.
+Não iniciar a E06-T04 antes da validação e conclusão da E06-T03.

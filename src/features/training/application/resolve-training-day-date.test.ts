@@ -11,6 +11,8 @@ describe("resolveTrainingDayDate", () => {
       civilDate: "2026-09-16",
       previousDate: "2026-09-15",
       nextDate: "2026-09-17",
+      canNavigateNext: true,
+      maximumFutureDate: "2026-09-20",
       todayDate: "2026-09-16",
       isToday: true,
       requiresCanonicalRedirect: true,
@@ -27,15 +29,33 @@ describe("resolveTrainingDayDate", () => {
   });
 
   it("crosses month, year and leap-day boundaries with civil arithmetic", () => {
-    expect(resolveTrainingDayDate({ rawDate: "2028-02-29", now: saoPauloMorning })).toMatchObject({
+    expect(
+      resolveTrainingDayDate({ rawDate: "2028-02-29", now: new Date("2028-02-28T12:00:00Z") }),
+    ).toMatchObject({
       status: "valid",
       previousDate: "2028-02-28",
       nextDate: "2028-03-01",
     });
-    expect(resolveTrainingDayDate({ rawDate: "2026-12-31", now: saoPauloMorning })).toMatchObject({
+    expect(
+      resolveTrainingDayDate({ rawDate: "2026-12-31", now: new Date("2026-12-30T12:00:00Z") }),
+    ).toMatchObject({
       status: "valid",
       previousDate: "2026-12-30",
       nextDate: "2027-01-01",
+    });
+  });
+
+  it("allows today plus four days and blocks later future dates", () => {
+    expect(resolveTrainingDayDate({ rawDate: "2026-09-20", now: saoPauloMorning })).toMatchObject({
+      status: "valid",
+      canNavigateNext: false,
+      maximumFutureDate: "2026-09-20",
+    });
+    expect(resolveTrainingDayDate({ rawDate: "2026-09-21", now: saoPauloMorning })).toEqual({
+      status: "invalid",
+      reason: "future_date_out_of_range",
+      todayDate: "2026-09-16",
+      maximumFutureDate: "2026-09-20",
     });
   });
 
