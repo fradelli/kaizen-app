@@ -78,9 +78,21 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E05-T07 | DONE      | [Aprimorar semântica e fronteiras do código](epics/E05-database-and-import/T07-refine-code-semantics.md)                  | E05-T04                               |
 | E06-T01 | DONE      | [Projetar treino e execução do dia](epics/E06-training-execution/T01-project-active-training-plan.md)                   | E05-T05                               |
 | E06-T02 | DONE      | [Criar página de treino do dia](epics/E06-training-execution/T02-create-daily-training-page.md)                           | E04-T04, E06-T01                      |
-| E06-T03 | IN_PROGRESS | [Registrar preparação, séries e comentários](epics/E06-training-execution/T03-record-training-execution.md)             | E06-T02                               |
-| E06-T04 | PLANNED   | [Exibir proveniência e histórico](epics/E06-training-execution/T04-show-training-provenance.md)                           | E06-T03                               |
+| E06-T03 | DONE      | [Registrar preparação, séries e comentários](epics/E06-training-execution/T03-record-training-execution.md)             | E06-T02                               |
+| E06-T04 | READY     | [Exibir proveniência e histórico](epics/E06-training-execution/T04-show-training-provenance.md)                           | E06-T03                               |
 | E06-T05 | PLANNED   | [Validar fluxo de treino](epics/E06-training-execution/T05-validate-training-flow.md)                                     | E06-T04                               |
+| E06-T06 | PLANNED   | [Prescrever carga alvo por exercício e por série](epics/E06-training-execution/T06-prescribe-target-load.md)              | E06-T03                               |
+| E06-T07 | PLANNED   | [Mostrar a última execução de cada série](epics/E06-training-execution/T07-show-previous-set-performance.md)              | E06-T03                               |
+| E06-T08 | PLANNED   | [Exigir medidas aplicáveis antes de avançar a série](epics/E06-training-execution/T08-require-applicable-fields-before-next-set.md) | E06-T03                    |
+| E06-T09 | PLANNED   | [Projetar a experiência do contador de descanso](epics/E06-training-execution/T09-design-rest-timer-experience.md)         | E06-T03                               |
+| E06-T10 | PLANNED   | [Implementar o contador de descanso aprovado](epics/E06-training-execution/T10-implement-rest-timer.md)                    | E06-T09                               |
+| E06-T11 | READY     | [Revisar o ciclo de vida do plano diário](epics/E06-training-execution/T11-review-daily-plan-lifecycle.md)                 | E06-T03                               |
+| E06-T12 | PLANNED   | [Refinar edição de atividades do dia](epics/E06-training-execution/T12-refine-daily-activity-editing.md)                   | E06-T11                               |
+| E06-T13 | PLANNED   | [Reconciliar atividades futuras ao ativar outro plano](epics/E06-training-execution/T13-reconcile-future-activities-on-plan-change.md) | E06-T11                  |
+| E06-T14 | PLANNED   | [Mover navegação principal para baixo no mobile](epics/E06-training-execution/T14-add-mobile-bottom-navigation.md)       | E04-T04                               |
+| E06-T15 | PLANNED   | [Generalizar a programação semanal de atividades](epics/E06-training-execution/T15-generalize-weekly-training-schedule.md) | E06-T11                              |
+| E06-T16 | PLANNED   | [Validar e importar a nova programação de treino](epics/E06-training-execution/T16-import-new-training-program.md)        | E06-T15, E06-T17                      |
+| E06-T17 | PLANNED   | [Preparar reinício controlado dos dados de treino](epics/E06-training-execution/T17-prepare-training-data-fresh-start.md) | E06-T11                               |
 | E07-T01 | PLANNED   | [Projetar dieta e execução do dia](epics/E07-nutrition-execution/T01-project-active-nutrition-plan.md)                    | E05-T05                               |
 | E07-T02 | PLANNED   | [Criar página de dieta do dia](epics/E07-nutrition-execution/T02-create-nutrition-page.md)                                | E04-T04, E07-T01                      |
 | E07-T03 | PLANNED   | [Registrar escolhas, cumprimento e comentários](epics/E07-nutrition-execution/T03-record-meal-execution.md)               | E07-T02                               |
