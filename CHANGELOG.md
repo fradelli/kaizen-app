@@ -2,6 +2,13 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-25 — roadmap de treino realinhado para a nova programação
+
+- Sincronizadas E06-T02 e E06-T03 com as PRs #45 e #48 integradas; a E06-T03 registra a regra final de rascunho local e persistência na conclusão.
+- Selecionada E06-T11 para rever a materialização do dia antes de modificar a agenda semanal.
+- Planejadas E06-T15 a E06-T17 para agenda genérica, reinício controlado dos dados após revisão do usuário e importação posterior do próximo plano com sessões reserva.
+- Exercícios combinados adiados porque o próximo plano não os exige; nenhuma limpeza, importação, implementação ou ativação foi feita nesta atualização.
+
 ## 2026-09-16 — página de treino do dia implementada
 
 - Substituído o placeholder por uma página server-rendered com data civil canônica, navegação anterior/Hoje/seguinte e estados explícitos de treino, mobilidade, descanso e dia não atribuído.

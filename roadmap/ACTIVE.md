@@ -1,12 +1,12 @@
-# Tarefa ativa
+# Tarefa selecionada
 
-- **Tarefa:** E06-T03 — Registrar preparação, séries e comentários
-- **Status:** IN_PROGRESS
-- **Branch prevista:** `codex/E06-T03-record-training-execution`
-- **Entrada principal:** `roadmap/epics/E06-training-execution/T03-record-training-execution.md`.
-- **Resultado anterior:** E06-T02 concluída localmente com página server-rendered e responsiva para todos os estados de leitura do treino.
-- **Objetivo:** permitir registrar preparação, execução por série, comentários e conclusão parcial sem alterar a prescrição.
-- **Bloqueio atual:** nenhum.
-- **Próxima ação:** validar visualmente e funcionalmente a tela local e incorporar eventuais ajustes; os gates automatizados passaram no snapshot commitado.
+- **Tarefa:** E06-T11 — Revisar o ciclo de vida do plano diário
+- **Status:** READY
+- **Branch prevista:** `codex/E06-T11-review-daily-plan-lifecycle`
+- **Entrada principal:** `roadmap/epics/E06-training-execution/T11-review-daily-plan-lifecycle.md`.
+- **Resultado anterior:** E06-T03 integrada em `developer` pela PR #48.
+- **Objetivo:** confirmar e decidir as regras de geração e persistência da data consultada antes de generalizar a nova semana.
+- **Bloqueio atual:** nenhum para a análise; decisões de produto exigirão aprovação antes de código.
+- **Próxima ação:** revisar o fluxo vigente no código integrado e apresentar as alternativas para dia parcial, navegação futura e preservação de exceções.
 
-Não iniciar a E06-T04 antes da validação e conclusão da E06-T03.
+Não iniciar a implementação da E06-T11 nem limpar o banco por esta atualização do roadmap.
