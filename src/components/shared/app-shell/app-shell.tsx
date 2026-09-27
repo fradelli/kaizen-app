@@ -14,9 +14,10 @@ export function AppShell({ children }: AppShellProps) {
           <p className={styles.brand} aria-label="Kaizen">
             <span lang="ja">改善</span>
           </p>
-          <AppShellNavigation />
         </div>
       </header>
+
+      <AppShellNavigation />
 
       <main id="conteudo-principal" className={styles.content} tabIndex={-1}>
         {children}
