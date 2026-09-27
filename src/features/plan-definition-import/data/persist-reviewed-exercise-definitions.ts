@@ -36,7 +36,7 @@ export async function persistReviewedExerciseDefinitions(
       (await tx.exerciseDefinition.create({
         data: {
           ...identity,
-          namePt: definition.name_pt,
+          namePt: definition.name_en ?? definition.name_pt,
           definition: toPrismaJson(definition),
           measurementType: entry.measurement_type,
           loadApplicable: entry.load_applicable,

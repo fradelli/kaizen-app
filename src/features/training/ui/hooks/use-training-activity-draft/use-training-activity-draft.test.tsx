@@ -36,13 +36,48 @@ const activity: TrainingActivityDto = {
   preparations: [],
 };
 
-beforeEach(() => window.localStorage.clear());
+beforeEach(() => {
+  vi.setSystemTime(new Date("2026-09-17T15:00:00Z"));
+  window.localStorage.clear();
+});
 afterEach(() => {
   cleanup();
   vi.restoreAllMocks();
+  vi.useRealTimers();
 });
 
 describe("useTrainingActivityDraft", () => {
+  it("starts without modifying a running draft outside the editable window", async () => {
+    const oldDate = "2026-09-15";
+    const oldActivityId = "22222222-2222-4222-8222-222222222222";
+    const oldKey = trainingActivityDraftKey(oldDate, oldActivityId);
+    const storedDraft = JSON.stringify({
+      version: 1,
+      activityId: oldActivityId,
+      civilDate: oldDate,
+      expectedRevision: 0,
+      status: "in_progress",
+      startedAt: "2026-09-15T12:00:00.000Z",
+      intervals: [{ startedAt: "2026-09-15T12:00:00.000Z", endedAt: null }],
+      exercises: {},
+    });
+    window.localStorage.setItem(oldKey, storedDraft);
+    const confirmation = vi.spyOn(window, "confirm");
+    const current = renderHook(() => useTrainingActivityDraft({ activity, civilDate }));
+    await waitFor(() => expect(current.result.current.ready).toBe(true));
+    act(() => expect(current.result.current.start()).toBe(true));
+    expect(window.localStorage.getItem(oldKey)).toBe(storedDraft);
+    expect(confirmation).not.toHaveBeenCalled();
+  });
+
+  it("does not let a malformed unrelated draft prevent starting", async () => {
+    const malformedKey = trainingActivityDraftKey(civilDate, "unrelated");
+    window.localStorage.setItem(malformedKey, "not-json");
+    const current = renderHook(() => useTrainingActivityDraft({ activity, civilDate }));
+    await waitFor(() => expect(current.result.current.ready).toBe(true));
+    act(() => expect(current.result.current.start()).toBe(true));
+    expect(window.localStorage.getItem(malformedKey)).toBe("not-json");
+  });
   it("rejects unrelated or malformed local data", () => {
     expect(isTrainingActivityDraft(null, activity.id, civilDate)).toBe(false);
     expect(

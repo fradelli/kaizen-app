@@ -50,3 +50,8 @@ Hoje os acessos principais ficam no topo. A mudança visual é transversal ao ap
 ## Resultado
 
 Ainda não iniciada.
+
+Revisão em 26/09: proposta de navegação inferior somente com ícones no mobile,
+mantendo nomes acessíveis e o header no desktop. Ainda não foi bem decidida:
+ícones, indicação da rota ativa, teclado virtual, safe area e breakpoint
+exigem planejamento e aprovação específicos. Não implementar nesta rodada.

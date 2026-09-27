@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { isTrainingDateEditable } from "@/features/training/domain/training-edit-window";
 
 import type {
   TrainingActivityExecutionDraft,
@@ -72,14 +73,25 @@ export function useTrainingActivityDraft({ activity, civilDate }: UseTrainingAct
         if (!otherKey?.startsWith("kaizen:training-draft:v1:") || otherKey === key) continue;
         const raw = window.localStorage.getItem(otherKey);
         if (!raw) continue;
-        const other: unknown = JSON.parse(raw);
+        let other: unknown;
+        try {
+          other = JSON.parse(raw);
+        } catch {
+          continue;
+        }
         if (
           !other ||
           typeof other !== "object" ||
-          (other as TrainingActivityExecutionDraft).status !== "in_progress"
+          !("activityId" in other) ||
+          typeof other.activityId !== "string" ||
+          !("civilDate" in other) ||
+          typeof other.civilDate !== "string" ||
+          !isTrainingActivityDraft(other, other.activityId, other.civilDate) ||
+          other.status !== "in_progress" ||
+          !isTrainingDateEditable(other.civilDate)
         )
           continue;
-        const running = other as TrainingActivityExecutionDraft;
+        const running = other;
         if (!window.confirm("Há outra atividade em andamento. Pausá-la e iniciar esta?"))
           return false;
         const now = new Date().toISOString();
@@ -108,7 +120,7 @@ export function useTrainingActivityDraft({ activity, civilDate }: UseTrainingAct
     ready,
     storageError,
     start() {
-      if (!ready) return false;
+      if (!ready || !isTrainingDateEditable(civilDate)) return false;
       if (!pauseOtherActivity()) return false;
       const next =
         draft ?? startTrainingActivityDraft(activity, civilDate, new Date().toISOString());
@@ -122,6 +134,7 @@ export function useTrainingActivityDraft({ activity, civilDate }: UseTrainingAct
       return true;
     },
     pause() {
+      if (!isTrainingDateEditable(civilDate)) return;
       setDraft((current) =>
         current && current.status === "in_progress"
           ? {
@@ -137,6 +150,7 @@ export function useTrainingActivityDraft({ activity, civilDate }: UseTrainingAct
       );
     },
     resume() {
+      if (!isTrainingDateEditable(civilDate)) return;
       if (!pauseOtherActivity()) return;
       setDraft((current) =>
         current && current.status === "paused"
@@ -152,6 +166,7 @@ export function useTrainingActivityDraft({ activity, civilDate }: UseTrainingAct
       );
     },
     updateExercise(key: string, exercise: TrainingExerciseExecutionDraft) {
+      if (!isTrainingDateEditable(civilDate)) return;
       setDraft((current) =>
         current
           ? {

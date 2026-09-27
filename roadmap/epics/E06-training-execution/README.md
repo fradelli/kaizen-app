@@ -26,8 +26,10 @@ Treino, preparação, mobilidade ou descanso do dia consultáveis e registrávei
 | E06-T16 | E06-T15         | Novo plano e aquecimentos validados      |
 | E06-T17 | E06-T11    | Reinício operacional controlado e recuperável     |
 | E06-T18 | E06-T16    | Condução guiada dos blocos combinados             |
+| E06-T19 | E06-T12    | Fim planejado calculado pela duração da sessão    |
+| E06-T20 | E06-T12    | Inclusão sem a opção Treino específico            |
 
-As tarefas E06-T06 a E06-T18 são uma rodada complementar. Nenhuma
+As tarefas E06-T06 a E06-T20 são uma rodada complementar. Nenhuma
 começa automaticamente nem amplia o gate de E06-T05 sem nova priorização. Ao
 selecionar qualquer uma, reanalisar a base já integrada, apresentar solução e
 plano e aguardar aprovação antes de implementar.

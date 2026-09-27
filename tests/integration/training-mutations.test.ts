@@ -152,7 +152,7 @@ describe("training mutations with PostgreSQL", () => {
               role,
               completed: role === "main" && definition.id === main.id,
               comment: "",
-              sets: Array.from({ length: definition.sets }, (_, index) => ({
+              sets: Array.from({ length: role === "main" ? definition.sets : 0 }, (_, index) => ({
                 setNumber: index + 1,
                 value: role === "main" && definition.id === main.id && index === 0 ? "8" : "",
                 leftValue: "",
@@ -268,7 +268,7 @@ describe("training mutations with PostgreSQL", () => {
               role,
               completed: role === "main" && definition.ordinal === 1,
               comment: "",
-              sets: Array.from({ length: definition.sets }, (_, index) => ({
+              sets: Array.from({ length: role === "main" ? definition.sets : 0 }, (_, index) => ({
                 setNumber: index + 1,
                 value: role === "main" && definition.ordinal === 1 && index === 0 ? "6" : "",
                 leftValue: "",
@@ -367,7 +367,7 @@ describe("training mutations with PostgreSQL", () => {
         await client.trainingActivitySetExecution.count({
           where: { exerciseExecution: { activityId: activity.id } },
         }),
-      ).toBe(9);
+      ).toBe(8);
       expect(
         await client.trainingActivityExecutionInterval.count({
           where: { activityId: activity.id },
@@ -507,6 +507,45 @@ describe("training mutations with PostgreSQL", () => {
         },
       });
       expect(rest).toMatchObject({ kind: "rest", reason: "Descanso ou mobilidade leve" });
+    }));
+
+  it("links the plan warmup when the manual sport label is Portuguese and the plan is English", () =>
+    withImportDatabase(async (client) => {
+      const fixture = await client.$transaction((tx) =>
+        createDatabaseFixture(tx, {
+          entries: [{ sport: "Footvolley", preparation_session_id: "test_preparation" }],
+        }),
+      );
+      await client.planActivation.create({
+        data: {
+          domain: "training",
+          logicalEnvironment: "local",
+          trainingPlanVersionId: fixture.trainingPlan.id,
+          pointerImportBatchId: fixture.trainingPointer.id,
+          activatedAt: new Date(),
+        },
+      });
+      const repository = new PrismaTrainingRepository(client);
+      await expect(
+        repository.addTrainingActivity({
+          workspaceId: fixture.workspace.id,
+          environment: "local",
+          civilDate: "2026-09-16" as CivilDate,
+          type: "sport_practice",
+          name: "Jogo extra",
+          sport: "Futevôlei",
+          sessionId: null,
+          plannedStartTime: "18:00",
+          plannedEndTime: "20:00",
+        }),
+      ).resolves.toMatchObject({ status: "saved" });
+      const day = await repository.findTrainingDay({
+        workspaceId: fixture.workspace.id,
+        civilDate: "2026-09-16" as CivilDate,
+        environment: "local",
+      });
+      expect(day.activities[0]?.preparationSession?.sessionId).toBe("test_preparation");
+      expect(day.activities[0]?.sport).toBe("Futevôlei");
     }));
 
   it("persists an extra activity independently from the planned training", () =>

@@ -3,6 +3,7 @@
 import { Badge } from "@fradelli/ui/badge";
 import { Button } from "@fradelli/ui/button";
 import { useState } from "react";
+import { isTrainingDateEditable } from "@/features/training/domain/training-edit-window";
 
 import { useTrainingActivityDraft } from "@/features/training/ui/hooks/use-training-activity-draft/use-training-activity-draft";
 import { trainingExerciseDraftKey } from "@/features/training/ui/hooks/use-training-activity-draft/use-training-activity-draft.utils";
@@ -23,6 +24,7 @@ const statusLabels = {
 
 export function TrainingActivityCard({ civilDate, activity, actions }: TrainingActivityCardProps) {
   const execution = useTrainingActivityDraft({ activity, civilDate });
+  const editable = isTrainingDateEditable(civilDate);
   const activeDraft =
     activity.status === "completed" || activity.status === "skipped" ? null : execution.draft;
   const status = activeDraft?.status ?? activity.status;
@@ -59,7 +61,17 @@ export function TrainingActivityCard({ civilDate, activity, actions }: TrainingA
       <header className={trainingActivityCardStyles.header}>
         <div className={trainingActivityCardStyles.top}>
           <div>
-            <h2 className={trainingActivityCardStyles.title}>{activity.name}</h2>
+            <h2 className={trainingActivityCardStyles.title}>
+              <Button
+                type="button"
+                variant="ghost"
+                className={trainingActivityCardStyles.headingToggle}
+                aria-expanded={expanded}
+                onClick={() => setExpandedOverride(!expanded)}
+              >
+                {activity.name} <span aria-hidden="true">{expanded ? "▴" : "▾"}</span>
+              </Button>
+            </h2>
             <p className={trainingActivityCardStyles.metadata}>
               {activitySummary(activity, status)}
             </p>
@@ -68,7 +80,7 @@ export function TrainingActivityCard({ civilDate, activity, actions }: TrainingA
             {status !== "scheduled" ? (
               <TrainingActivityTimer activity={activity} draft={activeDraft} />
             ) : null}
-            {activeDraft ? (
+            {activeDraft && editable ? (
               <Button
                 type="button"
                 variant="ghost"
@@ -81,7 +93,7 @@ export function TrainingActivityCard({ civilDate, activity, actions }: TrainingA
                 {activeDraft.status === "paused" ? "▶" : "⏸"}
               </Button>
             ) : null}
-            {status !== "completed" ? (
+            {status !== "completed" && editable ? (
               <TrainingActivityDeleteForm
                 civilDate={civilDate}
                 activity={activity}
@@ -93,18 +105,6 @@ export function TrainingActivityCard({ civilDate, activity, actions }: TrainingA
             ) : null}
           </div>
         </div>
-        {status !== "scheduled" ? (
-          <div className={trainingActivityCardStyles.collapsedSummary}>
-            <Button
-              type="button"
-              variant="ghost"
-              size="sm"
-              onClick={() => setExpandedOverride(!expanded)}
-            >
-              {expanded ? "Minimizar" : structured ? "Abrir treino" : "Abrir atividade"}
-            </Button>
-          </div>
-        ) : null}
       </header>
 
       {execution.storageError ? (
@@ -126,11 +126,11 @@ export function TrainingActivityCard({ civilDate, activity, actions }: TrainingA
           activity={activity}
           action={actions.controlActivity}
           onStart={startActivity}
-          ready={execution.ready}
+          ready={execution.ready && editable}
         />
       ) : null}
 
-      {expanded && status !== "scheduled" && (activeDraft || status === "completed") ? (
+      {expanded ? (
         <div className={trainingActivityCardStyles.body}>
           <nav className={trainingActivityCardStyles.navigation} aria-label="Etapa do treino">
             {hasPreparation ? (
@@ -176,7 +176,9 @@ export function TrainingActivityCard({ civilDate, activity, actions }: TrainingA
                     role={activeSession.role}
                     civilDate={civilDate}
                     saveExerciseAction={
-                      activity.status === "completed" ? actions.saveActivityExercise : undefined
+                      activity.status === "completed" && editable
+                        ? actions.saveActivityExercise
+                        : undefined
                     }
                     executionDraft={
                       activeDraft?.exercises[
@@ -187,7 +189,7 @@ export function TrainingActivityCard({ civilDate, activity, actions }: TrainingA
                       ]
                     }
                     onExecutionDraftChange={
-                      activeDraft
+                      activeDraft && editable
                         ? (value) =>
                             execution.updateExercise(
                               trainingExerciseDraftKey(
@@ -248,13 +250,15 @@ export function TrainingActivityCard({ civilDate, activity, actions }: TrainingA
               Voltar ao aquecimento
             </Button>
           ) : null}
-          <TrainingActivityControls
-            civilDate={civilDate}
-            activity={activity}
-            action={actions.controlActivity}
-            draft={activeDraft}
-            onFinalized={execution.clear}
-          />
+          {status !== "scheduled" && editable ? (
+            <TrainingActivityControls
+              civilDate={civilDate}
+              activity={activity}
+              action={actions.controlActivity}
+              draft={activeDraft}
+              onFinalized={execution.clear}
+            />
+          ) : null}
         </div>
       ) : null}
     </article>

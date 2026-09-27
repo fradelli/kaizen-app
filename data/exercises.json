@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "last_updated": "2026-09-25",
+  "last_updated": "2026-09-26",
   "evidence_scale": {
     "A": "Consistent meta-analyses or multiple controlled trials for the stated general outcome.",
     "B": "Moderate evidence, commonly from adjacent sports or exercise categories.",
@@ -161,26 +161,27 @@
         "ankle",
         "tendon_capacity"
       ],
-      "primary_goal": "Fortalecer gastrocnêmio, sóleo e tendão de Aquiles.",
-      "footvolley_application": "Participa da fase final do impulso e do controle do tornozelo na areia.",
+      "primary_goal": "Strengthen the gastrocnemius, soleus and Achilles tendon.",
+      "footvolley_application": "Contributes to the final push-off phase and ankle control on sand.",
       "aesthetic_value": "high",
       "how_to": [
-        "Apoie o antepé em superfície estável.",
-        "Suba o calcanhar sem girar o pé.",
-        "Desça de forma controlada pela amplitude tolerada."
+        "Place the forefoot on a stable surface.",
+        "Raise the heel without rotating the foot.",
+        "Lower with control through a tolerable range."
       ],
       "cues": [
-        "Joelho estendido sem travar",
-        "Pressione o solo pelo antepé",
-        "Use carga quando 12 repetições forem fáceis"
+        "Keep the knee extended without locking it",
+        "Press the ground through the forefoot",
+        "Use load when 12 repetitions become easy"
       ],
       "common_errors": [
-        "Quicar",
-        "Fazer apenas meia amplitude",
-        "Aumentar volume abruptamente"
+        "Bouncing",
+        "Using only half the range",
+        "Increasing volume abruptly"
       ],
-      "risks": "Progressão rápida pode irritar Aquiles ou musculatura da panturrilha.",
-      "evidence_level": "B"
+      "risks": "Rapid progression may irritate the Achilles tendon or calf muscles.",
+      "evidence_level": "B",
+      "name_en": "Standing Calf Raise"
     },
     {
       "id": "seated_calf_raise",
@@ -391,26 +392,27 @@
         "upper_pull",
         "general_strength"
       ],
-      "primary_goal": "Fortalecer dorsais, flexores do cotovelo e controle escapular.",
-      "footvolley_application": "Transferência indireta; mantém força geral e equilíbrio do tronco superior.",
+      "primary_goal": "Strengthen the lats, elbow flexors and scapular control.",
+      "footvolley_application": "Indirect transfer; maintains general strength and upper-body balance.",
       "aesthetic_value": "high",
       "how_to": [
-        "Segure a barra com pegada pronada confortável.",
-        "Inicie organizando as escápulas e puxe o peito em direção à barra.",
-        "Desça com controle até a amplitude tolerada."
+        "Use a comfortable overhand grip on the bar.",
+        "Set the shoulder blades and pull the chest toward the bar.",
+        "Lower with control through a tolerable range."
       ],
       "cues": [
-        "Sem balanço",
-        "Pescoço neutro",
-        "Progrida carga quando o topo da faixa ficar fácil"
+        "No swinging",
+        "Neutral neck",
+        "Progress load when the upper end of the range becomes easy"
       ],
       "common_errors": [
-        "Chutar para subir",
-        "Encolher os ombros",
-        "Somar muitas variações redundantes"
+        "Kicking to rise",
+        "Shrugging the shoulders",
+        "Adding too many redundant variations"
       ],
-      "risks": "Dor no ombro ou cotovelo requer ajuste de pegada, volume ou amplitude.",
-      "evidence_level": "C"
+      "risks": "Shoulder or elbow pain requires adjusting grip, volume or range of motion.",
+      "evidence_level": "C",
+      "name_en": "Pull-Up"
     },
     {
       "id": "chin_up",
@@ -446,26 +448,27 @@
         "horizontal_pull",
         "scapular_control"
       ],
-      "primary_goal": "Fortalecer costas e retração escapular em puxada horizontal.",
-      "footvolley_application": "Equilibra musculatura do tronco superior e complementa postura.",
+      "primary_goal": "Strengthen the back and scapular retraction through horizontal pulling.",
+      "footvolley_application": "Balances upper-body musculature and complements posture.",
       "aesthetic_value": "high",
       "how_to": [
-        "Posicione o corpo em linha sob uma barra baixa.",
-        "Puxe o peito em direção à barra.",
-        "Desça mantendo quadril e costelas controlados."
+        "Keep the body in a straight line under a low bar.",
+        "Pull the chest toward the bar.",
+        "Lower while controlling the hips and ribs."
       ],
       "cues": [
-        "Corpo em bloco",
-        "Aproxime as escápulas sem encolher",
-        "Aumente a inclinação para progredir"
+        "Keep the body rigid",
+        "Bring shoulder blades together without shrugging",
+        "Increase the body angle to progress"
       ],
       "common_errors": [
-        "Quadril cair",
-        "Cabeça avançar",
-        "Amplitude curta"
+        "Dropping the hips",
+        "Pushing the head forward",
+        "Short range of motion"
       ],
-      "risks": "Baixo; adapte inclinação em caso de dor no ombro ou cotovelo.",
-      "evidence_level": "C"
+      "risks": "Low risk; adjust the body angle if shoulder or elbow pain occurs.",
+      "evidence_level": "C",
+      "name_en": "Australian Row"
     },
     {
       "id": "parallel_bar_dip",
@@ -474,26 +477,27 @@
         "upper_push",
         "general_strength"
       ],
-      "primary_goal": "Fortalecer peitoral, tríceps e deltoide anterior.",
-      "footvolley_application": "Transferência indireta; atende ao objetivo estético secundário.",
+      "primary_goal": "Strengthen the chest, triceps and anterior deltoids.",
+      "footvolley_application": "Indirect transfer; supports the secondary aesthetic goal.",
       "aesthetic_value": "high",
       "how_to": [
-        "Apoie-se nas paralelas com ombros organizados.",
-        "Desça até a amplitude confortável.",
-        "Empurre as barras e retorne sem perder controle."
+        "Support yourself on parallel bars with shoulders set.",
+        "Lower through a comfortable range.",
+        "Push the bars and return without losing control."
       ],
       "cues": [
-        "Amplitude sem pinçamento",
-        "Cotovelos acompanham o movimento",
-        "Sem rebote no fundo"
+        "Use a range without pinching",
+        "Let elbows follow the movement",
+        "Do not bounce at the bottom"
       ],
       "common_errors": [
-        "Profundidade excessiva",
-        "Ombros avançarem",
-        "Falha em todas as séries"
+        "Excessive depth",
+        "Shoulders moving forward",
+        "Reaching failure in every set"
       ],
-      "risks": "Pode agravar ombro ou esterno quando amplitude e volume são excessivos.",
-      "evidence_level": "C"
+      "risks": "Excessive range and volume may aggravate the shoulder or sternum.",
+      "evidence_level": "C",
+      "name_en": "Parallel Bar Dip"
     },
     {
       "id": "pike_push_up",
@@ -816,26 +820,27 @@
         "upper_body_warmup",
         "wrist_preparation"
       ],
-      "primary_goal": "Preparar gradualmente os punhos para flexões, paralelas e apoio invertido.",
-      "footvolley_application": "Sem transferência direta; prepara os apoios usados no treino de superiores.",
+      "primary_goal": "Gradually prepare the wrists for push-ups, dips and inverted support.",
+      "footvolley_application": "No direct transfer; prepares support positions used in upper-body training.",
       "aesthetic_value": "none",
       "how_to": [
-        "Fique em quatro apoios com as palmas apoiadas.",
-        "Desloque o corpo suavemente para frente e para trás.",
-        "Use apenas a amplitude confortável."
+        "Start on all fours with palms on the floor.",
+        "Gently shift the body forward and backward.",
+        "Use only a comfortable range."
       ],
       "cues": [
-        "Movimento lento",
-        "Palmas apoiadas",
-        "Sem forçar dor"
+        "Move slowly",
+        "Keep palms on the floor",
+        "Do not force through pain"
       ],
       "common_errors": [
-        "Usar amplitude máxima logo no início",
-        "Quicar sobre os punhos",
-        "Continuar diante de dor aguda"
+        "Using maximum range immediately",
+        "Bouncing on the wrists",
+        "Continuing despite sharp pain"
       ],
-      "risks": "Baixo; reduza carga e amplitude diante de desconforto nos punhos.",
-      "evidence_level": "C"
+      "risks": "Low risk; reduce load and range if wrist discomfort occurs.",
+      "evidence_level": "C",
+      "name_en": "Wrist Rock"
     },
     {
       "id": "scapular_pull_up",
@@ -874,26 +879,27 @@
         "scapular_control",
         "horizontal_push"
       ],
-      "primary_goal": "Preparar controle das escápulas e serrátil anterior antes das empurradas.",
-      "footvolley_application": "Transferência indireta; prepara ombros e tronco para o treino de superiores.",
+      "primary_goal": "Prepare scapular control and the serratus anterior before pushing movements.",
+      "footvolley_application": "Indirect transfer; prepares shoulders and trunk for upper-body training.",
       "aesthetic_value": "low",
       "how_to": [
-        "Assuma prancha alta ou use os joelhos apoiados.",
-        "Mantenha os cotovelos estendidos.",
-        "Aproxime e afaste as escápulas sem deixar a lombar ceder."
+        "Use a high plank position or support yourself on your knees.",
+        "Keep the elbows extended.",
+        "Move the shoulder blades together and apart without letting the lower back sag."
       ],
       "cues": [
-        "Cotovelos estendidos",
-        "Movimento vem das escápulas",
-        "Tronco estável"
+        "Keep elbows extended",
+        "Movement comes from the shoulder blades",
+        "Keep the trunk stable"
       ],
       "common_errors": [
-        "Fazer uma flexão completa",
-        "Encolher os ombros",
-        "Arquear a lombar"
+        "Performing a full push-up",
+        "Shrugging the shoulders",
+        "Arching the lower back"
       ],
-      "risks": "Ajuste o apoio em caso de desconforto nos punhos ou ombros.",
-      "evidence_level": "C"
+      "risks": "Adjust support if wrist or shoulder discomfort occurs.",
+      "evidence_level": "C",
+      "name_en": "Scapular Push-Up"
     },
     {
       "id": "quadruped_thoracic_rotation",
@@ -929,26 +935,27 @@
       "categories": [
         "ankle_mobility"
       ],
-      "primary_goal": "Praticar dorsiflexão do tornozelo com o pé apoiado.",
-      "footvolley_application": "Facilita agachamento, ajuste de base e aterrissagem quando existe restrição real.",
+      "primary_goal": "Practice ankle dorsiflexion with the foot supported.",
+      "footvolley_application": "Supports squatting, stance adjustments and landing when an actual restriction exists.",
       "aesthetic_value": "none",
       "how_to": [
-        "Fique de frente para uma parede.",
-        "Mantenha calcanhar e base do dedão no chão.",
-        "Leve o joelho em direção à parede acompanhando o pé."
+        "Face a wall.",
+        "Keep the heel and base of the big toe on the floor.",
+        "Move the knee toward the wall in line with the foot."
       ],
       "cues": [
-        "Calcanhar não sobe",
-        "Sem colapso do arco",
-        "Sem pinçamento doloroso"
+        "Keep the heel down",
+        "Do not collapse the arch",
+        "Avoid painful pinching"
       ],
       "common_errors": [
-        "Pé girar para fora",
-        "Forçar dor anterior",
-        "Usar como substituto de força"
+        "Rotating the foot outward",
+        "Forcing through front-of-ankle pain",
+        "Using it as a replacement for strength training"
       ],
-      "risks": "Baixo; dor ou bloqueio persistente requer avaliação.",
-      "evidence_level": "B"
+      "risks": "Low risk; persistent pain or restriction requires assessment.",
+      "evidence_level": "B",
+      "name_en": "Knee to Wall"
     },
     {
       "id": "hip_90_90_transition",
@@ -1013,26 +1020,27 @@
         "warmup",
         "movement_preparation"
       ],
-      "primary_goal": "Preparar o padrão de flexão e extensão de pernas.",
-      "footvolley_application": "Aquece a base de salto e aterrissagem, mas não substitui força carregada.",
+      "primary_goal": "Prepare the leg flexion and extension pattern.",
+      "footvolley_application": "Warms up jumping and landing patterns but does not replace loaded strength training.",
       "aesthetic_value": "low_unless_high_effort",
       "how_to": [
-        "Use postura confortável.",
-        "Desça pela amplitude controlável.",
-        "Suba e repita de forma fluida."
+        "Use a comfortable stance.",
+        "Lower through a controllable range.",
+        "Rise and repeat smoothly."
       ],
       "cues": [
-        "Pé inteiro",
-        "Tronco controlado",
-        "Aquecimento não é teste de resistência"
+        "Keep the whole foot grounded",
+        "Control the trunk",
+        "Warmup is not an endurance test"
       ],
       "common_errors": [
-        "Fazer dezenas antes de saltar",
-        "Colapso do pé",
-        "Forçar profundidade"
+        "Doing dozens before jumping",
+        "Collapsing the foot",
+        "Forcing depth"
       ],
-      "risks": "Baixo; dor exige ajuste ou avaliação.",
-      "evidence_level": "C"
+      "risks": "Low risk; pain requires adjustment or assessment.",
+      "evidence_level": "C",
+      "name_en": "Bodyweight Squat"
     },
     {
       "id": "progressive_vertical_jump",
@@ -1100,12 +1108,13 @@
       "primary_goal": null,
       "footvolley_application": null,
       "how_to": [
-        "Marcha rápida no lugar, movimentando os braços."
+        "March briskly in place while moving your arms."
       ],
       "cues": [],
       "common_errors": [],
       "risks": null,
-      "evidence_level": null
+      "evidence_level": null,
+      "name_en": "Brisk March with Arm Movements"
     },
     {
       "id": "warmup_arm_circles",
@@ -1116,12 +1125,13 @@
       "primary_goal": null,
       "footvolley_application": null,
       "how_to": [
-        "Círculos controlados dos braços, pequenos e depois maiores."
+        "Perform controlled arm circles, starting small and gradually increasing their size."
       ],
       "cues": [],
       "common_errors": [],
       "risks": null,
-      "evidence_level": null
+      "evidence_level": null,
+      "name_en": "Arm Circles"
     },
     {
       "id": "elevated_push_up",
@@ -1132,12 +1142,13 @@
       "primary_goal": null,
       "footvolley_application": null,
       "how_to": [
-        "Flexões fáceis com mãos em apoio firme elevado; depois 30 s de pausa."
+        "Perform easy push-ups with hands on a stable elevated support; then rest for 30 s."
       ],
       "cues": [],
       "common_errors": [],
       "risks": null,
-      "evidence_level": null
+      "evidence_level": null,
+      "name_en": "Easy Elevated Push-Up"
     },
     {
       "id": "negative_handstand_push_up",
@@ -1151,7 +1162,8 @@
       "cues": [],
       "common_errors": [],
       "risks": null,
-      "evidence_level": null
+      "evidence_level": null,
+      "name_en": "Negative Handstand Push Up"
     },
     {
       "id": "warmup_march_or_jog",
@@ -1162,12 +1174,13 @@
       "primary_goal": null,
       "footvolley_application": null,
       "how_to": [
-        "Marcha rápida ou trote leve no lugar."
+        "March briskly or jog lightly in place."
       ],
       "cues": [],
       "common_errors": [],
       "risks": null,
-      "evidence_level": null
+      "evidence_level": null,
+      "name_en": "March or Light Jog"
     },
     {
       "id": "lateral_weight_shift",
@@ -1178,12 +1191,13 @@
       "primary_goal": null,
       "footvolley_application": null,
       "how_to": [
-        "Afastar os pés e flexionar um joelho de cada vez, sem forçar amplitude."
+        "Stand with feet apart and bend one knee at a time without forcing the range of motion."
       ],
       "cues": [],
       "common_errors": [],
       "risks": null,
-      "evidence_level": null
+      "evidence_level": null,
+      "name_en": "Lateral Weight Shift"
     },
     {
       "id": "static_lunge",
@@ -1194,12 +1208,13 @@
       "primary_goal": null,
       "footvolley_application": null,
       "how_to": [
-        "Afundo parado, sem salto."
+        "Perform stationary lunges without jumping."
       ],
       "cues": [],
       "common_errors": [],
       "risks": null,
-      "evidence_level": null
+      "evidence_level": null,
+      "name_en": "Stationary Lunge"
     },
     {
       "id": "jump_lunge_one_leg",
@@ -1213,7 +1228,8 @@
       "cues": [],
       "common_errors": [],
       "risks": null,
-      "evidence_level": null
+      "evidence_level": null,
+      "name_en": "Jump Lunge One Leg"
     },
     {
       "id": "sand_jog_movements",
@@ -1224,12 +1240,13 @@
       "primary_goal": null,
       "footvolley_application": null,
       "how_to": [
-        "30 s de trote leve, 15 s de deslocamento lateral alternando direções e 15 s de passos curtos para trás."
+        "Jog lightly for 30 s, shuffle laterally for 15 s alternating directions, and take short backward steps for 15 s."
       ],
       "cues": [],
       "common_errors": [],
       "risks": null,
-      "evidence_level": null
+      "evidence_level": null,
+      "name_en": "Jog and Sand Movements"
     },
     {
       "id": "sand_leg_preparation",
@@ -1240,12 +1257,13 @@
       "primary_goal": null,
       "footvolley_application": null,
       "how_to": [
-        "10 elevações de panturrilha, 5 agachamentos e 4 transferências laterais de peso por lado, em amplitude confortável."
+        "Perform 10 calf raises, 5 squats and 4 lateral weight shifts per side through a comfortable range of motion."
       ],
       "cues": [],
       "common_errors": [],
       "risks": null,
-      "evidence_level": null
+      "evidence_level": null,
+      "name_en": "Sand Leg Preparation"
     },
     {
       "id": "sand_dynamic_mobility",
@@ -1256,12 +1274,13 @@
       "primary_goal": null,
       "footvolley_application": null,
       "how_to": [
-        "5 balanços de perna à frente e atrás por lado, 5 rotações suaves de tronco por lado e círculos dos braços."
+        "Perform 5 forward and backward leg swings per side, 5 gentle trunk rotations per side, and arm circles."
       ],
       "cues": [],
       "common_errors": [],
       "risks": null,
-      "evidence_level": null
+      "evidence_level": null,
+      "name_en": "Sand Dynamic Mobility"
     },
     {
       "id": "sand_progressive_moves_jumps",
@@ -1272,12 +1291,13 @@
       "primary_goal": null,
       "footvolley_application": null,
       "how_to": [
-        "3 deslocamentos de cerca de 5 m, acelerando e freando com controle; 3 saltos verticais baixos a moderados; voltar caminhando."
+        "Perform 3 movements of about 5 m, accelerating and stopping with control, followed by 3 low-to-moderate vertical jumps; walk back."
       ],
       "cues": [],
       "common_errors": [],
       "risks": null,
-      "evidence_level": null
+      "evidence_level": null,
+      "name_en": "Progressive Movements and Jumps"
     },
     {
       "id": "sand_ball_contact",
@@ -1288,12 +1308,13 @@
       "primary_goal": null,
       "footvolley_application": null,
       "how_to": [
-        "Toques leves de pé, coxa e cabeça, com parceiro ou sozinho; aumentar gradualmente o deslocamento para alcançar a bola."
+        "Use light foot, thigh and head touches, with a partner or alone; gradually increase movement to reach the ball."
       ],
       "cues": [],
       "common_errors": [],
       "risks": null,
-      "evidence_level": null
+      "evidence_level": null,
+      "name_en": "Light Ball Contact"
     },
     {
       "id": "decline_push_up",
@@ -1307,7 +1328,8 @@
       "cues": [],
       "common_errors": [],
       "risks": null,
-      "evidence_level": null
+      "evidence_level": null,
+      "name_en": "Decline Push Up"
     },
     {
       "id": "box_dip_chairs",
@@ -1321,7 +1343,8 @@
       "cues": [],
       "common_errors": [],
       "risks": null,
-      "evidence_level": null
+      "evidence_level": null,
+      "name_en": "Box Dip with Chairs"
     },
     {
       "id": "close_push_up",
@@ -1335,7 +1358,8 @@
       "cues": [],
       "common_errors": [],
       "risks": null,
-      "evidence_level": null
+      "evidence_level": null,
+      "name_en": "Close Push Up"
     },
     {
       "id": "hanging_leg_raise",
@@ -1349,7 +1373,8 @@
       "cues": [],
       "common_errors": [],
       "risks": null,
-      "evidence_level": null
+      "evidence_level": null,
+      "name_en": "Hanging Leg Raise"
     },
     {
       "id": "commando_pull_up",
@@ -1363,7 +1388,8 @@
       "cues": [],
       "common_errors": [],
       "risks": null,
-      "evidence_level": null
+      "evidence_level": null,
+      "name_en": "Commando Pull Up"
     },
     {
       "id": "australian_chin_up_hold",
@@ -1377,7 +1403,8 @@
       "cues": [],
       "common_errors": [],
       "risks": null,
-      "evidence_level": null
+      "evidence_level": null,
+      "name_en": "Australian Chin Up Hold"
     },
     {
       "id": "around_the_world",
@@ -1391,7 +1418,8 @@
       "cues": [],
       "common_errors": [],
       "risks": null,
-      "evidence_level": null
+      "evidence_level": null,
+      "name_en": "Around The World"
     },
     {
       "id": "negative_dragon_flag",
@@ -1405,7 +1433,8 @@
       "cues": [],
       "common_errors": [],
       "risks": null,
-      "evidence_level": null
+      "evidence_level": null,
+      "name_en": "Negative Dragon Flag"
     },
     {
       "id": "single_leg_glute_bridge",
@@ -1419,7 +1448,8 @@
       "cues": [],
       "common_errors": [],
       "risks": null,
-      "evidence_level": null
+      "evidence_level": null,
+      "name_en": "Single-Leg Glute Bridge"
     },
     {
       "id": "pistol_squat",
@@ -1433,7 +1463,8 @@
       "cues": [],
       "common_errors": [],
       "risks": null,
-      "evidence_level": null
+      "evidence_level": null,
+      "name_en": "Pistol Squat"
     },
     {
       "id": "box_extended_leg_walk",
@@ -1447,7 +1478,8 @@
       "cues": [],
       "common_errors": [],
       "risks": null,
-      "evidence_level": null
+      "evidence_level": null,
+      "name_en": "Box Extended Leg Walk"
     },
     {
       "id": "walking_lunge",
@@ -1461,7 +1493,8 @@
       "cues": [],
       "common_errors": [],
       "risks": null,
-      "evidence_level": null
+      "evidence_level": null,
+      "name_en": "Walking Lunge"
     },
     {
       "id": "laying_toe_touch",
@@ -1475,7 +1508,8 @@
       "cues": [],
       "common_errors": [],
       "risks": null,
-      "evidence_level": null
+      "evidence_level": null,
+      "name_en": "Lying Toe Touch"
     }
   ]
 }

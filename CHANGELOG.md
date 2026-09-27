@@ -2,6 +2,14 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-26 — correções do fluxo diário em revisão local
+
+- Conclusão parcial com confirmação curta, preservando o rascunho em falhas e sem exigir séries do aquecimento.
+- Início e alterações apenas hoje/ontem no fuso São Paulo; datas futuras e históricas continuam consultáveis.
+- Cards expandem e recolhem pelo título, sem iniciar o cronômetro.
+- Preparada versão 1.1.0 com dados de treino em inglês, sem sobrescrever definições anteriores; ainda não importada porque o usuário pediu manter alterações sem commit.
+- Navegação inferior e i18n continuam futuros; idiomas iniciais confirmados: português, espanhol e inglês.
+
 ## 2026-09-26 — nova programação implementada e ativada localmente
 
 - Adicionada ficha aprovada com três sessões às 17h e futevôlei de segunda a quinta, 12h–13h30; jogos permanecem manuais e variantes reserva fora do plano ativo.

@@ -17,6 +17,10 @@ As tarefas deste épico serão criadas sob demanda, depois da validação do MVP
 
 ## Fora de escopo agora
 
+Idiomas iniciais de i18n confirmados em 26/09: português, espanhol e inglês.
+A arquitetura e a implementação continuam futuras; somente os dados da ficha
+de treino ativa estão sendo padronizados em inglês nesta rodada.
+
 - Implementar qualquer candidato antes do encerramento de E08.
 - Tratar a lista acima como requisito aprovado.
 

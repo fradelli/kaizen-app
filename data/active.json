@@ -1,8 +1,8 @@
 {
   "schema_version": "1.1.0",
-  "last_updated": "2026-09-25",
+  "last_updated": "2026-09-26",
   "active_plan_id": "training_2026_09_v1",
-  "active_plan_path": "data/plans/2026-09-training-v1.json",
+  "active_plan_path": "data/plans/2026-09-training-v1-1.json",
   "review_path": "data/reviews/2026-09-training-review.json",
   "human_guide_path": "docs/guides/TRAINING-GUIDE-2026-09.md"
 }

@@ -42,7 +42,7 @@ export function validateReviewedExerciseParity(
     compareDefinitionFields(
       exercises.find((exercise) => exercise.exerciseId === metadata.exercise_id),
       {
-        namePt: definition.name_pt,
+        namePt: definition.name_en ?? definition.name_pt,
         definition,
         measurementType: metadata.measurement_type,
         loadApplicable: metadata.load_applicable,

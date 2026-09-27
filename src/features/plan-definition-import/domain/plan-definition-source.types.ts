@@ -23,7 +23,7 @@ export type ExecutionMetadata = {
     normalization_rule: { prescriptions: Dose[] };
   }[];
 };
-export type ExerciseLibrary = { exercises: { id: string; name_pt: string }[] };
+export type ExerciseLibrary = { exercises: { id: string; name_pt: string; name_en?: string }[] };
 export type ActivePlanPointer = {
   schema_version: string;
   active_plan_id: string;

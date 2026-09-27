@@ -337,7 +337,8 @@ function projectTrainingExerciseStatus(
   sets: readonly TrainingSetDto[],
   persistedStatus: TrainingItemStatus | undefined,
 ): TrainingItemStatus {
-  if (role !== "main") return persistedStatus ?? "pending";
+  if (persistedStatus !== undefined) return persistedStatus;
+  if (role !== "main") return "pending";
   if (!sets.length) return "pending";
   if (sets.some((set) => set.status === "pending")) return "pending";
   if (sets.every((set) => set.status === "skipped")) return "skipped";
