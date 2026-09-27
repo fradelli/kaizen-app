@@ -96,6 +96,7 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E06-T18 | PLANNED | [Guiar a execução dos blocos combinados](epics/E06-training-execution/T18-guide-combined-exercise-blocks.md) | E06-T16 |
 | E06-T19 | PLANNED | [Preencher automaticamente o fim planejado do treino](epics/E06-training-execution/T19-autofill-planned-workout-end.md) | E06-T12 |
 | E06-T20 | PLANNED | [Remover treino específico das opções de inclusão](epics/E06-training-execution/T20-simplify-activity-type-options.md) | E06-T12 |
+| E06-T21 | PLANNED | [Projetar importação externa de planos de treino](epics/E06-training-execution/T21-design-external-training-plan-import.md) | E06-T16 |
 | E07-T01 | PLANNED   | [Projetar dieta e execução do dia](epics/E07-nutrition-execution/T01-project-active-nutrition-plan.md)                    | E05-T05                               |
 | E07-T02 | PLANNED   | [Criar página de dieta do dia](epics/E07-nutrition-execution/T02-create-nutrition-page.md)                                | E04-T04, E07-T01                      |
 | E07-T03 | PLANNED   | [Registrar escolhas, cumprimento e comentários](epics/E07-nutrition-execution/T03-record-meal-execution.md)               | E07-T02                               |
