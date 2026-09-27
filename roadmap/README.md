@@ -27,7 +27,7 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E03 | DONE        | [Produto e arquitetura](epics/E03-product-and-architecture/README.md)   | P0, arquitetura e guia de implementação aprovados                       |
 | E04 | DONE        | [Fundação Next.js](epics/E04-nextjs-foundation/README.md)               | Aplicação mínima com gates e Design System compartilhado                |
 | E05 | DONE        | [Banco, importação e acesso](epics/E05-database-and-import/README.md)   | Persistência e importação íntegras; acesso adiado por decisão explícita |
-| E06 | IN_PROGRESS | [Execução de treino](epics/E06-training-execution/README.md)            | Consulta e registro utilizáveis de treino                               |
+| E06 | READY       | [Execução de treino](epics/E06-training-execution/README.md)            | Consulta e registro utilizáveis de treino                               |
 | E07 | PLANNED     | [Execução de alimentação](epics/E07-nutrition-execution/README.md)      | Consulta e registro utilizáveis de alimentação                          |
 | E08 | PLANNED     | [Publicação pessoal](epics/E08-personal-release/README.md)              | Local, preview e produção verificados                                   |
 | E09 | PLANNED     | [Evolução futura](epics/E09-future-evolution/README.md)                 | Backlog posterior ao MVP pessoal                                        |
@@ -91,8 +91,8 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E06-T13 | PLANNED   | [Reconciliar atividades futuras ao ativar outro plano](epics/E06-training-execution/T13-reconcile-future-activities-on-plan-change.md) | E06-T11                  |
 | E06-T14 | PLANNED   | [Mover navegação principal para baixo no mobile](epics/E06-training-execution/T14-add-mobile-bottom-navigation.md)       | E04-T04                               |
 | E06-T15 | DONE      | [Generalizar a programação semanal de atividades](epics/E06-training-execution/T15-generalize-weekly-training-schedule.md) | E06-T11                              |
-| E06-T16 | IN_PROGRESS | [Validar e importar a nova programação de treino](epics/E06-training-execution/T16-import-new-training-program.md)        | E06-T15                               |
-| E06-T17 | READY     | [Preparar reinício controlado dos dados de treino](epics/E06-training-execution/T17-prepare-training-data-fresh-start.md) | E06-T11                               |
+| E06-T16 | DONE      | [Validar e importar a nova programação de treino](epics/E06-training-execution/T16-import-new-training-program.md)        | E06-T15                               |
+| E06-T17 | DONE      | [Preparar reinício controlado dos dados de treino](epics/E06-training-execution/T17-prepare-training-data-fresh-start.md) | E06-T11                               |
 | E06-T18 | PLANNED | [Guiar a execução dos blocos combinados](epics/E06-training-execution/T18-guide-combined-exercise-blocks.md) | E06-T16 |
 | E07-T01 | PLANNED   | [Projetar dieta e execução do dia](epics/E07-nutrition-execution/T01-project-active-nutrition-plan.md)                    | E05-T05                               |
 | E07-T02 | PLANNED   | [Criar página de dieta do dia](epics/E07-nutrition-execution/T02-create-nutrition-page.md)                                | E04-T04, E07-T01                      |

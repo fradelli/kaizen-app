@@ -37,9 +37,9 @@ plano e aguardar aprovação antes de implementar.
 1. E06-T11 decide as regras do dia antes de ampliar a agenda.
 2. Após a revisão das alterações do roadmap pelo usuário, E06-T17 só reinicia
    dados após escolha do ambiente, escopo, backup e autorização específica.
-   Nenhuma exclusão faz parte desta atualização.
+   O reinício local autorizado foi concluído com backup restaurável.
 3. E06-T15 generaliza a semana; após receber o novo treino, E06-T16 o importa,
-   inclusive sessões reserva sem dia fixo.
+   sessões reserva ficam fora da versão atual até aprovação específica.
 4. E06-T06 e E06-T08 podem ser avaliadas em conjunto; E06-T07 entra antes de
    comparar execuções posteriores. E06-T09 precede E06-T10. E06-T14 pode ser
    entregue separadamente. E06-T12 depende das lacunas identificadas em T11.

@@ -40,11 +40,15 @@ limpo após preparar a nova programação, sem perder dados fora do escopo aprov
 
 ## Critérios de aceite
 
-- [ ] Alvos de exclusão, backup e recuperação foram comprovados e aprovados.
-- [ ] Somente dados explicitamente autorizados foram removidos.
-- [ ] O ambiente aprovado fica pronto para receber a nova programação, sem
+- [x] Alvos de exclusão, backup e recuperação foram comprovados e aprovados.
+- [x] Somente dados explicitamente autorizados foram removidos.
+- [x] O ambiente aprovado fica pronto para receber a nova programação, sem
       resíduos operacionais fora do escopo decidido.
 
 ## Resultado
 
-Autorizada pelo usuário a limpeza de registros operacionais e definições antigas de treino exclusivamente no PostgreSQL local, preservando alimentação, workspace, migrations e histórico no Git. Backup completo copiado fora do repositório, checksum conferido e restauração testada. Banco temporário de verificação removido. Migrations locais aplicadas; limpeza principal ainda não executada.
+Autorizada pelo usuário a limpeza de registros operacionais e definições antigas de treino exclusivamente no PostgreSQL local, preservando alimentação, workspace, migrations e histórico no Git. Backup completo atualizado em 26/09, copiado fora do repositório e restaurado com sucesso em banco temporário. SHA-256: `50282d22712ce960ca97219565102c588c16ac48a45f9084d8f760055bb660db`. Banco temporário removido após verificação.
+
+Limpeza concluída em transação, com bloqueio das tabelas-alvo e chaves estrangeiras ativas. Suspensos somente os triggers de proteção de exclusão nas tabelas-alvo, reativados antes do commit. Removidos registros operacionais, ativações e definições/importações de treino; nenhuma tabela de alimentação foi excluída. Conferência antes da importação: zero atividades e versões de treino, uma versão alimentar preservada. A E06-T16 importou apenas o treino ativo.
+
+Rollback: interromper os escritores locais, restaurar o backup completo validado em banco local separado, conferir os dados e só então trocar o banco utilizado. Restaurar depois de novos registros substituiria o estado posterior ao backup; não fazer rollback automático nem apagar o backup.
