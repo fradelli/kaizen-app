@@ -1,16 +1,23 @@
 import { cleanup, render, screen, within } from "@testing-library/react";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { AppShellNavigation } from "./app-shell-navigation";
-import { isAppShellNavigationItemActive } from "./app-shell-navigation.utils";
+import {
+  buildAppShellNavigationHref,
+  isAppShellNavigationItemActive,
+} from "./app-shell-navigation.utils";
 
 vi.mock("next/navigation", () => ({
   usePathname: vi.fn(),
+  useSearchParams: vi.fn(),
 }));
 
 beforeEach(() => {
   vi.mocked(usePathname).mockReturnValue("/dieta");
+  vi.mocked(useSearchParams).mockReturnValue(
+    new URLSearchParams() as ReturnType<typeof useSearchParams>,
+  );
 });
 
 afterEach(() => {
@@ -19,6 +26,21 @@ afterEach(() => {
 });
 
 describe("AppShellNavigation", () => {
+  it("preserva a data civil sem copiar parâmetros alheios", () => {
+    vi.mocked(useSearchParams).mockReturnValue(
+      new URLSearchParams("date=2026-09-28&extra=ignored") as ReturnType<typeof useSearchParams>,
+    );
+    render(<AppShellNavigation />);
+    expect(screen.getByRole("link", { name: "Treino" })).toHaveAttribute(
+      "href",
+      "/treino?date=2026-09-28",
+    );
+    expect(screen.getByRole("link", { name: "Dieta" })).toHaveAttribute(
+      "href",
+      "/dieta?date=2026-09-28",
+    );
+    expect(screen.getAllByRole("navigation")).toHaveLength(1);
+  });
   it("renderiza somente os destinos primários e marca a rota atual", () => {
     render(<AppShellNavigation />);
 
@@ -47,6 +69,18 @@ describe("AppShellNavigation", () => {
 
     expect(screen.getByRole("link", { name: "Treino" })).toHaveAttribute("aria-current", "page");
     expect(screen.getByRole("link", { name: "Dieta" })).not.toHaveAttribute("aria-current");
+  });
+});
+
+describe("buildAppShellNavigationHref", () => {
+  it.each([null, "", "2026-02-30", "2026-13-01", "28/09/2026", "invalid"])(
+    "descarta data inválida %s",
+    (date) => {
+      expect(buildAppShellNavigationHref("/treino", date)).toBe("/treino");
+    },
+  );
+  it("preserva uma data real de ano bissexto", () => {
+    expect(buildAppShellNavigationHref("/dieta", "2024-02-29")).toBe("/dieta?date=2024-02-29");
   });
 });
 
