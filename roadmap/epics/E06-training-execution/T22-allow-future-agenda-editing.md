@@ -25,12 +25,17 @@ ser confirmada antes da implementação, sem assumir que o bloqueio é apenas vi
 - `src/features/training/application/resolve-training-day-date.test.ts`
 - `src/features/training/application/mutate-training-day.ts`
 - `src/features/training/application/mutate-training-day.test.ts`
+- `src/features/training/domain/training-edit-window.ts`
+- `src/features/training/domain/training-edit-window.test.ts`
 - `src/features/training/domain/training-day.rules.ts`
+- `src/features/training/data/ensure-scheduled-training-day.ts`
 - `src/features/training/ui/components/training-day-page/training-day-page.tsx`
 - `src/features/training/ui/components/training-day-page/components/training-agenda-drawer/training-agenda-drawer.tsx`
+- `src/features/training/ui/components/training-day-page/components/training-activity-controls/training-activity-controls.tsx`
 - `src/features/training/ui/components/training-day-page/components/training-activity-card/training-activity-card.tsx`
 - `src/features/training/ui/components/training-day-page/components/training-activity-card/training-activity-card.test.tsx`
 - `src/features/training/ui/components/training-day-page/components/training-activity-delete-form/training-activity-delete-form.tsx`
+- `src/features/training/ui/hooks/use-training-activity-draft/use-training-activity-draft.ts`
 - `tests/integration/training-mutations.test.ts`
 
 ## Regras aprovadas
