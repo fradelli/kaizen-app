@@ -28,8 +28,9 @@ Treino, preparação, mobilidade ou descanso do dia consultáveis e registrávei
 | E06-T18 | E06-T16    | Condução guiada dos blocos combinados             |
 | E06-T19 | E06-T12    | Fim planejado calculado pela duração da sessão    |
 | E06-T20 | E06-T12    | Inclusão sem a opção Treino específico            |
+| E06-T21 | E06-T16    | Contrato de importação externa projetado          |
 
-As tarefas E06-T06 a E06-T20 são uma rodada complementar. Nenhuma
+As tarefas E06-T06 a E06-T21 são uma rodada complementar. Nenhuma
 começa automaticamente nem amplia o gate de E06-T05 sem nova priorização. Ao
 selecionar qualquer uma, reanalisar a base já integrada, apresentar solução e
 plano e aguardar aprovação antes de implementar.
@@ -47,6 +48,9 @@ plano e aguardar aprovação antes de implementar.
    entregue separadamente. E06-T12 depende das lacunas identificadas em T11.
 5. E06-T13 pode ser reavaliada caso o reinício controlado elimine a necessidade
    imediata de reconciliar atividades futuras antigas; não está cancelada.
+6. E06-T21 começa após a importação manual validada da nova programação. Primeiro
+   estabiliza o contrato JSON e a prévia; Excel reutiliza esse contrato em etapa
+   posterior, sem criar outro caminho de persistência.
 
 O novo plano contém blocos combinados: E06-T16 preserva sua estrutura e apresenta
 subtítulos A/B com navegação manual. O fluxo guiado permanece adiado em E06-T18,
@@ -54,7 +58,7 @@ com nova revisão antes de implementar. E06-T04 e E06-T05 continuam necessários
 
 ## Fora de escopo
 
-- Edição dos planos canônicos pelo aplicativo.
+- Edição livre dos planos canônicos pelo aplicativo antes da E06-T21.
 - Recomendação automática baseada em dor, fadiga ou diagnóstico.
 
 ## Critérios de encerramento

@@ -2,6 +2,12 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-27 — importação externa de planos planejada
+
+- Criada a E06-T21 para projetar uma entrada externa de planos por JSON, com futura adaptação de template Excel sobre o mesmo contrato intermediário.
+- Separadas validação, prévia, persistência e ativação, sem implementar endpoint, interface, parser ou migration nesta entrega.
+- Preservados o importador Git, os dados ativos, o histórico versionado e a E06-T18 já reservada aos blocos combinados.
+
 ## 2026-09-27 — evolução futura e internacionalização planejadas
 
 - Ordenadas as entregas futuras de sono e atividades gerais após a publicação e validação do MVP pessoal.
