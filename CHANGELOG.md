@@ -2,6 +2,13 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-27 — E06-T12 concluída e ficha em inglês ativada
+
+- Corrigida projeção do estado do toggle, associação de aquecimento Futevôlei/Footvolley e proteção de rascunhos fora da janela de edição.
+- Versão 1.1.0 importada do commit fbd544e e ativada localmente; reimportação no-op, sem alterar histórico operacional ou alimentação.
+- CI local completa aprovada, incluindo 272 testes unitários, 41 integrações e auditoria sem vulnerabilidades conhecidas.
+- Dias já materializados mantêm sua versão original; i18n, navegação inferior e reconciliação futura continuam adiados.
+
 ## 2026-09-26 — correções do fluxo diário em revisão local
 
 - Conclusão parcial com confirmação curta, preservando o rascunho em falhas e sem exigir séries do aquecimento.

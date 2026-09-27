@@ -74,7 +74,7 @@ Na E06-T03 já há inclusão, edição de horário/tipo e exclusão lógica de a
 - [x] Conclusão parcial com aquecimento sem séries, confirmação e consulta sem iniciar passam nos testes.
 - [x] Hoje/ontem podem ser alterados; todas as mutações fora dessa janela são rejeitadas antes do repositório.
 - [x] Alterações diárias não reescrevem o template nem as definições históricas.
-- [ ] Versão 1.1.0 em inglês importada e ativada após autorização futura de commit.
+- [x] Versão 1.1.0 em inglês importada e ativada após autorização de commit em 27/09.
 
 ## Resultado
 
@@ -107,3 +107,14 @@ Rascunhos locais com JSON inválido não impedem o início de uma nova atividade
 A comparação de esportes fica em regra pura de domínio, sem dependência de UI
 ou Prisma. Dados das séries, conclusão do exercício e conclusão da atividade
 continuam sendo responsabilidades distintas.
+
+Entrega local concluída em 27/09: fonte fbd544e importada e ativada na versão
+1.1.0, com 34 definições de exercícios, 7 sessões e 42 prescrições novas.
+Reimportação retornou no-op. Contagens e hashes de atribuições, atividades,
+execuções e dados alimentares permaneceram idênticos antes/depois. Versões
+anteriores e datas já materializadas não foram reescritas; reconciliação futura
+permanece fora de escopo em E06-T13.
+
+`pnpm run ci` aprovado integralmente: 272 testes unitários, 41 integrações,
+33 regressões dos validadores, cobertura acima dos limites, tipos, formato,
+lint, estrutura, schema, dados, build e auditoria sem vulnerabilidades conhecidas.
