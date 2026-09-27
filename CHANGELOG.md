@@ -2,6 +2,12 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-27 — edição da agenda futura priorizada
+
+- Criada a E06-T22 para separar a organização de atividades futuras do início antecipado de uma execução.
+- Mantidos a janela de hoje até hoje + 4 dias, o fuso `America/Sao_Paulo` e os bloqueios de execução futura.
+- Selecionada a análise da E06-T22 como próxima ação, sem implementar mudanças de código nesta entrega.
+
 ## 2026-09-27 — importação externa de planos planejada
 
 - Criada a E06-T21 para projetar uma entrada externa de planos por JSON, com futura adaptação de template Excel sobre o mesmo contrato intermediário.
