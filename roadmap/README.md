@@ -106,6 +106,14 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E08-T03 | PLANNED   | [Preparar produção](epics/E08-personal-release/T03-prepare-production.md)                                                 | E08-T02, E05-T05                      |
 | E08-T04 | PLANNED   | [Validar operação e rollback](epics/E08-personal-release/T04-validate-operations-and-rollback.md)                         | E08-T03                               |
 | E08-T05 | PLANNED   | [Publicar MVP pessoal](epics/E08-personal-release/T05-release-personal-mvp.md)                                            | E08-T04                               |
+| E09-T01 | PLANNED   | [Projetar sono e atividades gerais](epics/E09-future-evolution/T01-design-sleep-and-general-activities.md)                | E08-T05                               |
+| E09-T02 | PLANNED   | [Implementar controle de sono](epics/E09-future-evolution/T02-implement-sleep-tracking.md)                                | E09-T01                               |
+| E09-T03 | PLANNED   | [Implementar registro de atividades gerais](epics/E09-future-evolution/T03-implement-general-activity-tracking.md)        | E09-T01                               |
+| E09-T04 | PLANNED   | [Validar jornadas de sono e atividades](epics/E09-future-evolution/T04-validate-sleep-and-activity-flows.md)              | E09-T02, E09-T03                      |
+| E09-T05 | PLANNED   | [Projetar arquitetura i18n e política English-first](epics/E09-future-evolution/T05-design-i18n-and-english-policy.md)     | E06-T05, E07-T05, E09-T04             |
+| E09-T06 | PLANNED   | [Internacionalizar produto e conteúdo canônico](epics/E09-future-evolution/T06-internationalize-product-content.md)       | E09-T05                               |
+| E09-T07 | PLANNED   | [Migrar documentação e entrega para inglês](epics/E09-future-evolution/T07-migrate-documentation-to-english.md)           | E09-T05                               |
+| E09-T08 | PLANNED   | [Validar experiência multilíngue](epics/E09-future-evolution/T08-validate-multilingual-experience.md)                     | E09-T06, E09-T07                      |
 
 ## Regra de atualização
 
