@@ -1,4 +1,7 @@
+import { parseTrainingExerciseBlock } from "./parse-training-exercise-block";
 import "server-only";
+
+import { isSameTrainingSport } from "../domain/training-sport.rules";
 
 import { Prisma, type PrismaClient } from "@/generated/prisma/client";
 import {
@@ -159,7 +162,11 @@ export class PrismaTrainingRepository implements TrainingRepository {
             ...definition,
           },
         });
-        if (input.type !== "mobility" && input.type !== "structured_training") {
+        if (
+          input.type !== "mobility" &&
+          input.type !== "structured_training" &&
+          !definition.preparationSessionDefinitionId
+        ) {
           const preparationEnd = activityData.plannedStartMinute;
           await transaction.trainingDayActivity.create({
             data: {
@@ -195,7 +202,11 @@ export class PrismaTrainingRepository implements TrainingRepository {
         });
         if (!result.count) return conflictOrMissingActivity(transaction, input);
         const preparationEnd = activityData.plannedStartMinute;
-        if (input.type === "mobility" || input.type === "structured_training") {
+        if (
+          input.type === "mobility" ||
+          input.type === "structured_training" ||
+          definition.preparationSessionDefinitionId
+        ) {
           await transaction.trainingDayActivity.updateMany({
             where: {
               workspaceId: input.workspaceId,
@@ -538,6 +549,7 @@ async function completeTrainingActivityFromDraft(
     ) {
       return invalid("O rascunho contém um exercício que não pertence a esta atividade.");
     }
+    const dose = parseNormalizedTrainingDose(prescription.normalizedDose);
     const sets = [];
     for (const set of exercise.sets) {
       const value = parseDraftInteger(set.value);
@@ -554,8 +566,9 @@ async function completeTrainingActivityFromDraft(
       sets.push({
         setNumber: set.setNumber,
         value,
-        leftValue: set.leftValue === "" ? null : leftValue,
-        rightValue: set.rightValue === "" ? null : rightValue,
+        leftValue: dose.scope === "each_side" ? leftValue : set.leftValue === "" ? null : leftValue,
+        rightValue:
+          dose.scope === "each_side" ? rightValue : set.rightValue === "" ? null : rightValue,
         directionValues: Object.keys(directionValues).length ? directionValues : null,
         loadKg: set.loadKg.trim() || null,
       });
@@ -572,11 +585,16 @@ async function completeTrainingActivityFromDraft(
       expectedRevision: null,
       sets,
     };
-    const setError = validateCompleteExerciseSetInput(
-      command,
-      prescription.sets,
-      parseNormalizedTrainingDose(prescription.normalizedDose),
-    );
+    const setError =
+      role === "main"
+        ? validateCompleteExerciseSetInput(
+            command,
+            prescription.sets,
+            parseNormalizedTrainingDose(prescription.normalizedDose),
+          )
+        : sets.length
+          ? invalid("Aquecimento não aceita séries.", "sets")
+          : null;
     if (setError) return setError;
     const normalizedSets = [];
     for (const set of sets) {
@@ -904,6 +922,7 @@ function mapActivitySession(
           restSeconds: prescription.restSeconds,
           priority: prescription.priority,
           notes: prescription.notes,
+          block: parseTrainingExerciseBlock(prescription),
           dose: parseNormalizedTrainingDose(prescription.normalizedDose),
           exercise: Object.freeze({
             exerciseId: prescription.exercise.exerciseId,
@@ -968,13 +987,49 @@ async function resolveActivityDefinition(
   | TrainingMutationResult
 > {
   if (input.type !== "structured_training") {
+    const sportName = input.sport;
     if (input.sessionId) {
       return invalid("Somente treino estruturado aceita uma sessão do plano.", "sessionId");
     }
+    const plan =
+      sportName && (input.type === "sport_practice" || input.type === "specific_training")
+        ? await findActiveTrainingPlanRow(client, input.environment)
+        : null;
+    const entries =
+      plan?.weeklySchedule &&
+      typeof plan.weeklySchedule === "object" &&
+      !Array.isArray(plan.weeklySchedule) &&
+      "entries" in plan.weeklySchedule
+        ? plan.weeklySchedule.entries
+        : null;
+    const matching = Array.isArray(entries)
+      ? entries.find(
+          (entry) =>
+            typeof entry === "object" &&
+            entry !== null &&
+            "sport" in entry &&
+            sportName !== null &&
+            typeof entry.sport === "string" &&
+            isSameTrainingSport(entry.sport, sportName) &&
+            "preparation_session_id" in entry &&
+            typeof entry.preparation_session_id === "string",
+        )
+      : null;
+    const preparationId =
+      matching && typeof matching === "object" && "preparation_session_id" in matching
+        ? matching.preparation_session_id
+        : null;
+    const preparation =
+      typeof preparationId === "string"
+        ? plan?.trainingSessionDefinition_plan.find(
+            (session) =>
+              session.sessionId === preparationId && session.assignmentRole === "preparation",
+          )
+        : null;
     return {
-      trainingPlanVersionId: null,
+      trainingPlanVersionId: preparation ? plan!.id : null,
       sessionDefinitionId: null,
-      preparationSessionDefinitionId: null,
+      preparationSessionDefinitionId: preparation?.id ?? null,
     };
   }
 

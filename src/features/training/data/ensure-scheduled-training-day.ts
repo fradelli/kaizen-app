@@ -1,4 +1,5 @@
 import "server-only";
+import { isTrainingDateEditable } from "../domain/training-edit-window";
 
 import { Prisma, type PrismaClient } from "@/generated/prisma/client";
 import { z } from "zod";
@@ -7,8 +8,14 @@ import type { FindTrainingDayInput } from "../application/training-repository";
 import { resolveTrainingDayDate } from "../application/resolve-training-day-date";
 import { toCivilDateDatabaseValue } from "../domain/training-day.rules";
 import { TrainingProjectionError } from "../domain/training-projection.error";
-import { scheduledEntriesForDate } from "../domain/training-weekly-schedule";
-import type { TrainingWeeklyScheduleEntry } from "../domain/training-weekly-schedule.types";
+import {
+  legacyScheduledEntriesForDate,
+  scheduledEntriesForDate,
+} from "../domain/training-weekly-schedule";
+import type {
+  LegacyTrainingWeeklyScheduleEntry,
+  TrainingWeeklyScheduleEntry,
+} from "../domain/training-weekly-schedule.types";
 import { trainingPlanInclude } from "./prisma-training-repository.types";
 
 const clockSchema = z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/);
@@ -17,7 +24,7 @@ const scheduleEntrySchema = z.object({
   time: clockSchema.nullable(),
   session: z.string().min(1),
 });
-const persistedScheduleSchema = z.object({
+const legacyScheduleSchema = z.object({
   weekend_game: z.object({
     enabled: z.boolean(),
     day: z.enum(["saturday", "sunday"]).nullable(),
@@ -29,6 +36,21 @@ const persistedScheduleSchema = z.object({
     sunday_game: z.array(scheduleEntrySchema),
   }),
 });
+const weeklyEntrySchema = z.object({
+  day: scheduleEntrySchema.shape.day,
+  type: z.enum(["structured_training", "specific_training", "sport_practice", "mobility", "rest"]),
+  start_time: clockSchema.nullable(),
+  end_time: clockSchema.nullable(),
+  session_id: z.string().min(1).optional(),
+  preparation_session_id: z.string().min(1).optional(),
+  name: z.string().min(1).optional(),
+  sport: z.string().min(1).optional(),
+});
+const weeklyScheduleSchema = z.object({
+  schema_version: z.literal("2.0.0"),
+  entries: z.array(weeklyEntrySchema),
+});
+const persistedScheduleSchema = z.union([weeklyScheduleSchema, legacyScheduleSchema]);
 
 type ActiveTrainingPlan = NonNullable<
   NonNullable<Awaited<ReturnType<typeof loadActiveTrainingPlanForSchedule>>>
@@ -41,7 +63,11 @@ export async function ensureScheduledTrainingDay(
   now: Date = new Date(),
 ): Promise<void> {
   const dateResolution = resolveTrainingDayDate({ rawDate: input.civilDate, now });
-  if (dateResolution.status !== "valid" || input.civilDate < dateResolution.todayDate) return;
+  if (
+    dateResolution.status !== "valid" ||
+    (input.civilDate < dateResolution.todayDate && !isTrainingDateEditable(input.civilDate, now))
+  )
+    return;
 
   for (let attempt = 0; attempt < 3; attempt++) {
     try {
@@ -72,15 +98,23 @@ export async function ensureScheduledTrainingDay(
               "A agenda semanal importada está inválida.",
             );
           }
-          const entries = scheduledEntriesForDate(parsed.data, input.civilDate);
+          const weeklySchedule = "entries" in parsed.data ? parsed.data : null;
+          const legacySchedule = "models" in parsed.data ? parsed.data : null;
+          const modern = Boolean(weeklySchedule);
+          const entries = weeklySchedule
+            ? scheduledEntriesForDate(weeklySchedule, input.civilDate)
+            : legacyScheduledEntriesForDate(legacySchedule!, input.civilDate);
           if (!entries) return;
           if (!entries.length) {
+            if (modern) return;
             throw new TrainingProjectionError(
               "TRAINING_DEFINITION_INVALID",
               "A agenda semanal não define esta data.",
             );
           }
-          const restEntry = entries.find((entry) => isRestEntry(entry.session));
+          const restEntry = entries.find((entry) =>
+            "type" in entry ? entry.type === "rest" : isRestEntry(entry.session),
+          );
           if (restEntry && entries.length !== 1) {
             throw new TrainingProjectionError(
               "TRAINING_DEFINITION_INVALID",
@@ -89,15 +123,20 @@ export async function ensureScheduledTrainingDay(
           }
           const plannedActivities = restEntry
             ? []
-            : entries.map((entry) =>
-                buildPlannedActivity(
-                  input.workspaceId,
-                  civilDate,
-                  plan,
-                  entry,
-                  parsed.data.planning_defaults.footvolley_duration_minutes,
-                ),
-              );
+            : weeklySchedule
+              ? scheduledEntriesForDate(weeklySchedule, input.civilDate).map((entry) =>
+                  buildWeeklyActivity(input.workspaceId, civilDate, plan, entry),
+                )
+              : (legacyScheduledEntriesForDate(legacySchedule!, input.civilDate) ?? []).map(
+                  (entry) =>
+                    buildPlannedActivity(
+                      input.workspaceId,
+                      civilDate,
+                      plan,
+                      entry,
+                      legacySchedule!.planning_defaults.footvolley_duration_minutes,
+                    ),
+                );
 
           await transaction.dailyTrainingAssignment.create({
             data: {
@@ -105,7 +144,9 @@ export async function ensureScheduledTrainingDay(
               civilDate,
               kind: restEntry ? "rest" : "unassigned",
               reason:
-                restEntry?.session === "rest_or_light_mobility"
+                restEntry &&
+                "session" in restEntry &&
+                restEntry.session === "rest_or_light_mobility"
                   ? "Descanso ou mobilidade leve"
                   : restEntry
                     ? "Descanso previsto no plano semanal"
@@ -114,7 +155,10 @@ export async function ensureScheduledTrainingDay(
           });
           for (const activity of plannedActivities) {
             const created = await transaction.trainingDayActivity.create({ data: activity });
-            if (activity.type === "specific_training" || activity.type === "sport_practice") {
+            if (
+              (activity.type === "specific_training" || activity.type === "sport_practice") &&
+              !modern
+            ) {
               await transaction.trainingDayActivity.create({
                 data: {
                   workspaceId: input.workspaceId,
@@ -162,7 +206,7 @@ function buildPlannedActivity(
   workspaceId: string,
   civilDate: Date,
   plan: ActiveTrainingPlan,
-  entry: TrainingWeeklyScheduleEntry,
+  entry: LegacyTrainingWeeklyScheduleEntry,
   footvolleyDurationMinutes: number,
 ): ScheduledActivityInput {
   const plannedStartMinute = entry.time === null ? null : parseClockMinute(entry.time);
@@ -233,6 +277,67 @@ function buildPlannedActivity(
     plannedEndMinute,
     trainingPlanVersionId: plan.id,
     sessionDefinitionId: session.id,
+    preparationSessionDefinitionId: preparation?.id ?? null,
+  };
+}
+
+function buildWeeklyActivity(
+  workspaceId: string,
+  civilDate: Date,
+  plan: ActiveTrainingPlan,
+  entry: TrainingWeeklyScheduleEntry,
+): ScheduledActivityInput {
+  if (entry.type === "rest") {
+    throw new TrainingProjectionError("TRAINING_DEFINITION_INVALID", "Descanso não é atividade.");
+  }
+  const start = entry.start_time === null ? null : parseClockMinute(entry.start_time);
+  const end = entry.end_time === null ? null : parseClockMinute(entry.end_time);
+  const session = entry.session_id
+    ? plan.trainingSessionDefinition_plan.find(
+        (item) => item.sessionId === entry.session_id && item.assignmentRole === "main",
+      )
+    : null;
+  const preparationId =
+    entry.preparation_session_id ??
+    (Array.isArray(session?.compatiblePreparationSessionIds)
+      ? session.compatiblePreparationSessionIds[0]
+      : undefined);
+  const preparation = preparationId
+    ? plan.trainingSessionDefinition_plan.find(
+        (item) => item.sessionId === preparationId && item.assignmentRole === "preparation",
+      )
+    : null;
+  if (
+    start === null ||
+    (end !== null && end <= start) ||
+    (entry.type === "structured_training" && !session) ||
+    (preparationId && !preparation) ||
+    (preparationId && entry.type === "mobility") ||
+    (entry.type !== "structured_training" && (!entry.name || end === null))
+  ) {
+    throw new TrainingProjectionError(
+      "TRAINING_DEFINITION_INVALID",
+      "A atividade semanal está incompleta ou referencia uma sessão inválida.",
+    );
+  }
+  const plannedEndMinute = end ?? start + session!.targetDurationMinutes;
+  if (plannedEndMinute > 1440) {
+    throw new TrainingProjectionError(
+      "TRAINING_DEFINITION_INVALID",
+      "A atividade planejada ultrapassa o fim da data civil.",
+    );
+  }
+  return {
+    workspaceId,
+    civilDate,
+    type: entry.type,
+    source: "plan",
+    name: session?.name ?? entry.name!,
+    sport: entry.sport ?? null,
+    plannedStartMinute: start,
+    plannedEndMinute,
+    trainingPlanVersionId: plan.id,
+    sessionDefinitionId: session?.id ?? null,
     preparationSessionDefinitionId: preparation?.id ?? null,
   };
 }

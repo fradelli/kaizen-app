@@ -5,6 +5,7 @@ export const trainingActivityCardStyles = {
   header: "grid gap-3",
   top: "flex items-start justify-between gap-3",
   title: "font-semibold text-foreground",
+  headingToggle: "h-auto justify-start p-0 text-left whitespace-normal hover:bg-transparent",
   metadata: "text-xs text-muted-foreground",
   tools: "flex shrink-0 items-center gap-1",
   body: "grid gap-4",
@@ -14,6 +15,5 @@ export const trainingActivityCardStyles = {
   sessionTitle: "font-semibold text-foreground",
   sessionMetadata: "text-sm text-muted-foreground",
   exercises: "grid gap-4",
-  collapsedSummary: "flex flex-wrap items-center justify-between gap-3",
   guidance: "text-sm text-muted-foreground",
 } as const;

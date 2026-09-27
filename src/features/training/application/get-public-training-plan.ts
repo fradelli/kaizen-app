@@ -6,6 +6,7 @@ import type {
 } from "./training-dto";
 import { resolveTrainingExercisePriorityLevel } from "../domain/training-exercise-priority";
 import type { GetPublicTrainingPlanDependencies } from "./get-public-training-plan.types";
+import { formatTrainingExerciseBlockLabel } from "./format-training-exercise-block-label";
 
 export async function getPublicTrainingPlan(
   dependencies: GetPublicTrainingPlanDependencies,
@@ -48,6 +49,7 @@ function projectPublicTrainingSession(
           ordinal: prescription.ordinal,
           prescribedSets: prescription.sets,
           prescribedText: prescription.prescribedText,
+          blockLabel: formatTrainingExerciseBlockLabel(prescription.block),
           restSeconds: prescription.restSeconds,
           priorityLevel: resolveTrainingExercisePriorityLevel(prescription.priority),
           notes: prescription.notes,

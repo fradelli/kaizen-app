@@ -10,6 +10,37 @@ import type { TrainingRepository } from "./training-repository";
 import { trainingPlanFixture } from "./get-public-training-plan.test";
 
 describe("getTrainingDay", () => {
+  it.each(["pending", "completed", "skipped"] as const)(
+    "preserves the exercise toggle state %s independently of set measurements",
+    async (itemStatus) => {
+      const plan = trainingPlanFixture();
+      const assignment = trainingAssignmentFixture(plan);
+      const execution = assignment.execution!;
+      const recorded = execution.exercises[0]!;
+      const result = await getTrainingDay(
+        dependencies({
+          activePlan: plan,
+          assignment: {
+            ...assignment,
+            execution: {
+              ...execution,
+              exercises: [
+                {
+                  ...recorded,
+                  itemStatus,
+                  sets: [1, 2].map((setNumber) => ({ ...recorded.sets[0]!, setNumber })),
+                },
+              ],
+            },
+          },
+        }),
+        { civilDate: "2026-09-16" },
+      );
+      expect(result.state).toBe("training");
+      if (result.state !== "training") throw new Error("Expected a training day");
+      expect(result.main.exercises[0]?.status).toBe(itemStatus);
+    },
+  );
   it("resolves the workspace on the server and returns choices for an unassigned day", async () => {
     const plan = trainingPlanFixture();
     const findTrainingDay = vi.fn(async (): Promise<TrainingDaySnapshot> => ({
@@ -283,7 +314,7 @@ function trainingAssignmentFixture(plan: TrainingPlanSnapshot | null): TrainingA
               prescriptionId: "prescription-squat",
               sessionDatabaseId: "session-db-a",
               role: "main",
-              itemStatus: "completed",
+              itemStatus: "pending",
               comment: null,
               revision: 1,
               sets: [

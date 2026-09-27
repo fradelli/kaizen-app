@@ -38,9 +38,9 @@ export function TrainingExercise({
           <h3 id={`${exercise.prescriptionId}-title`} className={trainingExerciseStyles.title}>
             {formatTrainingDisplayText(exercise.name)}
           </h3>
-          <p className={trainingExerciseStyles.prescription}>
-            {formatTrainingDisplayText(exercise.prescribedText)}
-          </p>
+          {exercise.blockLabel ? (
+            <p className={trainingExerciseStyles.prescription}>{exercise.blockLabel}</p>
+          ) : null}
         </div>
         {local ? (
           <Switch
@@ -65,6 +65,10 @@ export function TrainingExercise({
           <div>
             <dt className={trainingExerciseStyles.screenReaderOnly}>Séries prescritas</dt>
             <dd>{exercise.prescribedSets} séries</dd>
+          </div>
+          <div>
+            <dt className={trainingExerciseStyles.screenReaderOnly}>Dose prescrita</dt>
+            <dd>{formatTrainingDisplayText(exercise.prescribedText)}</dd>
           </div>
           {exercise.restSeconds === null ? null : (
             <div>

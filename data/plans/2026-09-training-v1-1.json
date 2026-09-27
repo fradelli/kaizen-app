@@ -1,0 +1,522 @@
+{
+  "schema_version": "1.0.0",
+  "plan_id": "training_2026_09_v1",
+  "version": "1.1.0",
+  "status": "active",
+  "created_at": "2026-09-25",
+  "last_updated": "2026-09-26",
+  "global_rules": {
+    "warmup": "Complete the sequence once without approaching failure; stop movements that cause pain.",
+    "duration": "40 minutes per workout is a target, not a validated duration. Warmup is included in the planned window.",
+    "alternating_blocks": "A → rest → B → rest → repeat; navigation is temporarily manual.",
+    "transition_rest": "Rest 120 s between single exercises or blocks, up to 180 s when needed. Transition rest replaces rest after the final set; do not add the intervals.",
+    "unilateral_round": "One unilateral round includes both sides. Walking movements alternate sides without resting after each repetition."
+  },
+  "sessions": {
+    "t1": {
+      "name": "Push Workout",
+      "target_duration_minutes": 40,
+      "notes": "Physical preparation for footvolley. Target duration includes warmup.",
+      "blocks": [
+        {
+          "id": "t1_b1",
+          "mode": "single",
+          "exercise_ids": [
+            "negative_handstand_push_up"
+          ]
+        },
+        {
+          "id": "t1_b2",
+          "mode": "single",
+          "exercise_ids": [
+            "parallel_bar_dip"
+          ]
+        },
+        {
+          "id": "t1_b3",
+          "mode": "alternating",
+          "exercise_ids": [
+            "decline_push_up",
+            "box_dip_chairs"
+          ]
+        },
+        {
+          "id": "t1_b4",
+          "mode": "alternating",
+          "exercise_ids": [
+            "close_push_up",
+            "hanging_leg_raise"
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "exercise_id": "negative_handstand_push_up",
+          "sets": 4,
+          "reps": "6-8",
+          "rest_seconds": 180,
+          "priority": "2",
+          "notes": "Stop before losing position or control; do not aim for failure. Lower with control; no additional numeric tempo is prescribed.",
+          "external_load_kg": 0,
+          "effort": {
+            "intent": "Stop before losing position or control; do not aim for failure."
+          }
+        },
+        {
+          "exercise_id": "parallel_bar_dip",
+          "sets": 3,
+          "reps": "10-12",
+          "rest_seconds": 120,
+          "priority": "3",
+          "external_load_kg": 0,
+          "effort": {
+            "rirApprox": 2
+          },
+          "notes": "Approximately 2 repetitions in reserve."
+        },
+        {
+          "exercise_id": "decline_push_up",
+          "sets": 2,
+          "reps": "10-12",
+          "rest_seconds": 90,
+          "priority": "1",
+          "external_load_kg": 0,
+          "effort": {
+            "rirApprox": 2
+          },
+          "notes": "Approximately 2 repetitions in reserve."
+        },
+        {
+          "exercise_id": "box_dip_chairs",
+          "sets": 2,
+          "reps": "8-10",
+          "rest_seconds": 120,
+          "priority": "1",
+          "external_load_kg": 0,
+          "effort": {
+            "rirApprox": 2
+          },
+          "notes": "Approximately 2 repetitions in reserve."
+        },
+        {
+          "exercise_id": "close_push_up",
+          "sets": 2,
+          "reps": "10-12",
+          "rest_seconds": 60,
+          "priority": "2",
+          "external_load_kg": 0,
+          "effort": {
+            "rirApprox": 2
+          },
+          "notes": "Approximately 2 repetitions in reserve."
+        },
+        {
+          "exercise_id": "hanging_leg_raise",
+          "sets": 2,
+          "reps": "8-10",
+          "rest_seconds": 90,
+          "priority": "2",
+          "external_load_kg": 0,
+          "effort": {
+            "rirApprox": 2
+          },
+          "notes": "Approximately 2 repetitions in reserve."
+        }
+      ]
+    },
+    "t2": {
+      "name": "Pull Workout",
+      "target_duration_minutes": 40,
+      "notes": "Physical preparation for footvolley. Target duration includes warmup.",
+      "blocks": [
+        {
+          "id": "t2_b1",
+          "mode": "single",
+          "exercise_ids": [
+            "pull_up"
+          ]
+        },
+        {
+          "id": "t2_b2",
+          "mode": "single",
+          "exercise_ids": [
+            "commando_pull_up"
+          ]
+        },
+        {
+          "id": "t2_b3",
+          "mode": "single",
+          "exercise_ids": [
+            "australian_row"
+          ]
+        },
+        {
+          "id": "t2_b4",
+          "mode": "alternating",
+          "exercise_ids": [
+            "australian_chin_up_hold",
+            "around_the_world"
+          ]
+        },
+        {
+          "id": "t2_b5",
+          "mode": "single",
+          "exercise_ids": [
+            "negative_dragon_flag"
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "exercise_id": "pull_up",
+          "sets": 3,
+          "reps": "8-10",
+          "rest_seconds": 150,
+          "priority": "3",
+          "external_load_kg": 0,
+          "effort": {
+            "rirApprox": 2
+          },
+          "notes": "Approximately 2 repetitions in reserve."
+        },
+        {
+          "exercise_id": "commando_pull_up",
+          "sets": 2,
+          "reps": "8-10",
+          "rest_seconds": 150,
+          "priority": "1",
+          "external_load_kg": 0,
+          "effort": {
+            "rirApprox": 2
+          },
+          "notes": "Approximately 2 repetitions in reserve."
+        },
+        {
+          "exercise_id": "australian_row",
+          "sets": 3,
+          "reps": "10-12",
+          "rest_seconds": 120,
+          "priority": "3",
+          "external_load_kg": 0,
+          "effort": {
+            "rirApprox": 2
+          },
+          "notes": "Approximately 2 repetitions in reserve."
+        },
+        {
+          "exercise_id": "australian_chin_up_hold",
+          "sets": 3,
+          "reps": "20-40_seconds",
+          "rest_seconds": 60,
+          "priority": "2",
+          "external_load_kg": 0,
+          "effort": {
+            "intent": "Stop before losing position or control; do not aim for failure."
+          },
+          "notes": "Stop before losing position or control; do not aim for failure."
+        },
+        {
+          "exercise_id": "around_the_world",
+          "sets": 3,
+          "reps": "15-20",
+          "rest_seconds": 90,
+          "priority": "2",
+          "external_load_kg": 0,
+          "effort": {
+            "rirApprox": 2
+          },
+          "notes": "Approximately 2 repetitions in reserve."
+        },
+        {
+          "exercise_id": "negative_dragon_flag",
+          "sets": 3,
+          "reps": "8-10",
+          "rest_seconds": 150,
+          "priority": "2",
+          "notes": "Stop before losing position or control; do not aim for failure. Lower with control; no additional numeric tempo is prescribed.",
+          "external_load_kg": 0,
+          "effort": {
+            "intent": "Stop before losing position or control; do not aim for failure."
+          }
+        }
+      ]
+    },
+    "t3": {
+      "name": "Lower Body Workout",
+      "target_duration_minutes": 40,
+      "notes": "Physical preparation for footvolley. Target duration includes warmup.",
+      "blocks": [
+        {
+          "id": "t3_b1",
+          "mode": "alternating",
+          "exercise_ids": [
+            "jump_lunge_one_leg",
+            "single_leg_glute_bridge"
+          ]
+        },
+        {
+          "id": "t3_b2",
+          "mode": "alternating",
+          "exercise_ids": [
+            "pistol_squat",
+            "box_extended_leg_walk"
+          ]
+        },
+        {
+          "id": "t3_b3",
+          "mode": "alternating",
+          "exercise_ids": [
+            "walking_lunge",
+            "laying_toe_touch"
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "exercise_id": "jump_lunge_one_leg",
+          "sets": 3,
+          "reps": "5_each_side",
+          "rest_seconds": 90,
+          "priority": "3",
+          "external_load_kg": 0,
+          "effort": {
+            "intent": "Keep jumps consistent; stop before jump height or landing quality deteriorates."
+          },
+          "notes": "Keep jumps consistent; stop before jump height or landing quality deteriorates. Rest between legs: 60–90 s."
+        },
+        {
+          "exercise_id": "single_leg_glute_bridge",
+          "sets": 3,
+          "reps": "20-40_seconds_each_side",
+          "rest_seconds": 150,
+          "priority": "2",
+          "external_load_kg": 0,
+          "effort": {
+            "intent": "Stop before losing position or control; do not aim for failure."
+          },
+          "notes": "Stop before losing position or control; do not aim for failure. Rest between legs: 15–30 s."
+        },
+        {
+          "exercise_id": "pistol_squat",
+          "sets": 3,
+          "reps": "10-12_each_side",
+          "rest_seconds": 90,
+          "priority": "3",
+          "external_load_kg": 0,
+          "effort": {
+            "rirApprox": 2
+          },
+          "notes": "Approximately 2 repetitions in reserve. Rest between legs: 30–60 s."
+        },
+        {
+          "exercise_id": "box_extended_leg_walk",
+          "sets": 3,
+          "reps": "24-30_each_side",
+          "rest_seconds": 120,
+          "priority": "2",
+          "external_load_kg": 0,
+          "effort": {
+            "rirApprox": 2
+          },
+          "notes": "Approximately 2 repetitions in reserve."
+        },
+        {
+          "exercise_id": "walking_lunge",
+          "sets": 3,
+          "reps": "10-12_each_side",
+          "rest_seconds": 60,
+          "priority": "2",
+          "external_load_kg": 0,
+          "effort": {
+            "rirApprox": 2
+          },
+          "notes": "Approximately 2 repetitions in reserve."
+        },
+        {
+          "exercise_id": "laying_toe_touch",
+          "sets": 3,
+          "reps": "20-25",
+          "rest_seconds": 120,
+          "priority": "1",
+          "external_load_kg": 0,
+          "effort": {
+            "rirApprox": 2
+          },
+          "notes": "Approximately 2 repetitions in reserve."
+        }
+      ]
+    },
+    "pre_t1": {
+      "name": "Push Warmup",
+      "target_duration_minutes": 8,
+      "notes": "Complete the sequence once, without approaching failure. Warmup is included in the main activity duration.",
+      "exercises": [
+        {
+          "exercise_id": "warmup_march_arms",
+          "sets": 1,
+          "reps": "60-90_seconds",
+          "notes": "March briskly in place while moving your arms."
+        },
+        {
+          "exercise_id": "warmup_arm_circles",
+          "sets": 1,
+          "reps": "8_each_direction",
+          "notes": "Perform controlled arm circles, starting small and gradually increasing their size."
+        },
+        {
+          "exercise_id": "wrist_rock",
+          "sets": 1,
+          "reps": "8-10",
+          "notes": "On all fours with hands on the floor, gently shift your body forward and backward."
+        },
+        {
+          "exercise_id": "scapular_push_up",
+          "sets": 1,
+          "reps": "8-10",
+          "notes": "Keep elbows extended; draw the shoulder blades together and apart."
+        },
+        {
+          "exercise_id": "elevated_push_up",
+          "sets": 1,
+          "reps": "5_easy",
+          "notes": "Perform easy push-ups with hands on a stable elevated support; then rest for 30 s."
+        },
+        {
+          "exercise_id": "negative_handstand_push_up",
+          "sets": 1,
+          "reps": "1-2",
+          "notes": "Perform controlled wall-supported negatives without an excessively slow descent; reduce range of motion if difficult. Then rest 90–120 s before the first set."
+        }
+      ]
+    },
+    "pre_t2": {
+      "name": "Pull Warmup",
+      "target_duration_minutes": 8,
+      "notes": "Complete the sequence once, without approaching failure. Warmup is included in the main activity duration.",
+      "exercises": [
+        {
+          "exercise_id": "warmup_march_arms",
+          "sets": 1,
+          "reps": "60-90_seconds",
+          "notes": "March briskly in place while moving your arms."
+        },
+        {
+          "exercise_id": "warmup_arm_circles",
+          "sets": 1,
+          "reps": "8_each_direction",
+          "notes": "Perform controlled arm circles, starting small and gradually increasing their size."
+        },
+        {
+          "exercise_id": "wrist_rock",
+          "sets": 1,
+          "reps": "8-10",
+          "notes": "On all fours with hands on the floor, gently shift your body forward and backward."
+        },
+        {
+          "exercise_id": "scapular_push_up",
+          "sets": 1,
+          "reps": "8-10",
+          "notes": "Keep elbows extended; draw the shoulder blades together and apart."
+        },
+        {
+          "exercise_id": "australian_row",
+          "sets": 1,
+          "reps": "5_easy",
+          "notes": "Perform easy Australian rows with a more upright body position; then rest for 30 s."
+        },
+        {
+          "exercise_id": "pull_up",
+          "sets": 1,
+          "reps": "2-3_easy",
+          "notes": "Perform comfortable pull-ups; then rest for 90 s before the first set."
+        }
+      ]
+    },
+    "pre_t3": {
+      "name": "Lower Body Warmup",
+      "target_duration_minutes": 9,
+      "notes": "Complete the sequence once, without approaching failure. Warmup is included in the main activity duration.",
+      "exercises": [
+        {
+          "exercise_id": "warmup_march_or_jog",
+          "sets": 1,
+          "reps": "60-90_seconds",
+          "notes": "March briskly or jog lightly in place."
+        },
+        {
+          "exercise_id": "knee_to_wall",
+          "sets": 1,
+          "reps": "8_each_side",
+          "notes": "Move the knee forward while keeping the heel on the floor."
+        },
+        {
+          "exercise_id": "lateral_weight_shift",
+          "sets": 1,
+          "reps": "5_each_side",
+          "notes": "Stand with feet apart and bend one knee at a time without forcing the range of motion."
+        },
+        {
+          "exercise_id": "standing_calf_raise",
+          "sets": 1,
+          "reps": "10",
+          "notes": "Perform calf raises using both feet."
+        },
+        {
+          "exercise_id": "bodyweight_squat",
+          "sets": 1,
+          "reps": "6",
+          "notes": "Perform comfortable, controlled bodyweight squats."
+        },
+        {
+          "exercise_id": "static_lunge",
+          "sets": 1,
+          "reps": "4_each_leg",
+          "notes": "Perform stationary lunges without jumping."
+        },
+        {
+          "exercise_id": "jump_lunge_one_leg",
+          "sets": 1,
+          "reps": "3_each_leg",
+          "notes": "Start with low jumps and gradually increase height; rest 30–45 s between legs and 90 s before the main sets."
+        }
+      ]
+    },
+    "pre_footvolley": {
+      "name": "Footvolley Warmup",
+      "target_duration_minutes": 5,
+      "notes": "Complete the sequence once, without approaching failure. Warmup is included in the main activity duration.",
+      "exercises": [
+        {
+          "exercise_id": "sand_jog_movements",
+          "sets": 1,
+          "reps": "60_seconds",
+          "notes": "Jog lightly for 30 s, shuffle laterally for 15 s alternating directions, and take short backward steps for 15 s."
+        },
+        {
+          "exercise_id": "sand_leg_preparation",
+          "sets": 1,
+          "reps": "60_seconds",
+          "notes": "Perform 10 calf raises, 5 squats and 4 lateral weight shifts per side through a comfortable range of motion."
+        },
+        {
+          "exercise_id": "sand_dynamic_mobility",
+          "sets": 1,
+          "reps": "60_seconds",
+          "notes": "Perform 5 forward and backward leg swings per side, 5 gentle trunk rotations per side, and arm circles."
+        },
+        {
+          "exercise_id": "sand_progressive_moves_jumps",
+          "sets": 1,
+          "reps": "60_seconds",
+          "notes": "Perform 3 movements of about 5 m, accelerating and stopping with control, followed by 3 low-to-moderate vertical jumps; walk back."
+        },
+        {
+          "exercise_id": "sand_ball_contact",
+          "sets": 1,
+          "reps": "60_seconds",
+          "notes": "Use light foot, thigh and head touches, with a partner or alone; gradually increase movement to reach the ball."
+        }
+      ]
+    }
+  }
+}

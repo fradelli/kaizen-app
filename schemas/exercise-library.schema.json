@@ -36,6 +36,7 @@
           "name_pt": {
             "type": "string"
           },
+          "name_en": { "type": "string", "minLength": 1 },
           "categories": {
             "type": "array",
             "items": {
@@ -50,7 +51,7 @@
             }
           },
           "evidence_level": {
-            "enum": ["A", "B", "C", "D"]
+          "enum": ["A", "B", "C", "D", null]
           }
         },
         "additionalProperties": true
@@ -59,4 +60,3 @@
   },
   "additionalProperties": true
 }
-

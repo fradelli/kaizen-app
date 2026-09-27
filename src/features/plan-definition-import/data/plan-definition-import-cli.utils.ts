@@ -5,11 +5,15 @@ import type { PlanDefinitionImportEnvironment } from "../domain/plan-definition-
 export function parseImportArguments(
   args: readonly string[],
   appEnvironment: string,
-): { commit: string; environment: PlanDefinitionImportEnvironment } {
+): { commit: string; environment: PlanDefinitionImportEnvironment; activeTrainingOnly?: true } {
   try {
     const { values } = parseArgs({
       args: [...args],
-      options: { commit: { type: "string", default: "HEAD" }, environment: { type: "string" } },
+      options: {
+        commit: { type: "string", default: "HEAD" },
+        environment: { type: "string" },
+        "active-training-only": { type: "boolean", default: false },
+      },
       strict: true,
       allowPositionals: false,
     });
@@ -25,10 +29,15 @@ export function parseImportArguments(
     if (
       !environment ||
       !permitted.includes(environment) ||
-      !/^(HEAD|[0-9a-f]{40})$/.test(values.commit)
+      !/^(HEAD|[0-9a-f]{40})$/.test(values.commit) ||
+      (values["active-training-only"] && environment !== "local")
     )
       throw new Error();
-    return { commit: values.commit, environment: environment as PlanDefinitionImportEnvironment };
+    return {
+      commit: values.commit,
+      environment: environment as PlanDefinitionImportEnvironment,
+      ...(values["active-training-only"] ? { activeTrainingOnly: true as const } : {}),
+    };
   } catch {
     throw new PlanDefinitionImportError("CLI_INVALID");
   }

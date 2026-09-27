@@ -2,6 +2,30 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-27 — E06-T12 concluída e ficha em inglês ativada
+
+- Corrigida projeção do estado do toggle, associação de aquecimento Futevôlei/Footvolley e proteção de rascunhos fora da janela de edição.
+- Versão 1.1.0 importada do commit fbd544e e ativada localmente; reimportação no-op, sem alterar histórico operacional ou alimentação.
+- CI local completa aprovada, incluindo 272 testes unitários, 41 integrações e auditoria sem vulnerabilidades conhecidas.
+- Dias já materializados mantêm sua versão original; i18n, navegação inferior e reconciliação futura continuam adiados.
+
+## 2026-09-26 — correções do fluxo diário em revisão local
+
+- Conclusão parcial com confirmação curta, preservando o rascunho em falhas e sem exigir séries do aquecimento.
+- Início e alterações apenas hoje/ontem no fuso São Paulo; datas futuras e históricas continuam consultáveis.
+- Cards expandem e recolhem pelo título, sem iniciar o cronômetro.
+- Preparada versão 1.1.0 com dados de treino em inglês, sem sobrescrever definições anteriores; ainda não importada porque o usuário pediu manter alterações sem commit.
+- Navegação inferior e i18n continuam futuros; idiomas iniciais confirmados: português, espanhol e inglês.
+
+## 2026-09-26 — nova programação implementada e ativada localmente
+
+- Adicionada ficha aprovada com três sessões às 17h e futevôlei de segunda a quinta, 12h–13h30; jogos permanecem manuais e variantes reserva fora do plano ativo.
+- Agenda 2.0 independente de jogo de fim de semana, mantendo leitura histórica e o limite de hoje + 4 dias.
+- Preservados blocos A/B em campos estruturais das prescrições, com subtítulo provisório e navegação manual; condução guiada planejada na E06-T18.
+- Adicionados quatro aquecimentos e suporte a preparação versionada para atividades esportivas, com duração incluída na janela principal.
+- Preparada importação somente do treino ativo para o reinício local, sem alterar o comportamento padrão de importação histórica.
+- Backup local atualizado e restaurado com sucesso; reinício transacional restrito ao treino concluído. Nova ficha importada e ativada localmente; alimentação preservada e reimportação idempotente.
+
 ## 2026-09-25 — roadmap de treino realinhado para a nova programação
 
 - Sincronizadas E06-T02 e E06-T03 com as PRs #45 e #48 integradas; a E06-T03 registra a regra final de rascunho local e persistência na conclusão.

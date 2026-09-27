@@ -44,10 +44,16 @@ A E06-T03 guarda a agenda semanal na versão do plano e materializa somente a da
 
 ## Critérios de aceite
 
-- [ ] O fluxo real está documentado sem supor um `DailyPlan` inexistente.
-- [ ] Decisões de navegação, materialização parcial e feedback estão explícitas.
-- [ ] Lacunas foram decompostas para E06-T12 e E06-T13 sem implementar código nesta tarefa.
+- [x] O fluxo real está documentado sem supor um `DailyPlan` inexistente.
+- [x] Decisões de navegação, materialização parcial e feedback estão explícitas.
+- [x] Lacunas foram decompostas para E06-T12 e E06-T13 sem implementar código nesta tarefa.
 
 ## Resultado
 
-Ainda não iniciada.
+Revisão e decisões aprovadas pelo usuário. O template semanal pertence à versão importada; `getTrainingDay` materializa apenas a data consultada em transação serializável e então projeta a atribuição e as atividades.
+
+- Mantidos hoje até hoje + 4 dias e o fuso `America/Sao_Paulo`; não criar planos passados nem pré-gerar semanas.
+- Qualquer atribuição ou atividade existente, inclusive excluída logicamente, impede nova materialização. Não completar automaticamente um dia parcial nem recriar exclusões intencionais. Refinamentos da edição ficam em E06-T12.
+- Datas sem entradas no novo formato ficam sem atividades fixas; jogo de sábado só por inclusão manual.
+- Mantido o loading da rota; nenhuma confirmação ou mensagem de gravação durante execução local.
+- Reconciliação de dias futuros após troca de plano permanece em E06-T13. O reset local autorizado elimina o legado atual, mas não substitui essa regra futura.

@@ -23,10 +23,13 @@ Treino, preparação, mobilidade ou descanso do dia consultáveis e registrávei
 | E06-T13 | E06-T11    | Futuro reconciliado após troca de plano           |
 | E06-T14 | E04-T04    | Navegação principal inferior no mobile            |
 | E06-T15 | E06-T11    | Programação semanal sem esporte fixo              |
-| E06-T16 | E06-T15, E06-T17 | Novo plano e sessões reserva validados      |
+| E06-T16 | E06-T15         | Novo plano e aquecimentos validados      |
 | E06-T17 | E06-T11    | Reinício operacional controlado e recuperável     |
+| E06-T18 | E06-T16    | Condução guiada dos blocos combinados             |
+| E06-T19 | E06-T12    | Fim planejado calculado pela duração da sessão    |
+| E06-T20 | E06-T12    | Inclusão sem a opção Treino específico            |
 
-As tarefas E06-T06 a E06-T17 são uma rodada complementar. Nenhuma
+As tarefas E06-T06 a E06-T20 são uma rodada complementar. Nenhuma
 começa automaticamente nem amplia o gate de E06-T05 sem nova priorização. Ao
 selecionar qualquer uma, reanalisar a base já integrada, apresentar solução e
 plano e aguardar aprovação antes de implementar.
@@ -36,18 +39,18 @@ plano e aguardar aprovação antes de implementar.
 1. E06-T11 decide as regras do dia antes de ampliar a agenda.
 2. Após a revisão das alterações do roadmap pelo usuário, E06-T17 só reinicia
    dados após escolha do ambiente, escopo, backup e autorização específica.
-   Nenhuma exclusão faz parte desta atualização.
+   O reinício local autorizado foi concluído com backup restaurável.
 3. E06-T15 generaliza a semana; após receber o novo treino, E06-T16 o importa,
-   inclusive sessões reserva sem dia fixo.
+   sessões reserva ficam fora da versão atual até aprovação específica.
 4. E06-T06 e E06-T08 podem ser avaliadas em conjunto; E06-T07 entra antes de
    comparar execuções posteriores. E06-T09 precede E06-T10. E06-T14 pode ser
    entregue separadamente. E06-T12 depende das lacunas identificadas em T11.
 5. E06-T13 pode ser reavaliada caso o reinício controlado elimine a necessidade
    imediata de reconciliar atividades futuras antigas; não está cancelada.
 
-Exercícios combinados ficam adiados: a próxima programação informada não os
-utiliza. O formato e a prioridade serão reavaliados se um plano futuro exigir
-esse agrupamento. E06-T04 e E06-T05 continuam necessários para encerrar o épico.
+O novo plano contém blocos combinados: E06-T16 preserva sua estrutura e apresenta
+subtítulos A/B com navegação manual. O fluxo guiado permanece adiado em E06-T18,
+com nova revisão antes de implementar. E06-T04 e E06-T05 continuam necessários para encerrar o épico.
 
 ## Fora de escopo
 

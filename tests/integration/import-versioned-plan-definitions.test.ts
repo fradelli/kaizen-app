@@ -13,6 +13,7 @@ import { findPlanDefinitionSourceByPath } from "@/features/plan-definition-impor
 import type { PrismaClient } from "@/generated/prisma/client";
 import { withImportDatabase } from "./fixtures/import-database.fixture";
 import { createDatabaseFixture } from "./fixtures/database.fixture";
+import { canonicalTrainingCounts } from "./fixtures/canonical-training-counts.fixture";
 
 async function run(client: PrismaClient, snapshot: PlanDefinitionSnapshot) {
   return importVersionedPlanDefinitions(
@@ -43,6 +44,28 @@ async function state(client: PrismaClient) {
 }
 
 describe("importação canônica em PostgreSQL real", () => {
+  it("imports only the selected training plan and its exercise catalog during a local fresh start", () =>
+    withImportDatabase(async (client) => {
+      const snapshot = await readPlanDefinitionsFromGit(process.cwd());
+      const pointer = snapshot.sources.find((source) => source.kind === "training_pointer")!;
+      const active = snapshot.sources.find(
+        (source) =>
+          source.kind === "training_plan" && source.path === pointer.document.active_plan_path,
+      );
+      if (!active || active.kind !== "training_plan") throw new Error("Missing active plan");
+      const selectedExerciseIds = new Set(
+        Object.values(active.document.sessions).flatMap((session) =>
+          session.exercises.map((exercise) => exercise.exercise_id),
+        ),
+      );
+      const repository = new PrismaPlanDefinitionImportRepository(client, undefined, true);
+      const first = await repository.persistSnapshot(snapshot, "local");
+      expect(first.created.trainingPlans).toBe(1);
+      expect(await client.exerciseDefinition.count()).toBe(selectedExerciseIds.size);
+      expect(await client.trainingPlanVersion.count()).toBe(1);
+      expect(await client.nutritionPlanVersion.count()).toBeGreaterThan(0);
+      expect((await repository.persistSnapshot(snapshot, "local")).result).toBe("no-op");
+    }));
   it("importa versão alimentar nova com ID estável sem alterar a versão anterior", () =>
     withImportDatabase(async (client) => {
       const snapshot = await readPlanDefinitionsFromGit(process.cwd());
@@ -83,22 +106,21 @@ describe("importação canônica em PostgreSQL real", () => {
       const first = await run(client, snapshot);
       expect(first.result).toBe("imported");
       expect(first.activationsChanged).toBe(2);
-      expect(first.created.exercises).toBe(38);
-      expect(first.created.trainingPlans).toBe(2);
+      const expectedTraining = canonicalTrainingCounts(snapshot);
+      expect(first.created.exercises).toBe(expectedTraining.exercises);
+      expect(first.created.trainingPlans).toBe(expectedTraining.trainingPlans);
       expect(first.created.nutritionPlans).toBe(1);
       expect(first.created).toEqual({
-        batches: 8,
-        exercises: 38,
-        trainingPlans: 2,
-        trainingSessions: 14,
-        trainingPrescriptions: 87,
+        ...expectedTraining,
         nutritionPlans: 1,
         meals: 5,
         mealOptions: 20,
         nutritionDayTypes: 6,
         dayTypeMeals: 30,
       });
-      expect(await client.trainingSessionDefinition.count()).toBe(14);
+      expect(await client.trainingSessionDefinition.count()).toBe(
+        expectedTraining.trainingSessions,
+      );
       expect(await client.mealDefinition.count()).toBe(5);
       expect(await client.mealOptionDefinition.count()).toBe(20);
       expect(await client.nutritionDayTypeDefinition.count()).toBe(6);
@@ -208,7 +230,9 @@ describe("importação canônica em PostgreSQL real", () => {
       const results = await Promise.all([run(client, snapshot), run(client, snapshot)]);
       expect(results.map((result) => result.result).sort()).toEqual(["imported", "no-op"]);
       expect(await client.importBatch.count()).toBe(snapshot.sources.length);
-      expect(await client.trainingPlanVersion.count()).toBe(2);
+      expect(await client.trainingPlanVersion.count()).toBe(
+        canonicalTrainingCounts(snapshot).trainingPlans,
+      );
     }));
   it("troca e reativação preservam versões e dados operacionais", () =>
     withImportDatabase(async (client) => {
@@ -237,7 +261,9 @@ describe("importação canônica em PostgreSQL real", () => {
                 active_plan_id: version.document.plan_id,
               },
             }
-          : source,
+          : source.kind === "training_schedule" && "entries" in source.document
+            ? { ...source, sha256: "d".repeat(64), document: { ...source.document, entries: [] } }
+            : source,
       );
       const report = await run(client, changed);
       expect(report.activationsChanged).toBe(1);

@@ -19,22 +19,51 @@ export async function persistPlanDefinitionSnapshot(
   snapshot: PlanDefinitionSnapshot,
   environment: PlanDefinitionImportEnvironment,
   now: () => Date,
+  activeTrainingOnly = false,
 ): Promise<PlanDefinitionImportReport> {
   await tx.$queryRaw`SELECT pg_advisory_xact_lock(7210503)::text`;
+  const trainingPointer = findPlanDefinitionSource(snapshot.sources, "training_pointer");
+  if (!trainingPointer) throw new Error("O plano ativo de treino não foi encontrado.");
+  const activeTrainingPlan = snapshot.sources.find(
+    (source) =>
+      source.kind === "training_plan" && source.path === trainingPointer.document.active_plan_path,
+  );
+  if (!activeTrainingPlan || activeTrainingPlan.kind !== "training_plan")
+    throw new Error("O plano ativo de treino não foi encontrado.");
+  const persistedSnapshot = activeTrainingOnly
+    ? {
+        ...snapshot,
+        sources: snapshot.sources.filter(
+          (source) => source.kind !== "training_plan" || source.path === activeTrainingPlan.path,
+        ),
+      }
+    : snapshot;
+  const selectedExerciseIds = activeTrainingOnly
+    ? new Set(
+        Object.values(activeTrainingPlan.document.sessions).flatMap((session) =>
+          session.exercises.map((exercise) => exercise.exercise_id),
+        ),
+      )
+    : undefined;
   const created: CreatedDefinitionCounts = {};
-  const { batches, fresh, report } = await persistSourceImportBatches(tx, snapshot, created, now);
+  const { batches, fresh, report } = await persistSourceImportBatches(
+    tx,
+    persistedSnapshot,
+    created,
+    now,
+  );
   const { exercises, metadata } = await persistReviewedExerciseDefinitions(
     tx,
     snapshot,
     batches,
     created,
+    selectedExerciseIds,
   );
   const versions = new Map<string, string>();
   const trainingSchedule = findPlanDefinitionSource(snapshot.sources, "training_schedule");
-  const trainingPointer = findPlanDefinitionSource(snapshot.sources, "training_pointer");
   if (!trainingSchedule) throw new Error("A agenda semanal versionada não foi encontrada.");
   if (!trainingPointer) throw new Error("O plano ativo de treino não foi encontrado.");
-  for (const source of snapshot.sources) {
+  for (const source of persistedSnapshot.sources) {
     if (source.kind === "training_plan")
       versions.set(
         source.path,

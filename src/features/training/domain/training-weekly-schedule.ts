@@ -3,6 +3,8 @@ import type {
   TrainingScheduleWeekday,
   TrainingWeeklySchedule,
   TrainingWeeklyScheduleEntry,
+  LegacyTrainingWeeklySchedule,
+  LegacyTrainingWeeklyScheduleEntry,
 } from "./training-weekly-schedule.types";
 
 const WEEKDAYS: readonly TrainingScheduleWeekday[] = [
@@ -18,7 +20,15 @@ const WEEKDAYS: readonly TrainingScheduleWeekday[] = [
 export function scheduledEntriesForDate(
   schedule: TrainingWeeklySchedule,
   civilDate: CivilDate,
-): readonly TrainingWeeklyScheduleEntry[] | null {
+): readonly TrainingWeeklyScheduleEntry[] {
+  const weekday = WEEKDAYS[new Date(`${civilDate}T00:00:00.000Z`).getUTCDay()];
+  return schedule.entries.filter((entry) => entry.day === weekday);
+}
+
+export function legacyScheduledEntriesForDate(
+  schedule: LegacyTrainingWeeklySchedule,
+  civilDate: CivilDate,
+): readonly LegacyTrainingWeeklyScheduleEntry[] | null {
   const gameDay = schedule.weekend_game.enabled ? schedule.weekend_game.day : null;
   if (!gameDay) return null;
   const model =

@@ -169,7 +169,7 @@ function validateSchemas(documents) {
 function normalizePrescription(text) {
   if (typeof text !== "string") return undefined;
   const match =
-    /^(\d+)(?:-(\d+))?(?:_(minutes|contacts|seconds_each_side|seconds_each_direction|each_side|each_leg|each_direction|easy|easy_or_assisted|at_60_75_90_percent))?$/.exec(
+    /^(\d+)(?:-(\d+))?(?:_(minutes|seconds|contacts|seconds_each_side|seconds_each_direction|each_side|each_leg|each_direction|easy|easy_or_assisted|at_60_75_90_percent))?$/.exec(
       text,
     );
   if (!match) return undefined;
@@ -188,7 +188,7 @@ function normalizePrescription(text) {
     minimum,
     maximum,
     unit:
-      suffix === "minutes" || suffix?.startsWith("seconds_")
+      suffix === "minutes" || suffix === "seconds" || suffix?.startsWith("seconds_")
         ? "seconds"
         : suffix === "contacts"
           ? "contacts"
@@ -296,6 +296,27 @@ function validateTrainingData(documents) {
 
   for (const [path, plan] of planEntries) {
     for (const [sessionId, session] of Object.entries(plan.sessions ?? {})) {
+      if (session.blocks) {
+        const exerciseIdsInOrder = session.blocks.flatMap((block) => block.exercise_ids);
+        const prescriptionIds = session.exercises.map((exercise) => exercise.exercise_id);
+        if (JSON.stringify(exerciseIdsInOrder) !== JSON.stringify(prescriptionIds)) {
+          errors.push(
+            `${path}/sessions/${sessionId}/blocks: blocos devem cobrir os exercícios na ordem da sessão.`,
+          );
+        }
+        if (
+          new Set(session.blocks.map((block) => block.id)).size !== session.blocks.length ||
+          session.blocks.some((block) =>
+            block.mode === "alternating"
+              ? block.exercise_ids.length !== 2
+              : block.exercise_ids.length !== 1,
+          )
+        ) {
+          errors.push(
+            `${path}/sessions/${sessionId}/blocks: IDs ou composição de blocos inválidos.`,
+          );
+        }
+      }
       for (const [index, exercise] of (session.exercises ?? []).entries()) {
         if (!exerciseIds.has(exercise.exercise_id)) {
           errors.push(
@@ -316,6 +337,44 @@ function validateTrainingData(documents) {
     "rest",
     "rest_or_light_mobility",
   ]);
+  if (schedule?.entries && activeTrainingPlan) {
+    const [path, plan] = activeTrainingPlan;
+    const seenEntries = new Set();
+    for (const [index, entry] of schedule.entries.entries()) {
+      const entryPath = `data/schedule.json/entries/${index}`;
+      const identity = JSON.stringify(entry);
+      if (seenEntries.has(identity)) errors.push(`${entryPath}: atividade semanal duplicada.`);
+      seenEntries.add(identity);
+      if (entry.type === "rest") {
+        if (schedule.entries.filter((candidate) => candidate.day === entry.day).length !== 1) {
+          errors.push(`${entryPath}: descanso não pode coexistir com outra atividade.`);
+        }
+      } else if (!entry.start_time || !entry.end_time || entry.end_time <= entry.start_time) {
+        errors.push(`${entryPath}: horários planejados ausentes ou fora de ordem.`);
+      }
+      for (const sessionId of [entry.session_id, entry.preparation_session_id].filter(Boolean)) {
+        if (!Object.hasOwn(plan.sessions ?? {}, sessionId)) {
+          errors.push(
+            `data/schedule.json/entries/${index}: sessão inexistente em ${path}: ${sessionId}.`,
+          );
+        }
+      }
+      const assignments = documents.get("data/training-execution-metadata.json")?.sessions ?? [];
+      const roleFor = (sessionId) =>
+        assignments.find(
+          (item) =>
+            item.plan_id === plan.plan_id &&
+            item.plan_version === plan.version &&
+            item.session_id === sessionId,
+        )?.assignment_role;
+      if (entry.type === "structured_training" && roleFor(entry.session_id) !== "main") {
+        errors.push(`${entryPath}: treino estruturado deve referenciar sessão principal.`);
+      }
+      if (entry.preparation_session_id && roleFor(entry.preparation_session_id) !== "preparation") {
+        errors.push(`${entryPath}: aquecimento deve referenciar uma preparação.`);
+      }
+    }
+  }
   if (schedule?.models && activeTrainingPlan) {
     const [path, plan] = activeTrainingPlan;
     for (const [modelName, model] of Object.entries(schedule.models)) {

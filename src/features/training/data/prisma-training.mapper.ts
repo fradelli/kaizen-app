@@ -1,3 +1,4 @@
+import { parseTrainingExerciseBlock } from "./parse-training-exercise-block";
 import type { Prisma } from "@/generated/prisma/client";
 import {
   parseDirectionValues,
@@ -96,6 +97,7 @@ function mapPrismaTrainingSession(
             restSeconds: prescription.restSeconds,
             priority: prescription.priority,
             notes: prescription.notes,
+            block: parseTrainingExerciseBlock(prescription),
             dose: parseNormalizedTrainingDose(prescription.normalizedDose),
             exercise: Object.freeze({
               exerciseId: prescription.exercise.exerciseId,

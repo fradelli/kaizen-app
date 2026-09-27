@@ -28,10 +28,11 @@ try {
       repository: {
         persistSnapshot: (snapshot, environment) => {
           client = getDatabaseClient();
-          return new PrismaPlanDefinitionImportRepository(client).persistSnapshot(
-            snapshot,
-            environment,
-          );
+          return new PrismaPlanDefinitionImportRepository(
+            client,
+            undefined,
+            args.activeTrainingOnly,
+          ).persistSnapshot(snapshot, environment);
         },
       },
     },

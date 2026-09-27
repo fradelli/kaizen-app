@@ -45,6 +45,12 @@ export type TrainingExercisePrescriptionSnapshot = Readonly<{
   priority: string | null;
   notes: string | null;
   dose: NormalizedTrainingDose;
+  block?: Readonly<{
+    id: string;
+    mode: "single" | "alternating";
+    ordinal: number;
+    position: number;
+  }> | null;
   exercise: TrainingExerciseDefinitionSnapshot;
 }>;
 

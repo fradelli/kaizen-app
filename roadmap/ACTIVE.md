@@ -1,12 +1,13 @@
 # Tarefa selecionada
 
-- **Tarefa:** E06-T11 — Revisar o ciclo de vida do plano diário
-- **Status:** READY
-- **Branch prevista:** `codex/E06-T11-review-daily-plan-lifecycle`
-- **Entrada principal:** `roadmap/epics/E06-training-execution/T11-review-daily-plan-lifecycle.md`.
+- **Tarefa:** E06-T12 — Refinar edição de atividades do dia
+- **Status:** DONE
+- **Branch:** `codex/E06-T12-training-flow-corrections`
+- **Entrada principal:** `roadmap/epics/E06-training-execution/T12-refine-daily-activity-editing.md`.
 - **Resultado anterior:** E06-T03 integrada em `developer` pela PR #48.
-- **Objetivo:** confirmar e decidir as regras de geração e persistência da data consultada antes de generalizar a nova semana.
-- **Bloqueio atual:** nenhum para a análise; decisões de produto exigirão aprovação antes de código.
-- **Próxima ação:** revisar o fluxo vigente no código integrado e apresentar as alternativas para dia parcial, navegação futura e preservação de exceções.
+- **Objetivo:** conclusão parcial, edição restrita a hoje/ontem, consulta expansível sem iniciar e nova ficha com dados em inglês.
+- **Autorização:** usuário aprovou commit, importação local da versão 1.1.0 e publicação de PR para developer em 27/09.
+- **Resultado:** versão 1.1.0 importada do commit fbd544e e ativada localmente; reimportação no-op, histórico e alimentação preservados por comparação de hashes. CI local completa aprovada.
+- **Próxima ação:** publicar a PR para developer e aguardar revisão. Nenhuma próxima tarefa iniciada automaticamente.
 
-Não iniciar a implementação da E06-T11 nem limpar o banco por esta atualização do roadmap.
+O usuário aprovou o commit local e a limpeza restrita ao treino no PostgreSQL local após backup. Backup atualizado em 26/09 e restaurado em banco temporário. Reinício da E06-T17 concluído, nova ficha importada e ativada, alimentação preservada. Reimportação retornou no-op; consulta repetida não duplicou atividades e a data além de hoje + 4 não materializou registros.
