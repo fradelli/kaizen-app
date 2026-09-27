@@ -261,7 +261,9 @@ describe("importação canônica em PostgreSQL real", () => {
                 active_plan_id: version.document.plan_id,
               },
             }
-          : source,
+          : source.kind === "training_schedule" && "entries" in source.document
+            ? { ...source, sha256: "d".repeat(64), document: { ...source.document, entries: [] } }
+            : source,
       );
       const report = await run(client, changed);
       expect(report.activationsChanged).toBe(1);
