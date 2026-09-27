@@ -89,7 +89,7 @@ Somente este arquivo guarda o status canônico. Arquivos individuais não repete
 | E06-T11 | DONE      | [Revisar o ciclo de vida do plano diário](epics/E06-training-execution/T11-review-daily-plan-lifecycle.md)                 | E06-T03                               |
 | E06-T12 | DONE | [Refinar edição de atividades do dia](epics/E06-training-execution/T12-refine-daily-activity-editing.md)                   | E06-T11                               |
 | E06-T13 | PLANNED   | [Reconciliar atividades futuras ao ativar outro plano](epics/E06-training-execution/T13-reconcile-future-activities-on-plan-change.md) | E06-T11                  |
-| E06-T14 | IN_PROGRESS | [Mover navegação principal para baixo no mobile](epics/E06-training-execution/T14-add-mobile-bottom-navigation.md)       | E04-T04                               |
+| E06-T14 | BLOCKED   | [Mover navegação principal para baixo no mobile](epics/E06-training-execution/T14-add-mobile-bottom-navigation.md)       | E04-T04                               |
 | E06-T15 | DONE      | [Generalizar a programação semanal de atividades](epics/E06-training-execution/T15-generalize-weekly-training-schedule.md) | E06-T11                              |
 | E06-T16 | DONE      | [Validar e importar a nova programação de treino](epics/E06-training-execution/T16-import-new-training-program.md)        | E06-T15                               |
 | E06-T17 | DONE      | [Preparar reinício controlado dos dados de treino](epics/E06-training-execution/T17-prepare-training-data-fresh-start.md) | E06-T11                               |
