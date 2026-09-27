@@ -1,5 +1,8 @@
 .shell {
   min-height: 100svh;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
 }
 
 .skipLink {
@@ -20,6 +23,7 @@
 }
 
 .header {
+  grid-area: 1 / 1;
   border-bottom: 1px solid var(--fd-color-border);
   background: var(--fd-color-surface);
 }
@@ -43,14 +47,21 @@
 }
 
 .content {
+  grid-area: 2 / 1;
   width: min(100%, 72rem);
   margin-inline: auto;
   padding: var(--fd-space-4);
 }
 
-@media (max-width: 23.75rem) {
+@media (width < 48rem) {
   .headerInner {
-    align-items: stretch;
-    flex-direction: column;
+    padding-block: var(--fd-space-2);
+  }
+  .brand {
+    font-size: var(--fd-font-size-lg);
+    line-height: var(--fd-font-line-height-lg);
+  }
+  .content {
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
   }
 }
