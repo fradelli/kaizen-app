@@ -1,25 +1,175 @@
 {
   "schema_version": "1.0.0",
-  "last_updated": "2026-09-12",
+  "last_updated": "2026-09-25",
   "reviewed_plan_paths": [
     "data/plans/2026-08-performance-v1.json",
-    "data/plans/2026-08-performance-v2.json"
+    "data/plans/2026-08-performance-v2.json",
+    "data/plans/2026-09-training-v1.json"
   ],
   "sessions": [
-    { "plan_id": "performance_2026_08_v1", "plan_version": "1.0.0", "session_id": "lower_a", "assignment_role": "main", "compatible_preparation_session_ids": [] },
-    { "plan_id": "performance_2026_08_v1", "plan_version": "1.0.0", "session_id": "upper_a", "assignment_role": "main", "compatible_preparation_session_ids": [] },
-    { "plan_id": "performance_2026_08_v1", "plan_version": "1.0.0", "session_id": "lower_b", "assignment_role": "main", "compatible_preparation_session_ids": [] },
-    { "plan_id": "performance_2026_08_v1", "plan_version": "1.0.0", "session_id": "lower_b_microdose", "assignment_role": "main", "compatible_preparation_session_ids": [] },
-    { "plan_id": "performance_2026_08_v1", "plan_version": "1.0.0", "session_id": "upper_b", "assignment_role": "main", "compatible_preparation_session_ids": [] },
-    { "plan_id": "performance_2026_08_v1", "plan_version": "1.0.0", "session_id": "pre_footvolley_warmup", "assignment_role": "preparation", "compatible_preparation_session_ids": [] },
-    { "plan_id": "performance_2026_08_v2", "plan_version": "2.1.0", "session_id": "lower_a", "assignment_role": "main", "compatible_preparation_session_ids": ["pre_lower_warmup"] },
-    { "plan_id": "performance_2026_08_v2", "plan_version": "2.1.0", "session_id": "upper_a", "assignment_role": "main", "compatible_preparation_session_ids": ["pre_upper_warmup"] },
-    { "plan_id": "performance_2026_08_v2", "plan_version": "2.1.0", "session_id": "lower_b", "assignment_role": "main", "compatible_preparation_session_ids": ["pre_lower_warmup"] },
-    { "plan_id": "performance_2026_08_v2", "plan_version": "2.1.0", "session_id": "lower_b_microdose", "assignment_role": "main", "compatible_preparation_session_ids": ["pre_lower_warmup"] },
-    { "plan_id": "performance_2026_08_v2", "plan_version": "2.1.0", "session_id": "upper_b", "assignment_role": "main", "compatible_preparation_session_ids": ["pre_upper_warmup"] },
-    { "plan_id": "performance_2026_08_v2", "plan_version": "2.1.0", "session_id": "pre_upper_warmup", "assignment_role": "preparation", "compatible_preparation_session_ids": [] },
-    { "plan_id": "performance_2026_08_v2", "plan_version": "2.1.0", "session_id": "pre_lower_warmup", "assignment_role": "preparation", "compatible_preparation_session_ids": [] },
-    { "plan_id": "performance_2026_08_v2", "plan_version": "2.1.0", "session_id": "pre_footvolley_warmup", "assignment_role": "preparation", "compatible_preparation_session_ids": [] }
+    {
+      "plan_id": "performance_2026_08_v1",
+      "plan_version": "1.0.0",
+      "session_id": "lower_a",
+      "assignment_role": "main",
+      "compatible_preparation_session_ids": []
+    },
+    {
+      "plan_id": "performance_2026_08_v1",
+      "plan_version": "1.0.0",
+      "session_id": "upper_a",
+      "assignment_role": "main",
+      "compatible_preparation_session_ids": []
+    },
+    {
+      "plan_id": "performance_2026_08_v1",
+      "plan_version": "1.0.0",
+      "session_id": "lower_b",
+      "assignment_role": "main",
+      "compatible_preparation_session_ids": []
+    },
+    {
+      "plan_id": "performance_2026_08_v1",
+      "plan_version": "1.0.0",
+      "session_id": "lower_b_microdose",
+      "assignment_role": "main",
+      "compatible_preparation_session_ids": []
+    },
+    {
+      "plan_id": "performance_2026_08_v1",
+      "plan_version": "1.0.0",
+      "session_id": "upper_b",
+      "assignment_role": "main",
+      "compatible_preparation_session_ids": []
+    },
+    {
+      "plan_id": "performance_2026_08_v1",
+      "plan_version": "1.0.0",
+      "session_id": "pre_footvolley_warmup",
+      "assignment_role": "preparation",
+      "compatible_preparation_session_ids": []
+    },
+    {
+      "plan_id": "performance_2026_08_v2",
+      "plan_version": "2.1.0",
+      "session_id": "lower_a",
+      "assignment_role": "main",
+      "compatible_preparation_session_ids": [
+        "pre_lower_warmup"
+      ]
+    },
+    {
+      "plan_id": "performance_2026_08_v2",
+      "plan_version": "2.1.0",
+      "session_id": "upper_a",
+      "assignment_role": "main",
+      "compatible_preparation_session_ids": [
+        "pre_upper_warmup"
+      ]
+    },
+    {
+      "plan_id": "performance_2026_08_v2",
+      "plan_version": "2.1.0",
+      "session_id": "lower_b",
+      "assignment_role": "main",
+      "compatible_preparation_session_ids": [
+        "pre_lower_warmup"
+      ]
+    },
+    {
+      "plan_id": "performance_2026_08_v2",
+      "plan_version": "2.1.0",
+      "session_id": "lower_b_microdose",
+      "assignment_role": "main",
+      "compatible_preparation_session_ids": [
+        "pre_lower_warmup"
+      ]
+    },
+    {
+      "plan_id": "performance_2026_08_v2",
+      "plan_version": "2.1.0",
+      "session_id": "upper_b",
+      "assignment_role": "main",
+      "compatible_preparation_session_ids": [
+        "pre_upper_warmup"
+      ]
+    },
+    {
+      "plan_id": "performance_2026_08_v2",
+      "plan_version": "2.1.0",
+      "session_id": "pre_upper_warmup",
+      "assignment_role": "preparation",
+      "compatible_preparation_session_ids": []
+    },
+    {
+      "plan_id": "performance_2026_08_v2",
+      "plan_version": "2.1.0",
+      "session_id": "pre_lower_warmup",
+      "assignment_role": "preparation",
+      "compatible_preparation_session_ids": []
+    },
+    {
+      "plan_id": "performance_2026_08_v2",
+      "plan_version": "2.1.0",
+      "session_id": "pre_footvolley_warmup",
+      "assignment_role": "preparation",
+      "compatible_preparation_session_ids": []
+    },
+    {
+      "plan_id": "training_2026_09_v1",
+      "plan_version": "1.0.0",
+      "session_id": "t1",
+      "assignment_role": "main",
+      "compatible_preparation_session_ids": [
+        "pre_t1"
+      ]
+    },
+    {
+      "plan_id": "training_2026_09_v1",
+      "plan_version": "1.0.0",
+      "session_id": "t2",
+      "assignment_role": "main",
+      "compatible_preparation_session_ids": [
+        "pre_t2"
+      ]
+    },
+    {
+      "plan_id": "training_2026_09_v1",
+      "plan_version": "1.0.0",
+      "session_id": "t3",
+      "assignment_role": "main",
+      "compatible_preparation_session_ids": [
+        "pre_t3"
+      ]
+    },
+    {
+      "plan_id": "training_2026_09_v1",
+      "plan_version": "1.0.0",
+      "session_id": "pre_t1",
+      "assignment_role": "preparation",
+      "compatible_preparation_session_ids": []
+    },
+    {
+      "plan_id": "training_2026_09_v1",
+      "plan_version": "1.0.0",
+      "session_id": "pre_t2",
+      "assignment_role": "preparation",
+      "compatible_preparation_session_ids": []
+    },
+    {
+      "plan_id": "training_2026_09_v1",
+      "plan_version": "1.0.0",
+      "session_id": "pre_t3",
+      "assignment_role": "preparation",
+      "compatible_preparation_session_ids": []
+    },
+    {
+      "plan_id": "training_2026_09_v1",
+      "plan_version": "1.0.0",
+      "session_id": "pre_footvolley",
+      "assignment_role": "preparation",
+      "compatible_preparation_session_ids": []
+    }
   ],
   "exercises": [
     {
@@ -318,6 +468,22 @@
             "unit": "repetitions",
             "scope": "total",
             "qualifier": "easy_or_assisted"
+          },
+          {
+            "source_text": "8-10",
+            "minimum": 8,
+            "maximum": 10,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          },
+          {
+            "source_text": "2-3_easy",
+            "minimum": 2,
+            "maximum": 3,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": "easy"
           }
         ]
       }
@@ -354,6 +520,22 @@
             "unit": "repetitions",
             "scope": "total",
             "qualifier": null
+          },
+          {
+            "source_text": "10-12",
+            "minimum": 10,
+            "maximum": 12,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          },
+          {
+            "source_text": "5_easy",
+            "minimum": 5,
+            "maximum": 5,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": "easy"
           }
         ]
       }
@@ -377,6 +559,14 @@
             "source_text": "5-8",
             "minimum": 5,
             "maximum": 8,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          },
+          {
+            "source_text": "10-12",
+            "minimum": 10,
+            "maximum": 12,
             "unit": "repetitions",
             "scope": "total",
             "qualifier": null
@@ -604,6 +794,14 @@
             "unit": "repetitions",
             "scope": "two_directions",
             "qualifier": null
+          },
+          {
+            "source_text": "8-10",
+            "minimum": 8,
+            "maximum": 10,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
           }
         ]
       }
@@ -730,6 +928,14 @@
             "unit": "repetitions",
             "scope": "total",
             "qualifier": null
+          },
+          {
+            "source_text": "6",
+            "minimum": 6,
+            "maximum": 6,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
           }
         ]
       }
@@ -771,6 +977,490 @@
             "source_text": "2_minutes",
             "minimum": 120,
             "maximum": 120,
+            "unit": "seconds",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "negative_handstand_push_up",
+      "measurement_type": "repetitions",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "6-8",
+            "minimum": 6,
+            "maximum": 8,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          },
+          {
+            "source_text": "1-2",
+            "minimum": 1,
+            "maximum": 2,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "decline_push_up",
+      "measurement_type": "repetitions",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "10-12",
+            "minimum": 10,
+            "maximum": 12,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "box_dip_chairs",
+      "measurement_type": "repetitions",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "8-10",
+            "minimum": 8,
+            "maximum": 10,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "close_push_up",
+      "measurement_type": "repetitions",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "10-12",
+            "minimum": 10,
+            "maximum": 12,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "hanging_leg_raise",
+      "measurement_type": "repetitions",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "8-10",
+            "minimum": 8,
+            "maximum": 10,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "commando_pull_up",
+      "measurement_type": "repetitions",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "8-10",
+            "minimum": 8,
+            "maximum": 10,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "australian_chin_up_hold",
+      "measurement_type": "seconds",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "20-40_seconds",
+            "minimum": 20,
+            "maximum": 40,
+            "unit": "seconds",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "around_the_world",
+      "measurement_type": "repetitions",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "15-20",
+            "minimum": 15,
+            "maximum": 20,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "negative_dragon_flag",
+      "measurement_type": "repetitions",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "8-10",
+            "minimum": 8,
+            "maximum": 10,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "jump_lunge_one_leg",
+      "measurement_type": "per_side",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "5_each_side",
+            "minimum": 5,
+            "maximum": 5,
+            "unit": "repetitions",
+            "scope": "each_side",
+            "qualifier": null
+          },
+          {
+            "source_text": "3_each_leg",
+            "minimum": 3,
+            "maximum": 3,
+            "unit": "repetitions",
+            "scope": "each_side",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "single_leg_glute_bridge",
+      "measurement_type": "per_side",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "20-40_seconds_each_side",
+            "minimum": 20,
+            "maximum": 40,
+            "unit": "seconds",
+            "scope": "each_side",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "pistol_squat",
+      "measurement_type": "per_side",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "10-12_each_side",
+            "minimum": 10,
+            "maximum": 12,
+            "unit": "repetitions",
+            "scope": "each_side",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "box_extended_leg_walk",
+      "measurement_type": "per_side",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "24-30_each_side",
+            "minimum": 24,
+            "maximum": 30,
+            "unit": "repetitions",
+            "scope": "each_side",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "walking_lunge",
+      "measurement_type": "per_side",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "10-12_each_side",
+            "minimum": 10,
+            "maximum": 12,
+            "unit": "repetitions",
+            "scope": "each_side",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "laying_toe_touch",
+      "measurement_type": "repetitions",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "20-25",
+            "minimum": 20,
+            "maximum": 25,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "warmup_march_arms",
+      "measurement_type": "seconds",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "60-90_seconds",
+            "minimum": 60,
+            "maximum": 90,
+            "unit": "seconds",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "warmup_arm_circles",
+      "measurement_type": "repetitions",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "8_each_direction",
+            "minimum": 8,
+            "maximum": 8,
+            "unit": "repetitions",
+            "scope": "two_directions",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "elevated_push_up",
+      "measurement_type": "repetitions",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "5_easy",
+            "minimum": 5,
+            "maximum": 5,
+            "unit": "repetitions",
+            "scope": "total",
+            "qualifier": "easy"
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "warmup_march_or_jog",
+      "measurement_type": "seconds",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "60-90_seconds",
+            "minimum": 60,
+            "maximum": 90,
+            "unit": "seconds",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "lateral_weight_shift",
+      "measurement_type": "per_side",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "5_each_side",
+            "minimum": 5,
+            "maximum": 5,
+            "unit": "repetitions",
+            "scope": "each_side",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "static_lunge",
+      "measurement_type": "per_side",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "4_each_leg",
+            "minimum": 4,
+            "maximum": 4,
+            "unit": "repetitions",
+            "scope": "each_side",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "sand_jog_movements",
+      "measurement_type": "seconds",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "60_seconds",
+            "minimum": 60,
+            "maximum": 60,
+            "unit": "seconds",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "sand_leg_preparation",
+      "measurement_type": "seconds",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "60_seconds",
+            "minimum": 60,
+            "maximum": 60,
+            "unit": "seconds",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "sand_dynamic_mobility",
+      "measurement_type": "seconds",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "60_seconds",
+            "minimum": 60,
+            "maximum": 60,
+            "unit": "seconds",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "sand_progressive_moves_jumps",
+      "measurement_type": "seconds",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "60_seconds",
+            "minimum": 60,
+            "maximum": 60,
+            "unit": "seconds",
+            "scope": "total",
+            "qualifier": null
+          }
+        ]
+      }
+    },
+    {
+      "exercise_id": "sand_ball_contact",
+      "measurement_type": "seconds",
+      "load_applicable": false,
+      "load_unit": null,
+      "normalization_rule": {
+        "prescriptions": [
+          {
+            "source_text": "60_seconds",
+            "minimum": 60,
+            "maximum": 60,
             "unit": "seconds",
             "scope": "total",
             "qualifier": null

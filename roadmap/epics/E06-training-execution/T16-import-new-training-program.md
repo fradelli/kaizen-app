@@ -1,7 +1,7 @@
 ---
 id: E06-T16
 epic: E06
-depends_on: [E06-T15, E06-T17]
+depends_on: [E06-T15]
 ---
 
 # Validar e importar a nova programação de treino
@@ -33,7 +33,7 @@ programação semanal válidas, incluindo sessões alternativas sem dia fixo.
 ## Fora de escopo
 
 - Inventar exercícios, prescrições ou horários ausentes.
-- Exercícios combinados, que não são necessários no próximo plano.
+- Navegação automática entre exercícios combinados, reservada à E06-T18. Nesta entrega, preservar blocos e membros no banco e exibir `Bloco nA/nB`, com navegação manual.
 - Apagar dados existentes; o reinício controlado anterior é a E06-T17.
 
 ## Decisões antes da implementação
@@ -49,4 +49,6 @@ programação semanal válidas, incluindo sessões alternativas sem dia fixo.
 
 ## Resultado
 
-Aguardando o novo treino do usuário.
+Plano aprovado recebido em 25/09/2026: T1 terça, T2 quinta e T3 sexta às 17h; futevôlei de segunda a quinta, 12h–13h30. Jogos são manuais. Variantes reserva ficam fora desta versão. Os 40 minutos são uma meta não validada e incluem aquecimento.
+
+Definições versionadas, quatro aquecimentos e validação de dados implementados. Importação e ativação local aguardam revisão final e commit da fonte; o reinício da E06-T17 ocorre somente após a nova fonte estar pronta.

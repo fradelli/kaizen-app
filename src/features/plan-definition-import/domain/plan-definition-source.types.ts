@@ -29,7 +29,7 @@ export type ActivePlanPointer = {
   active_plan_id: string;
   active_plan_path: string;
 };
-export type TrainingSchedule = {
+export type LegacyTrainingSchedule = {
   schema_version: string;
   last_updated: string;
   timezone: "America/Sao_Paulo";
@@ -44,6 +44,23 @@ export type TrainingSchedule = {
     { day: string; time: string | null; session: string }[]
   >;
 };
+export type TrainingSchedule =
+  | LegacyTrainingSchedule
+  | {
+      schema_version: "2.0.0";
+      last_updated: string;
+      timezone: "America/Sao_Paulo";
+      entries: {
+        day: string;
+        type: "structured_training" | "specific_training" | "sport_practice" | "mobility" | "rest";
+        start_time: string | null;
+        end_time: string | null;
+        session_id?: string;
+        preparation_session_id?: string;
+        name?: string;
+        sport?: string;
+      }[];
+    };
 export type TrainingPlan = {
   plan_id: string;
   version: string;
@@ -58,6 +75,11 @@ export type TrainingPlan = {
       short_version_target_minutes?: number;
       intensity?: string;
       notes?: string;
+      blocks?: {
+        id: string;
+        mode: "single" | "alternating";
+        exercise_ids: string[];
+      }[];
       exercises: {
         exercise_id: string;
         sets: number;

@@ -20,6 +20,7 @@ export type PublicTrainingExerciseDto = Readonly<{
   ordinal: number;
   prescribedSets: number;
   prescribedText: string;
+  blockLabel?: string | null;
   restSeconds: number | null;
   priorityLevel: TrainingExercisePriorityLevel | null;
   notes: string | null;
@@ -127,6 +128,7 @@ export type TrainingActivityDto = Readonly<{
     main: TrainingDaySessionDto;
     preparation: TrainingDaySessionDto | null;
   }> | null;
+  preparationSession?: TrainingDaySessionDto | null;
   preparations: readonly TrainingActivityDto[];
 }>;
 

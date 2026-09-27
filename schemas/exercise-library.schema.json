@@ -50,7 +50,7 @@
             }
           },
           "evidence_level": {
-            "enum": ["A", "B", "C", "D"]
+          "enum": ["A", "B", "C", "D", null]
           }
         },
         "additionalProperties": true
@@ -59,4 +59,3 @@
   },
   "additionalProperties": true
 }
-

@@ -98,7 +98,7 @@ describe("TrainingActivityCard", () => {
     renderCard(createStructuredActivity({ status: "scheduled" }));
 
     expect(
-      screen.getByText("09:00 · Aquecimento 10 min · Treino 65 min · Não iniciado"),
+      screen.getByText("09:00 · 75 min (inclui 10 min de aquecimento) · Não iniciado"),
     ).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Iniciar treino" })).toBeInTheDocument();
     expect(screen.queryByText("Knee to wall")).not.toBeInTheDocument();
@@ -120,7 +120,7 @@ describe("TrainingActivityCard", () => {
       "border-status-warning-border",
     );
     expect(screen.getByText("Agachamento")).toBeInTheDocument();
-    expect(screen.getByText("high quality heavy")).toBeInTheDocument();
+    expect(screen.getByText(/65 min · high quality heavy/)).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Voltar ao aquecimento" }));
     expect(screen.getByText("Knee to wall")).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Minimizar" }));

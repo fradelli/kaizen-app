@@ -9,7 +9,7 @@ depends_on: [E06-T11]
 ## Objetivo
 
 Planejar e executar, somente após autorização específica, um início operacional
-limpo antes de receber a nova programação, sem perder dados fora do escopo aprovado.
+limpo após preparar a nova programação, sem perder dados fora do escopo aprovado.
 
 ## Entradas
 
@@ -47,4 +47,4 @@ limpo antes de receber a nova programação, sem perder dados fora do escopo apr
 
 ## Resultado
 
-Ainda não iniciada; nenhuma limpeza autorizada ou executada.
+Autorizada pelo usuário a limpeza de registros operacionais e definições antigas de treino exclusivamente no PostgreSQL local, preservando alimentação, workspace, migrations e histórico no Git. Backup completo copiado fora do repositório, checksum conferido e restauração testada. Banco temporário de verificação removido. Migrations locais aplicadas; limpeza principal ainda não executada.

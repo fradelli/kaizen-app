@@ -37,7 +37,10 @@ export function startTrainingActivityDraft(
   now: string,
 ): TrainingActivityExecutionDraft {
   const exercises: Record<string, TrainingExerciseExecutionDraft> = {};
-  for (const session of [activity.structured?.preparation, activity.structured?.main]) {
+  for (const session of [
+    activity.structured?.preparation ?? activity.preparationSession,
+    activity.structured?.main,
+  ]) {
     if (!session || (session.role !== "main" && session.role !== "preparation")) continue;
     for (const exercise of session.exercises) {
       exercises[trainingExerciseDraftKey(session.role, exercise.exerciseId)] =

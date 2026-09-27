@@ -12,6 +12,7 @@ export async function persistReviewedExerciseDefinitions(
   snapshot: PlanDefinitionSnapshot,
   batches: ReadonlyMap<string, string>,
   created: CreatedDefinitionCounts,
+  selectedExerciseIds?: ReadonlySet<string>,
 ) {
   const librarySource = findPlanDefinitionSource(snapshot.sources, "exercise_library")!;
   const metadataSource = findPlanDefinitionSource(snapshot.sources, "execution_metadata")!;
@@ -19,6 +20,7 @@ export async function persistReviewedExerciseDefinitions(
   const metadata = metadataSource.document;
   const exercises = new Map<string, string>();
   for (const entry of metadata.exercises) {
+    if (selectedExerciseIds && !selectedExerciseIds.has(entry.exercise_id)) continue;
     const definition = library.exercises.find((item) => item.id === entry.exercise_id);
     if (!definition) throwSourceConflict();
     const identity = {

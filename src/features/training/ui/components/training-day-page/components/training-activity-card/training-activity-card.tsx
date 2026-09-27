@@ -30,12 +30,17 @@ export function TrainingActivityCard({ civilDate, activity, actions }: TrainingA
   const expanded =
     expandedOverride ?? (status === "in_progress" || (Boolean(activeDraft) && status === "paused"));
   const genericPreparation = activity.preparations[0] ?? null;
-  const hasPreparation = Boolean(activity.structured?.preparation || genericPreparation);
+  const hasPreparation = Boolean(
+    activity.structured?.preparation || activity.preparationSession || genericPreparation,
+  );
   const [phase, setPhase] = useState<"preparation" | "main">(
     hasPreparation ? "preparation" : "main",
   );
   const structured = activity.structured;
-  const activeSession = phase === "preparation" ? structured?.preparation : structured?.main;
+  const activeSession =
+    phase === "preparation"
+      ? (structured?.preparation ?? activity.preparationSession)
+      : structured?.main;
   const rootState =
     status === "completed"
       ? trainingActivityCardStyles.completed
@@ -147,7 +152,7 @@ export function TrainingActivityCard({ civilDate, activity, actions }: TrainingA
               {structured ? "Treino" : "Atividade"}
             </Button>
           </nav>
-          {structured && activeSession ? (
+          {activeSession ? (
             <section className={trainingActivityCardStyles.session}>
               <div className={trainingActivityCardStyles.sessionHeader}>
                 <div>
@@ -262,13 +267,16 @@ function activitySummary(
 ): string {
   const preparationMinutes =
     activity.structured?.preparation?.targetDurationMinutes ??
+    activity.preparationSession?.targetDurationMinutes ??
     activity.preparations[0]?.plannedDurationMinutes;
-  const trainingMinutes = activity.structured?.main.targetDurationMinutes;
-  const durations = preparationMinutes
-    ? `Aquecimento ${preparationMinutes} min · Treino ${trainingMinutes} min`
-    : activity.plannedDurationMinutes === null
+  const totalMinutes =
+    activity.plannedDurationMinutes ?? activity.structured?.main.targetDurationMinutes;
+  const durations =
+    totalMinutes === null || totalMinutes === undefined
       ? "Duração a definir"
-      : `${activity.plannedDurationMinutes} min`;
+      : preparationMinutes
+        ? `${totalMinutes} min (inclui ${preparationMinutes} min de aquecimento)`
+        : `${totalMinutes} min`;
   return `${activity.plannedStartTime ?? "Horário a definir"} · ${durations} · ${statusLabels[status]}`;
 }
 

@@ -20,6 +20,7 @@ import type {
 import { resolveTrainingExercisePriorityLevel } from "../domain/training-exercise-priority";
 import type { GetTrainingDayDependencies, GetTrainingDayInput } from "./get-training-day.types";
 import { projectAvailablePublicTrainingPlan } from "./get-public-training-plan";
+import { formatTrainingExerciseBlockLabel } from "./format-training-exercise-block-label";
 
 export async function getTrainingDay(
   dependencies: GetTrainingDayDependencies,
@@ -183,6 +184,15 @@ function projectTrainingActivity(activity: TrainingActivitySnapshot): TrainingAc
             : null,
         })
       : null,
+    ...(!activity.session && activity.preparationSession
+      ? {
+          preparationSession: projectTrainingActivitySession(
+            activity.preparationSession,
+            "preparation",
+            activity,
+          ),
+        }
+      : {}),
     preparations: Object.freeze(activity.preparations.map(projectTrainingActivity)),
   });
 }
@@ -303,6 +313,7 @@ function projectTrainingDayExercise(
     ordinal: prescription.ordinal,
     prescribedSets: prescription.sets,
     prescribedText: prescription.prescribedText,
+    blockLabel: formatTrainingExerciseBlockLabel(prescription.block),
     restSeconds: prescription.restSeconds,
     priorityLevel: resolveTrainingExercisePriorityLevel(prescription.priority),
     notes: prescription.notes,

@@ -37,7 +37,7 @@ no fim de semana.
 ## Fora de escopo
 
 - Importar o novo treino pessoal, limpar o banco ou criar editor visual de planos.
-- Agrupar exercícios combinados, pois a próxima programação não depende disso.
+- Agrupar exercícios combinados, cuja estrutura é preservada na importação E06-T16 e cujo fluxo guiado pertence à E06-T18.
 
 ## Decisões antes da implementação
 
@@ -45,10 +45,10 @@ no fim de semana.
 
 ## Critérios de aceite
 
-- [ ] A agenda não depende de esporte, dia de jogo ou duração codificados no aplicativo.
-- [ ] Uma sessão de reserva pode existir sem ser materializada automaticamente.
-- [ ] Planos históricos e atividades executadas permanecem rastreáveis.
+- [x] A agenda não depende de esporte, dia de jogo ou duração codificados no aplicativo.
+- [x] Uma sessão de reserva pode existir sem ser materializada automaticamente.
+- [x] Planos históricos e atividades executadas permanecem rastreáveis.
 
 ## Resultado
 
-Ainda não iniciada.
+Agenda 2.0 implementada com entradas genéricas, horários e referências de preparação. Leitura histórica 1.0 preservada; sábado e domingo sem atividade fixa. Tipos, lint, validação de dados e testes unitários aprovados. Migração local aplicada após backup; validação integrada final faz parte da importação E06-T16.

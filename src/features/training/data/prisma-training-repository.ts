@@ -1,3 +1,4 @@
+import { parseTrainingExerciseBlock } from "./parse-training-exercise-block";
 import "server-only";
 
 import { Prisma, type PrismaClient } from "@/generated/prisma/client";
@@ -159,7 +160,11 @@ export class PrismaTrainingRepository implements TrainingRepository {
             ...definition,
           },
         });
-        if (input.type !== "mobility" && input.type !== "structured_training") {
+        if (
+          input.type !== "mobility" &&
+          input.type !== "structured_training" &&
+          !definition.preparationSessionDefinitionId
+        ) {
           const preparationEnd = activityData.plannedStartMinute;
           await transaction.trainingDayActivity.create({
             data: {
@@ -195,7 +200,11 @@ export class PrismaTrainingRepository implements TrainingRepository {
         });
         if (!result.count) return conflictOrMissingActivity(transaction, input);
         const preparationEnd = activityData.plannedStartMinute;
-        if (input.type === "mobility" || input.type === "structured_training") {
+        if (
+          input.type === "mobility" ||
+          input.type === "structured_training" ||
+          definition.preparationSessionDefinitionId
+        ) {
           await transaction.trainingDayActivity.updateMany({
             where: {
               workspaceId: input.workspaceId,
@@ -904,6 +913,7 @@ function mapActivitySession(
           restSeconds: prescription.restSeconds,
           priority: prescription.priority,
           notes: prescription.notes,
+          block: parseTrainingExerciseBlock(prescription),
           dose: parseNormalizedTrainingDose(prescription.normalizedDose),
           exercise: Object.freeze({
             exerciseId: prescription.exercise.exerciseId,
@@ -971,10 +981,43 @@ async function resolveActivityDefinition(
     if (input.sessionId) {
       return invalid("Somente treino estruturado aceita uma sessão do plano.", "sessionId");
     }
+    const plan =
+      input.sport && (input.type === "sport_practice" || input.type === "specific_training")
+        ? await findActiveTrainingPlanRow(client, input.environment)
+        : null;
+    const entries =
+      plan?.weeklySchedule &&
+      typeof plan.weeklySchedule === "object" &&
+      !Array.isArray(plan.weeklySchedule) &&
+      "entries" in plan.weeklySchedule
+        ? plan.weeklySchedule.entries
+        : null;
+    const matching = Array.isArray(entries)
+      ? entries.find(
+          (entry) =>
+            typeof entry === "object" &&
+            entry !== null &&
+            "sport" in entry &&
+            entry.sport === input.sport &&
+            "preparation_session_id" in entry &&
+            typeof entry.preparation_session_id === "string",
+        )
+      : null;
+    const preparationId =
+      matching && typeof matching === "object" && "preparation_session_id" in matching
+        ? matching.preparation_session_id
+        : null;
+    const preparation =
+      typeof preparationId === "string"
+        ? plan?.trainingSessionDefinition_plan.find(
+            (session) =>
+              session.sessionId === preparationId && session.assignmentRole === "preparation",
+          )
+        : null;
     return {
-      trainingPlanVersionId: null,
+      trainingPlanVersionId: preparation ? plan!.id : null,
       sessionDefinitionId: null,
-      preparationSessionDefinitionId: null,
+      preparationSessionDefinitionId: preparation?.id ?? null,
     };
   }
 

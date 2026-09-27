@@ -72,6 +72,18 @@ export function assertWeeklyScheduleReferencesImportedSessions(
     "rest",
     "rest_or_light_mobility",
   ]);
+  if ("entries" in schedule.document) {
+    for (const entry of schedule.document.entries) {
+      if (entry.session_id && !Object.hasOwn(plan.document.sessions, entry.session_id))
+        throw new Error();
+      if (
+        entry.preparation_session_id &&
+        !Object.hasOwn(plan.document.sessions, entry.preparation_session_id)
+      )
+        throw new Error();
+    }
+    return;
+  }
   for (const model of Object.values(schedule.document.models)) {
     for (const entry of model) {
       if (

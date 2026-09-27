@@ -12,15 +12,26 @@ export class PrismaPlanDefinitionImportRepository implements PlanDefinitionImpor
   constructor(
     private readonly client: PrismaClient,
     private readonly now: () => Date = () => new Date(),
+    private readonly activeTrainingOnly = false,
   ) {}
   async persistSnapshot(
     snapshot: PlanDefinitionSnapshot,
     environment: PlanDefinitionImportEnvironment,
   ): Promise<PlanDefinitionImportReport> {
+    if (this.activeTrainingOnly && environment !== "local") {
+      throw new PlanDefinitionImportError("SOURCE_INVALID");
+    }
     for (let attempt = 0; attempt < 3; attempt++) {
       try {
         return await this.client.$transaction(
-          (tx) => persistPlanDefinitionSnapshot(tx, snapshot, environment, this.now),
+          (tx) =>
+            persistPlanDefinitionSnapshot(
+              tx,
+              snapshot,
+              environment,
+              this.now,
+              this.activeTrainingOnly,
+            ),
           { isolationLevel: "Serializable", timeout: 60_000, maxWait: 10_000 },
         );
       } catch (error) {

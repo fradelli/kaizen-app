@@ -1,0 +1,522 @@
+{
+  "schema_version": "1.0.0",
+  "plan_id": "training_2026_09_v1",
+  "version": "1.0.0",
+  "status": "active",
+  "created_at": "2026-09-25",
+  "last_updated": "2026-09-25",
+  "global_rules": {
+    "warmup": "Faça uma passagem pela sequência, sem chegar perto da falha; interrompa movimentos que provoquem dor.",
+    "duration": "40 minutos por treino estruturado é uma meta, não duração validada. O aquecimento integra a janela planejada.",
+    "alternating_blocks": "A → pausa → B → pausa → repetir; navegação provisória manual.",
+    "transition_rest": "Entre exercícios isolados ou blocos, 120 s, até 180 s quando necessário. A pausa de transição substitui a pausa após a última série; não somar intervalos.",
+    "unilateral_round": "Uma rodada unilateral inclui os dois lados. Caminhadas alternam lados sem pausa a cada repetição."
+  },
+  "sessions": {
+    "t1": {
+      "name": "Treino 1",
+      "target_duration_minutes": 40,
+      "notes": "Preparação física para futevôlei. Tempo-alvo inclui aquecimento.",
+      "blocks": [
+        {
+          "id": "t1_b1",
+          "mode": "single",
+          "exercise_ids": [
+            "negative_handstand_push_up"
+          ]
+        },
+        {
+          "id": "t1_b2",
+          "mode": "single",
+          "exercise_ids": [
+            "parallel_bar_dip"
+          ]
+        },
+        {
+          "id": "t1_b3",
+          "mode": "alternating",
+          "exercise_ids": [
+            "decline_push_up",
+            "box_dip_chairs"
+          ]
+        },
+        {
+          "id": "t1_b4",
+          "mode": "alternating",
+          "exercise_ids": [
+            "close_push_up",
+            "hanging_leg_raise"
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "exercise_id": "negative_handstand_push_up",
+          "sets": 4,
+          "reps": "6-8",
+          "rest_seconds": 180,
+          "priority": "2",
+          "notes": "parar antes de perder posição ou controle; não buscar falha descida controlada, sem tempo numérico novo",
+          "external_load_kg": 0,
+          "effort": {
+            "intent": "parar antes de perder posição ou controle; não buscar falha"
+          }
+        },
+        {
+          "exercise_id": "parallel_bar_dip",
+          "sets": 3,
+          "reps": "10-12",
+          "rest_seconds": 120,
+          "priority": "3",
+          "external_load_kg": 0,
+          "effort": {
+            "rirApprox": 2
+          },
+          "notes": "Aproximadamente 2 repetições em reserva."
+        },
+        {
+          "exercise_id": "decline_push_up",
+          "sets": 2,
+          "reps": "10-12",
+          "rest_seconds": 90,
+          "priority": "1",
+          "external_load_kg": 0,
+          "effort": {
+            "rirApprox": 2
+          },
+          "notes": "Aproximadamente 2 repetições em reserva."
+        },
+        {
+          "exercise_id": "box_dip_chairs",
+          "sets": 2,
+          "reps": "8-10",
+          "rest_seconds": 120,
+          "priority": "1",
+          "external_load_kg": 0,
+          "effort": {
+            "rirApprox": 2
+          },
+          "notes": "Aproximadamente 2 repetições em reserva."
+        },
+        {
+          "exercise_id": "close_push_up",
+          "sets": 2,
+          "reps": "10-12",
+          "rest_seconds": 60,
+          "priority": "2",
+          "external_load_kg": 0,
+          "effort": {
+            "rirApprox": 2
+          },
+          "notes": "Aproximadamente 2 repetições em reserva."
+        },
+        {
+          "exercise_id": "hanging_leg_raise",
+          "sets": 2,
+          "reps": "8-10",
+          "rest_seconds": 90,
+          "priority": "2",
+          "external_load_kg": 0,
+          "effort": {
+            "rirApprox": 2
+          },
+          "notes": "Aproximadamente 2 repetições em reserva."
+        }
+      ]
+    },
+    "t2": {
+      "name": "Treino 2",
+      "target_duration_minutes": 40,
+      "notes": "Preparação física para futevôlei. Tempo-alvo inclui aquecimento.",
+      "blocks": [
+        {
+          "id": "t2_b1",
+          "mode": "single",
+          "exercise_ids": [
+            "pull_up"
+          ]
+        },
+        {
+          "id": "t2_b2",
+          "mode": "single",
+          "exercise_ids": [
+            "commando_pull_up"
+          ]
+        },
+        {
+          "id": "t2_b3",
+          "mode": "single",
+          "exercise_ids": [
+            "australian_row"
+          ]
+        },
+        {
+          "id": "t2_b4",
+          "mode": "alternating",
+          "exercise_ids": [
+            "australian_chin_up_hold",
+            "around_the_world"
+          ]
+        },
+        {
+          "id": "t2_b5",
+          "mode": "single",
+          "exercise_ids": [
+            "negative_dragon_flag"
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "exercise_id": "pull_up",
+          "sets": 3,
+          "reps": "8-10",
+          "rest_seconds": 150,
+          "priority": "3",
+          "external_load_kg": 0,
+          "effort": {
+            "rirApprox": 2
+          },
+          "notes": "Aproximadamente 2 repetições em reserva."
+        },
+        {
+          "exercise_id": "commando_pull_up",
+          "sets": 2,
+          "reps": "8-10",
+          "rest_seconds": 150,
+          "priority": "1",
+          "external_load_kg": 0,
+          "effort": {
+            "rirApprox": 2
+          },
+          "notes": "Aproximadamente 2 repetições em reserva."
+        },
+        {
+          "exercise_id": "australian_row",
+          "sets": 3,
+          "reps": "10-12",
+          "rest_seconds": 120,
+          "priority": "3",
+          "external_load_kg": 0,
+          "effort": {
+            "rirApprox": 2
+          },
+          "notes": "Aproximadamente 2 repetições em reserva."
+        },
+        {
+          "exercise_id": "australian_chin_up_hold",
+          "sets": 3,
+          "reps": "20-40_seconds",
+          "rest_seconds": 60,
+          "priority": "2",
+          "external_load_kg": 0,
+          "effort": {
+            "intent": "parar antes de perder posição ou controle; não buscar falha"
+          },
+          "notes": "parar antes de perder posição ou controle; não buscar falha"
+        },
+        {
+          "exercise_id": "around_the_world",
+          "sets": 3,
+          "reps": "15-20",
+          "rest_seconds": 90,
+          "priority": "2",
+          "external_load_kg": 0,
+          "effort": {
+            "rirApprox": 2
+          },
+          "notes": "Aproximadamente 2 repetições em reserva."
+        },
+        {
+          "exercise_id": "negative_dragon_flag",
+          "sets": 3,
+          "reps": "8-10",
+          "rest_seconds": 150,
+          "priority": "2",
+          "notes": "parar antes de perder posição ou controle; não buscar falha descida controlada, sem tempo numérico novo",
+          "external_load_kg": 0,
+          "effort": {
+            "intent": "parar antes de perder posição ou controle; não buscar falha"
+          }
+        }
+      ]
+    },
+    "t3": {
+      "name": "Treino 3",
+      "target_duration_minutes": 40,
+      "notes": "Preparação física para futevôlei. Tempo-alvo inclui aquecimento.",
+      "blocks": [
+        {
+          "id": "t3_b1",
+          "mode": "alternating",
+          "exercise_ids": [
+            "jump_lunge_one_leg",
+            "single_leg_glute_bridge"
+          ]
+        },
+        {
+          "id": "t3_b2",
+          "mode": "alternating",
+          "exercise_ids": [
+            "pistol_squat",
+            "box_extended_leg_walk"
+          ]
+        },
+        {
+          "id": "t3_b3",
+          "mode": "alternating",
+          "exercise_ids": [
+            "walking_lunge",
+            "laying_toe_touch"
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "exercise_id": "jump_lunge_one_leg",
+          "sets": 3,
+          "reps": "5_each_side",
+          "rest_seconds": 90,
+          "priority": "3",
+          "external_load_kg": 0,
+          "effort": {
+            "intent": "saltos consistentes; parar antes de perder altura ou aterrissagem"
+          },
+          "notes": "saltos consistentes; parar antes de perder altura ou aterrissagem Pausa entre pernas: 60–90 s."
+        },
+        {
+          "exercise_id": "single_leg_glute_bridge",
+          "sets": 3,
+          "reps": "20-40_seconds_each_side",
+          "rest_seconds": 150,
+          "priority": "2",
+          "external_load_kg": 0,
+          "effort": {
+            "intent": "parar antes de perder posição ou controle; não buscar falha"
+          },
+          "notes": "parar antes de perder posição ou controle; não buscar falha Pausa entre pernas: 15–30 s."
+        },
+        {
+          "exercise_id": "pistol_squat",
+          "sets": 3,
+          "reps": "10-12_each_side",
+          "rest_seconds": 90,
+          "priority": "3",
+          "external_load_kg": 0,
+          "effort": {
+            "rirApprox": 2
+          },
+          "notes": "Aproximadamente 2 repetições em reserva. Pausa entre pernas: 30–60 s."
+        },
+        {
+          "exercise_id": "box_extended_leg_walk",
+          "sets": 3,
+          "reps": "24-30_each_side",
+          "rest_seconds": 120,
+          "priority": "2",
+          "external_load_kg": 0,
+          "effort": {
+            "rirApprox": 2
+          },
+          "notes": "Aproximadamente 2 repetições em reserva."
+        },
+        {
+          "exercise_id": "walking_lunge",
+          "sets": 3,
+          "reps": "10-12_each_side",
+          "rest_seconds": 60,
+          "priority": "2",
+          "external_load_kg": 0,
+          "effort": {
+            "rirApprox": 2
+          },
+          "notes": "Aproximadamente 2 repetições em reserva."
+        },
+        {
+          "exercise_id": "laying_toe_touch",
+          "sets": 3,
+          "reps": "20-25",
+          "rest_seconds": 120,
+          "priority": "1",
+          "external_load_kg": 0,
+          "effort": {
+            "rirApprox": 2
+          },
+          "notes": "Aproximadamente 2 repetições em reserva."
+        }
+      ]
+    },
+    "pre_t1": {
+      "name": "Aquecimento de superiores — Treino 1",
+      "target_duration_minutes": 8,
+      "notes": "Uma passagem pela sequência; sem chegar perto da falha. O tempo integra a atividade principal.",
+      "exercises": [
+        {
+          "exercise_id": "warmup_march_arms",
+          "sets": 1,
+          "reps": "60-90_seconds",
+          "notes": "Marcha rápida no lugar, movimentando os braços."
+        },
+        {
+          "exercise_id": "warmup_arm_circles",
+          "sets": 1,
+          "reps": "8_each_direction",
+          "notes": "Círculos controlados dos braços, pequenos e depois maiores."
+        },
+        {
+          "exercise_id": "wrist_rock",
+          "sets": 1,
+          "reps": "8-10",
+          "notes": "Mãos no chão em quatro apoios; deslocar suavemente o corpo à frente e atrás."
+        },
+        {
+          "exercise_id": "scapular_push_up",
+          "sets": 1,
+          "reps": "8-10",
+          "notes": "Cotovelos estendidos; aproximar e afastar as escápulas."
+        },
+        {
+          "exercise_id": "elevated_push_up",
+          "sets": 1,
+          "reps": "5_easy",
+          "notes": "Flexões fáceis com mãos em apoio firme elevado; depois 30 s de pausa."
+        },
+        {
+          "exercise_id": "negative_handstand_push_up",
+          "sets": 1,
+          "reps": "1-2",
+          "notes": "Negativas na parede com controle, sem descida exageradamente lenta; reduzir amplitude se difíceis. Depois, 90–120 s antes da primeira série."
+        }
+      ]
+    },
+    "pre_t2": {
+      "name": "Aquecimento de superiores — Treino 2",
+      "target_duration_minutes": 8,
+      "notes": "Uma passagem pela sequência; sem chegar perto da falha. O tempo integra a atividade principal.",
+      "exercises": [
+        {
+          "exercise_id": "warmup_march_arms",
+          "sets": 1,
+          "reps": "60-90_seconds",
+          "notes": "Marcha rápida no lugar, movimentando os braços."
+        },
+        {
+          "exercise_id": "warmup_arm_circles",
+          "sets": 1,
+          "reps": "8_each_direction",
+          "notes": "Círculos controlados dos braços, pequenos e depois maiores."
+        },
+        {
+          "exercise_id": "wrist_rock",
+          "sets": 1,
+          "reps": "8-10",
+          "notes": "Mãos no chão em quatro apoios; deslocar suavemente o corpo à frente e atrás."
+        },
+        {
+          "exercise_id": "scapular_push_up",
+          "sets": 1,
+          "reps": "8-10",
+          "notes": "Cotovelos estendidos; aproximar e afastar as escápulas."
+        },
+        {
+          "exercise_id": "australian_row",
+          "sets": 1,
+          "reps": "5_easy",
+          "notes": "Remadas australianas fáceis, com corpo mais vertical; depois 30 s de pausa."
+        },
+        {
+          "exercise_id": "pull_up",
+          "sets": 1,
+          "reps": "2-3_easy",
+          "notes": "Pull-ups confortáveis; depois 90 s antes da primeira série."
+        }
+      ]
+    },
+    "pre_t3": {
+      "name": "Aquecimento de inferiores",
+      "target_duration_minutes": 9,
+      "notes": "Uma passagem pela sequência; sem chegar perto da falha. O tempo integra a atividade principal.",
+      "exercises": [
+        {
+          "exercise_id": "warmup_march_or_jog",
+          "sets": 1,
+          "reps": "60-90_seconds",
+          "notes": "Marcha rápida ou trote leve no lugar."
+        },
+        {
+          "exercise_id": "knee_to_wall",
+          "sets": 1,
+          "reps": "8_each_side",
+          "notes": "Levar o joelho à frente mantendo o calcanhar no chão."
+        },
+        {
+          "exercise_id": "lateral_weight_shift",
+          "sets": 1,
+          "reps": "5_each_side",
+          "notes": "Afastar os pés e flexionar um joelho de cada vez, sem forçar amplitude."
+        },
+        {
+          "exercise_id": "standing_calf_raise",
+          "sets": 1,
+          "reps": "10",
+          "notes": "Elevação de panturrilhas com os dois pés."
+        },
+        {
+          "exercise_id": "bodyweight_squat",
+          "sets": 1,
+          "reps": "6",
+          "notes": "Agachamento livre, confortável e controlado."
+        },
+        {
+          "exercise_id": "static_lunge",
+          "sets": 1,
+          "reps": "4_each_leg",
+          "notes": "Afundo parado, sem salto."
+        },
+        {
+          "exercise_id": "jump_lunge_one_leg",
+          "sets": 1,
+          "reps": "3_each_leg",
+          "notes": "Saltos inicialmente baixos, aumentando gradualmente; 30–45 s entre pernas e 90 s antes das séries principais."
+        }
+      ]
+    },
+    "pre_footvolley": {
+      "name": "Aquecimento de futevôlei",
+      "target_duration_minutes": 5,
+      "notes": "Uma passagem pela sequência; sem chegar perto da falha. O tempo integra a atividade principal.",
+      "exercises": [
+        {
+          "exercise_id": "sand_jog_movements",
+          "sets": 1,
+          "reps": "60_seconds",
+          "notes": "30 s de trote leve, 15 s de deslocamento lateral alternando direções e 15 s de passos curtos para trás."
+        },
+        {
+          "exercise_id": "sand_leg_preparation",
+          "sets": 1,
+          "reps": "60_seconds",
+          "notes": "10 elevações de panturrilha, 5 agachamentos e 4 transferências laterais de peso por lado, em amplitude confortável."
+        },
+        {
+          "exercise_id": "sand_dynamic_mobility",
+          "sets": 1,
+          "reps": "60_seconds",
+          "notes": "5 balanços de perna à frente e atrás por lado, 5 rotações suaves de tronco por lado e círculos dos braços."
+        },
+        {
+          "exercise_id": "sand_progressive_moves_jumps",
+          "sets": 1,
+          "reps": "60_seconds",
+          "notes": "3 deslocamentos de cerca de 5 m, acelerando e freando com controle; 3 saltos verticais baixos a moderados; voltar caminhando."
+        },
+        {
+          "exercise_id": "sand_ball_contact",
+          "sets": 1,
+          "reps": "60_seconds",
+          "notes": "Toques leves de pé, coxa e cabeça, com parceiro ou sozinho; aumentar gradualmente o deslocamento para alcançar a bola."
+        }
+      ]
+    }
+  }
+}

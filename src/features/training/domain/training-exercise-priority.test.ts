@@ -6,6 +6,9 @@ describe("resolveTrainingExercisePriorityLevel", () => {
   it.each([
     ["complementary", 1],
     ["fundamental", 3],
+    ["1", 1],
+    ["2", 2],
+    ["3", 3],
     [null, null],
     ["unknown", null],
   ] as const)("maps %s to %s without inventing unsupported priorities", (priority, expected) => {

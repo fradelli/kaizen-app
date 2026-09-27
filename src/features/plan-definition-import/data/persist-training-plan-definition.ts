@@ -69,7 +69,24 @@ export async function persistTrainingPlanDefinition(
       },
     });
     recordCreatedDefinition(created, "trainingSessions");
+    const blockByExerciseId = new Map(
+      session.blocks?.flatMap((block, blockIndex) =>
+        block.exercise_ids.map(
+          (exerciseId, memberIndex) =>
+            [
+              exerciseId,
+              {
+                id: block.id,
+                mode: block.mode,
+                ordinal: blockIndex + 1,
+                position: memberIndex + 1,
+              },
+            ] as const,
+        ),
+      ) ?? [],
+    );
     for (const [index, item] of session.exercises.entries()) {
+      const block = blockByExerciseId.get(item.exercise_id);
       const exerciseId = exercises.get(item.exercise_id);
       const dose = metadata.exercises
         .find((entry) => entry.exercise_id === item.exercise_id)
@@ -86,6 +103,10 @@ export async function persistTrainingPlanDefinition(
           restSeconds: item.rest_seconds ?? null,
           priority: item.priority ?? null,
           notes: item.notes ?? null,
+          blockId: block?.id ?? null,
+          blockMode: block?.mode ?? null,
+          blockOrdinal: block?.ordinal ?? null,
+          blockPosition: block?.position ?? null,
           normalizedDose: toPrismaDoseJson(dose),
         },
       });

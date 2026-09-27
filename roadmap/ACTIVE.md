@@ -1,12 +1,12 @@
 # Tarefa selecionada
 
-- **Tarefa:** E06-T11 — Revisar o ciclo de vida do plano diário
-- **Status:** READY
-- **Branch prevista:** `codex/E06-T11-review-daily-plan-lifecycle`
-- **Entrada principal:** `roadmap/epics/E06-training-execution/T11-review-daily-plan-lifecycle.md`.
+- **Tarefa:** E06-T16 — Validar e importar a nova programação de treino
+- **Status:** IN_PROGRESS
+- **Branch:** `codex/E06-T11-new-training-program`
+- **Entrada principal:** `roadmap/epics/E06-training-execution/T16-import-new-training-program.md`.
 - **Resultado anterior:** E06-T03 integrada em `developer` pela PR #48.
-- **Objetivo:** confirmar e decidir as regras de geração e persistência da data consultada antes de generalizar a nova semana.
-- **Bloqueio atual:** nenhum para a análise; decisões de produto exigirão aprovação antes de código.
-- **Próxima ação:** revisar o fluxo vigente no código integrado e apresentar as alternativas para dia parcial, navegação futura e preservação de exceções.
+- **Objetivo:** entregar o plano aprovado em 25/09, com semana genérica, aquecimentos e blocos A/B preservados.
+- **Autorização:** commit local e importação aprovados pelo usuário; sem push nem PR.
+- **Próxima ação:** terminar testes de integração e revisar o diff; então importar somente a ficha ativa após o reinício recuperável da E06-T17.
 
-Não iniciar a implementação da E06-T11 nem limpar o banco por esta atualização do roadmap.
+O usuário aprovou a implementação e a limpeza restrita ao treino no PostgreSQL local após backup. O backup já foi restaurado em um banco temporário; a exclusão dos registros principais ainda não foi executada.

@@ -32,16 +32,36 @@ describe("origem, validação e configuração de importação", () => {
     expect(sourceKind("data/schedule.json")).toBe("training_schedule");
     expect(() => assertWeeklyScheduleReferencesImportedSessions(snapshot)).not.toThrow();
     const schedule = findPlanDefinitionSource(snapshot.sources, "training_schedule")!;
-    const changedSchedule = {
-      ...schedule,
-      document: {
-        ...schedule.document,
-        models: {
-          ...schedule.document.models,
-          saturday_game: [{ day: "monday", time: "09:00", session: "missing_training_session" }],
-        },
-      },
-    };
+    const changedSchedule =
+      "entries" in schedule.document
+        ? {
+            ...schedule,
+            document: {
+              ...schedule.document,
+              entries: [
+                ...schedule.document.entries,
+                {
+                  day: "monday",
+                  type: "structured_training" as const,
+                  start_time: "09:00",
+                  end_time: "09:40",
+                  session_id: "missing_training_session",
+                },
+              ],
+            },
+          }
+        : {
+            ...schedule,
+            document: {
+              ...schedule.document,
+              models: {
+                ...schedule.document.models,
+                saturday_game: [
+                  { day: "monday", time: "09:00", session: "missing_training_session" },
+                ],
+              },
+            },
+          };
     expect(() =>
       assertWeeklyScheduleReferencesImportedSessions({
         ...snapshot,
@@ -207,6 +227,14 @@ describe("origem, validação e configuração de importação", () => {
     expect(
       parseImportArguments(["--environment", "local", "--commit", snapshot.commit], "local").commit,
     ).toBe(snapshot.commit);
+  });
+  it("permite importar somente treino ativo exclusivamente no ambiente local", () => {
+    expect(
+      parseImportArguments(["--environment", "local", "--active-training-only"], "local"),
+    ).toEqual({ environment: "local", commit: "HEAD", activeTrainingOnly: true });
+    expect(() =>
+      parseImportArguments(["--environment", "preview", "--active-training-only"], "preview"),
+    ).toThrow("CLI_INVALID");
   });
   it.each([
     { args: [] },

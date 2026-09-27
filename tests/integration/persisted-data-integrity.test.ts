@@ -11,6 +11,7 @@ import { readPlanDefinitionsFromGit } from "@/features/plan-definition-import/da
 import { validatePlanDefinitionSnapshot } from "@/features/plan-definition-import/data/validate-plan-definition-snapshot";
 import { PrismaPlanDefinitionImportRepository } from "@/features/plan-definition-import/data/prisma-plan-definition-import-repository";
 import { withImportDatabase } from "./fixtures/import-database.fixture";
+import { canonicalTrainingCounts } from "./fixtures/canonical-training-counts.fixture";
 
 describe("integridade persistida em PostgreSQL real", () => {
   it(
@@ -127,16 +128,17 @@ describe("integridade persistida em PostgreSQL real", () => {
           readPersistedSnapshot: () => readPersistedDefinitionSnapshot(client),
         });
       const first = await audit();
+      const expectedTraining = canonicalTrainingCounts(canonical);
       expect(first).toMatchObject({
         result: "valid",
         scope: "canonical-plan-definitions",
         issues: [],
         counts: {
-          batches: 8,
-          exercises: 38,
-          trainingPlans: 2,
-          sessions: 14,
-          prescriptions: 87,
+          batches: expectedTraining.batches,
+          exercises: expectedTraining.exercises,
+          trainingPlans: expectedTraining.trainingPlans,
+          sessions: expectedTraining.trainingSessions,
+          prescriptions: expectedTraining.trainingPrescriptions,
           nutritionPlans: 1,
           meals: 5,
           options: 20,

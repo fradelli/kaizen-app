@@ -2,6 +2,15 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-26 — nova programação em implementação
+
+- Adicionada ficha aprovada com três sessões às 17h e futevôlei de segunda a quinta, 12h–13h30; jogos permanecem manuais e variantes reserva fora do plano ativo.
+- Agenda 2.0 independente de jogo de fim de semana, mantendo leitura histórica e o limite de hoje + 4 dias.
+- Preservados blocos A/B em campos estruturais das prescrições, com subtítulo provisório e navegação manual; condução guiada planejada na E06-T18.
+- Adicionados quatro aquecimentos e suporte a preparação versionada para atividades esportivas, com duração incluída na janela principal.
+- Preparada importação somente do treino ativo para o reinício local, sem alterar o comportamento padrão de importação histórica.
+- Backup local restaurável comprovado. Limpeza, importação e ativação principais ainda pendentes; nenhuma exclusão de alimentação autorizada.
+
 ## 2026-09-25 — roadmap de treino realinhado para a nova programação
 
 - Sincronizadas E06-T02 e E06-T03 com as PRs #45 e #48 integradas; a E06-T03 registra a regra final de rascunho local e persistência na conclusão.
