@@ -1,31 +1,18 @@
-"use client";
-
-import { Button } from "@fradelli/ui/button";
-import Link from "next/link";
-
-import styles from "./app-shell-navigation.module.css";
-import { useAppShellNavigation } from "./hooks/use-app-shell-navigation";
+import { Suspense } from "react";
+import { APP_SHELL_NAVIGATION_ITEMS } from "./app-shell-navigation.constants";
+import { AppShellNavigationLinks } from "./components/app-shell-navigation-links/app-shell-navigation-links";
+import { AppShellNavigationRoutes } from "./components/app-shell-navigation-routes/app-shell-navigation-routes";
 
 export function AppShellNavigation() {
-  const navigationItems = useAppShellNavigation();
+  const fallbackItems = APP_SHELL_NAVIGATION_ITEMS.map((item) => ({
+    ...item,
+    isActive: false,
+    destination: item.href,
+  }));
 
   return (
-    <nav aria-label="Navegação principal">
-      <ul className={styles.navigationList}>
-        {navigationItems.map((item) => (
-          <li key={item.href}>
-            <Button
-              asChild
-              className={styles.navigationLink}
-              variant={item.isActive ? "secondary" : "ghost"}
-            >
-              <Link href={item.href} aria-current={item.isActive ? "page" : undefined}>
-                {item.label}
-              </Link>
-            </Button>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <Suspense fallback={<AppShellNavigationLinks items={fallbackItems} />}>
+      <AppShellNavigationRoutes />
+    </Suspense>
   );
 }
