@@ -44,7 +44,7 @@ describe("TrainingActivityCard", () => {
     fireEvent.click(screen.getByRole("button", { name: /Inferiores A/ }));
     expect(screen.getByText("Knee to wall")).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Iniciar treino" })).not.toBeInTheDocument();
-    expect(screen.queryByRole("button", { name: "Excluir atividade" })).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Excluir atividade" })).toBeInTheDocument();
   });
   it("confirms partial finalization and keeps the draft when returning", async () => {
     renderCard(createStructuredActivity({ status: "scheduled" }));

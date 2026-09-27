@@ -108,4 +108,4 @@ ilha Client, validação de data é pura e a navegação não importa persistên
 Diff revisado sem credenciais ou dados operacionais; `git diff --check` aprovado.
 
 Usuário aprovou o resultado visual e autorizou commit e PR. Tarefa permanece
-em andamento até validar teclado virtual e safe area em dispositivo real.
+bloqueada até validar teclado virtual e safe area em dispositivo real.

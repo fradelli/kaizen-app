@@ -23,8 +23,38 @@ function dependencies() {
   };
 }
 describe("training mutation date boundary", () => {
-  it.each(["2026-09-24", "2026-09-27"])(
-    "rejects every mutation on locked date %s before accessing the repository",
+  it.each(["2026-09-27", "2026-09-30"])(
+    "allows agenda mutations but rejects execution on future date %s",
+    async (civilDate) => {
+      const d = dependencies();
+      const expected = { status: "invalid", field: "civilDate" };
+      await addTrainingActivity(d, {
+        civilDate,
+      } as Parameters<typeof addTrainingActivity>[1]);
+      await updateTrainingActivity(d, {
+        civilDate,
+      } as Parameters<typeof updateTrainingActivity>[1]);
+      await deleteTrainingActivity(d, {
+        civilDate,
+      } as Parameters<typeof deleteTrainingActivity>[1]);
+      await expect(
+        controlTrainingActivity(d, { civilDate } as Parameters<typeof controlTrainingActivity>[1]),
+      ).resolves.toMatchObject(expected);
+      await expect(
+        saveTrainingActivityExercise(d, { civilDate } as Parameters<
+          typeof saveTrainingActivityExercise
+        >[1]),
+      ).resolves.toMatchObject(expected);
+      expect(d.repository.addTrainingActivity).toHaveBeenCalledOnce();
+      expect(d.repository.updateTrainingActivity).toHaveBeenCalledOnce();
+      expect(d.repository.deleteTrainingActivity).toHaveBeenCalledOnce();
+      expect(d.repository.controlTrainingActivity).not.toHaveBeenCalled();
+      expect(d.repository.saveTrainingActivityExercise).not.toHaveBeenCalled();
+    },
+  );
+
+  it.each(["2026-09-24", "2026-10-01"])(
+    "rejects every mutation outside the agenda window on %s",
     async (civilDate) => {
       const d = dependencies();
       const expected = { status: "invalid", field: "civilDate" };
