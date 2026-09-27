@@ -2,6 +2,13 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-27 — evolução futura e internacionalização planejadas
+
+- Ordenadas as entregas futuras de sono e atividades gerais após a publicação e validação do MVP pessoal.
+- Tornada explícita a dependência do i18n em relação às jornadas concluídas de treino, alimentação, sono e atividades gerais.
+- Planejadas arquitetura i18n, política English-first, internacionalização do produto e conteúdo canônico, migração da documentação e validação multilíngue.
+- Preservados fora do escopo atual implementação, traduções, novas dependências e alterações da tarefa ativa.
+
 ## 2026-09-27 — E06-T12 concluída e ficha em inglês ativada
 
 - Corrigida projeção do estado do toggle, associação de aquecimento Futevôlei/Footvolley e proteção de rascunhos fora da janela de edição.
