@@ -2,6 +2,12 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-09-27 — cronômetro diário planejado e agenda futura restaurada
+
+- Planejada a E06-T23 para restringir cronômetro e execução ao treino estruturado da própria data civil.
+- Definido que futevôlei e outras atividades não estruturadas não exibem nem persistem intervalos de cronômetro.
+- Após backup completo validado, as materializações locais de 28/09 a 01/10 foram reiniciadas e recriadas pela programação ativa, sem alterar hoje, histórico, definições ou alimentação.
+
 ## 2026-09-27 — edição da agenda futura implementada
 
 - Separadas as permissões de organização da agenda e de execução nas camadas de domínio, aplicação e interface.

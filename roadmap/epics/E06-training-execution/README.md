@@ -30,17 +30,18 @@ Treino, preparação, mobilidade ou descanso do dia consultáveis e registrávei
 | E06-T20 | E06-T12    | Inclusão sem a opção Treino específico            |
 | E06-T21 | E06-T16    | Contrato de importação externa projetado          |
 | E06-T22 | E06-T12    | Agenda futura editável sem execução antecipada    |
+| E06-T23 | E06-T22    | Cronômetro restrito ao treino estruturado do dia  |
 
-As tarefas E06-T06 a E06-T22 são uma rodada complementar. Nenhuma
+As tarefas E06-T06 a E06-T23 são uma rodada complementar. Nenhuma
 começa automaticamente nem amplia o gate de E06-T05 sem nova priorização. Ao
 selecionar qualquer uma, reanalisar a base já integrada, apresentar solução e
 plano e aguardar aprovação antes de implementar.
 
 ## Prioridade para começar a usar a nova programação
 
-Prioridade atual da próxima rodada: **E06-T22**, antes dos ajustes E06-T19/E06-T20
-e das tarefas de progressão. Reanalisar e aprovar o plano antes da implementação;
-o limite futuro de quatro dias não é ampliado por esta priorização.
+Prioridade atual da próxima rodada: **E06-T23**, após a edição futura entregue na
+E06-T22 e antes dos ajustes E06-T19/E06-T20. Reanalisar e aprovar o plano antes da
+implementação; o limite futuro de quatro dias não é ampliado por esta priorização.
 
 1. E06-T11 decide as regras do dia antes de ampliar a agenda.
 2. Após a revisão das alterações do roadmap pelo usuário, E06-T17 só reinicia
