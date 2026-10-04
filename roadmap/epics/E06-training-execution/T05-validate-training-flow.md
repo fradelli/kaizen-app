@@ -1,14 +1,15 @@
 ---
 id: E06-T05
 epic: E06
-depends_on: [E06-T04]
+depends_on: [E06-T07]
 ---
 
 # Validar fluxo de treino
 
 ## Objetivo
 
-Validar o fluxo completo de consulta e execução de treino antes da publicação.
+Concluir proveniência mínima e validar o fluxo completo de consulta, agenda,
+execução guiada e registro retrospectivo antes de iniciar a tela de dieta.
 
 ## Entradas
 
@@ -20,11 +21,14 @@ Validar o fluxo completo de consulta e execução de treino antes da publicaçã
 
 ## Entregáveis
 
+- Origem, versão e data de atualização visíveis sem expor dados pessoais.
 - Evidências automatizadas e checklist manual do fluxo.
 
 ## Subtarefas
 
-- [ ] Testar atribuição, preparação, séries, carga, descanso, histórico e estados vazios.
+- [ ] Exibir e conferir origem, versão e data contra a definição importada.
+- [ ] Testar atribuição, preparação, séries livres, estado parcial, histórico e estados vazios.
+- [ ] Testar atividade externa retrospectiva sem cronômetro nem horário real.
 - [ ] Validar acessibilidade básica e navegação móvel.
 - [ ] Confirmar datas, horários, IDs e proveniência.
 - [ ] Confirmar acesso público no workspace fixo, erro de gravação e concorrência.
@@ -36,7 +40,7 @@ Validar o fluxo completo de consulta e execução de treino antes da publicaçã
 
 ## Critérios de aceite
 
-- [ ] O fluxo principal está íntegro e pronto para preview.
+- [ ] O fluxo principal está íntegro, rastreável e pronto para encerrar o épico.
 
 ## Resultado
 

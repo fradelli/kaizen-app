@@ -22,16 +22,23 @@ privacidade, contratos, riscos, entradas exatas e critério de sucesso.
 | E09-T06 | E09-T05                     | Produto e conteúdo canônico internacionalizados               |
 | E09-T07 | E09-T05                     | Documentação e fluxo de entrega migrados para inglês          |
 | E09-T08 | E09-T06, E09-T07            | Experiência multilíngue e fallback validados                  |
+| E09-T09 | E08-T05                     | Catálogo, autoria e exercício adicional projetados            |
+| E09-T10 | E09-T09                     | Contas, ownership e experiência de treinador projetados       |
 
 Sono e atividades gerais entram antes do i18n para que as quatro jornadas do
 produto — treino, alimentação, sono e atividades — compartilhem o mesmo contrato
 de localização desde a migração, sem criar uma segunda rodada imediata.
 
+Catálogo e contas formam uma trilha independente após o MVP. E09-T09 vem antes de
+E09-T10 porque treinador e aluno precisam compartilhar conceitos estáveis de
+exercício, template, prescrição e sessão; isso não obriga implementar catálogo,
+autenticação ou treinador na mesma rodada.
+
 ## Candidatos ainda sem compromisso de escopo
 
 - Métricas, tendências e histórico interativo.
 - Rotina, hábitos, tarefas, agenda composta, notificações e integrações; domínio e calendário permanecem no Kaizen.
-- Edição assistida, administração e múltiplos usuários.
+- Demonstrações visuais, favoritos e recomendações de exercícios.
 
 ## Fora de escopo agora
 

@@ -1,7 +1,7 @@
 ---
 id: E07-T01
 epic: E07
-depends_on: [E05-T05]
+depends_on: [E06-T05]
 ---
 
 # Projetar dieta e execução do dia

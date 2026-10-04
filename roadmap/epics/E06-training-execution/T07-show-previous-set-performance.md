@@ -1,7 +1,7 @@
 ---
 id: E06-T07
 epic: E06
-depends_on: [E06-T03]
+depends_on: [E06-T24]
 ---
 
 # Mostrar a última execução de cada série
@@ -29,6 +29,8 @@ A E06-T03 persiste exercícios e séries por atividade, mas a leitura do dia con
 - A referência é informativa: o usuário pode manter, melhorar ou reduzir o resultado.
 - Sem histórico ou sem série correspondente, não há valor inventado.
 - Exercícios sem carga mostram apenas as medidas aplicáveis.
+- A referência aparece na lista completa de séries criada pela E06-T24, sem
+  reintroduzir carousel ou bloqueio sequencial.
 
 ## Escopo e impactos
 
@@ -45,6 +47,9 @@ A E06-T03 persiste exercícios e séries por atividade, mas a leitura do dia con
 
 - Definir se a última execução com série zerada conta como referência ou se a busca recua para a última série efetivamente realizada.
 - Confirmar a chave estável do exercício e o desempate de execuções no mesmo dia.
+- Tratar a última execução como a sessão concluída mais recente que contém o mesmo
+  `exerciseId`; séries sem resultado não substituem silenciosamente um valor útil
+  sem decisão explícita durante a implementação.
 - Reanalisar o código vigente, apresentar solução e trade-offs e aguardar aprovação explícita antes de implementar.
 
 ## Critérios de aceite

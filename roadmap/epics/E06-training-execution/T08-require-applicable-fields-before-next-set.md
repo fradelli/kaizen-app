@@ -51,4 +51,6 @@ Na E06-T03, o avanço já exige medida positiva da série atual e trata `0` como
 
 ## Resultado
 
-Ainda não iniciada.
+Cancelada porque a obrigatoriedade de avançar série a série contradiz a decisão
+posterior de permitir edição livre. A validação de medidas aplicáveis e o estado
+parcial foram absorvidos pela E06-T24 sem bloquear séries posteriores.

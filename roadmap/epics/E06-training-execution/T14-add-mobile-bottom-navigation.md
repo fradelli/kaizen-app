@@ -107,5 +107,7 @@ Revisão semântica: shell mantém composição Server, leitura de URL fica na
 ilha Client, validação de data é pura e a navegação não importa persistência.
 Diff revisado sem credenciais ou dados operacionais; `git diff --check` aprovado.
 
-Usuário aprovou o resultado visual e autorizou commit e PR. Tarefa permanece
-bloqueada até validar teclado virtual e safe area em dispositivo real.
+Usuário aprovou o resultado visual, autorizou a entrega e a PR #52 foi integrada.
+A barra inferior também foi comprovada posteriormente em dispositivo móvel. A
+verificação ampla de acessibilidade, teclado e safe area permanece no checklist
+final da E06-T05, sem manter uma segunda entrega aberta.

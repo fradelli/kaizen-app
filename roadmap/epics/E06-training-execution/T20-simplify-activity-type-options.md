@@ -49,4 +49,6 @@ por decisão do usuário, sem eliminar dados históricos ou atividades da agenda
 
 ## Resultado
 
-Registrada para correção futura; nenhuma mudança de código nesta rodada.
+Cancelada como entrega isolada. As regras de criação e compatibilidade histórica
+foram incorporadas à E06-T23, que já precisa distinguir execução guiada de
+registro retrospectivo pelo tipo da atividade.

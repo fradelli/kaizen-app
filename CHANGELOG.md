@@ -2,6 +2,14 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-10-04 — backlog de treino reorganizado antes da dieta
+
+- Priorizado o caminho E06-T23, E06-T24, E06-T07 e E06-T05 para encerrar a tela de treino e iniciar E07-T01.
+- Incorporadas à E06-T23 as regras de registro retrospectivo de atividades externas e a remoção de novas inclusões `specific_training`.
+- Criada a E06-T24 para séries visíveis e editáveis em qualquer ordem, estado parcial acessível e blocos A/B sem navegação obrigatória.
+- Canceladas como entregas isoladas E06-T04, E06-T08, E06-T18 e E06-T20, preservando seus IDs e registrando as tarefas que absorveram o escopo.
+- Catálogo, exercício adicional, autoria de templates, contas e treinador foram mantidos após o MVP nas E09-T09 e E09-T10.
+
 ## 2026-09-27 — cronômetro diário planejado e agenda futura restaurada
 
 - Planejada a E06-T23 para restringir cronômetro e execução ao treino estruturado da própria data civil.

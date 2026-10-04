@@ -39,4 +39,6 @@ Reanalisar com o usuário e implementar a condução de blocos A/B, usando a com
 
 ## Resultado
 
-Planejada; a E06-T16 mantém apenas a navegação manual e os subtítulos dos pares.
+Cancelada como fluxo guiado separado. A apresentação e edição livre dos membros
+A/B serão tratadas na E06-T24 junto da nova interface de séries, sem impor uma
+ordem artificial de navegação.

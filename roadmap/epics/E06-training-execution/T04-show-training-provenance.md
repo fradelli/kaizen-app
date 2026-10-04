@@ -40,4 +40,5 @@ Tornar visíveis a versão ativa, a origem e o histórico documental do treino.
 
 ## Resultado
 
-Ainda não concluída.
+Cancelada como entrega isolada. A exibição mínima de origem e versão foi
+incorporada à E06-T05 para ser validada junto do encerramento do fluxo de treino.
