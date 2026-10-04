@@ -25,12 +25,17 @@ ser confirmada antes da implementação, sem assumir que o bloqueio é apenas vi
 - `src/features/training/application/resolve-training-day-date.test.ts`
 - `src/features/training/application/mutate-training-day.ts`
 - `src/features/training/application/mutate-training-day.test.ts`
+- `src/features/training/domain/training-edit-window.ts`
+- `src/features/training/domain/training-edit-window.test.ts`
 - `src/features/training/domain/training-day.rules.ts`
+- `src/features/training/data/ensure-scheduled-training-day.ts`
 - `src/features/training/ui/components/training-day-page/training-day-page.tsx`
 - `src/features/training/ui/components/training-day-page/components/training-agenda-drawer/training-agenda-drawer.tsx`
+- `src/features/training/ui/components/training-day-page/components/training-activity-controls/training-activity-controls.tsx`
 - `src/features/training/ui/components/training-day-page/components/training-activity-card/training-activity-card.tsx`
 - `src/features/training/ui/components/training-day-page/components/training-activity-card/training-activity-card.test.tsx`
 - `src/features/training/ui/components/training-day-page/components/training-activity-delete-form/training-activity-delete-form.tsx`
+- `src/features/training/ui/hooks/use-training-activity-draft/use-training-activity-draft.ts`
 - `tests/integration/training-mutations.test.ts`
 
 ## Regras aprovadas
@@ -65,14 +70,21 @@ ser confirmada antes da implementação, sem assumir que o bloqueio é apenas vi
 
 ## Critérios de aceite
 
-- [ ] Adicionar, remover e ajustar planejamento funciona em hoje + 1 e hoje + 4.
-- [ ] Iniciar atividade futura permanece indisponível e é rejeitado no servidor.
-- [ ] Datas além de hoje + 4 e anteriores a ontem não ganham novas permissões.
-- [ ] Exclusão futura não recria o treino na consulta seguinte.
-- [ ] Hoje e ontem preservam o fluxo atual e atividades concluídas não podem ser excluídas.
-- [ ] Testes, revisão semântica e validações do projeto aprovados.
+- [x] Adicionar, remover e ajustar planejamento funciona em hoje + 1 e hoje + 4.
+- [x] Iniciar atividade futura permanece indisponível e é rejeitado no servidor.
+- [x] Datas além de hoje + 4 e anteriores a ontem não ganham novas permissões.
+- [x] Exclusão futura não recria o treino na consulta seguinte.
+- [x] Hoje e ontem preservam o fluxo atual e atividades concluídas não podem ser excluídas.
+- [x] Testes, revisão semântica e validações do projeto aprovados.
 
 ## Resultado
 
-Registrada por solicitação do usuário como primeira prioridade da próxima rodada,
-após encerrar a entrega E06-T14. Nenhuma correção de código implementada.
+Separadas as permissões de agenda e execução no domínio, na aplicação e na UI.
+Inclusão, edição e exclusão ficam disponíveis entre ontem e hoje + 4; início,
+pausa e registro da execução continuam limitados a ontem e hoje. Os testes
+cobrem os limites, o fuso de São Paulo, chamadas diretas às mutações e a
+preservação de exclusões em dias materializados.
+
+CI da PR #56 aprovada em governança, qualidade, testes unitários e PostgreSQL,
+integridade dos dados, restauração de backup, build e auditoria de dependências.
+Revisão semântica e `git diff --check` aprovados; validação manual não executada.

@@ -3,7 +3,7 @@
 import { Button } from "@fradelli/ui/button";
 import { Input } from "@fradelli/ui/input";
 import { useEffect, useRef, useState } from "react";
-import { isTrainingDateEditable } from "@/features/training/domain/training-edit-window";
+import { isTrainingExecutionDateEditable } from "@/features/training/domain/training-edit-window";
 import { hasUnfinishedTrainingExercises } from "./training-activity-controls.utils";
 
 import { useTrainingActionFeedback } from "@/features/training/ui/hooks/use-training-action-feedback";
@@ -35,7 +35,7 @@ export function TrainingActivityControls({
     if (submission.state.status === "saved" && draft) onFinalized?.();
   }, [draft, onFinalized, submission.state.status]);
 
-  if (!isTrainingDateEditable(civilDate)) return null;
+  if (!isTrainingExecutionDateEditable(civilDate)) return null;
   if (activity.status === "scheduled" && !draft) {
     return (
       <div className={trainingActivityControlsStyles.root}>

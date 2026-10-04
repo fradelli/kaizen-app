@@ -1,5 +1,8 @@
 import { parseCivilDate } from "../domain/training-day.rules";
-import { isTrainingDateEditable } from "../domain/training-edit-window";
+import {
+  isTrainingAgendaDateEditable,
+  isTrainingExecutionDateEditable,
+} from "../domain/training-edit-window";
 import type { TrainingMutationRepository } from "./training-repository";
 import type {
   TrainingMutationResult,
@@ -20,7 +23,8 @@ export function addTrainingActivity(
   dependencies: MutationDependencies,
   input: Omit<AddTrainingActivityCommand, "workspaceId" | "civilDate"> & { civilDate: string },
 ): Promise<TrainingMutationResult> {
-  if (!isTrainingDateEditable(input.civilDate, dependencies.now?.())) return dateLocked();
+  if (!isTrainingAgendaDateEditable(input.civilDate, dependencies.now?.()))
+    return agendaDateLocked();
   return dependencies.repository.addTrainingActivity({
     ...input,
     civilDate: parseCivilDate(input.civilDate),
@@ -34,7 +38,8 @@ export function controlTrainingActivity(
     civilDate: string;
   },
 ): Promise<TrainingMutationResult> {
-  if (!isTrainingDateEditable(input.civilDate, dependencies.now?.())) return dateLocked();
+  if (!isTrainingExecutionDateEditable(input.civilDate, dependencies.now?.()))
+    return executionDateLocked();
   return dependencies.repository.controlTrainingActivity({
     ...input,
     civilDate: parseCivilDate(input.civilDate),
@@ -48,7 +53,8 @@ export function saveTrainingActivityExercise(
     civilDate: string;
   },
 ): Promise<TrainingMutationResult> {
-  if (!isTrainingDateEditable(input.civilDate, dependencies.now?.())) return dateLocked();
+  if (!isTrainingExecutionDateEditable(input.civilDate, dependencies.now?.()))
+    return executionDateLocked();
   return dependencies.repository.saveTrainingActivityExercise({
     ...input,
     civilDate: parseCivilDate(input.civilDate),
@@ -62,7 +68,8 @@ export function updateTrainingActivity(
     civilDate: string;
   },
 ): Promise<TrainingMutationResult> {
-  if (!isTrainingDateEditable(input.civilDate, dependencies.now?.())) return dateLocked();
+  if (!isTrainingAgendaDateEditable(input.civilDate, dependencies.now?.()))
+    return agendaDateLocked();
   return dependencies.repository.updateTrainingActivity({
     ...input,
     civilDate: parseCivilDate(input.civilDate),
@@ -76,7 +83,8 @@ export function deleteTrainingActivity(
     civilDate: string;
   },
 ): Promise<TrainingMutationResult> {
-  if (!isTrainingDateEditable(input.civilDate, dependencies.now?.())) return dateLocked();
+  if (!isTrainingAgendaDateEditable(input.civilDate, dependencies.now?.()))
+    return agendaDateLocked();
   return dependencies.repository.deleteTrainingActivity({
     ...input,
     civilDate: parseCivilDate(input.civilDate),
@@ -84,10 +92,18 @@ export function deleteTrainingActivity(
   });
 }
 
-function dateLocked(): Promise<TrainingMutationResult> {
+function agendaDateLocked(): Promise<TrainingMutationResult> {
   return Promise.resolve({
     status: "invalid",
     field: "civilDate",
-    message: "Só é possível alterar atividades de hoje e ontem.",
+    message: "Só é possível organizar atividades de ontem até quatro dias no futuro.",
+  });
+}
+
+function executionDateLocked(): Promise<TrainingMutationResult> {
+  return Promise.resolve({
+    status: "invalid",
+    field: "civilDate",
+    message: "Só é possível registrar uma execução de hoje ou ontem.",
   });
 }
