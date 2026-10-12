@@ -13,3 +13,6 @@ overrides:
   # Prisma estável incorporar a correção. Não amplia o override a outros pais.
   "@prisma/config@7.10.0>deepmerge-ts": 8.0.2
   "prisma@7.10.0>mysql2": 3.23.1
+  # Patches compatíveis para GHSA-q2hr-2g5m-vwhr e GHSA-68fv-2mgg-jv7q.
+  "minimatch@10.2.6>brace-expansion": 5.0.12
+  "magicast@0.5.4>source-map-js": 1.2.2

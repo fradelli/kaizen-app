@@ -36,5 +36,10 @@ consultável; formulário de registro somente no fim do cartão expandido.
 
 Implementação autorizada e revisada pelo usuário na conversa. Atualização de
 `developer` com a E06-T22 incorporada sem ampliar a janela retrospectiva.
-Integrações pendentes em 12/10/2026: serviço Docker indisponível. A tarefa permanece
-aberta até essa validação; nenhum documento de planejamento acompanha a entrega.
+Testes, integrações PostgreSQL, backup/restore, build, qualidade, dados e governança
+passaram na primeira CI da PR #61. A auditoria falhou com 17 achados.
+Correções de Next.js 16.3.8 e transitivos reduziram a auditoria local a um achado
+alto em `braces` 3.0.3, dependência de desenvolvimento sem patch publicado
+([GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm)).
+A tarefa permanece aberta até a validação final; nenhum documento de planejamento
+acompanha a entrega.
