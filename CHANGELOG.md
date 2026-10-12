@@ -2,6 +2,12 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
+## 2026-10-12 — registro retrospectivo de atividades externas em revisão
+
+- Futevôlei e atividades externas aceitam registro em hoje e ontem sem cronômetro, horários reais ou aquecimento obrigatório.
+- Preparação opcional permanece consultável; registro aparece no fim do cartão expandido e desaparece ao recolher.
+- Migration aditiva preserva histórico e horários ausentes; aplicada localmente em 04/10. Integrações PostgreSQL pendentes por indisponibilidade do Docker.
+
 ## 2026-09-27 — edição da agenda futura implementada
 
 - Separadas as permissões de organização da agenda e de execução nas camadas de domínio, aplicação e interface.
