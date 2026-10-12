@@ -29,7 +29,7 @@ export type ControlTrainingActivityCommand = Readonly<{
   workspaceId: string;
   civilDate: CivilDate;
   activityId: string;
-  action: "complete" | "update_feedback";
+  action: "complete" | "record_completed" | "update_feedback";
   intensity: TrainingActivityIntensity | null;
   energy: TrainingActivityEnergy | null;
   comment: string | null;

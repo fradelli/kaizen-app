@@ -23,6 +23,28 @@ function dependencies() {
   };
 }
 describe("training mutation date boundary", () => {
+  it.each(["2026-09-25", "2026-09-26"])(
+    "records retrospectively on %s using the fixed workspace",
+    async (civilDate) => {
+      const d = dependencies();
+      await controlTrainingActivity(d, {
+        civilDate,
+        activityId: "activity",
+        expectedRevision: 0,
+        action: "record_completed",
+        intensity: "high",
+        energy: "normal",
+        comment: null,
+      });
+      expect(d.repository.controlTrainingActivity).toHaveBeenCalledWith(
+        expect.objectContaining({
+          civilDate,
+          workspaceId: "fixed",
+          action: "record_completed",
+        }),
+      );
+    },
+  );
   it.each(["2026-09-24", "2026-09-27"])(
     "rejects every mutation on locked date %s before accessing the repository",
     async (civilDate) => {
@@ -38,7 +60,9 @@ describe("training mutation date boundary", () => {
         deleteTrainingActivity(d, { civilDate } as Parameters<typeof deleteTrainingActivity>[1]),
       ).resolves.toMatchObject(expected);
       await expect(
-        controlTrainingActivity(d, { civilDate } as Parameters<typeof controlTrainingActivity>[1]),
+        controlTrainingActivity(d, { civilDate, action: "record_completed" } as Parameters<
+          typeof controlTrainingActivity
+        >[1]),
       ).resolves.toMatchObject(expected);
       await expect(
         saveTrainingActivityExercise(d, { civilDate } as Parameters<

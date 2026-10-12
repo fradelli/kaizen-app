@@ -4,6 +4,7 @@ import { Badge } from "@fradelli/ui/badge";
 import { Button } from "@fradelli/ui/button";
 import { useState } from "react";
 import { isTrainingDateEditable } from "@/features/training/domain/training-edit-window";
+import { supportsRetrospectiveTrainingRecord } from "@/features/training/domain/training-retrospective-record.rules";
 
 import { useTrainingActivityDraft } from "@/features/training/ui/hooks/use-training-activity-draft/use-training-activity-draft";
 import { trainingExerciseDraftKey } from "@/features/training/ui/hooks/use-training-activity-draft/use-training-activity-draft.utils";
@@ -25,8 +26,11 @@ const statusLabels = {
 export function TrainingActivityCard({ civilDate, activity, actions }: TrainingActivityCardProps) {
   const execution = useTrainingActivityDraft({ activity, civilDate });
   const editable = isTrainingDateEditable(civilDate);
+  const retrospective = supportsRetrospectiveTrainingRecord(activity.type) && !activity.startedAt;
   const activeDraft =
-    activity.status === "completed" || activity.status === "skipped" ? null : execution.draft;
+    retrospective || activity.status === "completed" || activity.status === "skipped"
+      ? null
+      : execution.draft;
   const status = activeDraft?.status ?? activity.status;
   const [expandedOverride, setExpandedOverride] = useState<boolean | null>(null);
   const expanded =
@@ -36,7 +40,7 @@ export function TrainingActivityCard({ civilDate, activity, actions }: TrainingA
     activity.structured?.preparation || activity.preparationSession || genericPreparation,
   );
   const [phase, setPhase] = useState<"preparation" | "main">(
-    hasPreparation ? "preparation" : "main",
+    hasPreparation && !retrospective ? "preparation" : "main",
   );
   const structured = activity.structured;
   const activeSession =
@@ -77,7 +81,7 @@ export function TrainingActivityCard({ civilDate, activity, actions }: TrainingA
             </p>
           </div>
           <div className={trainingActivityCardStyles.tools}>
-            {status !== "scheduled" ? (
+            {!retrospective && status !== "scheduled" ? (
               <TrainingActivityTimer activity={activity} draft={activeDraft} />
             ) : null}
             {activeDraft && editable ? (
@@ -107,7 +111,7 @@ export function TrainingActivityCard({ civilDate, activity, actions }: TrainingA
         </div>
       </header>
 
-      {execution.storageError ? (
+      {!retrospective && execution.storageError ? (
         <p role="alert" className={trainingActivityCardStyles.guidance}>
           Não foi possível guardar o rascunho neste navegador. Libere espaço antes de continuar.
         </p>
@@ -120,12 +124,13 @@ export function TrainingActivityCard({ civilDate, activity, actions }: TrainingA
         </p>
       ) : null}
 
-      {status === "scheduled" ? (
+      {status === "scheduled" && !retrospective ? (
         <TrainingActivityControls
           civilDate={civilDate}
           activity={activity}
           action={actions.controlActivity}
           onStart={startActivity}
+          onFinalized={execution.clear}
           ready={execution.ready && editable}
         />
       ) : null}
@@ -221,8 +226,9 @@ export function TrainingActivityCard({ civilDate, activity, actions }: TrainingA
                 <Badge variant="info">Preparação</Badge>
               </div>
               <p className={trainingActivityCardStyles.guidance}>
-                Faça o aquecimento adequado à atividade. O cronômetro principal continua registrando
-                apenas o tempo ativo, mesmo ao alternar entre as etapas.
+                {retrospective
+                  ? "Esta preparação é opcional. Você pode registrar a atividade realizada sem concluir o aquecimento ou informar horários reais."
+                  : "Faça o aquecimento adequado à atividade. O cronômetro principal continua registrando apenas o tempo ativo, mesmo ao alternar entre as etapas."}
               </p>
             </section>
           ) : (
@@ -250,7 +256,7 @@ export function TrainingActivityCard({ civilDate, activity, actions }: TrainingA
               Voltar ao aquecimento
             </Button>
           ) : null}
-          {status !== "scheduled" && editable ? (
+          {(status !== "scheduled" || retrospective) && editable ? (
             <TrainingActivityControls
               civilDate={civilDate}
               activity={activity}
@@ -270,9 +276,11 @@ function activitySummary(
   status: keyof typeof statusLabels,
 ): string {
   const preparationMinutes =
-    activity.structured?.preparation?.targetDurationMinutes ??
-    activity.preparationSession?.targetDurationMinutes ??
-    activity.preparations[0]?.plannedDurationMinutes;
+    supportsRetrospectiveTrainingRecord(activity.type) && !activity.startedAt
+      ? null
+      : (activity.structured?.preparation?.targetDurationMinutes ??
+        activity.preparationSession?.targetDurationMinutes ??
+        activity.preparations[0]?.plannedDurationMinutes);
   const totalMinutes =
     activity.plannedDurationMinutes ?? activity.structured?.main.targetDurationMinutes;
   const durations =

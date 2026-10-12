@@ -9,6 +9,135 @@ import { createDatabaseFixture } from "./fixtures/database.fixture";
 import { withImportDatabase } from "./fixtures/import-database.fixture";
 
 describe("training mutations with PostgreSQL", () => {
+  it.each(["sport_practice", "specific_training"] as const)(
+    "records %s retrospectively without fabricating execution or preparation",
+    (type) =>
+      withImportDatabase(async (client) => {
+        const fixture = await client.$transaction(createDatabaseFixture);
+        const repository = new PrismaTrainingRepository(client);
+        const civilDate = "2026-09-16" as CivilDate;
+        const activity = await client.trainingDayActivity.create({
+          data: {
+            workspaceId: fixture.workspace.id,
+            civilDate: new Date(`${civilDate}T00:00:00Z`),
+            type,
+            name: "Atividade externa",
+            plannedStartMinute: 540,
+            plannedEndMinute: 600,
+          },
+        });
+        const command = {
+          workspaceId: fixture.workspace.id,
+          civilDate,
+          activityId: activity.id,
+          expectedRevision: 0,
+          action: "record_completed" as const,
+          intensity: "high" as const,
+          energy: "energized" as const,
+          comment: "Prática realizada.",
+        };
+        await expect(
+          repository.controlTrainingActivity({ ...command, intensity: null }),
+        ).resolves.toMatchObject({ status: "invalid" });
+        await expect(
+          repository.controlTrainingActivity({ ...command, comment: "x".repeat(1001) }),
+        ).resolves.toMatchObject({ status: "invalid", field: "comment" });
+        const otherWorkspace = await client.workspace.create({ data: {} });
+        await expect(
+          repository.controlTrainingActivity({ ...command, workspaceId: otherWorkspace.id }),
+        ).resolves.toMatchObject({ status: "not_found" });
+        const outcomes = await Promise.all([
+          repository.controlTrainingActivity(command),
+          repository.controlTrainingActivity(command),
+        ]);
+        expect(outcomes.map((outcome) => outcome.status).sort()).toEqual(["conflict", "saved"]);
+        await expect(repository.controlTrainingActivity(command)).resolves.toMatchObject({
+          status: "conflict",
+        });
+        await expect(
+          client.trainingDayActivity.findUniqueOrThrow({ where: { id: activity.id } }),
+        ).resolves.toMatchObject({
+          status: "completed",
+          revision: 1,
+          startedAt: null,
+          completedAt: null,
+          actualStartMinute: null,
+          actualEndMinute: null,
+          plannedStartMinute: 540,
+          plannedEndMinute: 600,
+          intensity: "high",
+          energy: "energized",
+          comment: "Prática realizada.",
+        });
+        expect(
+          await client.trainingActivityExecutionInterval.count({
+            where: { activityId: activity.id },
+          }),
+        ).toBe(0);
+        expect(
+          await client.trainingActivityExerciseExecution.count({
+            where: { activityId: activity.id },
+          }),
+        ).toBe(0);
+        expect(
+          await client.trainingDayActivity.count({ where: { parentActivityId: activity.id } }),
+        ).toBe(0);
+        await expect(
+          repository.controlTrainingActivity({
+            ...command,
+            action: "update_feedback",
+            expectedRevision: 1,
+            comment: "Corrigido.",
+          }),
+        ).resolves.toMatchObject({ status: "saved", revision: 2 });
+        await expect(
+          client.trainingDayActivity.findUniqueOrThrow({ where: { id: activity.id } }),
+        ).resolves.toMatchObject({ startedAt: null, completedAt: null, comment: "Corrigido." });
+      }),
+  );
+
+  it("rejects retrospective recording for guided activities and persisted timers", () =>
+    withImportDatabase(async (client) => {
+      const fixture = await client.$transaction(createDatabaseFixture);
+      const repository = new PrismaTrainingRepository(client);
+      for (const type of ["structured_training", "mobility", "sport_practice"] as const) {
+        const activity = await client.trainingDayActivity.create({
+          data: {
+            workspaceId: fixture.workspace.id,
+            civilDate: new Date("2026-09-16T00:00:00Z"),
+            type,
+            name: "Atividade",
+            ...(type === "structured_training"
+              ? {
+                  trainingPlanVersionId: fixture.trainingPlan.id,
+                  sessionDefinitionId: fixture.mainSession.id,
+                }
+              : {}),
+            ...(type === "sport_practice" ? { status: "paused", startedAt: new Date() } : {}),
+          },
+        });
+        await expect(
+          repository.controlTrainingActivity({
+            workspaceId: fixture.workspace.id,
+            civilDate: "2026-09-16" as CivilDate,
+            activityId: activity.id,
+            expectedRevision: 0,
+            action: "record_completed",
+            intensity: "moderate",
+            energy: "normal",
+            comment: null,
+          }),
+        ).resolves.toMatchObject({ status: "invalid" });
+        if (type !== "sport_practice") {
+          await expect(
+            client.trainingDayActivity.update({
+              where: { id: activity.id },
+              data: { status: "completed" },
+            }),
+          ).rejects.toThrow();
+        }
+      }
+    }));
   it("keeps an intentionally removed planned activity hidden without masking missing data", () =>
     withImportDatabase(async (client) => {
       const fixture = await client.$transaction(createDatabaseFixture);
@@ -594,27 +723,16 @@ describe("training mutations with PostgreSQL", () => {
       ]);
 
       const activity = day.activities[0]!;
-      const startedAt = new Date(Date.now() - 120_000).toISOString();
       await expect(
         repository.controlTrainingActivity({
           workspaceId: fixture.workspace.id,
           civilDate: "2026-09-16" as CivilDate,
           activityId: activity.id,
-          action: "complete",
+          action: "record_completed",
           intensity: "high",
           energy: "energized",
           comment: "Boa energia durante o jogo.",
           expectedRevision: activity.revision,
-          executionDraft: {
-            version: 1,
-            activityId: activity.id,
-            civilDate: "2026-09-16",
-            expectedRevision: activity.revision,
-            status: "in_progress",
-            startedAt,
-            intervals: [{ startedAt, endedAt: null }],
-            exercises: {},
-          },
         }),
       ).resolves.toEqual({ status: "saved", revision: 1 });
       await expect(

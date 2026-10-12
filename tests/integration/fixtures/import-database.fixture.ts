@@ -97,6 +97,12 @@ export async function withImportDatabase(
         "utf8",
       ),
     );
+    await admin.query(
+      readFileSync(
+        "prisma/migrations/20261004120000_allow_retrospective_external_activity/migration.sql",
+        "utf8",
+      ),
+    );
     client = createConnection();
     await run(client, { schema, createConnection });
   } finally {
