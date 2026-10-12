@@ -40,6 +40,11 @@ Testes, integrações PostgreSQL, backup/restore, build, qualidade, dados e gove
 passaram na primeira CI da PR #61. A auditoria falhou com 17 achados.
 Correções de Next.js 16.3.8 e transitivos reduziram a auditoria local a um achado
 alto em `braces` 3.0.3, dependência de desenvolvimento sem patch publicado
-([GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm)).
+([GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm)). A PR #62
+adiciona um fork interno baseado no commit revisado
+`28d440b5dd449dbf1fe6f3506cf94ecca4d02660`, com limites de profundidade. O fork
+está identificado e documentado em `vendor/braces/README.kaizen.md`.
+Instalação congelada, lint, formatação, auditoria sem achados, 291 testes do app
+e 904 testes do pacote passaram localmente. CI das PRs #61 e #62 ainda pendente.
 A tarefa permanece aberta até a validação final; nenhum documento de planejamento
 acompanha a entrega.
