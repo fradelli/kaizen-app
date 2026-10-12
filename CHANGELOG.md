@@ -7,7 +7,7 @@ Mudanças materiais do projeto serão registradas neste arquivo.
 - Futevôlei e atividades externas aceitam registro em hoje e ontem sem cronômetro, horários reais ou aquecimento obrigatório.
 - Preparação opcional permanece consultável; registro aparece no fim do cartão expandido e desaparece ao recolher.
 - Migration aditiva preserva histórico e horários ausentes; aplicada localmente em 04/10. Integrações PostgreSQL pendentes por indisponibilidade do Docker.
-- CI inicial da PR #61 validou integrações, backup/restore, build, qualidade, dados e governança. PR #62 atualiza Next.js e transitivos e inclui um fork interno de `braces` com limite de profundidade; auditoria local sem achados. CI das PRs pendente.
+- CI das PRs #61 e #62 aprovou integrações PostgreSQL, backup/restore, build, qualidade, dados, governança e auditoria. PR #62 atualiza Next.js e transitivos e inclui um fork interno de `braces` com limite de profundidade.
 
 ## 2026-09-27 — edição da agenda futura implementada
 

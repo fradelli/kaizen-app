@@ -32,7 +32,7 @@ consultável; formulário de registro somente no fim do cartão expandido.
 - [x] Registro oculto no cartão recolhido e na última posição quando expandido.
 - [x] Workspace fixo, ownership, revisão e bloqueio de conclusão futura preservados.
 - [x] Migration aditiva aplicada no PostgreSQL local em 04/10/2026.
-- [ ] Integrações PostgreSQL e checks da PR aprovados.
+- [x] Integrações PostgreSQL e checks das PRs #61 e #62 aprovados.
 
 Implementação autorizada e revisada pelo usuário na conversa. Atualização de
 `developer` com a E06-T22 incorporada sem ampliar a janela retrospectiva.
@@ -45,6 +45,6 @@ adiciona um fork interno baseado no commit revisado
 `28d440b5dd449dbf1fe6f3506cf94ecca4d02660`, com limites de profundidade. O fork
 está identificado e documentado em `vendor/braces/README.kaizen.md`.
 Instalação congelada, lint, formatação, auditoria sem achados, 291 testes do app
-e 904 testes do pacote passaram localmente. CI das PRs #61 e #62 ainda pendente.
-A tarefa permanece aberta até a validação final; nenhum documento de planejamento
-acompanha a entrega.
+e 904 testes do pacote passaram localmente. A CI completa das PRs #61 e #62 passou
+em 12/10/2026, incluindo PostgreSQL, backup/restore e build. A jornada manual
+completa permanece pendente; nenhum documento de planejamento acompanha a entrega.
