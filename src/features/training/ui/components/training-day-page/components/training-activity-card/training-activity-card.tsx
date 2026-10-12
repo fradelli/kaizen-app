@@ -3,7 +3,10 @@
 import { Badge } from "@fradelli/ui/badge";
 import { Button } from "@fradelli/ui/button";
 import { useState } from "react";
-import { isTrainingDateEditable } from "@/features/training/domain/training-edit-window";
+import {
+  isTrainingAgendaDateEditable,
+  isTrainingExecutionDateEditable,
+} from "@/features/training/domain/training-edit-window";
 import { supportsRetrospectiveTrainingRecord } from "@/features/training/domain/training-retrospective-record.rules";
 
 import { useTrainingActivityDraft } from "@/features/training/ui/hooks/use-training-activity-draft/use-training-activity-draft";
@@ -25,8 +28,9 @@ const statusLabels = {
 
 export function TrainingActivityCard({ civilDate, activity, actions }: TrainingActivityCardProps) {
   const execution = useTrainingActivityDraft({ activity, civilDate });
-  const editable = isTrainingDateEditable(civilDate);
   const retrospective = supportsRetrospectiveTrainingRecord(activity.type) && !activity.startedAt;
+  const agendaEditable = isTrainingAgendaDateEditable(civilDate);
+  const executionEditable = isTrainingExecutionDateEditable(civilDate);
   const activeDraft =
     retrospective || activity.status === "completed" || activity.status === "skipped"
       ? null
@@ -84,7 +88,7 @@ export function TrainingActivityCard({ civilDate, activity, actions }: TrainingA
             {!retrospective && status !== "scheduled" ? (
               <TrainingActivityTimer activity={activity} draft={activeDraft} />
             ) : null}
-            {activeDraft && editable ? (
+            {activeDraft && executionEditable ? (
               <Button
                 type="button"
                 variant="ghost"
@@ -97,7 +101,7 @@ export function TrainingActivityCard({ civilDate, activity, actions }: TrainingA
                 {activeDraft.status === "paused" ? "▶" : "⏸"}
               </Button>
             ) : null}
-            {status !== "completed" && editable ? (
+            {status !== "completed" && agendaEditable ? (
               <TrainingActivityDeleteForm
                 civilDate={civilDate}
                 activity={activity}
@@ -131,7 +135,7 @@ export function TrainingActivityCard({ civilDate, activity, actions }: TrainingA
           action={actions.controlActivity}
           onStart={startActivity}
           onFinalized={execution.clear}
-          ready={execution.ready && editable}
+          ready={execution.ready && executionEditable}
         />
       ) : null}
 
@@ -181,7 +185,7 @@ export function TrainingActivityCard({ civilDate, activity, actions }: TrainingA
                     role={activeSession.role}
                     civilDate={civilDate}
                     saveExerciseAction={
-                      activity.status === "completed" && editable
+                      activity.status === "completed" && executionEditable
                         ? actions.saveActivityExercise
                         : undefined
                     }
@@ -194,7 +198,7 @@ export function TrainingActivityCard({ civilDate, activity, actions }: TrainingA
                       ]
                     }
                     onExecutionDraftChange={
-                      activeDraft && editable
+                      activeDraft && executionEditable
                         ? (value) =>
                             execution.updateExercise(
                               trainingExerciseDraftKey(
@@ -256,7 +260,7 @@ export function TrainingActivityCard({ civilDate, activity, actions }: TrainingA
               Voltar ao aquecimento
             </Button>
           ) : null}
-          {(status !== "scheduled" || retrospective) && editable ? (
+          {(status !== "scheduled" || retrospective) && executionEditable ? (
             <TrainingActivityControls
               civilDate={civilDate}
               activity={activity}

@@ -1,5 +1,5 @@
 import "server-only";
-import { isTrainingDateEditable } from "../domain/training-edit-window";
+import { isTrainingExecutionDateEditable } from "../domain/training-edit-window";
 
 import { Prisma, type PrismaClient } from "@/generated/prisma/client";
 import { z } from "zod";
@@ -65,7 +65,8 @@ export async function ensureScheduledTrainingDay(
   const dateResolution = resolveTrainingDayDate({ rawDate: input.civilDate, now });
   if (
     dateResolution.status !== "valid" ||
-    (input.civilDate < dateResolution.todayDate && !isTrainingDateEditable(input.civilDate, now))
+    (input.civilDate < dateResolution.todayDate &&
+      !isTrainingExecutionDateEditable(input.civilDate, now))
   )
     return;
 

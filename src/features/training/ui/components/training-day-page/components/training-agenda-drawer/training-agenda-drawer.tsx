@@ -2,7 +2,7 @@
 
 import { Badge } from "@fradelli/ui/badge";
 import { Button } from "@fradelli/ui/button";
-import { isTrainingDateEditable } from "@/features/training/domain/training-edit-window";
+import { isTrainingAgendaDateEditable } from "@/features/training/domain/training-edit-window";
 import {
   Sheet,
   SheetContent,
@@ -25,7 +25,7 @@ const typeLabels = {
 } as const;
 
 export function TrainingAgendaDrawer({ day, actions }: TrainingAgendaDrawerProps) {
-  if (!isTrainingDateEditable(day.civilDate)) return null;
+  if (!isTrainingAgendaDateEditable(day.civilDate)) return null;
   const availablePlan = "availablePlan" in day ? day.availablePlan : null;
 
   return (

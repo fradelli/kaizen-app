@@ -2,11 +2,11 @@
 
 Mudanças materiais do projeto serão registradas neste arquivo.
 
-## 2026-09-27 — edição da agenda futura priorizada
+## 2026-09-27 — edição da agenda futura implementada
 
-- Criada a E06-T22 para separar a organização de atividades futuras do início antecipado de uma execução.
-- Mantidos a janela de hoje até hoje + 4 dias, o fuso `America/Sao_Paulo` e os bloqueios de execução futura.
-- Selecionada a análise da E06-T22 como próxima ação, sem implementar mudanças de código nesta entrega.
+- Separadas as permissões de organização da agenda e de execução nas camadas de domínio, aplicação e interface.
+- Liberadas inclusão, edição e exclusão entre ontem e hoje + 4, preservando o fuso `America/Sao_Paulo` e o bloqueio de execução futura.
+- Cobertos limites temporais, chamadas diretas às mutações e regressões de dias materializados; CI completa da PR #56 aprovada.
 
 ## 2026-09-27 — importação externa de planos planejada
 

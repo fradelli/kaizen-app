@@ -3,8 +3,8 @@
 import { Button } from "@fradelli/ui/button";
 import { Input } from "@fradelli/ui/input";
 import { useEffect, useRef, useState } from "react";
-import { isTrainingDateEditable } from "@/features/training/domain/training-edit-window";
 import { supportsRetrospectiveTrainingRecord } from "@/features/training/domain/training-retrospective-record.rules";
+import { isTrainingExecutionDateEditable } from "@/features/training/domain/training-edit-window";
 import { hasUnfinishedTrainingExercises } from "./training-activity-controls.utils";
 
 import { useTrainingActionFeedback } from "@/features/training/ui/hooks/use-training-action-feedback";
@@ -41,7 +41,7 @@ export function TrainingActivityControls({
     }
   }, [draft, onFinalized, retrospective, submission.state.status]);
 
-  if (!isTrainingDateEditable(civilDate)) return null;
+  if (!isTrainingExecutionDateEditable(civilDate)) return null;
   if (activity.status === "scheduled" && !draft && !retrospective) {
     return (
       <div className={trainingActivityControlsStyles.root}>
