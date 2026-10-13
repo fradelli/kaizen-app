@@ -3,6 +3,7 @@
 import { Button } from "@fradelli/ui/button";
 import { Input } from "@fradelli/ui/input";
 import { useEffect, useRef, useState } from "react";
+import { supportsRetrospectiveTrainingRecord } from "@/features/training/domain/training-retrospective-record.rules";
 import { isTrainingExecutionDateEditable } from "@/features/training/domain/training-edit-window";
 import { hasUnfinishedTrainingExercises } from "./training-activity-controls.utils";
 
@@ -25,6 +26,8 @@ export function TrainingActivityControls({
   const dialog = useRef<HTMLDialogElement>(null);
   const form = useRef<HTMLFormElement>(null);
   const confirmed = useRef(false);
+  const finalized = useRef(false);
+  const retrospective = supportsRetrospectiveTrainingRecord(activity.type) && !activity.startedAt;
 
   useEffect(() => {
     if (confirming && !dialog.current?.open) dialog.current?.showModal();
@@ -32,11 +35,14 @@ export function TrainingActivityControls({
   }, [confirming]);
 
   useEffect(() => {
-    if (submission.state.status === "saved" && draft) onFinalized?.();
-  }, [draft, onFinalized, submission.state.status]);
+    if (submission.state.status === "saved" && !finalized.current && (draft || retrospective)) {
+      finalized.current = true;
+      onFinalized?.();
+    }
+  }, [draft, onFinalized, retrospective, submission.state.status]);
 
   if (!isTrainingExecutionDateEditable(civilDate)) return null;
-  if (activity.status === "scheduled" && !draft) {
+  if (activity.status === "scheduled" && !draft && !retrospective) {
     return (
       <div className={trainingActivityControlsStyles.root}>
         <Button type="button" onClick={onStart} disabled={!ready}>
@@ -51,13 +57,24 @@ export function TrainingActivityControls({
   const completed = activity.status === "completed";
   return (
     <details className={trainingActivityControlsStyles.completion}>
-      <summary>{completed ? "Corrigir avaliação" : "Finalizar atividade"}</summary>
+      <summary>
+        {completed
+          ? "Corrigir avaliação"
+          : retrospective
+            ? "Registrar atividade realizada"
+            : "Finalizar atividade"}
+      </summary>
       <form
         ref={form}
         action={submission.formAction}
         className={trainingActivityControlsStyles.grid}
         onSubmit={(event) => {
-          if (!completed && !confirmed.current && hasUnfinishedTrainingExercises(activity, draft)) {
+          if (
+            !completed &&
+            !retrospective &&
+            !confirmed.current &&
+            hasUnfinishedTrainingExercises(activity, draft)
+          ) {
             event.preventDefault();
             setConfirming(true);
           }
@@ -71,17 +88,25 @@ export function TrainingActivityControls({
           name="expectedRevision"
           value={draft?.expectedRevision ?? activity.revision}
         />
-        <input type="hidden" name="action" value={completed ? "update_feedback" : "complete"} />
-        {draft ? <input type="hidden" name="executionDraft" value={JSON.stringify(draft)} /> : null}
+        <input
+          type="hidden"
+          name="action"
+          value={completed ? "update_feedback" : retrospective ? "record_completed" : "complete"}
+        />
+        {draft && !retrospective ? (
+          <input type="hidden" name="executionDraft" value={JSON.stringify(draft)} />
+        ) : null}
         {activity.type !== "mobility" ? (
           <>
             <Field label="Intensidade" id={`${activity.id}-intensity`}>
               <select
                 id={`${activity.id}-intensity`}
                 name="intensity"
-                defaultValue={activity.intensity ?? "moderate"}
+                defaultValue={activity.intensity ?? (retrospective ? "" : "moderate")}
+                required
                 className={trainingActivityControlsStyles.control}
               >
+                {retrospective ? <option value="">Selecione</option> : null}
                 <option value="low">Leve</option>
                 <option value="moderate">Moderada</option>
                 <option value="high">Alta</option>
@@ -91,9 +116,11 @@ export function TrainingActivityControls({
               <select
                 id={`${activity.id}-energy`}
                 name="energy"
-                defaultValue={activity.energy ?? "normal"}
+                defaultValue={activity.energy ?? (retrospective ? "" : "normal")}
+                required
                 className={trainingActivityControlsStyles.control}
               >
+                {retrospective ? <option value="">Selecione</option> : null}
                 <option value="tired">Cansado</option>
                 <option value="normal">Normal</option>
                 <option value="energized">Disposto</option>
@@ -117,7 +144,11 @@ export function TrainingActivityControls({
           </Field>
         </div>
         <Button type="submit" disabled={submission.pending}>
-          {completed ? "Salvar avaliação" : "Finalizar atividade"}
+          {completed
+            ? "Salvar avaliação"
+            : retrospective
+              ? "Salvar registro"
+              : "Finalizar atividade"}
         </Button>
         {submission.state.status !== "saved" && !submission.pending ? (
           <TrainingActionFeedback state={submission.state} pending={false} />

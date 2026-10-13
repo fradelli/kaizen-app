@@ -30,6 +30,7 @@ Treino, preparação, mobilidade ou descanso do dia consultáveis e registrávei
 | E06-T20 | E06-T12    | Inclusão sem a opção Treino específico            |
 | E06-T21 | E06-T16    | Contrato de importação externa projetado          |
 | E06-T22 | E06-T12    | Agenda futura editável sem execução antecipada    |
+| E06-T23 | E06-T12    | Registro retrospectivo de atividades externas em revisão |
 
 As tarefas E06-T06 a E06-T22 são uma rodada complementar. Nenhuma
 começa automaticamente nem amplia o gate de E06-T05 sem nova priorização. Ao

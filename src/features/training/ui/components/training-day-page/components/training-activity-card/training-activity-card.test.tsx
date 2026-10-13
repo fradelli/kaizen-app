@@ -28,6 +28,76 @@ afterEach(() => {
 });
 
 describe("TrainingActivityCard", () => {
+  it.each(["sport_practice", "specific_training"] as const)(
+    "records scheduled %s without starting a timer or requiring warmup",
+    async (type) => {
+      const sport = createSportActivity();
+      renderCard({
+        ...sport,
+        type,
+        status: "scheduled",
+        startedAt: null,
+        currentIntervalStartedAt: null,
+        intervals: [],
+      });
+      expect(screen.queryByText("Registrar atividade realizada")).not.toBeInTheDocument();
+      expect(screen.queryByRole("button", { name: "Iniciar atividade" })).not.toBeInTheDocument();
+      expect(screen.queryByLabelText("Tempo ativo")).not.toBeInTheDocument();
+      fireEvent.click(screen.getByRole("button", { name: /Jogo de futevôlei/ }));
+      const registration = screen.getByText("Registrar atividade realizada").closest("details");
+      expect(registration).toBeInTheDocument();
+      expect(registration?.parentElement?.lastElementChild).toBe(registration);
+      expect(screen.getByRole("button", { name: "Aquecimento" })).toBeInTheDocument();
+      expect(screen.getByText("Futevôlei · 120 min planejados")).toBeInTheDocument();
+      fireEvent.click(screen.getByRole("button", { name: "Aquecimento" }));
+      expect(screen.getByText("Aquecimento de Jogo de futevôlei")).toBeInTheDocument();
+      expect(screen.getByText(/Esta preparação é opcional/)).toBeInTheDocument();
+      expect(screen.queryByLabelText("Tempo ativo")).not.toBeInTheDocument();
+      fireEvent.change(screen.getByLabelText("Intensidade"), { target: { value: "high" } });
+      fireEvent.change(screen.getByLabelText("Disposição durante a atividade"), {
+        target: { value: "energized" },
+      });
+      fireEvent.click(screen.getByRole("button", { name: "Salvar registro" }));
+      await waitFor(() => expect(action).toHaveBeenCalledTimes(1));
+      const formData = action.mock.calls[0]![1] as FormData;
+      expect(formData.get("action")).toBe("record_completed");
+      expect(formData.has("executionDraft")).toBe(false);
+      expect(screen.queryByRole("dialog", { name: "Finalizar treino?" })).not.toBeInTheDocument();
+      expect(window.localStorage.length).toBe(0);
+      fireEvent.click(screen.getByRole("button", { name: /Jogo de futevôlei/ }));
+      expect(screen.queryByText("Registrar atividade realizada")).not.toBeInTheDocument();
+    },
+  );
+
+  it("keeps retrospective completion and feedback correction without a timer after reload", () => {
+    renderCard({
+      ...createSportActivity(),
+      status: "completed",
+      startedAt: null,
+      completedAt: null,
+      intervals: [],
+      currentIntervalStartedAt: null,
+      intensity: "high",
+      energy: "normal",
+    });
+    expect(screen.getByText(/Concluído/)).toBeInTheDocument();
+    expect(screen.queryByLabelText("Tempo ativo")).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: /Jogo de futevôlei/ }));
+    expect(screen.getByText("Corrigir avaliação")).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Salvar registro" })).not.toBeInTheDocument();
+  });
+
+  it("does not offer retrospective recording on a future date", () => {
+    vi.setSystemTime(new Date("2026-09-16T15:00:00Z"));
+    renderCard({
+      ...createSportActivity(),
+      status: "scheduled",
+      startedAt: null,
+      currentIntervalStartedAt: null,
+      intervals: [],
+    });
+    expect(screen.queryByText("Registrar atividade realizada")).not.toBeInTheDocument();
+  });
   it("previews and collapses a scheduled workout without starting it", async () => {
     renderCard(createStructuredActivity({ status: "scheduled" }));
     fireEvent.click(screen.getByRole("button", { name: /Inferiores A/ }));
@@ -292,7 +362,10 @@ function renderCard(activity: TrainingActivityDto) {
   );
 }
 
-const action = vi.fn(async () => ({ status: "saved" as const, revision: 1 }));
+const action = vi.fn<TrainingDayFormActions["controlActivity"]>(async () => ({
+  status: "saved",
+  revision: 1,
+}));
 const actions: TrainingDayFormActions = {
   addActivity: action,
   updateActivity: action,

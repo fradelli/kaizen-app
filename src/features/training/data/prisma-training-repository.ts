@@ -2,6 +2,7 @@ import { parseTrainingExerciseBlock } from "./parse-training-exercise-block";
 import "server-only";
 
 import { isSameTrainingSport } from "../domain/training-sport.rules";
+import { supportsRetrospectiveTrainingRecord } from "../domain/training-retrospective-record.rules";
 
 import { Prisma, type PrismaClient } from "@/generated/prisma/client";
 import {
@@ -257,6 +258,9 @@ export class PrismaTrainingRepository implements TrainingRepository {
   ): Promise<TrainingMutationResult> {
     return executePrismaMutation(() =>
       this.client.$transaction(async (transaction) => {
+        if (input.action === "record_completed") {
+          return recordCompletedExternalActivity(transaction, input);
+        }
         if (input.action === "complete") {
           if (!input.executionDraft) {
             return invalid("A finalização exige o rascunho completo da atividade.");
@@ -433,6 +437,45 @@ async function findActiveTrainingPlanRow(
   return activation?.trainingPlan ?? null;
 }
 
+async function recordCompletedExternalActivity(
+  transaction: Prisma.TransactionClient,
+  input: ControlTrainingActivityCommand,
+): Promise<TrainingMutationResult> {
+  const activity = await transaction.trainingDayActivity.findFirst({
+    where: activityMutationWhere(input),
+    select: { type: true, status: true, role: true, startedAt: true },
+  });
+  if (!activity) return conflictOrMissingActivity(transaction, input);
+  if (!supportsRetrospectiveTrainingRecord(activity.type) || activity.role !== "primary") {
+    return invalid(
+      "Somente práticas esportivas e treinos específicos aceitam registro retrospectivo.",
+    );
+  }
+  if (activity.status !== "scheduled" || activity.startedAt || input.executionDraft) {
+    return invalid(
+      "O registro retrospectivo exige uma atividade ainda não iniciada, sem rascunho.",
+    );
+  }
+  if (!input.intensity || !input.energy) {
+    return invalid("Informe a intensidade e a disposição para registrar.");
+  }
+  const comment = normalizeComment(input.comment);
+  if (comment && comment.length > 1000) {
+    return invalid("O comentário deve ter no máximo 1.000 caracteres.", "comment");
+  }
+  const updated = await transaction.trainingDayActivity.updateMany({
+    where: { ...activityMutationWhere(input), status: "scheduled" },
+    data: {
+      status: "completed",
+      intensity: input.intensity,
+      energy: input.energy,
+      comment,
+      revision: { increment: 1 },
+    },
+  });
+  return updated.count ? saved(input.expectedRevision + 1) : conflict();
+}
+
 async function completeTrainingActivityFromDraft(
   transaction: Prisma.TransactionClient,
   input: ControlTrainingActivityCommand,
@@ -454,6 +497,9 @@ async function completeTrainingActivityFromDraft(
   );
   if (!activity) return notFound("A atividade não foi encontrada.");
   if (activity.revision !== input.expectedRevision) return conflict();
+  if (supportsRetrospectiveTrainingRecord(activity.type) && activity.status === "scheduled") {
+    return invalid("Use o registro retrospectivo para esta atividade externa.");
+  }
   if (
     activity.status !== "scheduled" &&
     activity.status !== "in_progress" &&

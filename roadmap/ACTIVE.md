@@ -8,6 +8,6 @@
 - **Objetivo:** separar edição da agenda futura de execução antecipada, preservando a janela de hoje até hoje + 4 dias.
 - **Autorização:** diagnóstico e plano aprovados pelo usuário em 27/09/2026.
 - **Resultado:** agenda editável entre ontem e hoje + 4, com execução futura bloqueada; CI completa aprovada na PR #56.
-- **Próxima ação:** aguardar a escolha da próxima tarefa; nenhuma foi iniciada automaticamente.
+- **Próxima ação:** concluir a validação manual da jornada retrospectiva; as PRs #61 e #62 têm todos os checks aprovados. E06-T22 permanece encerrada.
 
 O usuário aprovou o commit local e a limpeza restrita ao treino no PostgreSQL local após backup. Backup atualizado em 26/09 e restaurado em banco temporário. Reinício da E06-T17 concluído, nova ficha importada e ativada, alimentação preservada. Reimportação retornou no-op; consulta repetida não duplicou atividades e a data além de hoje + 4 não materializou registros.

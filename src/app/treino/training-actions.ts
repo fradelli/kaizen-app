@@ -32,7 +32,7 @@ const activitySchema = z.object({
 const activityControlSchema = z.object({
   civilDate: z.iso.date(),
   activityId: z.uuid(),
-  action: z.enum(["complete", "update_feedback"]),
+  action: z.enum(["complete", "record_completed", "update_feedback"]),
   intensity: z.preprocess(nullableFormValue, z.enum(["low", "moderate", "high"]).nullable()),
   energy: z.preprocess(nullableFormValue, z.enum(["tired", "normal", "energized"]).nullable()),
   comment: z.preprocess(nullableFormValue, z.string().max(1000).nullable()),
